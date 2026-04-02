@@ -2,11 +2,9 @@
 <html lang="ko">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>써주세요. · Monthly Loan</title>
 <meta name="description" content="20~33세 청년 서민을 위한 나노크레딧. 급할 때 빌려쓰는 써주세요.">
-<meta property="og:title" content="써주세요. · Monthly Loan">
-<meta property="og:description" content="급할 때 빌려쓰는 나노크레딧">
 <link href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard/dist/web/static/pretendard.css" rel="stylesheet">
 <link href="https://cdn.jsdelivr.net/gh/spoqa/spoqa-han-sans@latest/css/SpoqaHanSansNeo.css" rel="stylesheet">
 <link href="https://fonts.googleapis.com/css2?family=Nanum+Square+Neo:wght@400;700;800;900&display=swap" rel="stylesheet">
@@ -20,32 +18,40 @@
   --text:#1A1A2E;
   --gray:#888;
 }
-html,body{
-  background:var(--cream);
-  min-height:100vh;
-  font-family:'Spoqa Han Sans Neo',sans-serif;
-}
+html,body{background:var(--cream);min-height:100vh;font-family:'Spoqa Han Sans Neo',sans-serif;}
 
-/* ── MOBILE (기본) ── */
+/* wrap = 전체 페이지 컨테이너 */
 .wrap{
-  width:100%;
-  max-width:430px;
-  min-height:100vh;
-  margin:0 auto;
-  background:var(--cream);
   position:relative;
   overflow:hidden;
+  min-height:100vh;
 }
-.orb-big{position:absolute;top:-70px;right:-70px;width:220px;height:220px;background:var(--orange);border-radius:50%;opacity:.08;pointer-events:none;}
-.orb-sm{position:absolute;top:140px;left:-30px;width:80px;height:80px;background:var(--mint);border-radius:50%;opacity:.18;pointer-events:none;}
 
-.nav{padding:28px 24px 0;display:flex;align-items:center;justify-content:space-between;position:relative;z-index:2;}
+/* 배경 orb */
+.orb-big{position:fixed;top:-70px;right:-70px;width:220px;height:220px;background:var(--orange);border-radius:50%;opacity:.08;pointer-events:none;z-index:0;}
+.orb-sm{position:fixed;top:200px;left:-30px;width:80px;height:80px;background:var(--mint);border-radius:50%;opacity:.18;pointer-events:none;z-index:0;}
+
+/* nav */
+.nav{
+  position:relative;z-index:2;
+  padding:28px 24px 0;
+  display:flex;align-items:center;justify-content:space-between;
+}
 .nav-left{display:flex;align-items:center;gap:9px;}
 .logo-img{width:34px;height:34px;object-fit:contain;}
 .brand{font-family:'Pretendard',sans-serif;font-size:.9rem;font-weight:800;color:var(--purple);}
 .nav-menu{font-size:1.3rem;color:var(--purple);cursor:pointer;}
 
-.hero{padding:32px 24px 0;position:relative;z-index:2;}
+/* content 영역: 모바일은 세로 스택, 데스크탑은 좌우 분할 */
+.content{
+  position:relative;z-index:2;
+  display:flex;
+  flex-direction:column;
+  padding:0;
+}
+
+/* hero */
+.hero{padding:32px 24px 0;}
 .live-badge{display:inline-flex;align-items:center;gap:6px;border:1.5px solid var(--orange);border-radius:20px;padding:5px 13px;margin-bottom:16px;}
 .live-dot{width:5px;height:5px;border-radius:50%;background:var(--orange);}
 .live-text{font-family:'Spoqa Han Sans Neo',sans-serif;font-size:.65rem;font-weight:700;color:var(--orange);}
@@ -53,15 +59,18 @@ h1{font-family:'Pretendard',sans-serif;font-size:2rem;font-weight:900;color:var(
 h1 em{font-style:normal;color:var(--purple);}
 .sub{font-family:'Spoqa Han Sans Neo',sans-serif;font-size:.8rem;color:var(--gray);line-height:1.8;margin-bottom:28px;}
 
-.cards{padding:0 24px;position:relative;z-index:2;}
-.main-card{background:var(--purple);border-radius:22px;padding:20px;position:relative;overflow:hidden;margin-bottom:14px;}
+/* cards */
+.cards{padding:0 24px;display:flex;flex-direction:column;gap:14px;}
+.main-card{
+  background:var(--purple);border-radius:22px;padding:20px;
+  position:relative;overflow:hidden;
+}
 .main-card::before{content:'';position:absolute;top:-22px;right:-22px;width:88px;height:88px;background:var(--orange);border-radius:50%;opacity:.22;}
 .main-card::after{content:'';position:absolute;bottom:-10px;left:28px;width:52px;height:52px;background:var(--mint);border-radius:50%;opacity:.18;}
 .main-tag{font-family:'Nanum Square Neo',sans-serif;font-size:.62rem;font-weight:800;color:var(--mint);letter-spacing:1px;margin-bottom:8px;position:relative;z-index:1;}
 .main-title{font-family:'Pretendard',sans-serif;font-size:1rem;font-weight:900;color:#fff;margin-bottom:4px;position:relative;z-index:1;}
 .main-sub{font-family:'Spoqa Han Sans Neo',sans-serif;font-size:.68rem;color:rgba(255,255,255,.55);margin-bottom:16px;position:relative;z-index:1;}
 .main-btn{display:inline-block;background:var(--orange);color:#fff;font-family:'Spoqa Han Sans Neo',sans-serif;font-size:.75rem;font-weight:700;border-radius:50px;padding:9px 20px;text-decoration:none;position:relative;z-index:1;}
-
 .checker-card{background:#fff;border-radius:20px;padding:18px;box-shadow:0 8px 28px rgba(56,0,151,.12);}
 .checker-header{display:flex;align-items:center;gap:12px;margin-bottom:14px;}
 .checker-icon{width:44px;height:44px;background:#EBF7F9;border-radius:14px;display:flex;align-items:center;justify-content:center;font-size:1.2rem;flex-shrink:0;}
@@ -69,73 +78,56 @@ h1 em{font-style:normal;color:var(--purple);}
 .checker-desc{font-family:'Spoqa Han Sans Neo',sans-serif;font-size:.68rem;color:#bbb;}
 .checker-btn{display:block;width:100%;text-align:center;font-family:'Spoqa Han Sans Neo',sans-serif;font-size:.75rem;font-weight:700;border-radius:12px;padding:11px;text-decoration:none;color:#fff;background:linear-gradient(135deg,var(--purple),#5B0FC8);}
 
+/* footer */
 .footer{padding:24px 24px 32px;display:flex;justify-content:center;position:relative;z-index:2;}
 .grad-bar{width:48%;height:3px;border-radius:10px;background:linear-gradient(90deg,var(--purple),var(--mint),var(--orange));}
 
-/* ── TABLET / DESKTOP (≥768px) ── */
+/* ── TABLET / DESKTOP ≥768px ── */
 @media(min-width:768px){
-  body{display:flex;align-items:stretch;}
-  .wrap{
-    max-width:100%;
-    display:grid;
-    grid-template-columns:1fr 1fr;
-    grid-template-rows:auto 1fr auto;
-    min-height:100vh;
-    overflow:visible;
-  }
-  .orb-big{width:400px;height:400px;top:-120px;right:-120px;opacity:.06;}
-  .orb-sm{width:160px;height:160px;top:200px;left:-50px;}
+  .nav{padding:36px 60px 0;max-width:1280px;margin:0 auto;width:100%;}
+  .logo-img{width:42px;height:42px;}
+  .brand{font-size:1.05rem;}
 
-  .nav{
-    grid-column:1/-1;
-    padding:36px 60px 0;
+  .content{
+    flex-direction:row;
+    align-items:center;
+    max-width:1280px;
+    margin:0 auto;
+    padding:40px 60px 40px;
+    gap:48px;
+    min-height:calc(100vh - 100px);
   }
-  .logo-img{width:44px;height:44px;}
-  .brand{font-size:1.1rem;}
 
-  .hero{
-    grid-column:1;
-    padding:48px 0 48px 60px;
-    display:flex;
-    flex-direction:column;
-    justify-content:center;
-  }
+  .hero{flex:1;padding:0;}
   .live-badge{padding:7px 16px;margin-bottom:24px;}
   .live-text{font-size:.75rem;}
   h1{font-size:3.2rem;margin-bottom:16px;}
   .sub{font-size:.95rem;margin-bottom:0;}
 
-  .cards{
-    grid-column:2;
-    padding:48px 60px 48px 40px;
-    display:flex;
-    flex-direction:column;
-    justify-content:center;
-    gap:20px;
-  }
-  .main-card{margin-bottom:0;border-radius:28px;padding:28px;}
+  .cards{flex:1;padding:0;gap:20px;}
+  .main-card{border-radius:28px;padding:26px;}
   .main-tag{font-size:.72rem;margin-bottom:12px;}
-  .main-title{font-size:1.3rem;margin-bottom:6px;}
-  .main-sub{font-size:.78rem;margin-bottom:22px;}
+  .main-title{font-size:1.25rem;margin-bottom:6px;}
+  .main-sub{font-size:.78rem;margin-bottom:20px;}
   .main-btn{font-size:.85rem;padding:12px 28px;}
-
   .checker-card{border-radius:28px;padding:24px;}
   .checker-icon{width:52px;height:52px;font-size:1.4rem;}
   .checker-name{font-size:1rem;}
   .checker-desc{font-size:.78rem;}
   .checker-btn{font-size:.85rem;padding:14px;border-radius:14px;}
 
-  .footer{grid-column:1/-1;padding:32px 60px 40px;justify-content:flex-start;}
+  .footer{max-width:1280px;margin:0 auto;padding:0 60px 40px;justify-content:flex-start;}
   .grad-bar{width:80px;}
+
+  .orb-big{width:500px;height:500px;top:-150px;right:-150px;opacity:.06;}
+  .orb-sm{width:200px;height:200px;top:250px;left:-60px;}
 }
 
-/* ── LARGE DESKTOP (≥1200px) ── */
-@media(min-width:1200px){
-  .nav{padding:44px 120px 0;}
-  .hero{padding:60px 0 60px 120px;}
+@media(min-width:1280px){
+  .nav{padding:44px 80px 0;}
+  .content{padding:60px 80px;gap:80px;}
   h1{font-size:4rem;}
-  .cards{padding:60px 120px 60px 60px;}
-  .footer{padding:40px 120px 48px;}
+  .footer{padding:0 80px 48px;}
 }
 </style>
 </head>
@@ -152,32 +144,33 @@ h1 em{font-style:normal;color:var(--purple);}
     <span class="nav-menu">≡</span>
   </nav>
 
-  <section class="hero">
-    <div class="live-badge">
-      <div class="live-dot"></div>
-      <span class="live-text">4월 대출 · 신청중</span>
-    </div>
-    <h1>급할 때<br>빌려쓰는<br><em>나노크레딧.</em></h1>
-    <p class="sub">20~33세 청년 서민에게<br>친화적인 창의적 대안 금융</p>
-  </section>
-
-  <div class="cards">
-    <div class="main-card">
-      <div class="main-tag">🌸 이달의 대출</div>
-      <div class="main-title">4월은 가장 잔인한 달</div>
-      <div class="main-sub">이벤트 · 웨이팅 · 롸잇나우</div>
-      <a class="main-btn" href="./2026-04/">신청하기 →</a>
-    </div>
-
-    <div class="checker-card">
-      <div class="checker-header">
-        <div class="checker-icon">🔍</div>
-        <div>
-          <div class="checker-name">대출 가능성 검사기</div>
-          <div class="checker-desc">내가 받을 수 있는지 확인해봐.</div>
-        </div>
+  <div class="content">
+    <section class="hero">
+      <div class="live-badge">
+        <div class="live-dot"></div>
+        <span class="live-text">4월 대출 · 신청중</span>
       </div>
-      <a class="checker-btn" href="./loan-checker/">검사 시작하기 →</a>
+      <h1>급할 때<br>빌려쓰는<br><em>나노크레딧.</em></h1>
+      <p class="sub">20~33세 청년 서민에게<br>친화적인 창의적 대안 금융</p>
+    </section>
+
+    <div class="cards">
+      <div class="main-card">
+        <div class="main-tag">🌸 이달의 대출</div>
+        <div class="main-title">4월은 가장 잔인한 달</div>
+        <div class="main-sub">이벤트 · 웨이팅 · 롸잇나우</div>
+        <a class="main-btn" href="./2026-04/">신청하기 →</a>
+      </div>
+      <div class="checker-card">
+        <div class="checker-header">
+          <div class="checker-icon">🔍</div>
+          <div>
+            <div class="checker-name">대출 가능성 검사기</div>
+            <div class="checker-desc">내가 받을 수 있는지 확인해봐.</div>
+          </div>
+        </div>
+        <a class="checker-btn" href="./loan-checker/">검사 시작하기 →</a>
+      </div>
     </div>
   </div>
 
