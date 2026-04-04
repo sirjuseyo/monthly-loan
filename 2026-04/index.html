@@ -59,7 +59,8 @@
 
         h2.section-title {
             font-family: 'Nanum Square Neo', sans-serif;
-            font-size: 2em;
+            font-size: 1.4em;
+            /* 1차 축소: 2em → 1.4em */
             font-weight: 800;
             color: #4A148C;
             margin-top: 40px;
@@ -175,7 +176,8 @@
 
         .loan-type-box h4 {
             font-family: 'Nanum Square Neo', sans-serif;
-            font-size: 1.6em;
+            font-size: 1.1em;
+            /* 축소: 1.6em → 1.1em (h2 1.4em보다 작게) */
             font-weight: 700;
             margin-top: 0;
             color: #4A148C;
@@ -1052,7 +1054,7 @@
             <div class="event-specialty-box">
                 <div class="event-specialty-head">
                     <h3 class="event-title"
-                        style="margin:0; font-size:1.85rem; font-weight:800; color:var(--primary-color);">벚꽃 🌸 대출
+                        style="margin:0; font-size:1.1rem; font-weight:800; color:var(--primary-color);">벚꽃 🌸 대출
                     </h3>
                 </div>
                 <ul class="specialty-benefits">
@@ -1104,7 +1106,7 @@
         </section>
         <section class="my-10">
             <h2 class="section-title">
-                🥊 대출 옵션 세 가지<br>::: 이벤트 대출 vs 웨이팅 대출 vs 롸잇나우 대출
+                🥊 대출 옵션 세 가지<br>::: 이벤트 🆚 웨이팅 🆚 롸잇나우
             </h2>
             <!-- 이벤트 대출 -->
             <div class="loan-type-box">
@@ -1228,7 +1230,7 @@
         </section>
         <section class="my-10">
             <h2 class="section-title">
-                📢 [4️⃣🈷️은 가장 잔인한 달(feat. T.S. 엘리엇) 대출]과<br>[써주세요.] 앱 > 인기 상품은 나노크레딧의 차이가 궁금해요.
+                📢 [써주세요.] 앱<br>::: 나노크레딧은 뭔가요?
             </h2>
             <div class="callout-box">
                 <p style="margin:0 0 12px 0; line-height:1.7;">
@@ -1249,7 +1251,7 @@
         </section>
         <section class="my-10">
             <h2 class="section-title">
-                🔍 금액별로 비교하는<br>::: [이벤트 대출] 🆚 [웨이팅 대출] 🆚 [롸잇나우 대출]
+                🔍 비교하세요.<br>::: 이벤트 🆚 웨이팅 🆚 롸잇나우
             </h2>
             <div class="table-caption">
                 🔵 10만 원
@@ -1690,7 +1692,7 @@
         </section>
         <section class="my-10">
             <h2 class="section-title">
-                🎁 모든 금액<br>:::원리포 상품으로 정상 상환하면 받는 혜택
+                🎁 블랙찬스 티켓<br>::: 원리포 상품으로 상환하면 받는 혜택
             </h2>
             <!-- INJECTED CARD CONTENT START -->
             <div class="grid-container">
@@ -1879,15 +1881,14 @@
             </div>
             <!-- ****** 웨이팅 미션 안내 박스 ****** -->
             <div class="blockquote-waiting-info">
-                <p class="info-title">
-                    <span aria-label="check mark" class="text-xl mr-2 inline-block" role="img">
-                        ✅
-                    </span>
-                    웨이팅 대출은 신청 기간에 따라 <span class="bg-gray-100 px-1 rounded text-pink-600">크레딧 미션 포인트</span> 가 달라져요!
+                <p class="info-title" style="display: flex; align-items: flex-start; flex-wrap: nowrap;">
+                    <span aria-label="check mark" style="font-size: 1.2em; margin-right: 8px; flex-shrink: 0;">✅</span>
+                    <span>웨이팅 대출은 신청 기간에 따라 <span class="bg-gray-100 px-1 rounded text-pink-600"
+                            style="white-space: nowrap;">크레딧 미션 포인트</span>가 달라져요!</span>
                 </p>
-                <div class="mt-2" style="margin-left: 30px; line-height: 1.6;">
-                    <p style="margin: 0;">* <span class="bg-gray-100 px-1 rounded text-pink-600">할인된 크레딧 미션 포인트</span> 가
-                        궁금하다면,</p>
+                <div style="margin-top: 8px; margin-left: 28px; line-height: 1.6;">
+                    <p style="margin: 0;">* <span class="bg-gray-100 px-1 rounded text-pink-600"
+                            style="white-space: nowrap;">할인된 크레딧 미션 포인트</span>가 궁금하다면,</p>
                     <p style="margin: 0;">* 페이지 하단부에 있는 '💝 웨이팅 대출 보상'을 확인해 주시기 바랍니다.</p>
                 </div>
             </div>
@@ -1984,7 +1985,7 @@
                 💝 웨이팅 대출 보상 두 가지
             </h2>
             <div class="bg-pink-100 p-4 rounded-lg shadow-md my-5">
-                <h3 class="font-nanum text-xl font-bold text-pink-800">
+                <h3 class="font-nanum text-base font-bold text-pink-800">
                     첫 번째 보상 : 크레딧 미션 할인
                 </h3>
             </div>
@@ -3059,7 +3060,7 @@
                 </strong>
             </blockquote>
             <div class="bg-pink-100 p-4 rounded-lg shadow-md my-5">
-                <h3 class="font-nanum text-xl font-bold text-pink-800">
+                <h3 class="font-nanum text-base font-bold text-pink-800">
                     두 번째 보상 : 원리포 상품 이용 시 원금 미션 인하
                 </h3>
             </div>
@@ -3266,15 +3267,15 @@
             </div>
         </section>
         <section class="my-10">
-            <h2 class="section-title">
-                🔻 웨이팅 대출은 대신에 이거 하나만 해주세요!
-            </h2>
             <div class="text-center mt-5">
                 <a href="https://tally.so/r/wzLJx1" target="_blank" aria-label="4️⃣🈷️은 가장 잔인한 달 대출 포인트 구독 안내 페이지로 이동">
                     <img alt="4️⃣🈷️은 가장 잔인한 달 대출 포인트 구독 안내" class="w-full rounded-lg shadow-md"
                         src="https://files.catbox.moe/gf7uaa.png" />
                 </a>
             </div>
+            <h2 class="section-title">
+                🔻 웨이팅 대출은 대신에 이거 하나만 해주세요!
+            </h2>
             <ol class="procedure-list mt-5">
                 <li>
                     <strong class="bold">
