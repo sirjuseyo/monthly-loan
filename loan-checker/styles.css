@@ -1,10 +1,14 @@
 :root {
-  --bg: #121212;
-  --panel: #1c1c1c;
-  --accent: #c41820;
-  --text: #e8e8e8;
-  --muted: #888888;
-  --border: #333333;
+  --bg:      #FFFFFF;      /* 상단1 배너 여백 — 화이트 */
+  --panel:   #FFFFFF;
+  --accent:  #380097;      /* 써주세요. 보라 */
+  --orange:  #FF5400;      /* 써주세요. 오렌지 */
+  --text:    #2D1B4E;
+  --muted:   #9B8EA8;
+  --border:  #DDD0F5;      /* 연보라 테두리 */
+  --pink-border: #F2B8D0;
+  --mid-bg:  #FAF7F2;      /* 중단 크림 */
+  --bot-bg:  #F3EEFF;      /* 하단 라일락 */
 }
 
 * {
@@ -14,14 +18,20 @@
 body {
   margin: 0;
   font-family: "Pretendard", "Noto Sans KR", system-ui, -apple-system, sans-serif;
-  background: var(--bg);
+  background: #FFFFFF;   /* 상단1: 배너 여백 — 화이트 */
   color: var(--text);
   line-height: 1.6;
 }
 
+/* 배너 이미지 사이 여백도 화이트 */
+.hero-banner {
+  margin: 0;
+  background: #FFFFFF;
+}
+
 .app-header {
-  background: var(--panel);
-  border-bottom: 1px solid var(--border);
+  background: #FFFFFF;
+  border-bottom: 1.5px solid var(--border);
   padding: 16px 24px;
   display: flex;
   align-items: center;
@@ -39,6 +49,7 @@ body {
   max-width: 1100px;
   margin: 0 auto;
   padding: 24px;
+  background: var(--mid-bg);
 }
 
 .hero-banner {
@@ -64,15 +75,15 @@ body {
 
 #liveClock {
   font-size: 1rem;
-  color: #1f2937;
+  color: var(--accent);
   display: inline-flex;
   align-items: center;
   gap: 8px;
   padding: 6px 12px;
-  border: 1px solid var(--border);
+  border: 1.5px solid var(--pink-border);
   border-radius: 999px;
-  background: #2a2a2a;
-  box-shadow: 0 4px 10px rgba(15, 23, 42, 0.08);
+  background: #fff;
+  box-shadow: 0 4px 10px rgba(194, 100, 160, 0.1);
 }
 
 #liveClock::before {
@@ -83,9 +94,9 @@ body {
   margin: 12px 0 20px;
   padding: 16px 20px;
   border-radius: 16px;
-  border: 1px solid #4a0f0f;
-  background: linear-gradient(135deg, #2a0808 0%, #1a0000 45%, #100000 100%);
-  box-shadow: 0 12px 26px rgba(100, 0, 0, 0.4);
+  border: 1.5px solid var(--pink-border);
+  background: linear-gradient(135deg, #FDE8F0 0%, #F3D0EA 45%, #E8C8F5 100%);
+  box-shadow: 0 8px 24px rgba(194, 100, 160, 0.15);
   text-align: center;
   position: relative;
   overflow: hidden;
@@ -97,7 +108,7 @@ body {
   inset: 0;
   background-image: radial-gradient(
     circle at 12% 20%,
-    rgba(255, 206, 92, 0.35),
+    rgba(255, 255, 255, 0.5),
     transparent 55%
   );
   opacity: 0.9;
@@ -110,18 +121,19 @@ body {
   font-weight: 900;
   letter-spacing: 0.06em;
   text-transform: uppercase;
-  color: #ff4a4a;
-  text-shadow: 0 1px 0 rgba(0, 0, 0, 0.8);
+  color: var(--accent);
+  text-shadow: none;
   position: relative;
 }
 
+/* ── 상단2: 알림 — 벚꽃 핑크 ── */
 .tone-note {
   margin: 0 0 26px;
   padding: 14px 18px;
-  border: 1px solid #4a1111;
+  border: 1.5px solid var(--pink-border);
   border-radius: 16px;
-  background: linear-gradient(135deg, #2b0808, #110000);
-  box-shadow: 0 8px 18px rgba(235, 20, 20, 0.15);
+  background: linear-gradient(135deg, #FFF0F7, #F5E0FF);
+  box-shadow: 0 6px 18px rgba(194, 100, 160, 0.12);
   display: grid;
   gap: 6px;
 }
@@ -130,23 +142,24 @@ body {
   margin: 0;
   font-size: 0.95rem;
   font-weight: 700;
-  color: #ff3333;
+  color: #C2507A;
   letter-spacing: 0.02em;
 }
 
 .tone-note-body {
   margin: 0;
   font-size: 0.95rem;
-  color: #ddaaaa;
+  color: #7A3A8A;
   line-height: 1.5;
 }
 
+/* ── 중단: 폼 — 크림/연보라 ── */
 .option-guide {
-  border: 1px solid var(--border);
+  border: 1.5px solid var(--border);
   border-radius: 12px;
-  background: #252528;
+  background: #F7F2FF;
   padding: 16px;
-  box-shadow: 0 4px 18px rgba(15, 23, 42, 0.06);
+  box-shadow: 0 4px 18px rgba(56, 0, 151, 0.05);
 }
 
 .option-guide h3 {
@@ -212,7 +225,7 @@ body {
 
 .option-guide-compact {
   margin-top: 12px;
-  background: #252528;
+  background: #F7F2FF;
   box-shadow: none;
 }
 
@@ -229,16 +242,17 @@ body {
 
 .panel {
   background: var(--panel);
-  border: 1px solid var(--border);
-  border-radius: 12px;
+  border: 1.5px solid var(--border);
+  border-radius: 16px;
   padding: 20px;
-  box-shadow: 0 4px 18px rgba(15, 23, 42, 0.08);
+  box-shadow: 0 4px 16px rgba(56, 0, 151, 0.06);
 }
 
 .panel h2 {
   margin-top: 0;
   font-size: 1.1rem;
-  border-bottom: 1px solid var(--border);
+  color: var(--accent);
+  border-bottom: 1.5px solid var(--border);
   padding-bottom: 8px;
 }
 
@@ -274,52 +288,53 @@ label {
 input,
 select,
 textarea {
-  border: 1px solid #444;
-  border-radius: 8px;
+  border: 1.5px solid var(--border);
+  border-radius: 10px;
   padding: 10px 12px;
   font-size: 0.95rem;
-  background: #2b2b2b;
-  color: #eee;
-  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.5);
+  background: #FBF8FF;
+  color: var(--text);
+  box-shadow: 0 2px 6px rgba(56, 0, 151, 0.05);
 }
 
 .field select {
-  border: 2px solid #555;
-  background: #2b2b2b;
-  box-shadow: 0 4px 12px rgba(26, 52, 90, 0.14);
+  border: 1.5px solid var(--border);
+  background: #FBF8FF;
+  box-shadow: 0 3px 10px rgba(56, 0, 151, 0.07);
   cursor: pointer;
   appearance: none;
   -webkit-appearance: none;
   -moz-appearance: none;
   padding-right: 40px;
-  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'><path d='M1 1h10L6 7z' fill='%2364738b'/></svg>");
+  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'><path d='M1 1h10L6 7z' fill='%239B8EA8'/></svg>");
   background-repeat: no-repeat;
   background-position: right 14px center;
   background-size: 12px 8px;
 }
 
 .field select.is-placeholder {
-  color: #9aa0a6;
+  color: var(--muted);
 }
 
 .field select option:disabled,
 .field select option[disabled][selected] {
-  color: #9aa0a6;
+  color: var(--muted);
 }
 
 input:focus,
 select:focus,
 textarea:focus {
-  outline: 2px solid var(--accent);
-  outline-offset: 2px;
+  outline: 2px solid #C9A6E8;
+  outline-offset: 1px;
+  border-color: var(--accent);
 }
 
 .static-value {
-  border: 1px solid var(--border);
-  border-radius: 8px;
+  border: 1.5px solid var(--border);
+  border-radius: 10px;
   padding: 10px 12px;
-  background: #2a2a2a;
-  color: #eee;
+  background: #FBF8FF;
+  color: var(--text);
 }
 
 .hidden {
@@ -332,14 +347,15 @@ textarea:focus {
   gap: 8px;
 }
 
+/* ── 하단: 결과 — 라일락/보라 ── */
 .result-panel {
   max-width: 1100px;
   margin: 16px auto 40px;
-  background: var(--panel);
-  border: 1px solid var(--border);
-  border-radius: 12px;
+  background: #F3EEFF;
+  border: 1.5px solid #C9A6E8;
+  border-radius: 16px;
   padding: 20px;
-  box-shadow: 0 4px 18px rgba(15, 23, 42, 0.08);
+  box-shadow: 0 6px 22px rgba(56, 0, 151, 0.1);
 }
 
 .result-panel.is-stale {
@@ -348,6 +364,7 @@ textarea:focus {
 
 .result-panel h2 {
   margin-top: 0;
+  color: var(--accent);
 }
 
 .result-grid {
@@ -358,10 +375,10 @@ textarea:focus {
 }
 
 .result-field {
-  border: 1px solid var(--border);
-  border-radius: 10px;
+  border: 1.5px solid #C9A6E8;
+  border-radius: 12px;
   padding: 12px;
-  background: #2a2a2a;
+  background: #FFFFFF;
 }
 
 .result-field span {
@@ -372,8 +389,9 @@ textarea:focus {
 
 .result-field p {
   margin: 6px 0 0;
-  font-weight: 600;
+  font-weight: 700;
   font-size: 1.05rem;
+  color: var(--accent);
 }
 
 .script-box {
@@ -419,10 +437,10 @@ textarea:focus {
 }
 
 .script-summary-box {
-  border: 1px solid var(--border);
+  border: 1.5px solid #C9A6E8;
   border-radius: 10px;
   padding: 12px;
-  background: #2a2a2a;
+  background: #FFFFFF;
   display: grid;
   gap: 8px;
 }
@@ -444,7 +462,7 @@ textarea:focus {
 }
 
 .script-warning {
-  color: var(--accent);
+  color: var(--orange);
   font-weight: 600;
 }
 
@@ -481,7 +499,7 @@ textarea:focus {
 
 .script-divider {
   height: 1px;
-  background: var(--border);
+  background: #C9A6E8;
   border-radius: 999px;
 }
 
@@ -492,10 +510,10 @@ textarea:focus {
 }
 
 .script-link-box {
-  border: 1px solid var(--border);
+  border: 1.5px solid #C9A6E8;
   border-radius: 10px;
   padding: 10px 12px;
-  background: #2a2a2a;
+  background: #FFFFFF;
   display: grid;
   gap: 4px;
   font-size: 0.9rem;
@@ -516,7 +534,7 @@ textarea:focus {
 .field-error {
   margin-top: 6px;
   font-size: 0.85rem;
-  color: #c23a3a;
+  color: var(--orange);
 }
 
 .primary-button {
@@ -548,9 +566,9 @@ textarea:focus {
 }
 
 .waiting-info-box {
-  border: 1px solid var(--border);
-  border-radius: 10px;
-  background: #2a1111;
+  border: 1.5px solid var(--pink-border);
+  border-radius: 12px;
+  background: linear-gradient(135deg, #FDE8F5, #EDE0FF);
   padding: 14px;
   margin-top: 12px;
 }
@@ -560,10 +578,10 @@ textarea:focus {
 }
 
 .waiting-calendar {
-  border: 1px solid var(--border);
+  border: 1.5px solid var(--border);
   border-radius: 10px;
   padding: 12px;
-  background: #2a2a2a;
+  background: #FBF8FF;
 }
 
 .calendar-header {
@@ -587,12 +605,13 @@ textarea:focus {
 }
 
 .calendar-nav button {
-  border: 1px solid var(--border);
-  background: #333333;
-  color: #eee;
+  border: 1.5px solid var(--border);
+  background: #EDE0FF;
+  color: var(--accent);
   border-radius: 6px;
   padding: 4px 8px;
   cursor: pointer;
+  font-weight: 700;
 }
 
 .calendar-nav span {
@@ -618,13 +637,14 @@ textarea:focus {
 }
 
 .calendar-day {
-  border: 1px solid var(--border);
-  background: #252528;
+  border: 1.5px solid var(--border);
+  background: #FBF8FF;
   border-radius: 6px;
   padding: 8px 0;
   font-size: 0.85rem;
   text-align: center;
   cursor: pointer;
+  color: var(--text);
 }
 
 .calendar-day.is-empty {
@@ -684,9 +704,9 @@ textarea:focus {
   margin: 6px 0 0;
   padding: 10px 12px;
   border-radius: 8px;
-  background: #3a1515;
-  border: 1px solid var(--border);
-  color: var(--muted);
+  background: #EDE0FF;
+  border: 1.5px solid #C9A6E8;
+  color: var(--text);
   display: flex;
   flex-direction: column;
   gap: 6px;
