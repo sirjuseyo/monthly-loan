@@ -4,7 +4,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>써주세요 대출 신청</title>
+  <title>[DEV] 써주세요 대출 신청</title>
   <!-- 브랜드 폰트: Noto Sans KR (써주세요 브랜드 아이덴티티 ver1.0.2 기준) -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -491,6 +491,11 @@
 
 <body>
 
+  <!-- DEV 환경 표시 배너 (apply-dev.html 전용) -->
+  <div style="background:#FF5400;color:#fff;text-align:center;padding:8px;font-size:13px;font-weight:700;font-family:'Noto Sans KR',sans-serif;letter-spacing:0.5px;">
+    🚧 DEV 테스트 환경 — 실사용자 접근 금지
+  </div>
+
   <div class="progress-bar">
     <div class="progress-fill" id="progressFill" style="width:0%"></div>
   </div>
@@ -804,8 +809,8 @@
        API 설정 — PRD (운영 서버)
        서버팀 API URL 확정 후 아래 주소를 교체할 것
        ══════════════════════════════════════════════════ */
-    const ENV = 'PRD';
-    const API_URL = 'https://api.sirjuseyo.com/loan-applications'; // [PRD] 서버팀 확정 후 교체
+    const ENV = 'DEV';
+    const API_URL = 'https://dev-api.sirjuseyo.com/loan-applications'; // [DEV] 서버팀 확정 후 교체
 
     /* 신청 데이터 → API POST 전송 */
     async function submitToAPI(payload) {
