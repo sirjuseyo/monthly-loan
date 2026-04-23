@@ -1,0 +1,434 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>신청 폼 목업 - 전체 흐름</title>
+  <style>
+    * { margin:0; padding:0; box-sizing:border-box; }
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Noto Sans KR', sans-serif;
+      background: #f3f4f6;
+      color: #1a1a1a;
+    }
+
+    /* ── 목업 라벨 배너 ── */
+    .mockup-banner {
+      background: #7c3aed;
+      color: #fff;
+      text-align: center;
+      padding: 10px;
+      font-size: 13px;
+      font-weight: 700;
+      letter-spacing: 1px;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+
+    /* ── 전체 컨테이너 ── */
+    .page {
+      max-width: 480px;
+      margin: 0 auto;
+      background: #fff;
+    }
+
+    /* ── 섹션 구분선 ── */
+    .section-divider {
+      background: #e5e7eb;
+      border-left: 4px solid #9ca3af;
+      padding: 8px 16px;
+      font-size: 12px;
+      color: #6b7280;
+      font-weight: 700;
+      letter-spacing: 0.5px;
+    }
+
+    /* ── Progress bar ── */
+    .progress-bar {
+      height: 3px;
+      background: #e5e7eb;
+    }
+    .progress-fill {
+      height: 100%;
+      background: #2563eb;
+    }
+
+    /* ── 섹션 블록 ── */
+    .section {
+      padding: 32px 24px;
+      border-bottom: 1px dashed #e5e7eb;
+    }
+
+    /* ── 랜딩 ── */
+    .landing {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 0;
+      padding: 32px 0 32px;
+      background: #fff;
+    }
+    .landing img {
+      width: 100%;
+      display: block;
+    }
+    .landing .start-btn {
+      margin-top: 28px;
+    }
+
+    /* ── 뒤로 버튼 ── */
+    .back-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+      color: #9ca3af;
+      font-size: 13px;
+      margin-bottom: 20px;
+    }
+
+    /* ── 질문 블록 ── */
+    .q-title {
+      font-size: 18px;
+      font-weight: 700;
+      line-height: 1.5;
+      margin-bottom: 16px;
+    }
+    .q-title .req { color: #ef4444; }
+    .q-hint {
+      font-size: 12px;
+      color: #9ca3af;
+      margin-bottom: 12px;
+      line-height: 1.6;
+    }
+
+    /* ── 선택지 ── */
+    .opts { display: flex; flex-direction: column; gap: 10px; margin-bottom: 4px; }
+    .opt {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding: 13px 16px;
+      border: 1.5px solid #d1d5db;
+      border-radius: 8px;
+      font-size: 15px;
+    }
+    .opt.sel {
+      border-color: #2563eb;
+      background: #eff6ff;
+    }
+    .opt-key {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 24px;
+      height: 24px;
+      background: #f3f4f6;
+      border-radius: 4px;
+      font-size: 12px;
+      font-weight: 700;
+      color: #6b7280;
+      flex-shrink: 0;
+    }
+    .opt.sel .opt-key { background: #2563eb; color: #fff; }
+
+    /* ── 텍스트 입력 ── */
+    .inp-box {
+      width: 100%;
+      padding: 13px 16px;
+      border: 1.5px solid #d1d5db;
+      border-radius: 8px;
+      font-size: 15px;
+      color: #9ca3af;
+      background: #fff;
+    }
+    textarea.inp-box {
+      min-height: 100px;
+      resize: none;
+      line-height: 1.6;
+    }
+    select.inp-box {
+      appearance: none;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath fill='%236b7280' d='M6 8L0 0h12z'/%3E%3C/svg%3E");
+      background-repeat: no-repeat;
+      background-position: right 14px center;
+    }
+
+    /* ── 설명 박스 ── */
+    .desc-box {
+      background: #f9fafb;
+      border-radius: 8px;
+      padding: 13px 16px;
+      font-size: 13px;
+      color: #374151;
+      line-height: 1.7;
+      border-left: 3px solid #d1d5db;
+      margin-bottom: 10px;
+    }
+
+    /* ── 버튼 ── */
+    .nav-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: #111;
+      color: #fff;
+      border: none;
+      border-radius: 8px;
+      padding: 13px 22px;
+      font-size: 15px;
+      font-weight: 600;
+      margin-top: 20px;
+    }
+    .nav-btn.full { width: 100%; justify-content: center; }
+
+    /* ── 개인정보 박스 ── */
+    .privacy-box {
+      background: #f9fafb;
+      border-radius: 8px;
+      padding: 18px 20px;
+      font-size: 13px;
+      color: #374151;
+      line-height: 1.9;
+      margin-bottom: 20px;
+    }
+    .privacy-box strong {
+      display: block;
+      font-size: 14px;
+      font-weight: 700;
+      margin-bottom: 10px;
+      color: #111;
+    }
+
+    /* ── 완료 화면 ── */
+    .ty-title {
+      font-size: 18px;
+      font-weight: 700;
+      line-height: 1.5;
+      margin-bottom: 8px;
+    }
+    .ty-warn {
+      color: #ef4444;
+      font-size: 14px;
+      font-weight: 600;
+      margin-bottom: 16px;
+    }
+    .ty-info {
+      background: #f9fafb;
+      border-radius: 8px;
+      padding: 20px;
+      font-size: 14px;
+      line-height: 2;
+      color: #374151;
+      margin-bottom: 20px;
+    }
+    .kakao-row { display: flex; gap: 12px; }
+    .kakao-btn {
+      flex: 1;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      padding: 14px;
+      border-radius: 8px;
+      background: #FEE500;
+      color: #111;
+      font-size: 14px;
+      font-weight: 700;
+      text-decoration: none;
+    }
+  </style>
+</head>
+<body>
+
+<div class="mockup-banner">📋 목업 — 전체 화면 흐름 (위 → 아래)</div>
+
+<div class="page">
+
+  <!-- ────────────────────────────── -->
+  <div class="section-divider">🖼 SCREEN 0 · 랜딩</div>
+  <!-- ────────────────────────────── -->
+  <div class="landing">
+    <img src="https://storage.tally.so/8ab20dbe-1103-425e-b299-cf3ea205d8eb/2depth_landing-page_pointeureul-jeogribhago-don-bilrigi-2-.gif" alt="웨이팅 vs 화잇나우">
+    <img src="https://storage.tally.so/c493a324-4497-4684-92d5-53616b4e9b1b/2depth_landing-page_idalyidaecul-2-.gif" alt="재대출 신규 고객 OKI">
+    <button class="nav-btn start-btn">🌱 신청 준비되었나요? →</button>
+  </div>
+
+  <!-- ────────────────────────────── -->
+  <div class="progress-bar"><div class="progress-fill" style="width:9%"></div></div>
+  <div class="section-divider">📋 SCREEN 1 · 대출 희망 금액</div>
+  <!-- ────────────────────────────── -->
+  <div class="section">
+    <div class="back-btn">← 뒤로</div>
+    <div class="q-title">1. 대출 희망 금액을 선택해주세요.<span class="req"> *</span></div>
+    <div class="opts">
+      <div class="opt"><span class="opt-key">A</span> 10만 원</div>
+      <div class="opt"><span class="opt-key">B</span> 20만 원</div>
+      <div class="opt"><span class="opt-key">C</span> 30만 원</div>
+      <div class="opt sel"><span class="opt-key">D</span> 50만 원</div>
+    </div>
+    <button class="nav-btn">다음 →</button>
+  </div>
+
+  <!-- ────────────────────────────── -->
+  <div class="progress-bar"><div class="progress-fill" style="width:18%"></div></div>
+  <div class="section-divider">📋 SCREEN 2 · 대출 기간 확인</div>
+  <!-- ────────────────────────────── -->
+  <div class="section">
+    <div class="back-btn">← 뒤로</div>
+    <div class="q-title">2. 대출 기간은 1개월(30일)입니다. 확인하셨나요?<span class="req"> *</span></div>
+    <div class="opts">
+      <div class="opt sel"><span class="opt-key">A</span> 네, 확인했어요.</div>
+      <div class="opt"><span class="opt-key">B</span> 아니요, 다른 기간으로 신청하고 싶어요.</div>
+    </div>
+    <button class="nav-btn">다음 →</button>
+  </div>
+
+  <!-- ────────────────────────────── -->
+  <div class="progress-bar"><div class="progress-fill" style="width:27%"></div></div>
+  <div class="section-divider">📋 SCREEN 3 · 써주세요 대출 경험</div>
+  <!-- ────────────────────────────── -->
+  <div class="section">
+    <div class="back-btn">← 뒤로</div>
+    <div class="q-title">3. 써주세요.에서 대출 받아 본 경험이 있으세요?<span class="req"> *</span></div>
+    <div class="opts">
+      <div class="opt"><span class="opt-key">A</span> 네, 실제로 대출받아서 이용했었어요.</div>
+      <div class="opt sel"><span class="opt-key">B</span> 아니요, 아직까지 대출받은 적은 없어요.</div>
+    </div>
+    <button class="nav-btn">다음 →</button>
+  </div>
+
+  <!-- ────────────────────────────── -->
+  <div class="progress-bar"><div class="progress-fill" style="width:36%"></div></div>
+  <div class="section-divider">📋 SCREEN 4 · 대출 방법 선택</div>
+  <!-- ────────────────────────────── -->
+  <div class="section">
+    <div class="back-btn">← 뒤로</div>
+    <div class="q-title">4. 대출 방법을 선택해 주세요.</div>
+    <div class="desc-box">🔍 <strong>[대출이 급한가요?]</strong> → 빠르게 심사 가능한 <span style="color:#e11d48;text-decoration:underline">이벤트 대출</span> 또는 <span style="color:#ca8a04;text-decoration:underline">화잇나우 대출</span>을 선택하세요. 단, 포인트 적립 할인 및 인하가 없어요. 😅</div>
+    <div class="desc-box">🔍 <strong>[포인트 적립이 부담스러운가요?]</strong> → 포인트를 거의 적립하지 않는 <span style="color:#16a34a;text-decoration:underline">웨이팅 대출</span>을 선택하세요. 단, 심사는 5/1 ~ 5/5에 진행돼요. 🤞</div>
+    <div class="opts">
+      <div class="opt"><span class="opt-key">A</span> 이벤트 대출</div>
+      <div class="opt sel"><span class="opt-key">B</span> 화잇나우 대출</div>
+      <div class="opt"><span class="opt-key">C</span> 웨이팅 대출</div>
+    </div>
+    <button class="nav-btn">다음 →</button>
+  </div>
+
+  <!-- ────────────────────────────── -->
+  <div class="progress-bar"><div class="progress-fill" style="width:45%"></div></div>
+  <div class="section-divider">📋 SCREEN 5 · 성함</div>
+  <!-- ────────────────────────────── -->
+  <div class="section">
+    <div class="back-btn">← 뒤로</div>
+    <div class="q-title">1. 고객님의 성함을 알려주세요!<span class="req"> *</span></div>
+    <div class="inp-box">홍길동</div>
+    <button class="nav-btn">✅ 입력 완료 →</button>
+  </div>
+
+  <!-- ────────────────────────────── -->
+  <div class="progress-bar"><div class="progress-fill" style="width:54%"></div></div>
+  <div class="section-divider">📋 SCREEN 6 · 생년월일</div>
+  <!-- ────────────────────────────── -->
+  <div class="section">
+    <div class="back-btn">← 뒤로</div>
+    <div class="q-title">2. 고객님의 생년월일을 적어주세요.<span class="req"> *</span></div>
+    <div class="inp-box">2000.01.01</div>
+    <button class="nav-btn">✅ 입력 완료 →</button>
+  </div>
+
+  <!-- ────────────────────────────── -->
+  <div class="progress-bar"><div class="progress-fill" style="width:63%"></div></div>
+  <div class="section-divider">📋 SCREEN 7 · 휴대폰 번호</div>
+  <!-- ────────────────────────────── -->
+  <div class="section">
+    <div class="back-btn">← 뒤로</div>
+    <div class="q-title">3. 본인 명의 휴대폰 번호를 적어주세요.<span class="req"> *</span></div>
+    <div class="inp-box">01012345678</div>
+    <button class="nav-btn">✅ 입력 완료 →</button>
+  </div>
+
+  <!-- ────────────────────────────── -->
+  <div class="progress-bar"><div class="progress-fill" style="width:72%"></div></div>
+  <div class="section-divider">📋 SCREEN 8 · 이메일</div>
+  <!-- ────────────────────────────── -->
+  <div class="section">
+    <div class="back-btn">← 뒤로</div>
+    <div class="q-title">4. 자주 사용하시는 이메일 주소를 알려주세요!<span class="req"> *</span></div>
+    <div class="inp-box">abc@naver.com</div>
+    <button class="nav-btn">✅ 입력 완료 →</button>
+  </div>
+
+  <!-- ────────────────────────────── -->
+  <div class="progress-bar"><div class="progress-fill" style="width:81%"></div></div>
+  <div class="section-divider">📋 SCREEN 9 · 대출 용도</div>
+  <!-- ────────────────────────────── -->
+  <div class="section">
+    <div class="back-btn">← 뒤로</div>
+    <div class="q-title">5. 대출 용도를 알려주세요.<span class="req"> *</span></div>
+    <div class="q-hint">* 생활비, 교육비, 의료비, 대출 상환, 통신비, 여행, 쇼핑, 선물 등 대출 받는 용도를 상세히 알려주실수록 좋습니다.</div>
+    <textarea class="inp-box">용도를 입력해주세요.</textarea>
+    <button class="nav-btn">✅ 입력 완료 →</button>
+  </div>
+
+  <!-- ────────────────────────────── -->
+  <div class="progress-bar"><div class="progress-fill" style="width:90%"></div></div>
+  <div class="section-divider">📋 SCREEN 10 · 핸드폰 기기 종류</div>
+  <!-- ────────────────────────────── -->
+  <div class="section">
+    <div class="back-btn">← 뒤로</div>
+    <div class="q-title">6. 고객님께서 사용하시는 핸드폰 기기 종류를 입력해 주세요.<span class="req"> *</span></div>
+    <select class="inp-box">
+      <option>선택해주세요</option>
+      <option>안드로이드 🤖</option>
+      <option>아이폰 🍎</option>
+    </select>
+    <button class="nav-btn">✅ 입력 완료 →</button>
+  </div>
+
+  <!-- ────────────────────────────── -->
+  <div class="progress-bar"><div class="progress-fill" style="width:99%"></div></div>
+  <div class="section-divider">📋 SCREEN 11 · 개인정보 동의</div>
+  <!-- ────────────────────────────── -->
+  <div class="section">
+    <div class="back-btn">← 뒤로</div>
+    <div class="privacy-box">
+      <strong>[개인정보 수집과 이용에 대한 동의]</strong>
+      [2026년 4월] 포인트를 적립하는 모든 상품 관련하여 개인정보 수집과 이용에 관한 동의를 받고자 합니다.<br><br>
+      - 수집하는 자: 써주세요연계대부<br>
+      - 개인정보 수집 및 이용 목적: 2026년 4월 포인트를 적립하는 모든 대출 상품과 관련한 사전 신청 접수<br>
+      - 수집하는 개인정보 항목: 이름, 생년월일, 연락처, 이메일<br>
+      - 개인정보 보유 및 이용 기간: 수집 일로부터 300일<br><br>
+      ※ 귀하께서는 동의하지 않을 권리가 있습니다. 동의하지 않을 경우 웨이팅 접수가 취소됨을 알려드립니다.
+    </div>
+    <div class="q-title">개인정보 수집과 이용에 동의하시나요?<span class="req"> *</span></div>
+    <div class="opts">
+      <div class="opt sel"><span class="opt-key">A</span> 네, 동의합니다.</div>
+    </div>
+    <button class="nav-btn">✅ 입력 완료 →</button>
+  </div>
+
+  <!-- ────────────────────────────── -->
+  <div class="progress-bar"><div class="progress-fill" style="width:100%"></div></div>
+  <div class="section-divider">🎉 SCREEN 12 · 완료 화면</div>
+  <!-- ────────────────────────────── -->
+  <div class="section">
+    <div class="ty-title">📋 반드시 아래 정보를 [써주세요. 채널]에 남겨주셔야 진행이 가능합니다.</div>
+    <div class="ty-warn">❌ 아래 정보를 남겨주시지 않으면, 진행이 불가합니다.</div>
+    <div class="ty-info">
+      1. 성함: <strong>홍길동</strong><br>
+      2. 생년월일 6자리: <strong>20000101</strong><br>
+      3. 휴대폰 번호: <strong>01012345678</strong><br>
+      4. 4📅 가장 잔인한 달 대출<br>
+      5. 대출 방법: <strong>화잇나우 대출</strong><br>
+      6. 희망 금액: <strong>50만 원</strong>
+    </div>
+    <div class="kakao-row">
+      <a class="kakao-btn" href="#">👥 카톡 채널 추가하기</a>
+      <a class="kakao-btn" href="#">💬 1:1 채팅방 바로가기</a>
+    </div>
+  </div>
+
+</div>
+</body>
+</html>
