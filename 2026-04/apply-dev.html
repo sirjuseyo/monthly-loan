@@ -826,10 +826,10 @@
     const API_URL  = API_BASE + '/api/monthly-loan/applications'; // [DEV] 서버팀 확정
 
     /* 대출 방법 → 서버 코드값 변환 테이블
-       ※ 코드값은 서버팀 전달 기준 (EVENT 확인, 나머지는 협의값) */
+       ※ CTO 확인 완료 2026-04-25 */
     const METHOD_CD = {
       '이벤트 대출':  'EVENT',
-      '롸잇나우 대출': 'RIGHTNOW',
+      '롸잇나우 대출': 'RIGHT_NOW',
       '웨이팅 대출':  'WAITING'
     };
 
@@ -961,9 +961,9 @@
           loan_amount:      parseAmount(state.amount),
           // 코드값 변환: "이벤트 대출" → "EVENT"
           loan_method_cd:   METHOD_CD[state.method] || state.method,
-          // boolean 변환
-          experience:       state.experience.startsWith('네'),
-          period_confirmed: state.period.startsWith('네'),
+          // string 그대로 전송 (CTO 확인: "네, 이용했어요." / "아니요, 없어요." 등 문자열)
+          experience:       state.experience,
+          period_confirmed: state.period,
           privacy_agreed:   true
         };
         // API POST 전송 → 201이면 완료, 오류면 에러 메시지 표시 후 대기
