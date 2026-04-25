@@ -789,6 +789,18 @@
 
   </div><!-- /page -->
 
+  <!-- API 오류 표시 박스 (DEV 전용) -->
+  <div id="api-error-box" style="display:none; position:fixed; bottom:24px; left:50%; transform:translateX(-50%);
+    width:calc(100% - 48px); max-width:432px; background:#fff; border:2px solid #FF5400;
+    border-radius:14px; padding:20px; box-shadow:0 8px 24px rgba(0,0,0,0.15); z-index:999;
+    font-family:'Noto Sans KR',sans-serif;">
+    <div style="font-size:13px; font-weight:700; color:#FF5400; margin-bottom:8px;">⚠️ API 오류 (DEV)</div>
+    <div id="api-err-msg" style="font-size:14px; color:#1a1a1a; margin-bottom:16px;"></div>
+    <button onclick="hideApiError()" style="width:100%; padding:12px; background:#380097; color:#fff;
+      border:none; border-radius:10px; font-size:14px; font-weight:700;
+      font-family:'Noto Sans KR',sans-serif; cursor:pointer;">확인</button>
+  </div>
+
   <script>
     /*
      * 써주세요 대출 신청 폼 [PRD — 실사용자 전용]
@@ -806,13 +818,39 @@
      */
 
     /* ══════════════════════════════════════════════════
-       API 설정 — PRD (운영 서버)
-       서버팀 API URL 확정 후 아래 주소를 교체할 것
+       API 설정 — DEV (개발/테스트 서버)
+       서버팀 전달 2026-04-25 기준
        ══════════════════════════════════════════════════ */
     const ENV = 'DEV';
-    const API_URL = 'https://dev-api.sirjuseyo.com/loan-applications'; // [DEV] 서버팀 확정 후 교체
+    const API_BASE = 'https://dev-api.sirjuseyo.com';
+    const API_URL  = API_BASE + '/api/monthly-loan/applications'; // [DEV] 서버팀 확정
 
-    /* 신청 데이터 → API POST 전송 */
+    /* 대출 방법 → 서버 코드값 변환 테이블
+       ※ 코드값은 서버팀 전달 기준 (EVENT 확인, 나머지는 협의값) */
+    const METHOD_CD = {
+      '이벤트 대출':  'EVENT',
+      '롸잇나우 대출': 'RIGHTNOW',
+      '웨이팅 대출':  'WAITING'
+    };
+
+    /* 희망 금액 → 정수 변환 (예: "30만 원" → 30) */
+    function parseAmount(str) {
+      const m = str.match(/(\d+)/);
+      return m ? parseInt(m[1]) : 0;
+    }
+
+    /* 오류 메시지 표시 */
+    function showApiError(msg) {
+      document.getElementById('api-err-msg').textContent = msg;
+      document.getElementById('api-error-box').style.display = 'block';
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+    function hideApiError() {
+      document.getElementById('api-error-box').style.display = 'none';
+    }
+
+    /* 신청 데이터 → API POST 전송
+       응답: 201 → true / 그 외 → false + 에러 메시지 표시 */
     async function submitToAPI(payload) {
       try {
         const res = await fetch(API_URL, {
@@ -820,10 +858,19 @@
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify(payload)
         });
-        return res.ok;
+        if (res.status === 201) return true;
+        // 오류 상태별 메시지
+        const errMap = {
+          400: '입력 정보를 다시 확인해주세요. (400)',
+          429: '요청이 너무 많습니다. 잠시 후 다시 시도해주세요. (429)',
+          500: '서버 오류가 발생했습니다. 잠시 후 다시 시도해주세요. (500)'
+        };
+        showApiError(errMap[res.status] || `오류가 발생했습니다. (${res.status})`);
+        return false;
       } catch (e) {
-        // 네트워크 오류 또는 API 미연결 상태
-        console.warn('[써주세요] API 전송 실패:', e.message);
+        // 네트워크 오류
+        showApiError('네트워크 연결을 확인해주세요. (network error)');
+        console.warn('[써주세요 DEV] API 전송 실패:', e.message);
         return false;
       }
     }
@@ -902,23 +949,26 @@
       el.classList.add('sel');
       setTimeout(async () => {
         buildSummary();
-        // 신청 데이터 수집
+        // 서버팀 필드명/타입 기준으로 payload 구성
         const payload = {
-          name:           state.q1_name,
-          birth_date:     state.q2_birth,
-          phone:          state.q3_phone,
-          email:          state.q4_email,
-          loan_purpose:   state.q5_purpose,
-          device_type:    state.q6_device,
-          loan_amount:    state.amount,
-          loan_period:    state.period,
-          experience:     state.experience,
-          loan_method:    state.method,
-          privacy_agreed: true
+          name:             state.q1_name,
+          birth_date:       state.q2_birth,
+          phone:            state.q3_phone,
+          email:            state.q4_email,
+          loan_purpose:     state.q5_purpose,
+          device_type:      state.q6_device,
+          // INT 변환: "30만 원" → 30
+          loan_amount:      parseAmount(state.amount),
+          // 코드값 변환: "이벤트 대출" → "EVENT"
+          loan_method_cd:   METHOD_CD[state.method] || state.method,
+          // boolean 변환
+          experience:       state.experience.startsWith('네'),
+          period_confirmed: state.period.startsWith('네'),
+          privacy_agreed:   true
         };
-        // API POST 전송 (서버팀 URL 미확정 시 실패해도 완료 화면 진행)
-        await submitToAPI(payload);
-        goTo('s-done');
+        // API POST 전송 → 201이면 완료, 오류면 에러 메시지 표시 후 대기
+        const ok = await submitToAPI(payload);
+        if (ok) goTo('s-done');
       }, 200);
     }
 
