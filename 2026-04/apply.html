@@ -911,9 +911,14 @@
           loan_method:    state.method,
           privacy_agreed: true
         };
-        // API POST 전송 (서버팀 URL 미확정 시 실패해도 완료 화면 진행)
-        await submitToAPI(payload);
-        goTo('s-done');
+        // API POST 전송 → 성공(true)이면 완료 화면, 실패면 오류 안내
+        const ok = await submitToAPI(payload);
+        if (ok) {
+          goTo('s-done');
+        } else {
+          el.classList.remove('sel');
+          alert('신청 중 오류가 발생했습니다.\n잠시 후 다시 시도해주세요.\n\n문의: 써주세요 카카오 채널');
+        }
       }, 200);
     }
 
