@@ -807,6 +807,19 @@
     const ENV = 'PRD';
     const API_URL = 'https://monthly-api.sirjuseyo.com/api/monthly-loan/applications'; // [PRD] 서버팀 확정
 
+    /* 희망 금액 → 정수 변환 (예: "50만 원" → 50) */
+    function parseAmount(str) {
+      const m = str.match(/(\d+)/);
+      return m ? parseInt(m[1]) : 0;
+    }
+
+    /* 대출 방법 → 서버 코드 변환 */
+    const METHOD_CD = {
+      '이벤트 대출':   'EVENT',
+      '롸잇나우 대출': 'RIGHT_NOW',
+      '웨이팅 대출':   'WAITING'
+    };
+
     /* 신청 데이터 → API POST 전송 */
     async function submitToAPI(payload) {
       try {
@@ -905,11 +918,11 @@
           email:          state.q4_email,
           loan_purpose:   state.q5_purpose,
           device_type:    state.q6_device,
-          loan_amount:    state.amount,
-          loan_period:    state.period,
-          experience:     state.experience,
-          loan_method:    state.method,
-          privacy_agreed: true
+          loan_amount:      parseAmount(state.amount),
+          loan_method_cd:   METHOD_CD[state.method] || state.method,
+          experience:       state.experience,
+          period_confirmed: state.period,
+          privacy_agreed:   true
         };
         // API POST 전송 → 성공(true)이면 완료 화면, 실패면 오류 안내
         const ok = await submitToAPI(payload);
