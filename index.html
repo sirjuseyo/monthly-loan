@@ -65,7 +65,8 @@ h1 em{font-style:normal;color:var(--purple);}
 .live-text-sub{font-size:.68rem;font-weight:500;color:var(--orange);opacity:.75;white-space:nowrap;}
 
 /* cards */
-.cards{padding:0 24px;display:flex;flex-direction:column;gap:14px;}
+.cards{padding:0 24px;display:flex;flex-direction:column;gap:14px;position:relative;}
+.gift-box{position:absolute;top:-150px;right:-30px;width:455px;pointer-events:none;z-index:5;}
 .cards-header{display:flex;justify-content:flex-end;margin-bottom:8px;}
 .main-card{
   background:#fff;border:2px solid var(--purple);border-radius:22px;padding:30px;
@@ -168,6 +169,7 @@ h1 em{font-style:normal;color:var(--purple);}
     </section>
 
     <div class="cards">
+      <img class="gift-box" src="./2026-05/assets/Gift-Box-Rose_May-Loan.png" alt="">
       <div class="main-card">
         <div class="main-tag">🌹 이달의 대출</div>
         <div class="main-title">5️⃣🈷️은 ❤️가정의 달</div>
