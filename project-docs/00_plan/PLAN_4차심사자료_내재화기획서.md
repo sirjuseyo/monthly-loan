@@ -264,14 +264,39 @@ Rule 21: 6(제도권) = "해당 안해요."
 - C-10. 오입력 방어 (이름/휴대폰 → apply.html 동일)
 - C-11. **API 연동** (B-5 서버팀 확정 후에만 진행)
 
-### D. DEV/PRD 이중화
-- D-1. apply-4차-dev.html (DEV) / apply-4차.html (PRD) 분리
-- D-2. DEV: 상단 주황 배너 표시
-- D-3. API_URL 상수만 다르게 설정
+### D. DEV/PRD 이중화 ✅ 완료 (2026-05-10)
+- D-1. `apply-review-dev.html` (DEV) / `apply-review.html` (PRD) 분리 ✅
+- D-2. DEV: 상단 주황 배너 표시 ✅
+- D-3. API_URL 상수만 다르게 설정 ✅
+
+#### D. 폼 도메인 확정 (2026-05-10)
+
+| 구분 | 도메인 |
+|------|--------|
+| PRD | `review.sirjuseyo.com` |
+| DEV | `dev-review.sirjuseyo.com` |
+
+> ⚠️ 서버팀 전달 필요: AdminCorsFilter에 위 두 도메인 추가 (TECHSPEC Phase 0-3)
+
+#### D. 서버팀 CORS 전달 메시지 (댄디어빠쮸너야님 → 서버팀)
+
+```
+TECHSPEC_4차심사자료내재화_v1.0 Phase 0-3 완료 보고입니다.
+
+쮸리팀 DEV/PRD 폼 도메인 확정했습니다.
+
+  - DEV 폼 도메인: dev-review.sirjuseyo.com
+  - PRD 폼 도메인: review.sirjuseyo.com
+
+TECHSPEC Section 5 CORS 정책에 따라
+AdminCorsFilter allowedOrigins에 위 두 도메인 추가 부탁드립니다.
+
+감사합니다.
+```
 
 ### E. GitHub 소스 저장
-- E-1. 2026-04/apply-4차.html PRD push
-- E-2. 2026-04/apply-4차-dev.html DEV push
+- E-1. apply-review/apply-review.html PRD push
+- E-2. apply-review/apply-review-dev.html DEV push
 
 ### F. 배포 및 연결
 - F-1. AWS 배포 (서버팀)

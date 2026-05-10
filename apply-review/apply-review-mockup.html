@@ -1,0 +1,991 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>[목업] 4차 심사 자료 입력 폼</title>
+  <style>
+    * { margin:0; padding:0; box-sizing:border-box; }
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Noto Sans KR', 'Apple SD Gothic Neo', sans-serif;
+      background: #f3f4f6;
+      color: #1a1a1a;
+      font-size: 15px;
+    }
+    .mockup-banner {
+      background: #7c3aed;
+      color: #fff;
+      text-align: center;
+      padding: 9px;
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: 1px;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+    .form-wrap {
+      max-width: 640px;
+      margin: 0 auto;
+      background: #fff;
+      min-height: 100vh;
+    }
+    .page { display: none; }
+    .page.active { display: block; }
+
+    /* ── 상단 로고 ── */
+    .top-bar {
+      padding: 16px 24px 14px;
+      border-bottom: 1px solid #f0f0f0;
+    }
+    .logo {
+      font-size: 22px;
+      font-weight: 900;
+      color: #6d28d9;
+      letter-spacing: -1px;
+    }
+
+    /* ── 인트로 ── */
+    .intro-body { padding: 28px 24px 0; }
+    .intro-title {
+      font-size: 22px;
+      font-weight: 800;
+      line-height: 1.4;
+      color: #111;
+      margin-bottom: 18px;
+    }
+    .notice-box {
+      display: flex;
+      align-items: flex-start;
+      gap: 8px;
+      background: #fff5f5;
+      border-radius: 8px;
+      padding: 13px 15px;
+      margin-bottom: 20px;
+      font-size: 13px;
+      color: #c0392b;
+      line-height: 1.65;
+    }
+    .banner-img {
+      width: 100%;
+      background: linear-gradient(135deg, #1a6fcf 0%, #2980b9 60%, #1a5fa3 100%);
+      border-radius: 12px;
+      padding: 28px 24px;
+      margin-bottom: 28px;
+      color: #fff;
+      font-size: 20px;
+      font-weight: 800;
+      line-height: 1.5;
+      position: relative;
+      overflow: hidden;
+    }
+    .banner-img .b-sub { font-size: 13px; font-weight: 400; opacity: 0.8; display: block; margin-bottom: 6px; }
+    .banner-deco { position: absolute; right: 18px; bottom: 10px; font-size: 56px; opacity: 0.25; }
+
+    /* ── 이유 섹션 ── */
+    .why-wrap { padding: 0 24px 12px; }
+    .why-title { font-size: 15px; font-weight: 700; color: #111; margin-bottom: 14px; }
+    .why-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+      padding: 13px 0;
+      border-bottom: 1px solid #f5f5f5;
+      font-size: 13px;
+      color: #374151;
+      line-height: 1.7;
+    }
+    .why-item:last-child { border-bottom: none; }
+    .why-item strong { display: block; font-size: 13.5px; color: #111; font-weight: 700; margin-bottom: 3px; }
+
+    /* ── 진행바 ── */
+    .prog-wrap { padding: 16px 24px 0; }
+    .prog-bar { height: 3px; background: #e5e7eb; border-radius: 2px; overflow: hidden; }
+    .prog-fill { height: 100%; background: #7c3aed; border-radius: 2px; transition: width 0.3s; }
+    .prog-label { font-size: 11px; color: #9ca3af; text-align: right; margin-top: 5px; }
+
+    /* ── 섹션 헤더 ── */
+    .sec-hd { padding: 26px 24px 20px; }
+    .sec-title { font-size: 19px; font-weight: 800; color: #111; display: flex; align-items: center; gap: 7px; }
+    .sec-title .arr { color: #7c3aed; }
+
+    /* ── 질문 블록 ── */
+    .qb { padding: 0 24px 24px; }
+    .qb + .qb { border-top: 1px solid #f5f5f5; padding-top: 22px; }
+    .ql {
+      font-size: 15px;
+      font-weight: 600;
+      color: #111;
+      line-height: 1.55;
+      margin-bottom: 12px;
+    }
+    .ql .req { color: #ef4444; margin-left: 2px; }
+    .qs { font-size: 12px; color: #9ca3af; margin-top: -8px; margin-bottom: 12px; line-height: 1.6; }
+
+    /* ── 인풋 ── */
+    .inp {
+      width: 100%;
+      padding: 13px 14px;
+      border: 1.5px solid #d1d5db;
+      border-radius: 8px;
+      font-size: 15px;
+      color: #111;
+      background: #fff;
+      outline: none;
+      transition: border-color 0.15s;
+      font-family: inherit;
+    }
+    .inp::placeholder { color: #c0c0c0; }
+    .inp:focus { border-color: #7c3aed; }
+    .inp-u { position: relative; }
+    .inp-u .inp { padding-right: 50px; }
+    .inp-u .unit { position: absolute; right: 14px; top: 50%; transform: translateY(-50%); font-size: 13px; color: #9ca3af; pointer-events: none; }
+
+    /* ── 라디오 옵션 ── */
+    .opts { display: flex; flex-direction: column; gap: 8px; }
+    .opt {
+      display: flex; align-items: center; gap: 12px;
+      padding: 12px 15px;
+      border: 1.5px solid #d1d5db;
+      border-radius: 8px;
+      font-size: 14px; color: #374151;
+      cursor: pointer; transition: all 0.15s; user-select: none;
+    }
+    .opt:hover { border-color: #a78bfa; background: #faf5ff; }
+    .opt.sel { border-color: #7c3aed; background: #f5f3ff; color: #111; font-weight: 600; }
+    .ok {
+      display: inline-flex; align-items: center; justify-content: center;
+      width: 22px; height: 22px;
+      background: #f3f4f6; border-radius: 4px;
+      font-size: 11px; font-weight: 700; color: #6b7280; flex-shrink: 0;
+    }
+    .opt.sel .ok { background: #7c3aed; color: #fff; }
+
+    /* ── 체크박스 (다중선택) ── */
+    .ck-opt {
+      display: flex; align-items: center; gap: 12px;
+      padding: 12px 15px;
+      border: 1.5px solid #d1d5db;
+      border-radius: 8px;
+      font-size: 14px; color: #374151;
+      cursor: pointer; transition: all 0.15s; user-select: none;
+      margin-bottom: 8px;
+    }
+    .ck-opt:last-child { margin-bottom: 0; }
+    .ck-opt:hover { border-color: #a78bfa; background: #faf5ff; }
+    .ck-opt.sel { border-color: #7c3aed; background: #f5f3ff; color: #111; font-weight: 600; }
+    .ck-box {
+      width: 18px; height: 18px;
+      border: 2px solid #d1d5db; border-radius: 4px; flex-shrink: 0;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 11px; color: transparent; transition: all 0.15s;
+    }
+    .ck-opt.sel .ck-box { background: #7c3aed; border-color: #7c3aed; color: #fff; }
+
+    /* ── 조건부 블록 ── */
+    .cond { display: none; margin-top: 14px; }
+    .cond.on { display: block; }
+    .cond-inner {
+      background: #faf5ff; border: 1px solid #e9d5ff; border-radius: 8px; padding: 16px;
+    }
+    .cond-inner .ql { font-size: 14px; }
+    .cond-inner .inp-u .inp { font-size: 14px; }
+
+    /* ── 힌트 박스 ── */
+    .hint-box {
+      background: #f9fafb; border-left: 3px solid #d1d5db;
+      border-radius: 0 6px 6px 0; padding: 11px 13px;
+      font-size: 12.5px; color: #374151; line-height: 1.75;
+      margin-bottom: 12px;
+    }
+    .hint-box ol { padding-left: 18px; }
+    .hint-box li { margin-bottom: 3px; }
+
+    /* ── 대출기관 행 ── */
+    .loan-rows .inp { margin-bottom: 8px; }
+    .add-btn {
+      display: inline-flex; align-items: center; gap: 5px;
+      color: #7c3aed; font-size: 13px; font-weight: 600;
+      background: none; border: none; cursor: pointer; padding: 6px 0; font-family: inherit;
+    }
+
+    /* ── 파일 업로드 존 ── */
+    .up-zone {
+      border: 1.5px dashed #c4b5fd; border-radius: 8px;
+      padding: 20px; text-align: center;
+      background: #faf5ff; cursor: pointer;
+      margin-bottom: 8px; transition: all 0.15s;
+    }
+    .up-zone:hover { border-color: #7c3aed; background: #f5f3ff; }
+    .up-icon { font-size: 22px; margin-bottom: 5px; }
+    .up-text { font-size: 13px; color: #7c3aed; }
+    .up-limit { font-size: 11px; color: #c4b5fd; margin-top: 3px; }
+
+    /* ── 탭 ── */
+    .tab-wrap { display: flex; gap: 8px; margin-bottom: 14px; }
+    .tab {
+      flex: 1; padding: 10px; border: 1.5px solid #d1d5db; border-radius: 8px;
+      font-size: 13px; font-weight: 600; color: #9ca3af; text-align: center;
+      cursor: pointer; transition: all 0.15s;
+    }
+    .tab.sel { border-color: #7c3aed; color: #7c3aed; background: #f5f3ff; }
+    .tab-content { display: none; }
+    .tab-content.on { display: block; }
+    .tab-label {
+      font-size: 13px; font-weight: 700; border-radius: 6px; padding: 8px 12px; margin-bottom: 10px;
+    }
+    .tab-label.toss { background: #eff6ff; color: #1d4ed8; }
+    .tab-label.kakao { background: #fef9c3; color: #854d0e; }
+
+    /* ── 구분선 ── */
+    .divider { height: 8px; background: #f3f4f6; margin: 8px 0; }
+
+    /* ── 버튼 ── */
+    .btn-wrap { padding: 12px 24px 36px; }
+    .btn {
+      width: 100%; padding: 15px; border: none; border-radius: 10px;
+      font-size: 16px; font-weight: 700; cursor: pointer; font-family: inherit;
+      display: flex; align-items: center; justify-content: center; gap: 8px;
+      transition: background 0.15s;
+    }
+    .btn-dark { background: #111; color: #fff; }
+    .btn-dark:hover { background: #333; }
+    .btn-purple { background: #7c3aed; color: #fff; }
+    .btn-purple:hover { background: #6d28d9; }
+    .btn-start { justify-content: space-between; }
+
+    /* ── 뒤로 ── */
+    .back-btn {
+      display: inline-flex; align-items: center; gap: 4px;
+      color: #9ca3af; font-size: 13px; cursor: pointer;
+      padding: 16px 24px 0; background: none; border: none; font-family: inherit;
+    }
+
+    /* ── 페이지 인디케이터 ── */
+    .pg-ind { text-align: center; padding: 14px; font-size: 12px; color: #c4b5fd; border-top: 1px solid #f5f5f5; }
+
+    /* ── 완료 화면 ── */
+    .done-wrap { padding: 52px 24px; text-align: center; }
+    .done-icon { font-size: 52px; margin-bottom: 16px; }
+    .done-title { font-size: 21px; font-weight: 800; color: #111; line-height: 1.45; margin-bottom: 10px; }
+    .done-sub { font-size: 14px; color: #6b7280; line-height: 1.75; margin-bottom: 36px; }
+    .done-btns { display: flex; flex-direction: column; gap: 10px; }
+    .done-btn {
+      padding: 14px; border-radius: 10px; font-size: 14px; font-weight: 700;
+      cursor: pointer; border: none; font-family: inherit;
+      display: flex; align-items: center; justify-content: center; gap: 8px;
+    }
+    .done-kakao { background: #FEE500; color: #1a1a1a; }
+    .done-chat { background: #f3f4f6; color: #374151; border: 1.5px solid #d1d5db; }
+
+    /* ── 전화 아이콘 인풋 ── */
+    .inp-icon { position: relative; }
+    .inp-icon .inp { padding-left: 42px; }
+    .inp-icon .i-ico { position: absolute; left: 13px; top: 50%; transform: translateY(-50%); font-size: 16px; }
+  </style>
+</head>
+<body>
+
+<div class="mockup-banner">📋 C-1 목업 · 4차 심사 자료 입력 폼 · 21개 Rule 구현 · API 미연동</div>
+
+<div class="form-wrap">
+
+  <!-- ══════════════════════════════════════ -->
+  <!--  PAGE 1 : 랜딩                         -->
+  <!-- ══════════════════════════════════════ -->
+  <div class="page active" id="p1">
+    <div class="top-bar"><div class="logo">써.</div></div>
+
+    <div class="intro-body">
+      <div class="intro-title">[NEW] 정보 입력만으로,<br>더 나은 조건 OPEN</div>
+
+      <div class="notice-box">
+        <span>📍</span>
+        <span>이번 대출은 고객님께서 서비스 재개 이후 <strong>처음으로 이용하는 것</strong>으로 확인됩니다.</span>
+      </div>
+
+      <div class="banner-img">
+        <span class="b-sub">보다 나은 대출을 위해</span>
+        보다 나은 대출 한도와<br>조건 산정을 위해<br><br>고객님의 정보<br>업데이트가 필요해요!
+        <span class="banner-deco">🍊</span>
+      </div>
+    </div>
+
+    <div class="why-wrap">
+      <div class="why-title">💡 왜 지금 이 정보를 입력해야 할까요?</div>
+
+      <div class="why-item">
+        <span>1️⃣</span>
+        <div>
+          <strong>불리한 조건도 저희는 다르게 봅니다.</strong>
+          일시적인 소득 감소, 신용점수, 기존 대출 등으로 다른 금융기관에서는 어려웠던 상황도 저희는 전체 맥락과 상환 가능성을 중심으로 판단합니다.
+        </div>
+      </div>
+
+      <div class="why-item">
+        <span>2️⃣</span>
+        <div>
+          <strong>한도 확대, 지금이 기회입니다.</strong>
+          서비스 재개 후 5개월간의 데이터를 바탕으로 최대 1,000만 원 한도 확대를 위한 연계 상품이 준비 중입니다.
+        </div>
+      </div>
+
+      <div class="why-item">
+        <span>💬</span>
+        <div>
+          <strong>지금 정보를 입력해주신 분들은, 신상품 출시 시 우선 대상이 됩니다!</strong>
+          ※ 모든 정보는 법적 기준에 따라 안전하게 보호됩니다.
+        </div>
+      </div>
+    </div>
+
+    <div class="btn-wrap">
+      <button class="btn btn-dark btn-start" onclick="goPage(2)">
+        <span>🧑‍💼 3~5분이면 입력 완료! 지금 바로 시작해 주세요.</span>
+        <span>→</span>
+      </button>
+    </div>
+
+    <div class="pg-ind">Page 1</div>
+  </div><!-- /p1 -->
+
+
+  <!-- ══════════════════════════════════════ -->
+  <!--  PAGE 2 : 기본정보 + 소득과 지출       -->
+  <!-- ══════════════════════════════════════ -->
+  <div class="page" id="p2">
+    <div class="top-bar"><div class="logo">써.</div></div>
+    <button class="back-btn" onclick="goPage(1)">‹ 뒤로</button>
+
+    <div class="prog-wrap">
+      <div class="prog-bar"><div class="prog-fill" style="width:33%"></div></div>
+      <div class="prog-label">2 / 5</div>
+    </div>
+
+    <!-- 기본정보 -->
+    <div style="height:20px"></div>
+
+    <!-- 성함 -->
+    <div class="qb">
+      <div class="ql">고객님의 성함을 알려주세요.<span class="req">*</span></div>
+      <input class="inp" type="text" id="inp-name" placeholder="">
+    </div>
+
+    <!-- 휴대폰번호 -->
+    <div class="qb">
+      <div class="ql">휴대폰번호를 알려주세요.<span class="req">*</span></div>
+      <div class="inp-icon">
+        <span class="i-ico">📞</span>
+        <input class="inp" type="tel" id="inp-phone" placeholder="01012345678">
+      </div>
+    </div>
+
+    <!-- 소득과 지출 헤더 -->
+    <div class="sec-hd">
+      <div class="sec-title"><span class="arr">▼</span> 소득과 지출</div>
+    </div>
+
+    <!-- Q1. 연소득 (항상 표시) -->
+    <div class="qb" id="q1-blk">
+      <div class="ql">1. 연 소득을 입력하세요. [단위 : 만 원]<span class="req">*</span></div>
+      <div class="inp-u">
+        <input class="inp" type="number" id="inp-q1" placeholder="" oninput="applyRules()">
+        <span class="unit">만 원</span>
+      </div>
+    </div>
+
+    <!-- Q2. 월최고소득 (Rule 2: Q1 입력 시 표시) -->
+    <div class="qb cond" id="q2-blk">
+      <div class="ql">2. 1년 중 월 최고 소득은 얼마인가요? [단위 : 만 원]<span class="req">*</span></div>
+      <div class="inp-u">
+        <input class="inp" type="number" id="inp-q2" placeholder="" oninput="applyRules()">
+        <span class="unit">만 원</span>
+      </div>
+    </div>
+
+    <!-- Q3. 월고정소득 (Rule 3: Q2 입력 시 표시) -->
+    <div class="qb cond" id="q3-blk">
+      <div class="ql">3. 월 고정 소득을 입력하세요. [단위 : 만 원]<span class="req">*</span></div>
+      <div class="inp-u">
+        <input class="inp" type="number" id="inp-q3" placeholder="" oninput="applyRules()">
+        <span class="unit">만 원</span>
+      </div>
+    </div>
+
+    <!-- Q4. 월최고지출 (Rule 4: Q3 입력 시 표시) -->
+    <div class="qb cond" id="q4-blk">
+      <div class="ql">4. 1년 중 월 최고 지출은 얼마인가요? [단위 : 만 원]<span class="req">*</span></div>
+      <div class="inp-u">
+        <input class="inp" type="number" id="inp-q4" placeholder="" oninput="applyRules()">
+        <span class="unit">만 원</span>
+      </div>
+    </div>
+
+    <!-- Q5. 월고정지출 (Rule 5: Q4 입력 시 표시) -->
+    <div class="qb cond" id="q5-blk">
+      <div class="ql">5. 월 고정 지출을 입력하세요. [단위 : 만 원]<span class="req">*</span></div>
+      <div class="inp-u">
+        <input class="inp" type="number" id="inp-q5" placeholder="" oninput="applyRules()">
+        <span class="unit">만 원</span>
+      </div>
+    </div>
+
+    <!-- Q6. 신용카드 사용 여부 (Rule 6: Q5 입력 시 표시) -->
+    <div class="qb cond" id="q6-blk">
+      <div class="ql">6. 신용카드를 사용중인가요?<span class="req">*</span></div>
+      <div class="opts">
+        <div class="opt" id="q6-a" onclick="selQ6('yes')">
+          <span class="ok">A</span> 네
+        </div>
+        <div class="opt" id="q6-b" onclick="selQ6('no')">
+          <span class="ok">B</span> 아니오, 체크카드만 사용해요.
+        </div>
+      </div>
+
+      <!-- 6-1. 신용카드 월평균 (Rule 7: Q6=네) -->
+      <div class="cond" id="q6-1-blk">
+        <div class="cond-inner">
+          <div class="ql">6-1. 최근 3개월 기준 월 평균 신용카드 사용금액을 입력해 주세요. [단위 : 만 원]<span class="req">*</span></div>
+          <div class="inp-u">
+            <input class="inp" type="number" id="inp-q6-1" placeholder="" oninput="applyRules()">
+            <span class="unit">만 원</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- 6-2. 체크카드 월평균 (Rule 8: Q6=아니오) -->
+      <div class="cond" id="q6-2-blk">
+        <div class="cond-inner">
+          <div class="ql">6-2. 최근 3개월 기준 월 평균 체크카드 사용금액을 입력해 주세요. [단위 : 만 원]<span class="req">*</span></div>
+          <div class="inp-u">
+            <input class="inp" type="number" id="inp-q6-2" placeholder="" oninput="applyRules()">
+            <span class="unit">만 원</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Q7. 현금서비스 (Rule 9: 6-1 OR 6-2 입력 시 표시) -->
+    <div class="qb cond" id="q7-blk">
+      <div class="ql">7. 현금서비스를 이용중인가요?<span class="req">*</span></div>
+      <div class="opts">
+        <div class="opt" id="q7-a" onclick="selQ7('yes')">
+          <span class="ok">A</span> 네, 지금 이용중이에요.
+        </div>
+        <div class="opt" id="q7-b" onclick="selQ7('no')">
+          <span class="ok">B</span> 아니오, 안쓰고 있어요.
+        </div>
+      </div>
+
+      <!-- 7-1. 현금서비스 금액 (Rule 10: Q7=네) -->
+      <div class="cond" id="q7-1-blk">
+        <div class="cond-inner">
+          <div class="ql">7-1. 현금서비스 이용금액을 입력해 주세요. [단위 : 만 원]<span class="req">*</span></div>
+          <div class="inp-u">
+            <input class="inp" type="number" id="inp-q7-1" placeholder="50" oninput="applyRules()">
+            <span class="unit">만 원</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Q8. 소액결제 (Rule 11: 7-1 입력 시 / Rule 12: Q7=아니오 시 표시) -->
+    <div class="qb cond" id="q8-blk">
+      <div class="ql">8. 평소에 휴대폰 소액결제를 이용하나요?<span class="req">*</span></div>
+      <div class="opts">
+        <div class="opt" id="q8-a" onclick="selQ8('yes')">
+          <span class="ok">A</span> 네
+        </div>
+        <div class="opt" id="q8-b" onclick="selQ8('no')">
+          <span class="ok">B</span> 아니오
+        </div>
+      </div>
+
+      <!-- 8-1. 소액결제 금액 (Rule 13: Q8=네) -->
+      <div class="cond" id="q8-1-blk">
+        <div class="cond-inner">
+          <div class="ql">8-1. 최근 3개월 기준 월 소액결제 금액을 입력해 주세요. [단위 : 만 원]<span class="req">*</span></div>
+          <div class="inp-u">
+            <input class="inp" type="number" id="inp-q8-1" placeholder="">
+            <span class="unit">만 원</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Q8-2. 휴대폰 요금 (항상 필수 — Q8 표시와 동시에 노출, 소액결제 여부 무관) -->
+    <div class="qb cond" id="q8-2-blk">
+      <div class="ql">8-2. 최근 3개월 기준 월 평균 휴대폰 요금을 입력해 주세요. [단위 : 만 원]<span class="req">*</span></div>
+      <div class="qs">소액결제 여부와 관계없이 반드시 입력해 주세요.</div>
+      <div class="inp-u">
+        <input class="inp" type="number" id="inp-q8-2" placeholder="">
+        <span class="unit">만 원</span>
+      </div>
+    </div>
+
+    <div class="btn-wrap">
+      <button class="btn btn-dark" onclick="goPage(3)">다음 ›</button>
+    </div>
+    <div class="pg-ind">Page 2</div>
+  </div><!-- /p2 -->
+
+
+  <!-- ══════════════════════════════════════ -->
+  <!--  PAGE 3 : 금융이력                     -->
+  <!-- ══════════════════════════════════════ -->
+  <div class="page" id="p3">
+    <div class="top-bar"><div class="logo">써.</div></div>
+    <button class="back-btn" onclick="goPage(2)">‹ 뒤로</button>
+
+    <div class="prog-wrap">
+      <div class="prog-bar"><div class="prog-fill" style="width:55%"></div></div>
+      <div class="prog-label">3 / 5</div>
+    </div>
+
+    <div class="sec-hd">
+      <div class="sec-title"><span class="arr">▼</span> 금융이력</div>
+    </div>
+
+    <!-- G1. NICE (항상 표시) -->
+    <div class="qb">
+      <div class="ql">1. NICE 기준 신용점수를 입력해 주세요.<span class="req">*</span></div>
+      <div class="inp-u">
+        <input class="inp" type="number" id="inp-nice" placeholder="0 ~ 1000" oninput="applyRulesP3()">
+        <span class="unit">점</span>
+      </div>
+    </div>
+
+    <!-- G2. KCB (항상 표시) -->
+    <div class="qb">
+      <div class="ql">2. KCB 기준 신용점수를 입력해 주세요.<span class="req">*</span></div>
+      <div class="inp-u">
+        <input class="inp" type="number" id="inp-kcb" placeholder="0 ~ 1000" oninput="applyRulesP3()">
+        <span class="unit">점</span>
+      </div>
+    </div>
+
+    <!-- G3. 대출 보유 여부 (Rule 16: NICE OR KCB 입력 시 표시) -->
+    <div class="qb cond" id="g3-blk">
+      <div class="ql">3. 현재 이용 중이신 대출이 있으신가요?<span class="req">*</span></div>
+      <div class="opts">
+        <div class="opt" id="g3-a" onclick="selG3('yes')">
+          <span class="ok">A</span> 네
+        </div>
+        <div class="opt" id="g3-b" onclick="selG3('no')">
+          <span class="ok">B</span> 아니오
+        </div>
+      </div>
+    </div>
+
+    <!-- G4. 총 대출 잔액 (Rule 17: G3=네) -->
+    <div class="qb cond" id="g4-blk">
+      <div class="ql">4. 총 대출 잔액을 입력해 주세요. [단위 : 만 원]<span class="req">*</span></div>
+      <div class="inp-u">
+        <input class="inp" type="number" id="inp-g4" placeholder="" oninput="applyRulesP3()">
+        <span class="unit">만 원</span>
+      </div>
+    </div>
+
+    <!-- G5. 대출기관 상세 (Rule 17: G3=네, G4와 함께 표시) -->
+    <div class="qb cond" id="g5-blk">
+      <div class="ql" style="font-size:14px;line-height:1.65">
+        5. 고객님의 대출 여부 자체보다는, 대출을 처음 얼마로 시작하셨고, 현재까지 얼마나 갚아오셨는지가 중요합니다.<br><br>
+        아래 형식에 맞춰 작성 부탁드립니다:<br>
+        <span style="color:#7c3aed;font-weight:700">[대출기관명 / 최초 대출금액 / 현재 잔액]</span><span class="req">*</span>
+      </div>
+      <div class="loan-rows" id="loan-rows">
+        <input class="inp" type="text" placeholder="대출기관명 / 최초 대출금액 / 현재 잔액">
+        <input class="inp" type="text" placeholder="+ 추가 칸">
+        <input class="inp" type="text" placeholder="+ 추가 칸">
+        <input class="inp" type="text" placeholder="+ 추가 칸">
+        <input class="inp" type="text" placeholder="+ 추가 칸">
+        <input class="inp" type="text" placeholder="+ 추가 칸">
+        <input class="inp" type="text" placeholder="+ 추가 칸">
+      </div>
+      <button class="add-btn" onclick="addLoanRow()">＋ 칸 추가</button>
+    </div>
+
+    <!-- G6. 제도권 다중선택 (Rule 18: G3=아니오 / Rule 19: G4 입력 시) -->
+    <div class="qb cond" id="g6-blk">
+      <div class="ql">6. 아래 제도 중 해당되는 이력이 있다면 알려주세요.<span class="req">*</span></div>
+
+      <div class="ck-opt" id="ck-a" onclick="toggleDebt(this, '신용회복위원회')">
+        <div class="ck-box">✓</div> 신용회복위원회
+      </div>
+      <div class="ck-opt" id="ck-b" onclick="toggleDebt(this, '개인회생')">
+        <div class="ck-box">✓</div> 개인회생
+      </div>
+      <div class="ck-opt" id="ck-c" onclick="toggleDebt(this, '워크아웃')">
+        <div class="ck-box">✓</div> 워크아웃
+      </div>
+      <div class="ck-opt" id="ck-d" onclick="toggleDebt(this, '새출발기금')">
+        <div class="ck-box">✓</div> 새출발기금
+      </div>
+      <div class="ck-opt" id="ck-e" onclick="toggleDebt(this, '채무조정')">
+        <div class="ck-box">✓</div> 채무조정
+      </div>
+      <div class="ck-opt" id="ck-f" onclick="selectNone(this)">
+        <div class="ck-box">✓</div> 해당 안해요.
+      </div>
+    </div>
+
+    <div class="btn-wrap">
+      <button class="btn btn-dark" onclick="goPage(4)">다음 ›</button>
+    </div>
+    <div class="pg-ind">Page 3</div>
+  </div><!-- /p3 -->
+
+
+  <!-- ══════════════════════════════════════ -->
+  <!--  PAGE 4 : 증빙서류                     -->
+  <!-- ══════════════════════════════════════ -->
+  <div class="page" id="p4">
+    <div class="top-bar"><div class="logo">써.</div></div>
+    <button class="back-btn" onclick="goPage(3)">‹ 뒤로</button>
+
+    <div class="prog-wrap">
+      <div class="prog-bar"><div class="prog-fill" style="width:78%"></div></div>
+      <div class="prog-label">4 / 5</div>
+    </div>
+
+    <div class="sec-hd">
+      <div class="sec-title"><span class="arr">▼</span> 증빙서류</div>
+    </div>
+
+    <!-- 1. 건강보험 자격득실확인서 (선택) -->
+    <div class="qb">
+      <div class="ql">1. 건강보험 자격득실확인서 캡처하여 1장 올려주세요.</div>
+      <div class="qs">📍 이미 카톡이나 앱에 제출했다면 생략해요. (선택)</div>
+
+      <div class="up-zone" onclick="alert('파일 선택 (목업)')">
+        <div class="up-icon">📎</div>
+        <div class="up-text">Click to choose a file or drag here</div>
+        <div class="up-limit">Max size per file: 10 MB</div>
+      </div>
+      <div class="up-zone" onclick="alert('파일 선택 (목업)')">
+        <div class="up-icon">📎</div>
+        <div class="up-text">Click to choose a file or drag here</div>
+        <div class="up-limit">Max size per file: 10 MB</div>
+      </div>
+      <div class="up-zone" onclick="alert('파일 선택 (목업)')">
+        <div class="up-icon">📎</div>
+        <div class="up-text">Click to choose a file or drag here</div>
+        <div class="up-limit">Max size per file: 10 MB</div>
+      </div>
+    </div>
+
+    <div class="divider"></div>
+
+    <!-- 2. 신용정보 화면 캡처 (필수) -->
+    <div class="qb">
+      <div class="ql">2. 아래 방법 중 1가지를 택하여 신용정보 화면을 캡처하여 올려주세요.<span class="req">*</span></div>
+      <div class="qs">* 선택필수 (최대 하나 선택 — 택 1)</div>
+
+      <div class="tab-wrap">
+        <div class="tab sel" id="tab-toss" onclick="switchTab('toss')">📱 토스앱 (5장)</div>
+        <div class="tab" id="tab-kakao" onclick="switchTab('kakao')">💛 카카오페이 (6장)</div>
+      </div>
+
+      <!-- 토스 -->
+      <div class="tab-content on" id="tc-toss">
+        <div class="tab-label toss">📱 토스 앱 접속 › 홈 › 하단 [내 신용점수] 메뉴 클릭</div>
+        <div class="hint-box">
+          <ol>
+            <li>(1) 신용점수 보이게 화면 캡처 <strong>1장</strong></li>
+            <li>(2) 하단부 [내 대출·카드내역 보기] 클릭 후 대출/카드/연체/보증 화면 각 캡처 총 <strong>4장</strong></li>
+          </ol>
+        </div>
+        <div class="up-zone" onclick="alert('파일 선택 (목업)')"><div class="up-icon">📎</div><div class="up-text">Click to choose a file or drag here</div><div class="up-limit">Max size per file: 10 MB</div></div>
+        <div class="up-zone" onclick="alert('파일 선택 (목업)')"><div class="up-icon">📎</div><div class="up-text">Click to choose a file or drag here</div><div class="up-limit">Max size per file: 10 MB</div></div>
+        <div class="up-zone" onclick="alert('파일 선택 (목업)')"><div class="up-icon">📎</div><div class="up-text">Click to choose a file or drag here</div><div class="up-limit">Max size per file: 10 MB</div></div>
+        <div class="up-zone" onclick="alert('파일 선택 (목업)')"><div class="up-icon">📎</div><div class="up-text">Click to choose a file or drag here</div><div class="up-limit">Max size per file: 10 MB</div></div>
+        <div class="up-zone" onclick="alert('파일 선택 (목업)')"><div class="up-icon">📎</div><div class="up-text">Click to choose a file or drag here</div><div class="up-limit">Max size per file: 10 MB</div></div>
+      </div>
+
+      <!-- 카카오페이 -->
+      <div class="tab-content" id="tc-kakao">
+        <div class="tab-label kakao">💛 카카오페이 앱 › 홈 › 중앙 [신용관리] 메뉴 클릭</div>
+        <div class="hint-box">
+          <ol>
+            <li>(1) 신용점수 보이게 화면 캡처 <strong>1장</strong></li>
+            <li>(2) 하단부 [내 연체·보증 정보] 클릭 후 연체/보증/대출/카드 내역 화면 각 캡처 총 <strong>4장</strong></li>
+            <li>(3) 하단부 [신용리포트] 클릭 후 신용분석결과 화면만 캡처 <strong>1장</strong></li>
+          </ol>
+        </div>
+        <div class="up-zone" onclick="alert('파일 선택 (목업)')"><div class="up-icon">📎</div><div class="up-text">Click to choose a file or drag here</div><div class="up-limit">Max size per file: 10 MB</div></div>
+        <div class="up-zone" onclick="alert('파일 선택 (목업)')"><div class="up-icon">📎</div><div class="up-text">Click to choose a file or drag here</div><div class="up-limit">Max size per file: 10 MB</div></div>
+        <div class="up-zone" onclick="alert('파일 선택 (목업)')"><div class="up-icon">📎</div><div class="up-text">Click to choose a file or drag here</div><div class="up-limit">Max size per file: 10 MB</div></div>
+        <div class="up-zone" onclick="alert('파일 선택 (목업)')"><div class="up-icon">📎</div><div class="up-text">Click to choose a file or drag here</div><div class="up-limit">Max size per file: 10 MB</div></div>
+        <div class="up-zone" onclick="alert('파일 선택 (목업)')"><div class="up-icon">📎</div><div class="up-text">Click to choose a file or drag here</div><div class="up-limit">Max size per file: 10 MB</div></div>
+        <div class="up-zone" onclick="alert('파일 선택 (목업)')"><div class="up-icon">📎</div><div class="up-text">Click to choose a file or drag here</div><div class="up-limit">Max size per file: 10 MB</div></div>
+      </div>
+    </div>
+
+    <div class="divider"></div>
+
+    <!-- 3. 채무변제 증빙서류 (Rule 20: 제도권 [신용회복위원회/개인회생/워크아웃/새출발기금/채무조정] 선택 시) -->
+    <!-- Rule 21: "해당 안해요" 선택 시 숨김 -->
+    <div class="qb cond" id="debt-doc-blk">
+      <div class="ql" style="font-size:14px;line-height:1.65">
+        3. 고객님은 국가에서 제공하는 채무변제 제도를 사용중인 것으로 확인됩니다.<br>
+        (신용회복/개인회생/워크아웃/채무조정기금 등)<br><br>
+        법원 사이트 또는 신용회복위원회 사이트에서 <strong>"변제내역 확인서"를 캡처</strong>하여 올려주세요.<span class="req">*</span>
+      </div>
+      <div class="qs">▼ 캡처 시 성함, 총 변제금액, 미납 회차가 확인되도록 해주세요.</div>
+
+      <div class="up-zone" onclick="alert('파일 선택 (목업)')"><div class="up-icon">📎</div><div class="up-text">Click to choose a file or drag here</div><div class="up-limit">Max size per file: 10 MB</div></div>
+      <div class="up-zone" onclick="alert('파일 선택 (목업)')"><div class="up-icon">📎</div><div class="up-text">Click to choose a file or drag here</div><div class="up-limit">Max size per file: 10 MB</div></div>
+      <div class="up-zone" onclick="alert('파일 선택 (목업)')"><div class="up-icon">📎</div><div class="up-text">Click to choose a file or drag here</div><div class="up-limit">Max size per file: 10 MB</div></div>
+    </div>
+
+    <div class="btn-wrap">
+      <button class="btn btn-purple" onclick="goPage(5)">Submit →</button>
+    </div>
+    <div class="pg-ind">Page 4</div>
+  </div><!-- /p4 -->
+
+
+  <!-- ══════════════════════════════════════ -->
+  <!--  PAGE 5 : 완료 화면                    -->
+  <!-- ══════════════════════════════════════ -->
+  <div class="page" id="p5">
+    <div class="top-bar"><div class="logo">써.</div></div>
+
+    <div class="done-wrap">
+      <div class="done-icon">📧</div>
+      <div class="done-title">제출 완료되었습니다.<br>톡에 <span style="color:#7c3aed">[제출 완료]</span>를 남기면</div>
+      <div class="done-sub">
+        심사담당자가 순차적으로 확인 후,<br>
+        최종 한도 및 대출 계약 조건을 안내드릴 예정이에요.
+      </div>
+      <div class="done-btns">
+        <button class="done-btn done-kakao">📌 카톡 채널 추가하기</button>
+        <button class="done-btn done-chat">🗂️ 1:1 채팅방 바로가기</button>
+      </div>
+    </div>
+
+    <div class="pg-ind">Page 5</div>
+  </div><!-- /p5 -->
+
+</div><!-- /form-wrap -->
+
+<script>
+/* ════════════════════════════════════════
+   상태 관리
+════════════════════════════════════════ */
+const S = {
+  // Page 2
+  q6: null,   // 'yes' | 'no'
+  q7: null,
+  q8: null,
+  // Page 3
+  g3: null,
+  debtTypes: new Set(),
+};
+
+/* ════════════════════════════════════════
+   유틸
+════════════════════════════════════════ */
+function show(id, visible) {
+  const el = document.getElementById(id);
+  if (!el) return;
+  if (visible) el.classList.add('on');
+  else el.classList.remove('on');
+}
+function val(id) {
+  const el = document.getElementById(id);
+  return el ? el.value.trim() : '';
+}
+function goPage(n) {
+  document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+  document.getElementById('p' + n).classList.add('active');
+  // Page 4 진입 시 채무변제 섹션 상태 동기화
+  if (n === 4) applyRulesP4();
+  window.scrollTo(0, 0);
+}
+
+/* ════════════════════════════════════════
+   Page 2 — 소득/지출 21개 Rule 구현
+════════════════════════════════════════ */
+function applyRules() {
+  const q1 = val('inp-q1') !== '';
+  // Rule 1-2
+  show('q2-blk', q1);
+  if (!q1) { document.getElementById('inp-q2').value = ''; }
+
+  const q2 = q1 && val('inp-q2') !== '';
+  // Rule 3
+  show('q3-blk', q2);
+  if (!q2) { document.getElementById('inp-q3').value = ''; }
+
+  const q3 = q2 && val('inp-q3') !== '';
+  // Rule 4
+  show('q4-blk', q3);
+  if (!q3) { document.getElementById('inp-q4').value = ''; }
+
+  const q4 = q3 && val('inp-q4') !== '';
+  // Rule 5
+  show('q5-blk', q4);
+  if (!q4) { document.getElementById('inp-q5').value = ''; }
+
+  const q5 = q4 && val('inp-q5') !== '';
+  // Rule 6: Q5 입력 시 신용카드 표시
+  show('q6-blk', q5);
+  if (!q5) { S.q6 = null; clearOpt('q6-a'); clearOpt('q6-b'); }
+
+  // Rule 7: Q6=네 → 6-1 표시
+  // Rule 8: Q6=아니오 → 6-2 표시
+  const r7 = q5 && S.q6 === 'yes';
+  const r8 = q5 && S.q6 === 'no';
+  show('q6-1-blk', r7);
+  show('q6-2-blk', r8);
+  if (!r7) document.getElementById('inp-q6-1').value = '';
+  if (!r8) document.getElementById('inp-q6-2').value = '';
+
+  // Rule 9: 6-1 OR 6-2 입력 시 현금서비스 표시
+  const r9 = (r7 && val('inp-q6-1') !== '') || (r8 && val('inp-q6-2') !== '');
+  show('q7-blk', r9);
+  if (!r9) { S.q7 = null; clearOpt('q7-a'); clearOpt('q7-b'); }
+
+  // Rule 10: Q7=네 → 7-1 표시
+  const r10 = r9 && S.q7 === 'yes';
+  show('q7-1-blk', r10);
+  if (!r10) document.getElementById('inp-q7-1').value = '';
+
+  // Rule 11: 7-1 입력 시 소액결제 표시
+  // Rule 12: Q7=아니오 시 소액결제 바로 표시
+  const r11 = r10 && val('inp-q7-1') !== '';
+  const r12 = r9 && S.q7 === 'no';
+  const microShow = r11 || r12;
+  show('q8-blk', microShow);
+  // 8-2: 소액결제 여부 무관, Q8과 동시에 항상 표시 (탈리 제작자 확정)
+  show('q8-2-blk', microShow);
+  if (!microShow) { S.q8 = null; clearOpt('q8-a'); clearOpt('q8-b'); }
+
+  // Rule 13: Q8=네 → 8-1 표시
+  // Rule 14: Q8=아니오 → 8-1 숨김
+  const r13 = microShow && S.q8 === 'yes';
+  show('q8-1-blk', r13);
+}
+
+function clearOpt(id) {
+  const el = document.getElementById(id);
+  if (el) el.classList.remove('sel');
+}
+
+function selQ6(v) {
+  S.q6 = v;
+  document.getElementById('q6-a').classList.toggle('sel', v === 'yes');
+  document.getElementById('q6-b').classList.toggle('sel', v === 'no');
+  applyRules();
+}
+function selQ7(v) {
+  S.q7 = v;
+  document.getElementById('q7-a').classList.toggle('sel', v === 'yes');
+  document.getElementById('q7-b').classList.toggle('sel', v === 'no');
+  applyRules();
+}
+function selQ8(v) {
+  S.q8 = v;
+  document.getElementById('q8-a').classList.toggle('sel', v === 'yes');
+  document.getElementById('q8-b').classList.toggle('sel', v === 'no');
+  applyRules();
+}
+
+/* ════════════════════════════════════════
+   Page 3 — 금융이력 Rule 15~19
+════════════════════════════════════════ */
+function applyRulesP3() {
+  // Rule 15-16: NICE OR KCB 입력 시 대출보유 표시
+  const r16 = val('inp-nice') !== '' || val('inp-kcb') !== '';
+  show('g3-blk', r16);
+  if (!r16) { S.g3 = null; clearOpt('g3-a'); clearOpt('g3-b'); }
+
+  // Rule 17: G3=네 → 총잔액+기관상세 표시, 제도권 숨김
+  // Rule 18: G3=아니오 → 총잔액+기관상세 숨김, 제도권 표시
+  const r17 = r16 && S.g3 === 'yes';
+  const r18 = r16 && S.g3 === 'no';
+  show('g4-blk', r17);
+  show('g5-blk', r17);
+  if (!r17) document.getElementById('inp-g4').value = '';
+
+  // Rule 19: G4 입력 시 제도권 표시
+  const r19 = r17 && val('inp-g4') !== '';
+  show('g6-blk', r18 || r19);
+}
+
+function selG3(v) {
+  S.g3 = v;
+  document.getElementById('g3-a').classList.toggle('sel', v === 'yes');
+  document.getElementById('g3-b').classList.toggle('sel', v === 'no');
+  applyRulesP3();
+}
+
+/* ════════════════════════════════════════
+   Page 3 — 제도권 다중선택 (Rule 20-21 준비)
+════════════════════════════════════════ */
+const DEBT_TRIGGER = new Set(['신용회복위원회','개인회생','워크아웃','새출발기금','채무조정']);
+
+function toggleDebt(el, type) {
+  // "해당 안해요" 해제
+  const noneEl = document.getElementById('ck-f');
+  noneEl.classList.remove('sel');
+  S.debtTypes.delete('해당 안해요.');
+
+  if (S.debtTypes.has(type)) {
+    S.debtTypes.delete(type);
+    el.classList.remove('sel');
+  } else {
+    S.debtTypes.add(type);
+    el.classList.add('sel');
+  }
+}
+
+function selectNone(el) {
+  // 모든 체크 해제 후 "해당 안해요" 단독 선택
+  ['ck-a','ck-b','ck-c','ck-d','ck-e','ck-f'].forEach(id => {
+    document.getElementById(id).classList.remove('sel');
+  });
+  S.debtTypes.clear();
+  el.classList.add('sel');
+  S.debtTypes.add('해당 안해요.');
+}
+
+/* ════════════════════════════════════════
+   Page 4 — 채무변제 증빙서류 Rule 20-21
+   Rule 20: [신용회복위원회/개인회생/워크아웃/새출발기금/채무조정] → 표시
+   Rule 21: "해당 안해요." → 숨김
+════════════════════════════════════════ */
+function applyRulesP4() {
+  const hasDebtTrigger = [...S.debtTypes].some(t => DEBT_TRIGGER.has(t));
+  show('debt-doc-blk', hasDebtTrigger);
+}
+
+/* ════════════════════════════════════════
+   대출기관 행 추가
+════════════════════════════════════════ */
+function addLoanRow() {
+  const rows = document.getElementById('loan-rows');
+  const inp = document.createElement('input');
+  inp.className = 'inp';
+  inp.type = 'text';
+  inp.placeholder = '+ 추가 칸';
+  rows.appendChild(inp);
+}
+
+/* ════════════════════════════════════════
+   토스 / 카카오페이 탭 전환
+════════════════════════════════════════ */
+function switchTab(tab) {
+  document.getElementById('tab-toss').classList.toggle('sel', tab === 'toss');
+  document.getElementById('tab-kakao').classList.toggle('sel', tab === 'kakao');
+  document.getElementById('tc-toss').classList.toggle('on', tab === 'toss');
+  document.getElementById('tc-kakao').classList.toggle('on', tab === 'kakao');
+}
+
+// 초기화: 토스 탭 기본 표시
+document.getElementById('tc-toss').classList.add('on');
+</script>
+
+</body>
+</html>
