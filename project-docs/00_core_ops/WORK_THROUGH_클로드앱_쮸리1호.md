@@ -933,8 +933,36 @@ API SPEC에서 허용값 불일치 시 서버가 400 오류 반환 가능.
 - 커밋 해시: `41266cc`
 - 커밋 메시지: `T-038: debt_adjustment_types '해당 안해요.' → '해당 안해요' 마침표 제거 (API SPEC 불일치 수정)`
 
+[원격 커밋]
+- 커밋 `41266cc` 원격 푸시: `feature/apply-review-form` (2026-05-12)
+- 커밋 `64b1947` 원격 푸시: TODO_BOARD / WORK_THROUGH 기록 (2026-05-12)
+- 머지 커밋: `133d19a` (feature/apply-review-form → main, 세르7호님 처리)
+
+[깃 관리자(세르7호) 완료 보고서 원문]
+monthly-loan T-037/T-038 반영 완료했습니다.
+
+* 원격 머지:
+   * feature/apply-review-form -> main
+   * 기존 PR #1은 이미 MERGED 상태였고, 추가 커밋 41266cc, 64b1947가 main에 빠져 있어 별도 병합 처리
+   * merge commit: 133d19a
+* 배포:
+   * GitHub Pages main / root
+   * Pages build: 995343300 built
+   * CNAME: monthly-loan.sirjuseyo.com
+   * HTTPS enforced: true
+* 확인:
+   * https://monthly-loan.sirjuseyo.com/apply-review/apply-review.html HTTP/2 200
+   * https://monthly-loan.sirjuseyo.com/apply-review/apply-review-dev.html HTTP/2 200
+   * API 전송값 debt_adjustment_types: 해당 안해요 마침표 제거 확인
+* 문서:
+   * GitOps TODO/WORK_THROUGH에 T-025 / WT-025 기록 완료
+   * project-docs 문서 커밋/푸시 완료
+   * commit: d44af8e
+한 줄 버전:
+* monthly-loan T-037/T-038 feature/apply-review-form -> main 반영 완료, GitHub Pages build 995343300 built, PRD/DEV 폼 200 및 debt_adjustment_types 마침표 제거 확인 완료했습니다.
+
 [현재 상태]
-로컬 커밋 완료 — 서버팀 DEV 배포 완료 후 댄디어빠쮸너야님 실테스트 대기 중
+PRD 배포 완료 — 댄디어빠쮸너야님 DEV 실테스트 대기 중
 
 ---
 
