@@ -1079,7 +1079,7 @@ const DEBT_TRIGGERS = new Set(['신용회복위원회','개인회생','워크아
 function toggleDebt(el, type) {
   // "해당 안해요" 해제
   document.getElementById('ck-F').classList.remove('sel');
-  S.debtTypes.delete('해당 안해요.');
+  S.debtTypes.delete('해당 안해요'); // T-038: API SPEC 허용값 기준 마침표 제거 (2026-05-12)
   // 토글
   if (S.debtTypes.has(type)) { S.debtTypes.delete(type); el.classList.remove('sel'); }
   else { S.debtTypes.add(type); el.classList.add('sel'); }
@@ -1089,7 +1089,7 @@ function selectNone(el) {
   ['ck-A','ck-B','ck-C','ck-D','ck-E','ck-F'].forEach(id => document.getElementById(id).classList.remove('sel'));
   S.debtTypes.clear();
   el.classList.add('sel');
-  S.debtTypes.add('해당 안해요.');
+  S.debtTypes.add('해당 안해요'); // T-038: API SPEC 허용값 기준 마침표 제거 (2026-05-12)
 }
 
 /* ═══════════════════════════════════
