@@ -837,6 +837,7 @@
           </ol>
         </div>
         <div id="toss-slots"></div>
+        <div class="err-msg" id="err-credit-toss">신용정보 화면은 총 5장 모두 올려주세요. (신용점수 1장 + 대출/카드/연체/보증 4장)</div>
       </div>
 
       <!-- 카카오페이 -->
@@ -850,6 +851,7 @@
           </ol>
         </div>
         <div id="kakao-slots"></div>
+        <div class="err-msg" id="err-credit-kakao">신용정보 화면은 총 6장 모두 올려주세요. (신용점수 1장 + 연체/보증/대출/카드 4장 + 신용리포트 1장)</div>
       </div>
     </div>
 
@@ -1245,9 +1247,38 @@ async function uploadFiles(applicationId) {
 }
 
 /* ═══════════════════════════════════
+   T-039: 신용정보 파일 장수 검증
+════════════════════════════════════ */
+function validateFiles() {
+  const tossOn = document.getElementById('tc-toss').classList.contains('on');
+  if (tossOn) {
+    const count = document.querySelectorAll('#toss-slots .up-zone.has-file').length;
+    const errEl = document.getElementById('err-credit-toss');
+    if (count < 5) {
+      errEl.classList.add('on');
+      errEl.scrollIntoView({ behavior: 'smooth', block: 'center' });
+      return false;
+    }
+    errEl.classList.remove('on');
+  } else {
+    const count = document.querySelectorAll('#kakao-slots .up-zone.has-file').length;
+    const errEl = document.getElementById('err-credit-kakao');
+    if (count < 6) {
+      errEl.classList.add('on');
+      errEl.scrollIntoView({ behavior: 'smooth', block: 'center' });
+      return false;
+    }
+    errEl.classList.remove('on');
+  }
+  return true;
+}
+
+/* ═══════════════════════════════════
    C-11-D: submitForm 전체 플로우
 ════════════════════════════════════ */
 async function submitForm() {
+  if (!validateFiles()) return; // T-039: 신용정보 장수 검증 (2026-05-12)
+
   const btn = document.querySelector('#s4 .btn-purple');
   const orig = btn.innerHTML;
   btn.disabled = true;

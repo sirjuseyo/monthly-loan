@@ -48,7 +48,7 @@
 
 ---
 
-## ⚠️ 워크플로우 [Phase / 내용 / 상태] 체크리스트 테이블(표)
+## ⚠️ 워크플로우 [Phase / 내용 / 상태] 체크리스트 테이블(표)를 작업 시작부터 끝날 때까지 항상 출력
 
 | Phase | 내용 | 상태 |
 | Phase 1 | T-ID 생성 및 W-ID 삭제 | ✅ 완료 또는 ⏳ 대기 |
@@ -276,8 +276,9 @@
 | **T-034** | WT-034 | - | **테스트 완료(DONE)** | **apply-review-mockup.html 정적 목업 제작 (C-1)** | 쮸리(Claude) | 2026-05-07 | 【파일】`apply-review/apply-review-mockup.html` / 탈리 기획서 v1.3 기준 21개 Rule 전체 반영, 5페이지 구조, 댄디어빠쮸너야님 컨펌 완료 |
 | **T-035** | WT-035 | - | **테스트 완료(DONE)** | **apply-review.html HTML+CSS+JS 구조 및 21개 Rule 구현 (C-2~C-9)** | 쮸리(Claude) | 2026-05-07 | 【파일】`apply-review/apply-review.html` / 써주세요 브랜드 아이덴티티, 21개 Rule 조건부 로직, 파일업로드 드래그앤드롭, API_URL placeholder, C-11 B-5 게이트 |
 | **T-036** | WT-036 | 5b9069c | **테스트 완료(DONE)** | **apply-review.html UI 탈리 수준 맞추기 (C-10)** | 쮸리(Claude) | 2026-05-09 | 【파일】`apply-review/apply-review.html` / 전체 폰트·여백 탈리 수준 맞추기, 배너 이미지 교체, 랜딩 레이아웃 개선 / 사장님 디자인 컨펌 완료 ✅ |
-| T-037 | WT-037 | 5b9069c | 진행중(In-Progress) | **C-11 API 연동 + DEV/PRD 이중화** | 쮸리(Claude) | 2026-05-10 | 【파일】`apply-review/apply-review.html` / `apply-review/apply-review-dev.html` / API-A 텍스트 제출, API-B 파일 업로드, submitForm 플로우, DEV 파일 생성 / 서버팀 DEV 배포 후 실테스트 필요 |
-| T-038 | WT-038 | 41266cc | 진행중(In-Progress) | **debt_adjustment_types `해당 안해요.` → `해당 안해요` 마침표 제거 (API SPEC 불일치 수정)** | 쮸리(Claude) | 2026-05-12 | 【파일】`apply-review/apply-review.html` / `apply-review/apply-review-dev.html` / API SPEC 허용값 `"해당 안해요"` (마침표 없음) 기준으로 코드 수정 |
+| **T-037** | WT-037 | 133d19a | **테스트 완료(DONE)** | **C-11 API 연동 + DEV/PRD 이중화** | 쮸리(Claude) | 2026-05-10 | 【파일】`apply-review/apply-review.html` / `apply-review/apply-review-dev.html` / API-A 텍스트 제출, API-B 파일 업로드, submitForm 플로우, DEV 파일 생성 / merge `133d19a` / GitHub Pages PRD 배포 완료 ✅ |
+| **T-038** | WT-038 | 133d19a | **테스트 완료(DONE)** | **debt_adjustment_types `해당 안해요.` → `해당 안해요` 마침표 제거 (API SPEC 불일치 수정)** | 쮸리(Claude) | 2026-05-12 | 【파일】`apply-review/apply-review.html` / `apply-review/apply-review-dev.html` / merge `133d19a` / 마침표 제거 확인 완료 ✅ |
+| T-039 | WT-039 | - | 진행중(In-Progress) | **신용정보 파일 장수 검증 추가 (토스앱 5장 / 카카오페이 6장)** | 쮸리(Claude) | 2026-05-12 | 【파일】`apply-review/apply-review.html` / `apply-review/apply-review-dev.html` / validateFiles() 함수 추가, Submit 차단 + 오류 메시지 표시 |
 
 
 ---
