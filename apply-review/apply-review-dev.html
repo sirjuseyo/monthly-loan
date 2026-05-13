@@ -1220,7 +1220,7 @@ async function submitTextData(data) {
     throw new Error(err.message || `서버 오류 (${res.status})`);
   }
   const json = await res.json();
-  return json.application_id;
+  return json.data.application_id;
 }
 
 /* ═══════════════════════════════════
