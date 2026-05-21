@@ -478,6 +478,81 @@
 
     /* ── 스페이서 ── */
     .sp { height: 20px; }
+
+    /* ── T-042: 생년월일 인라인 캘린더 피커 ── */
+    .birth-picker { position: relative; }
+    .birth-cal {
+      display: none;
+      position: absolute;
+      top: calc(100% + 6px);
+      left: 0; right: 0;
+      background: #ffffff;
+      border: 1.5px solid var(--purple);
+      border-radius: 14px;
+      padding: 14px 12px;
+      z-index: 200;
+      box-shadow: 0 8px 28px rgba(56, 0, 151, 0.14);
+    }
+    .birth-cal.open { display: block; }
+    .bc-nav {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 10px;
+    }
+    .bc-navbtn {
+      background: none;
+      border: none;
+      font-size: 14px;
+      cursor: pointer;
+      color: var(--purple);
+      padding: 5px 8px;
+      border-radius: 8px;
+      line-height: 1;
+      font-weight: 700;
+    }
+    .bc-navbtn:hover { background: var(--purple-light); }
+    .bc-label {
+      font-size: 15px;
+      font-weight: 700;
+      color: var(--text);
+    }
+    .bc-dow {
+      display: grid;
+      grid-template-columns: repeat(7, 1fr);
+      text-align: center;
+      font-size: 11px;
+      color: var(--gray-400);
+      font-weight: 600;
+      margin-bottom: 4px;
+    }
+    .bc-grid {
+      display: grid;
+      grid-template-columns: repeat(7, 1fr);
+      gap: 2px;
+    }
+    .bc-day {
+      aspect-ratio: 1;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 13px;
+      font-family: 'Noto Sans KR', sans-serif;
+      cursor: pointer;
+      border-radius: 8px;
+      transition: all 0.1s;
+    }
+    .bc-day:not(.empty):hover {
+      background: var(--purple-light);
+      color: var(--purple);
+      font-weight: 600;
+    }
+    .bc-day.sel {
+      background: var(--purple);
+      color: #ffffff;
+      font-weight: 700;
+    }
+    .bc-day.empty { cursor: default; }
   </style>
 </head>
 <body>
@@ -556,6 +631,36 @@
       <div class="ql">고객님의 성함을 알려주세요.<span class="req">*</span></div>
       <input class="inp" type="text" id="inp-name" placeholder="홍길동" oninput="validateName()" onblur="validateName()">
       <div class="err-msg" id="err-name">한글 2~5자로 입력해 주세요.</div>
+    </div>
+
+    <!-- T-042: 생년월일 -->
+    <div class="qb">
+      <div class="ql">고객님의 생년월일을 적어주세요.<span class="req">*</span></div>
+      <div class="qs">* 숫자만 입력하시면 자동으로 2001.01.01 형식으로 변환됩니다.</div>
+      <div class="birth-picker" id="birth-picker">
+        <input class="inp" type="text" id="inp-birth"
+          placeholder="2001.01.01"
+          maxlength="10"
+          inputmode="numeric"
+          oninput="formatBirthInput(event)"
+          onfocus="showBirthCal()"
+          autocomplete="off" />
+        <div class="birth-cal" id="birth-cal">
+          <div class="bc-nav">
+            <button type="button" class="bc-navbtn" onclick="bcPrevYear()">◀◀</button>
+            <button type="button" class="bc-navbtn" onclick="bcPrevMonth()">◀</button>
+            <span class="bc-label" id="bc-label"></span>
+            <button type="button" class="bc-navbtn" onclick="bcNextMonth()">▶</button>
+            <button type="button" class="bc-navbtn" onclick="bcNextYear()">▶▶</button>
+          </div>
+          <div class="bc-dow">
+            <span>월</span><span>화</span><span>수</span><span>목</span>
+            <span>금</span><span>토</span><span>일</span>
+          </div>
+          <div class="bc-grid" id="bc-grid"></div>
+        </div>
+      </div>
+      <div class="err-msg" id="err-birth">생년월일을 입력해 주세요. (예: 1990.05.15)</div>
     </div>
 
     <!-- 휴대폰번호 -->
@@ -697,7 +802,7 @@
     </div>
 
     <div class="btn-area">
-      <button class="btn btn-purple" onclick="go(3)">다음 ›</button>
+      <button class="btn btn-purple" onclick="goP3()">다음 ›</button>
     </div>
     <div class="pg-ind">Page 2</div>
   </div><!-- /s2 -->
@@ -942,6 +1047,36 @@ function go(n) {
   window.scrollTo(0, 0);
 }
 
+/* T-042: Page 2 → 3 전환 시 기본정보 유효성 검증 */
+function goP3() {
+  hideBirthCal();
+  // 이름 검증
+  const nameVal = v('inp-name');
+  if (!/^[가-힣]{2,5}$/.test(nameVal)) {
+    document.getElementById('err-name').classList.add('on');
+    document.getElementById('inp-name').classList.add('err');
+    document.getElementById('inp-name').scrollIntoView({behavior:'smooth',block:'center'});
+    return;
+  }
+  // 생년월일 검증
+  const birthVal = v('inp-birth');
+  if (!/^\d{4}\.(0[1-9]|1[0-2])\.(0[1-9]|[12]\d|3[01])$/.test(birthVal)) {
+    document.getElementById('err-birth').classList.add('on');
+    document.getElementById('inp-birth').classList.add('err');
+    document.getElementById('inp-birth').scrollIntoView({behavior:'smooth',block:'center'});
+    return;
+  }
+  // 휴대폰번호 검증
+  const phoneVal = v('inp-phone');
+  if (!/^01[016789]\d{7,8}$/.test(phoneVal)) {
+    document.getElementById('err-phone').classList.add('on');
+    document.getElementById('inp-phone').classList.add('err');
+    document.getElementById('inp-phone').scrollIntoView({behavior:'smooth',block:'center'});
+    return;
+  }
+  go(3);
+}
+
 function clamp(inp, mn, mx) {
   const val = parseFloat(inp.value);
   if (!isNaN(val)) {
@@ -959,6 +1094,78 @@ function validateName() {
   document.getElementById('inp-name').classList.toggle('err', val.length > 0 && !ok);
   document.getElementById('err-name').classList.toggle('on', val.length > 0 && !ok);
 }
+
+/* ── T-042: 생년월일 인라인 캘린더 피커 ── */
+let _bcy = 1990, _bcm = 0;
+let _bcOpen = false;
+
+function formatBirthInput(e) {
+  let raw = e.target.value.replace(/[^0-9]/g, '');
+  let r = '';
+  if (raw.length > 0) r += raw.slice(0, 4);
+  if (raw.length > 4) r += '.' + raw.slice(4, 6);
+  if (raw.length > 6) r += '.' + raw.slice(6, 8);
+  e.target.value = r;
+  if (r) document.getElementById('err-birth').classList.remove('on');
+  const m = r.match(/^(\d{4})\.(\d{2})/);
+  if (m) { _bcy = +m[1]; _bcm = +m[2] - 1; _renderBirthCal(); }
+}
+
+function showBirthCal() {
+  const val = document.getElementById('inp-birth').value;
+  const m = val.match(/^(\d{4})\.(\d{2})/);
+  if (m) { _bcy = +m[1]; _bcm = +m[2] - 1; }
+  else { _bcy = 1990; _bcm = 0; }
+  _renderBirthCal();
+  document.getElementById('birth-cal').classList.add('open');
+  _bcOpen = true;
+}
+
+function hideBirthCal() {
+  document.getElementById('birth-cal').classList.remove('open');
+  _bcOpen = false;
+}
+
+function _renderBirthCal() {
+  const MONTHS = ['1월','2월','3월','4월','5월','6월','7월','8월','9월','10월','11월','12월'];
+  document.getElementById('bc-label').textContent = `${_bcy}년 ${MONTHS[_bcm]}`;
+  const grid = document.getElementById('bc-grid');
+  grid.innerHTML = '';
+  const firstDay = new Date(_bcy, _bcm, 1).getDay();
+  const offset = firstDay === 0 ? 6 : firstDay - 1;
+  const total = new Date(_bcy, _bcm + 1, 0).getDate();
+  const curVal = document.getElementById('inp-birth').value;
+  const sm = curVal.match(/^(\d{4})\.(\d{2})\.(\d{2})$/);
+  const selD = sm && +sm[1] === _bcy && +sm[2] - 1 === _bcm ? +sm[3] : -1;
+  for (let i = 0; i < offset; i++) {
+    const e = document.createElement('div'); e.className = 'bc-day empty'; grid.appendChild(e);
+  }
+  for (let d = 1; d <= total; d++) {
+    const e = document.createElement('div');
+    e.className = 'bc-day' + (d === selD ? ' sel' : '');
+    e.textContent = d;
+    const day = d;
+    e.onclick = () => _selectBirthDay(day);
+    grid.appendChild(e);
+  }
+}
+
+function _selectBirthDay(d) {
+  const mm = String(_bcm + 1).padStart(2, '0');
+  const dd = String(d).padStart(2, '0');
+  document.getElementById('inp-birth').value = `${_bcy}.${mm}.${dd}`;
+  document.getElementById('err-birth').classList.remove('on');
+  hideBirthCal();
+}
+
+function bcPrevMonth() { _bcm--; if (_bcm < 0) { _bcm = 11; _bcy--; } _renderBirthCal(); }
+function bcNextMonth() { _bcm++; if (_bcm > 11) { _bcm = 0; _bcy++; } _renderBirthCal(); }
+function bcPrevYear()  { _bcy--; _renderBirthCal(); }
+function bcNextYear()  { _bcy++; _renderBirthCal(); }
+
+document.addEventListener('click', function(e) {
+  if (_bcOpen && !document.getElementById('birth-picker').contains(e.target)) hideBirthCal();
+});
 
 function validatePhone() {
   const val = v('inp-phone');
@@ -1161,6 +1368,7 @@ function collectFormData() {
 
   return {
     name:                       v('inp-name'),
+    birth_date:                 v('inp-birth'),
     phone:                      v('inp-phone').replace(/-/g, ''),
 
     annual_income:              parseInt(v('q1'))   || 0,
