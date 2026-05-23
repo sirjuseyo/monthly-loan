@@ -1500,6 +1500,7 @@ function validateFiles() {
    C-11-D: submitForm 전체 플로우
 ════════════════════════════════════ */
 async function submitForm() {
+  if (S.debtTypes.size === 0) { alert('제도권 해당 여부를 선택해 주세요.'); return; } // T-039: debt_adjustment_types 미선택 검증 (2026-05-24)
   if (!validateFiles()) return; // T-039: 신용정보 장수 검증 (2026-05-12)
 
   const btn = document.querySelector('#s4 .btn-purple');
