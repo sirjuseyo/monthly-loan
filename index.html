@@ -85,6 +85,15 @@ h1 em{font-style:normal;color:var(--purple);}
 .checker-desc{font-size:.85rem;font-weight:300;color:var(--gray);}
 .checker-btn{display:block;width:100%;text-align:center;font-size:1.1rem;font-weight:700;border-radius:14px;padding:15px;text-decoration:none;color:#3a9aaa;background:transparent;border:2px solid var(--mint);letter-spacing:-.2px;}
 
+
+/* 월드컵 이벤트 카드 (6월 한정) */
+.worldcup-card{background:#fff;border:2px solid #CD2E3A;border-radius:22px;overflow:hidden;}
+.worldcup-visual{width:100%;height:180px;object-fit:cover;display:block;}
+.worldcup-body{padding:18px 20px 20px;}
+.worldcup-tag{display:inline-block;background:rgba(205,46,58,.1);color:#CD2E3A;font-size:.75rem;font-weight:700;padding:4px 10px;border-radius:6px;margin-bottom:10px;}
+.worldcup-title{font-size:1.2rem;font-weight:900;color:#1A1A2E;margin-bottom:4px;letter-spacing:-.3px;}
+.worldcup-sub{font-size:.9rem;font-weight:700;color:#CD2E3A;margin-bottom:16px;line-height:1.6;}
+.worldcup-btn{display:block;width:100%;text-align:center;font-size:1rem;font-weight:700;border-radius:14px;padding:13px;text-decoration:none;color:#CD2E3A;border:2px solid #CD2E3A;background:#fff;letter-spacing:-.2px;}
 /* footer */
 .footer{padding:24px 24px 32px;display:flex;justify-content:center;position:relative;z-index:2;}
 .grad-bar{width:48%;height:3px;border-radius:10px;background:linear-gradient(90deg,var(--purple),var(--mint),var(--orange));}
@@ -159,7 +168,7 @@ h1 em{font-style:normal;color:var(--purple);}
         <div class="live-badge">
           <div class="live-badge-top">
             <div class="live-dot"></div>
-            <span class="live-text-main">5월 대출</span>
+            <span class="live-text-main">6월 대출</span>
           </div>
           <div class="live-divider"></div>
           <span class="live-text-sub">신청중</span>
@@ -169,14 +178,23 @@ h1 em{font-style:normal;color:var(--purple);}
     </section>
 
     <div class="cards">
-      <img class="gift-box" src="./2026-05/assets/Gift-Box-Rose_May-Loan.png" alt="">
+      <img class="gift-box" src="./2026-06/assets/Battlefield-Cross_Jun-Loan.png" alt="">
       <div class="main-card">
-        <div class="main-tag">🌹 이달의 대출</div>
-        <div class="main-title">5️⃣🈷️은 ❤️가정의 달</div>
+        <div class="main-tag">🪖 이달의 대출</div>
+        <div class="main-title">6️⃣🈷️은 🪖호국보훈의 달</div>
         <div class="main-sub">이벤트 · 웨이팅 · 롸잇나우</div>
-        <a class="main-btn" href="./2026-05/">신청하기 →</a>
+        <a class="main-btn" href="./2026-06/">신청하기 →</a>
       </div>
-      <div class="checker-card">
+      <div class="worldcup-card">
+        <img class="worldcup-visual" src="./2026-06/assets/2026_worldcup_type102.jpg" alt="2026 북중미 월드컵">
+        <div class="worldcup-body">
+          <div class="worldcup-tag">⚽ 6월 한정 이벤트</div>
+          <div class="worldcup-title">2026 북중미 월드컵</div>
+          <div class="worldcup-sub">🇰🇷 대한민국 대표팀 응원!<br>월드컵⚽️대출</div>
+          <a class="worldcup-btn" href="./2026-06/">이벤트 보기 →</a>
+        </div>
+      </div>
+            <div class="checker-card">
         <div class="checker-header">
           <div class="checker-icon">🔍</div>
           <div>
