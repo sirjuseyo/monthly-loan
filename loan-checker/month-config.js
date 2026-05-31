@@ -81,4 +81,4 @@ const _now = new Date();
 const _currentMonth = `${_now.getFullYear()}-${String(_now.getMonth() + 1).padStart(2, '0')}`;
 
 // MONTH_CONFIG: 전역으로 노출 (app.js에서 참조)
-const MONTH_CONFIG = MONTH_CONFIGS[_currentMonth] || MONTH_CONFIGS['2026-06']; // 폴백: 6월
+var MONTH_CONFIG = MONTH_CONFIGS[_currentMonth] || MONTH_CONFIGS['2026-06']; // 폴백: 6월

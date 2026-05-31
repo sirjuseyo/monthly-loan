@@ -542,6 +542,10 @@
   </section>
 
   <script src="month-config.js"></script>
+  <script>
+    /* DEV 전용: 2026-06 강제 적용 (자동감지가 현재 월 기준이라 오늘=5월이면 5월 선택됨) */
+    MONTH_CONFIG = MONTH_CONFIGS["2026-06"];
+  </script>
   <script src="app.js"></script>
   <script>
     /* month-config.js 기반 동적 텍스트 주입 (T-013) */
