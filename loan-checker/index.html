@@ -38,7 +38,7 @@
         <h2>① 📅 월별 대출</h2>
         <div class="field">
           <label>🏷️ 대출 상품명</label>
-          <p class="static-value">5️⃣🈷️은 ❤️가정의 달 대출</p>
+          <p class="static-value" id="loanProductName">6️⃣🈷️은 🪖호국보훈의 달 대출</p>
         </div>
       </section>
 
@@ -118,14 +118,14 @@
                 <span class="key-icon">✅</span>
                 <span>
                   웨이팅 대출 신청일 :
-                  <strong id="waitingDateText">2026년 4월 11일</strong>
+                  <strong id="waitingDateText">2026년 6월 11일</strong>
                 </span>
               </li>
               <li class="waiting-key-item">
                 <span class="key-icon">🗓️</span>
                 <span>
                   웨이팅 대출 신청 기간 :
-                  <strong id="waitingPeriod">2026년 4월 11일 ~ 15일</strong>
+                  <strong id="waitingPeriod">2026년 6월 11일 ~ 15일</strong>
                 </span>
               </li>
               <li class="waiting-key-item">
@@ -216,9 +216,9 @@
               </ul>
             </li>
             <li>
-              <strong>이벤트 대출 &gt; 5월 한정 스페셜티</strong> : 바로 심사 가능
+              <strong id="eventGuideLabel">이벤트 대출 &gt; 6월 한정 스페셜티</strong> : 바로 심사 가능
               <ul>
-                <li>장미🌹대출 : 원금 미션 감면</li>
+                <li id="eventGuideName">월드컵⚽️대출 : 원금 미션 감면</li>
               </ul>
             </li>
           </ul>
@@ -228,7 +228,7 @@
       <section class="panel">
         <h2>④ 📋 신청 정보</h2>
         <div class="field">
-          <label for="santaApply">🏷️ 5️⃣🈷️은 ❤️가정의 달 대출 신청했어?</label>
+          <label for="santaApply" id="santaApplyLabel">🏷️ 6️⃣🈷️은 🪖호국보훈의 달 대출 신청했어?</label>
           <select id="santaApply" name="santaApply">
             <option disabled selected>
               https://monthly-loan.sirjuseyo.com/
@@ -379,7 +379,7 @@
         <p id="benefitLine4">빠른 대출과 원금 미션 감면!</p>
       </div>
       <div class="result-field">
-        <span>5️⃣🈷️은 ❤️가정의 달 대출 신청 정보</span>
+        <span id="resultInfoHeader">6️⃣🈷️은 🪖호국보훈의 달 대출 신청 정보</span>
         <p id="resultAmount">금액 : 30만 원</p>
         <p id="resultPeriod">기간 : 1개월 (30일)</p>
         <p id="resultOption">대출 옵션 : 웨이팅 대출</p>
@@ -392,7 +392,7 @@
       </div>
       <div class="result-field">
         <span>🗓️ 심사 기간</span>
-        <p id="reviewPeriod">2026년 6월 1일 ~ 5일 / 매일</p>
+        <p id="reviewPeriod">2026년 7월 1일 ~ 5일 / 매일</p>
       </div>
       <div class="result-field">
         <span>🧩 크레딧 미션 (크미)</span>
@@ -433,7 +433,7 @@
       </label>
       <div class="result-field script-box">
         <div class="script-section">
-          <p class="script-step" id="step1">✅ ⓵ 5️⃣🈷️은 ❤️가정의 달 대출 신청 완료 / 완료하세요.</p>
+          <p class="script-step" id="step1">✅ ⓵ 6️⃣🈷️은 🪖호국보훈의 달 대출 신청 완료 / 완료하세요.</p>
           <p class="script-step" id="step2">☑️ ⓶ 써주세요. 앱에서 30만 원과 1개월(30일) 신청 완료 / 완료하세요.</p>
           <div class="script-step-group">
             <p class="script-step" id="step3">✅ ⓷ 앱에서 크미 (3,300🅿) 완료 / 완료하세요</p>
@@ -447,7 +447,7 @@
               <li id="step4Deadline">크미 완료 후 48시간 이내</li>
               <li class="script-warning" id="step4Warning">
                 ⚠️⚠️⚠️여기까지 했다면 앱에선 '검토중'으로 보이겠지만, 실제로는
-                검토를 안 합니다. 아래 ⓹번까지 완료해야 2026년 6월 1일 ~ 5일에
+                검토를 안 합니다. 아래 ⓹번까지 완료해야 2026년 7월 1일 ~ 5일에
                 검토 시작됩니다.⚠️⚠️⚠️
               </li>
             </ul>
@@ -457,7 +457,7 @@
             <ul class="script-sublist">
               <li id="step5Interest">이자 미션, 이미 (1%) : 3,000🅿</li>
               <li id="step5Principal">원금 미션, 원미 (10% → 2%) : 30,000포 → 6,000🅿</li>
-              <li id="step5Deadline">적립 기한 : 2026년 5월 25일까지❗️</li>
+              <li id="step5Deadline">적립 기한 : 2026년 7월 25일까지❗️</li>
               <li class="script-warning" id="step5Warning">
                 ⚠️⚠️⚠️앱에선 포인트 상환 미션이 따로 보이지 않으니, 포인트
                 적립소에서 적립하시면 됩니다.⚠️⚠️⚠️
@@ -491,7 +491,7 @@
           <div class="script-summary-box">
             <p class="script-subtitle">✌️ 두 번째. [포인트 구독]</p>
             <ul class="script-list">
-              <li class="script-list-nowrap">시작일:&nbsp;<span id="subscribeStartDate">2026.03.18</span></li>
+              <li class="script-list-nowrap">시작일:&nbsp;<span id="subscribeStartDate">2026.05.18</span></li>
               <li>종료일 : 승인 후 &amp; 입금일까지</li>
               <li>써주세요. 앱 &gt; 포인트 적립소 방문</li>
               <li>매일 최소 10포인트 이상 적립</li>
@@ -531,16 +531,62 @@
         </div>
 
         <div class="script-cta">
-          <a class="script-cta-button" href="https://www.sirjuseyo.com/notice/024" target="_blank"
-            rel="noopener noreferrer">
-            <img src="assets/img/cta-newyear-lucky-loan-apply_typeC.jpg" alt="5️⃣🈷️은 ❤️가정의 달 대출 신청하기" />
+          <a class="script-cta-button-text" id="ctaButton"
+            href="https://monthly-loan.sirjuseyo.com/2026-06/"
+            target="_blank" rel="noopener noreferrer">
+            🪖 호국보훈의 달 대출 신청하기 →
           </a>
         </div>
       </div>
     </div>
   </section>
 
+  <script src="month-config.js"></script>
   <script src="app.js"></script>
+  <script>
+    /* month-config.js 기반 동적 텍스트 주입 (T-013) */
+    document.addEventListener('DOMContentLoaded', function () {
+      if (typeof MONTH_CONFIG === 'undefined') return;
+      var cfg = MONTH_CONFIG;
+      // 대출 상품명
+      var el = document.getElementById('loanProductName');
+      if (el) el.textContent = cfg.loan.name;
+      // santaApply 라벨
+      var lbl = document.getElementById('santaApplyLabel');
+      if (lbl) lbl.textContent = '🏷️ ' + cfg.loan.name + ' 신청했어?';
+      // 결과 패널 신청정보 헤더
+      var hdr = document.getElementById('resultInfoHeader');
+      if (hdr) hdr.textContent = cfg.loan.name + ' 신청 정보';
+      // step1
+      var s1 = document.getElementById('step1');
+      if (s1) s1.textContent = '✅ ⓵ ' + cfg.loan.name + ' 신청 완료 / 완료하세요.';
+      // step5Deadline
+      var s5 = document.getElementById('step5Deadline');
+      if (s5) s5.textContent = '적립 기한 : ' + cfg.pointDeadline + '까지❗️';
+      // subscribeStartDate
+      var sd = document.getElementById('subscribeStartDate');
+      if (sd) sd.textContent = cfg.subscribeStart;
+      // reviewPeriod default
+      var rp = document.getElementById('reviewPeriod');
+      if (rp) rp.textContent = cfg.reviewPeriod.display;
+      // waitingDateText / waitingPeriod
+      var wdt = document.getElementById('waitingDateText');
+      if (wdt) wdt.textContent = cfg.defaultWaitingDate;
+      var wp = document.getElementById('waitingPeriod');
+      if (wp) wp.textContent = cfg.defaultWaitingPeriod;
+      // 이벤트 가이드
+      var egl = document.getElementById('eventGuideLabel');
+      if (egl) egl.innerHTML = '이벤트 대출 &gt; ' + cfg.event.period;
+      var egn = document.getElementById('eventGuideName');
+      if (egn) egn.textContent = cfg.event.name + ' : 원금 미션 감면';
+      // CTA 버튼
+      var cta = document.getElementById('ctaButton');
+      if (cta) {
+        cta.href = cfg.detailUrl;
+        cta.textContent = cfg.ctaText;
+      }
+    });
+  </script>
 </body>
 
 </html>
