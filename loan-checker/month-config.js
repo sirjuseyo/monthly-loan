@@ -76,9 +76,22 @@ const MONTH_CONFIGS = {
   // ← 7월 이후 여기에 추가
 };
 
-// 현재 날짜 기준 자동 감지
+// 자동 감지: 오늘 날짜 기준으로 가장 가까운 미래/현재 대출 config 선택
+// 로직: 각 config의 applyPeriod.end보다 오늘이 크면 skip → 다음 config 선택
+// 예) 오늘=2026-05-31, 5월 applyPeriod.end=2026-04-25 → skip
+//     오늘=2026-05-31, 6월 applyPeriod.end=2026-06-25 → 선택 ✅
 const _now = new Date();
-const _currentMonth = `${_now.getFullYear()}-${String(_now.getMonth() + 1).padStart(2, '0')}`;
+const _todayStr = `${_now.getFullYear()}-${String(_now.getMonth() + 1).padStart(2, '0')}-${String(_now.getDate()).padStart(2, '0')}`;
+const _sortedKeys = Object.keys(MONTH_CONFIGS).sort();
 
-// MONTH_CONFIG: 전역으로 노출 (app.js에서 참조)
-var MONTH_CONFIG = MONTH_CONFIGS[_currentMonth] || MONTH_CONFIGS['2026-06']; // 폴백: 6월
+var MONTH_CONFIG = null;
+for (const _key of _sortedKeys) {
+  if (_todayStr <= MONTH_CONFIGS[_key].applyPeriod.end) {
+    MONTH_CONFIG = MONTH_CONFIGS[_key];
+    break;
+  }
+}
+// 폴백: 모든 대출 기간이 지났으면 마지막 config 사용
+if (!MONTH_CONFIG) {
+  MONTH_CONFIG = MONTH_CONFIGS[_sortedKeys[_sortedKeys.length - 1]];
+}
