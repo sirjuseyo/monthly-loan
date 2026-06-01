@@ -165,9 +165,9 @@
     transition: all .2s;
   }
   .match-card:hover { border-color: var(--korea-red); transform: translateY(-1px); }
-  .match-date { font-size: .95rem; color: var(--korea-red); font-weight: 700; margin-bottom: 4px; }
+  .match-date { font-size: 1.0rem; color: var(--korea-red); font-weight: 700; margin-bottom: 4px; }
   .match-teams { font-size: 1.25rem; font-weight: 800; color: var(--text); margin-bottom: 6px; }
-  .match-venue { font-size: .95rem; color: var(--muted); }
+  .match-venue { font-size: 1.05rem; color: var(--text); }
 
   /* 혜택 */
   .ticket-list { display: flex; flex-direction: column; gap: 10px; }
@@ -182,7 +182,7 @@
     gap: 12px;
   }
   .ticket-condition { flex: 1; font-size: 1.05rem; color: var(--text); line-height: 1.45; }
-  .ticket-condition small { color: var(--muted); font-size: .9rem; }
+  .ticket-condition small { color: var(--text); font-size: 1rem; }
   .ticket-reward {
     font-size: 1.1rem;
     font-weight: 800;
@@ -290,7 +290,7 @@
   .usage-section { margin-bottom: 18px; }
   .usage-section:last-child { margin-bottom: 0; }
   .usage-label {
-    font-size: .95rem;
+    font-size: 1.15rem;
     font-weight: 700;
     color: var(--korea-red);
     margin-bottom: 6px;
@@ -432,7 +432,7 @@
           <div class="ticket-reward"><small>🐙 ×1</small>10만 원</div>
         </div>
         <div class="ticket-item">
-          <div class="ticket-condition">⑤ 한국 최종 성적 적중<br><small>(16강·8강·4강·결승·우승)</small></div>
+          <div class="ticket-condition">⑤ 한국 최종 성적 적중<br><small>(32강·16강·8강·4강·결승·우승)</small></div>
           <div class="ticket-reward"><small>🐙 ×1</small>10만 원</div>
         </div>
       </div>
@@ -500,7 +500,7 @@
           <li>조별예선 탈락 시 → 6월 25일(남아공전) 종료 후</li>
           <li>32강 진출 시 → 한국이 최종 탈락하는 경기 종료 후</li>
         </ul>
-        <strong>발표 채널:</strong> 써주세요. 앱 공지 + 이벤트 페이지 + 개별 알림
+        <strong>발표 채널:</strong> 써주세요. 앱 & 웹 공지
       </div>
     </section>
 
@@ -516,7 +516,11 @@
       <div class="usage-section">
         <div class="usage-label">📝 사용 방법</div>
         <ol class="usage-ordered">
-          <li>무조건 <strong>현재 상환 중</strong>이어야 합니다</li>
+          <li>무조건 <strong>현재 상환 중</strong>이어야 합니다.
+            <ul>
+              <li>대출 신청 및 승인/입금 후 사용 가능합니다.</li>
+            </ul>
+          </li>
           <li><strong>써주세요. 톡</strong>으로 감다살🐙티켓 사용 문의</li>
           <li>이후 기존 대출과 같은 방식으로 진행
             <ul>
@@ -533,7 +537,7 @@
         <ul class="usage-list">
           <li><strong>최대 2매</strong></li>
           <li>상환 중 일반 대출 금액이 50만 원이라면 추가 대출은 <strong>20만 원까지</strong> 가능</li>
-          <li>남은 티켓은 일반 대출 상환 후 <strong>재대출 + 추가 대출</strong>에 사용</li>
+          <li>남은 티켓은 <strong>모든 대출(일반 대출 + 추가 대출) 상환 후 재대출 + 추가 대출</strong>에 사용</li>
         </ul>
       </div>
 
@@ -543,20 +547,20 @@
       </div>
     </section>
 
-    <!-- 이벤트 유의사항 -->
+    <!-- 챌린지 유의사항 -->
     <section>
-      <div class="section-title">⚠️ 이벤트 유의사항</div>
+      <div class="section-title">⚠️ 챌린지 유의사항</div>
       <ol class="notice-list">
-        <li>본 이벤트는 [써주세요.] 운영 정책에 따라 사전 예고 없이 변경되거나 조기 종료될 수 있습니다.</li>
+        <li>본 챌린지는 [써주세요.] 운영 정책에 따라 사전 예고 없이 변경되거나 조기 종료될 수 있습니다.</li>
         <li>신청 시 입력한 개인정보는 [써주세요.] 개인정보 처리방침에 따라 보관·활용되며, 향후 마케팅·이벤트 안내·서비스 개선 등에 사용됩니다.</li>
-        <li>적중자가 다수인 경우, 모두에게 동일한 추가 대출 혜택이 적용됩니다.</li>
+        <li>적중자가 다수인 경우에도, 모두에게 동일한 추가 대출 혜택이 적용됩니다.</li>
         <li>적중자가 없을 경우 별도의 대체 보상은 제공되지 않습니다.</li>
-        <li>본 이벤트의 추가 대출 혜택은 현금 환급 또는 다른 형태로 변경되지 않습니다.</li>
+        <li>본 챌린지의 추가 대출 혜택은 현금 환급 또는 다른 형태로 변경되지 않습니다.</li>
         <li>감다살🐙미션 10,000P는 이벤트 신청 자격을 위한 적립이며, 환불·이전·양도되지 않습니다.</li>
         <li>추가 대출은 <strong>상환 중인 대출 건 외의 새로운 대출 건</strong>으로 [써주세요.] 대출 정책·절차·운영 규정을 따르며, 정상적인 상환 의무가 발생합니다.</li>
         <li>추가 대출은 <strong>한도 상향과는 별개의 운영 정책</strong>입니다. 예를 들어 직전 마지막 대출이 10만 원이고 현재 신청이 20만 원이라면, 한도 상향 정책을 준수해야 합니다.</li>
         <li>감다살🐙티켓은 당첨자 발표일로부터 <strong>6개월 이내</strong> 사용해야 하며, 기한 경과 시 자동 소멸됩니다.</li>
-        <li>본 이벤트 운영과 관련된 모든 최종 결정은 [써주세요.] 운영팀의 판단에 따릅니다.</li>
+        <li>본 챌린지 운영과 관련된 모든 최종 결정은 [써주세요.] 운영팀의 판단에 따릅니다.</li>
       </ol>
     </section>
 
