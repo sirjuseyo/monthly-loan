@@ -6,7 +6,258 @@
 
 ---
 
+## WT-018 · T-017 gift-box 모바일 텍스트 침범 보정 (미디어쿼리)
+
+| 항목 | 내용 |
+|---|---|
+| 회차 | 1회차 |
+| 작성일시 | 2026-06-02 |
+| 작성자 | 쮸티12호 |
+| T-ID | T-017 |
+| 로컬 커밋 | 0a81b5c |
+| 상태 | 진행중(In-Progress) |
+
+---
+
+[문제 위치]
+파일: `index.html` + `index-dev.html`
+라인: CSS 106~108 (`@media(max-width:767px)` 신규)
+
+[증상(문제 설명)]
+모바일(실기기)에서 gift-box(Battlefield Cross 총 이미지)가 "🪖 호국보훈의 달" 메인 타이틀을 침범. 데스크탑은 정상.
+
+[원인]
+6월 총 이미지 비율 **1.5:1**(1536×1024)이 5월 박스장미 **1.83:1**(2816×1536)보다 세로가 길어, 동일 `width`에서도 세로로 더 늘어져 텍스트 영역까지 내려옴. (CSS는 5월과 동일했으나 이미지 구도 차이로 결과 상이)
+
+[진단(수정 이유)]
+기획서 §7-5-1 "CSS 절대 변경 금지"이나 실제 침범 발생 → **모바일 한정** 보정. 데스크탑은 정상이므로 미건드림.
+
+[처방(수정 코드)]
+- `@media(max-width:767px)` 신규 블록 추가 (데스크탑 `@media(min-width:768px)`와 경계 비충돌)
+- `.gift-box` 모바일 override:
+  - width: `min(341px,90vw)` → `min(250px,68vw)` (①축소)
+  - top: `-110px` → `-125px` (②상향)
+  - right: `-55px` → `-25px`
+- 검증 방법: `getBoundingClientRect`로 모바일(360px) 시뮬레이션 측정
+  - 보정 전: gift 하단이 타이틀보다 38px 아래 (침범)
+  - 보정 후: 타이틀 상단까지 여백 26px 확보 (침범 해소)
+- 데스크탑(1792px) computed style: 341/-110/-55 기존값 유지 확인
+- 브라우저 시각 검증 완료 (텍스트 깨끗)
+- 로컬 커밋: `0a81b5c`
+
+---
+
+## WT-017 · T-016 월드컵 카드 → 예언 챌린지 코드 반영 (DEV/PRD)
+
+| 항목 | 내용 |
+|---|---|
+| 회차 | 1회차 |
+| 작성일시 | 2026-06-02 |
+| 작성자 | 쮸티12호 |
+| T-ID | T-016 |
+| 로컬 커밋 | cc6960d |
+| 상태 | 진행중(In-Progress) |
+
+---
+
+[문제 위치]
+파일: `index.html` + `index-dev.html`
+라인: CSS 95~96 / HTML 191~194 (worldcup-card)
+
+[증상(문제 설명)]
+홈 페이지 월드컵 카드 문구가 "월드컵⚽️대출 / 이벤트 보기"로 표기 → 월별 대출 3옵션 중 하나인 "이벤트 대출"과 혼동.
+
+[원인]
+순수 참여형 예측 챌린지인데 "이벤트 / 대출" 단어를 그대로 사용.
+
+[진단(수정 이유)]
+대출 옵션과 완전 분리 → "이벤트 / 대출" 단어 제거, 예언 챌린지 컨셉으로 전환. (와이어프레임·기획서 확정안 기준)
+
+[처방(수정 코드)]
+DEV/PRD 동시 적용. 텍스트만 교체 (이미지 src·테두리·레이아웃 불변):
+- 태그: `⚽ 6월 한정 이벤트` → `🔮 예언 챌린지`
+- 메인: `2026 북중미 월드컵` → `추가 대출, 최대 50만 원의 행운을!`
+- 보조: `🇰🇷 대한민국 대표팀 응원!` → `"나는야 문어🐙 파울, 감다살!"` (`.worldcup-subcopy` 신규)
+- 설명: `월드컵⚽️대출` → `2026 북중미 월드컵 / 🇰🇷대한민국 축구 국가대표팀의 성적을 맞추세요.` (`.worldcup-desc` 신규)
+- 버튼: `이벤트 보기 →` → `⚽ 몇승 몇무 몇패 신청하기 →`
+- 이미지 `2026_worldcup_type102.jpg` 불변 확인 / 버튼 링크 `./2026-06/` 불변
+- DEV 브라우저 실측 검증 완료
+- 로컬 커밋: `cc6960d`
+
+### WT-017 2회차 — 버튼 문구 변경
+
+| 항목 | 내용 |
+|---|---|
+| 회차 | 2회차 |
+| 작성일시 | 2026-06-02 |
+| 로컬 커밋 | 2e2bf3b |
+| 상태 | 진행중(In-Progress) |
+
+[처방(수정 코드)]
+- 버튼: `⚽ 몇승 몇무 몇패 신청하기 →` → `🐙 승무패 예언하기 →`
+- 사유: 예언 챌린지 + 문어 파울 컨셉 일관성 (수정구슬🔮 태그 + 문어🐙 캐릭터 → 버튼까지 문어로 통일)
+- 적용: `index.html` + `index-dev.html` + 와이어프레임 + 기획서 동시
+- DEV 브라우저 실측 검증 완료
+- 로컬 커밋: `2e2bf3b`
+
+---
+
+## WT-016 · T-015 월드컵 카드 → 예언 챌린지 기획서·와이어프레임 수정
+
+| 항목 | 내용 |
+|---|---|
+| 회차 | 1회차 |
+| 작성일시 | 2026-06-02 |
+| 작성자 | 쮸티12호 |
+| T-ID | T-015 |
+| 로컬 커밋 | 문서전용(Untracked 와이어프레임/기획서) |
+| 상태 | 진행중(In-Progress) |
+
+---
+
+[문제 위치]
+파일: `project-docs/00_plan/wireframe-monthly-loan-home-jun-v2.html` / `PLAN_2026-06_호국보훈의달대출_기획서.md`
+
+[처방(수정 코드)]
+- 와이어프레임: 월드컵 카드 본문 텍스트 5요소 교체 + `.worldcup-subcopy`/`.worldcup-desc` CSS 추가 + 우측 패널에 [증상/원인/진단/처방] 형식 + 기존→변경 대조표 기록
+- 기획서 §7-7 제목: "월드컵 이벤트 카드" → "월드컵 예언 챌린지 카드"
+- 기획서 §7-7-2: 기존→변경 대조표 + [증상/원인/진단/처방]
+- 기획서 §7-7-4: "이벤트 대출 연결" → "⚠️ 컨셉 구분" (이벤트 대출 vs 예언 챌린지 구분표)
+- 기획서 작업 이력 2026-06-02 추가
+- 브라우저 출력 검증 완료
+
+---
+
 ## WT-015 · T-014 대출 가능성 검사기 DEV 파일 신규 생성
+
+---
+
+### [개발자 → 깃 & 배포 관리자 전달] 작업 완료 보고서 원문
+
+```
+monthly-loan T-001~T-014 작업 완료했습니다.
+`feature/T-001-jun-loan-landing` 원격 푸시 완료했고 PR은 `#7`입니다.
+
+작업 내용:
+- 6월 호국보훈의 달 대출 랜딩 페이지 신규 생성 (2026-06/index.html, DEV/PRD 분리)
+- 신청하기 폼 6월 업데이트 (apply.html / apply-dev.html)
+- 월별 대출 홈 페이지 6월 업데이트 + 월드컵 이벤트 카드 신설 (index.html, index-dev.html)
+- 대출 가능성 검사기 5월 아카이브 + 6월 업데이트 + month-config.js 자동화 신설
+
+검증:
+- 6월 랜딩 페이지 로컬 브라우저 테스트 완료
+- 홈 랜딩 페이지 Battlefield Cross 투명배경 정상 확인
+- loan-checker 자동 감지 로직 검증 완료 (오늘=2026-05-31 → 6월 config 자동 선택)
+
+커밋:
+- `976dd8e` feat(T-001): 6월 호국보훈의 달 대출 랜딩 페이지 신규 생성
+- `8f094b0` fix(T-001): 6월 페이지 날짜 잔존 수정
+- `d802957` fix(T-001): 이미지 확장자 .jpg → .png 수정
+- `4a54730` feat(T-002,003): 이미지 PNG→JPG 변환 및 HTML 순서 교체
+- `46d035e` fix(T-005): 나노크레딧 섹션 텍스트 3건 수정
+- `03bb5b5` feat(T-006,007): 신청하기 버튼 링크 변경 및 apply.html 6월 업데이트
+- `cc0ae69` fix(T-007): apply-dev.html 6월 업데이트 4건 추가
+- `bcfaa6f` feat(T-008,009): 홈 페이지 이미지 변환 및 index-dev.html 6월 업데이트
+- `4eb9f5a` fix(T-009): gift-box 이미지 .jpg → .png 수정 및 규칙 문서화
+- `69e0439` feat(T-010): index.html(PRD) 6월 호국보훈의 달 업데이트
+- `552e222` feat(T-011): 6월 랜딩 이벤트 문구 교체 및 DEV/PRD 분리
+- `8eab44b` feat(T-012): 대출 가능성 검사기 5월 버전 아카이브
+- `f0bd4a7` feat(T-013): 대출 가능성 검사기 6월 업데이트 + month-config 분리
+- `01627b3` feat(T-014): 대출 가능성 검사기 DEV 파일 신규 생성
+- `56b15ac` feat(T-014): month-config 활성 기간 정책 명시 (매월 26일~익월 25일)
+- `6fa91e9` docs(T-001~T-014): 쮸티12호 작업 문서 최종 반영
+
+문서:
+- `project-docs`
+- 브랜치: `feature/T-001-jun-loan-landing` (코드 레포와 동일 브랜치에 포함)
+- PR: `#7`
+- 문서 커밋: `6fa91e9` docs(T-001~T-014): 쮸티12호 작업 문서 최종 반영
+
+한 줄 버전:
+- `monthly-loan T-001~T-014 완료, feature/T-001-jun-loan-landing 푸시 및 PR #7 생성 완료, 로컬 테스트 완료했습니다. 깃 & 배포 관리자님 feature → dev 검토 부탁드립니다.`
+```
+
+---
+
+### [GitHub Pages PRD : 깃 & 배포 관리자 → 개발자] 완료 보고서
+
+```
+monthly-loan T-001~T-014 반영 완료했습니다.
+
+- 원격 머지:
+  - feature/T-001-jun-loan-landing -> main
+  - PR: #7
+  - merge commit: 0612e09a16bf2c8cbaf2470dd803d8c3b7142b90
+
+- 배포:
+  - GitHub Pages pages build and deployment 성공
+  - run: 26730186641
+  - 서버/ECR/Argo/Kubernetes 배포 대상 아님
+  - 사유: 월별 대출 홈 정적 GitHub Pages 레포
+
+- 확인:
+  - PR #7 MERGED
+  - https://monthly-loan.sirjuseyo.com/ HTTP/2 200
+  - https://monthly-loan.sirjuseyo.com/2026-06/ HTTP/2 200
+  - https://monthly-loan.sirjuseyo.com/apply/apply.html HTTP/2 200
+  - https://monthly-loan.sirjuseyo.com/loan-checker/ HTTP/2 200
+  - loan-checker JS 문법 검증 성공
+  - 2026-05-31 기준 6월 config 자동 선택 확인
+
+- 주의:
+  - monthly-loan 원격에는 dev 브랜치가 없어 PR #7 base main 기준으로 반영했습니다.
+  - GitHub Pages CDN cache-control은 max-age=600으로 확인했습니다.
+
+- 문서:
+  - GitDeployOps TODO/WORK_THROUGH 업데이트 완료
+  - 완료 보고서 WT-001에 기록 완료
+  - project-docs 문서 커밋/푸시 완료: df07887
+
+한 줄 버전:
+- monthly-loan T-001~T-014 feature/T-001-jun-loan-landing -> main 반영 완료, GitHub Pages 배포 성공 및 주요 운영 URL HTTP 200 확인했습니다.
+```
+
+---
+
+### [GitHub Pages PRD : 깃 & 배포 관리자 → 개발자] 핫픽스 완료 보고서 (PR #8)
+
+```
+monthly-loan Battlefield-Cross PNG 누락 핫픽스 반영 완료했습니다.
+
+원격 머지:
+- feature/T-001-jun-loan-landing -> main
+- PR: #8
+- merge commit: bc6cbc2e43d4f322141086b7f3a834509cd89394
+
+배포:
+- GitHub Pages pages build and deployment 성공
+- run: 26730714029
+- 서버/ECR/Argo/Kubernetes 배포 대상 아님
+- 사유: 월별 대출 홈 정적 GitHub Pages 레포
+
+확인:
+- PR #8 MERGED
+- https://monthly-loan.sirjuseyo.com/ HTTP/2 200
+- https://monthly-loan.sirjuseyo.com/2026-06/ HTTP/2 200
+- https://monthly-loan.sirjuseyo.com/2026-06/assets/Battlefield-Cross_Jun-Loan.png HTTP/2 200
+- https://monthly-loan.sirjuseyo.com/2026-06/assets/Battlefield-Cross_Jun-Loan.jpg HTTP/2 404
+
+주의:
+- .jpg 삭제는 의도된 변경으로 확인했습니다.
+- GitHub Pages CDN cache-control은 max-age=600입니다.
+
+문서:
+- GitDeployOps W-002, T-002, WT-002 기록 완료
+- 완료 보고서 WT-002에 기록 완료
+- project-docs 문서 커밋/푸시 완료:
+  - 기록 커밋 be9500a
+  - 최종 정정 커밋 1db187b
+
+한 줄 버전:
+- monthly-loan Battlefield-Cross PNG 누락 핫픽스 PR #8 feature/T-001-jun-loan-landing -> main 반영 완료, GitHub Pages 배포 성공 및 PNG asset HTTP 200 확인했습니다.
+```
+
+---
 
 | 항목 | 내용 |
 |---|---|

@@ -93,12 +93,19 @@ h1 em{font-style:normal;color:var(--purple);}
 .worldcup-tag{display:inline-block;background:rgba(205,46,58,.1);color:#CD2E3A;font-size:.75rem;font-weight:700;padding:4px 10px;border-radius:6px;margin-bottom:10px;}
 .worldcup-title{font-size:1.2rem;font-weight:900;color:#1A1A2E;margin-bottom:4px;letter-spacing:-.3px;}
 .worldcup-sub{font-size:.9rem;font-weight:700;color:#CD2E3A;margin-bottom:16px;line-height:1.6;}
+.worldcup-subcopy{font-style:italic;font-size:.92rem;color:#CD2E3A;font-weight:700;margin-bottom:14px;}
+.worldcup-desc{font-size:.85rem;color:#555;font-weight:500;line-height:1.65;margin-bottom:16px;}
 .worldcup-btn{display:block;width:100%;text-align:center;font-size:1rem;font-weight:700;border-radius:14px;padding:13px;text-decoration:none;color:#CD2E3A;border:2px solid #CD2E3A;background:#fff;letter-spacing:-.2px;}
 /* footer */
 .footer{padding:24px 24px 32px;display:flex;justify-content:center;position:relative;z-index:2;}
 .grad-bar{width:48%;height:3px;border-radius:10px;background:linear-gradient(90deg,var(--purple),var(--mint),var(--orange));}
 
 /* ── TABLET / DESKTOP ≥768px ── */
+/* gift-box 모바일 침범 보정 (T-017) — 6월 총 이미지가 5월 박스보다 세로가 길어
+   호국보훈의 달 텍스트 침범 → 모바일에서만 축소+상향. 데스크탑 불변 */
+@media(max-width:767px){
+  .gift-box{width:min(250px,68vw);top:-125px;right:-25px;}
+}
 @media(min-width:768px){
   .nav{padding:36px 60px 0;max-width:1280px;margin:0 auto;width:100%;}
   .logo-img{width:50px;height:50px;}
@@ -188,10 +195,11 @@ h1 em{font-style:normal;color:var(--purple);}
       <div class="worldcup-card">
         <img class="worldcup-visual" src="./2026-06/assets/2026_worldcup_type102.jpg" alt="2026 북중미 월드컵">
         <div class="worldcup-body">
-          <div class="worldcup-tag">⚽ 6월 한정 이벤트</div>
-          <div class="worldcup-title">2026 북중미 월드컵</div>
-          <div class="worldcup-sub">🇰🇷 대한민국 대표팀 응원!<br>월드컵⚽️대출</div>
-          <a class="worldcup-btn" href="./2026-06/">이벤트 보기 →</a>
+          <div class="worldcup-tag">🔮 예언 챌린지</div>
+          <div class="worldcup-title">추가 대출,<br>최대 50만 원의 행운을!</div>
+          <div class="worldcup-subcopy">"나는야 문어🐙 파울, 감다살!"</div>
+          <div class="worldcup-desc">2026 북중미 월드컵<br>🇰🇷 대한민국 축구 국가대표팀의 성적을 맞추세요.</div>
+          <a class="worldcup-btn" href="./2026-06/">🐙 승무패 예언하기 →</a>
         </div>
       </div>
             <div class="checker-card">
