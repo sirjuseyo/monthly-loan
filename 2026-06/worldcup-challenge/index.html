@@ -25,7 +25,8 @@
     font-family: 'Pretendard', 'Noto Sans KR', -apple-system, sans-serif;
     background: #ececec;
     color: var(--text);
-    line-height: 1.5;
+    font-size: 1.1rem;   /* 6월 호국보훈 페이지 본문(1.1em) 기준 — 기본 폰트 확대 */
+    line-height: 1.6;
   }
   /* 페이지 컨테이너 (모바일 폭 중앙 정렬) */
   .page-card {
@@ -116,7 +117,7 @@
   section { padding: 28px; background: #fff; }
   section + section { border-top: 1px solid var(--border); }
   .section-title {
-    font-size: 1.15rem;
+    font-size: 1.3rem;
     font-weight: 800;
     color: var(--text);
     margin-bottom: 14px;
@@ -130,7 +131,7 @@
     background: var(--cream);
     border-left: 4px solid var(--korea-red);
     padding: 16px 18px;
-    font-size: 1.05rem;
+    font-size: 1.1rem;
     line-height: 1.75;
     color: var(--text);
     border-radius: 0 8px 8px 0;
@@ -146,13 +147,13 @@
     text-align: center;
   }
   .period-label {
-    font-size: .85rem;
+    font-size: .9rem;
     color: var(--korea-red);
     font-weight: 700;
     margin-bottom: 6px;
     letter-spacing: .5px;
   }
-  .period-date { font-size: 1.2rem; font-weight: 900; color: var(--text); }
+  .period-date { font-size: 1.3rem; font-weight: 900; color: var(--text); }
 
   /* 경기 일정 */
   .match-list { display: flex; flex-direction: column; gap: 10px; }
@@ -164,9 +165,9 @@
     transition: all .2s;
   }
   .match-card:hover { border-color: var(--korea-red); transform: translateY(-1px); }
-  .match-date { font-size: .85rem; color: var(--korea-red); font-weight: 700; margin-bottom: 4px; }
-  .match-teams { font-size: 1.2rem; font-weight: 800; color: var(--text); margin-bottom: 6px; }
-  .match-venue { font-size: .85rem; color: var(--muted); }
+  .match-date { font-size: .95rem; color: var(--korea-red); font-weight: 700; margin-bottom: 4px; }
+  .match-teams { font-size: 1.25rem; font-weight: 800; color: var(--text); margin-bottom: 6px; }
+  .match-venue { font-size: .95rem; color: var(--muted); }
 
   /* 혜택 */
   .ticket-list { display: flex; flex-direction: column; gap: 10px; }
@@ -180,16 +181,16 @@
     align-items: center;
     gap: 12px;
   }
-  .ticket-condition { flex: 1; font-size: .95rem; color: var(--text); line-height: 1.4; }
-  .ticket-condition small { color: var(--muted); font-size: .82rem; }
+  .ticket-condition { flex: 1; font-size: 1.05rem; color: var(--text); line-height: 1.45; }
+  .ticket-condition small { color: var(--muted); font-size: .9rem; }
   .ticket-reward {
-    font-size: 1.05rem;
+    font-size: 1.1rem;
     font-weight: 800;
     color: var(--korea-red);
     text-align: right;
     white-space: nowrap;
   }
-  .ticket-reward small { display: block; font-size: .8rem; color: var(--gold-deep); margin-bottom: 2px; }
+  .ticket-reward small { display: block; font-size: .85rem; color: var(--gold-deep); margin-bottom: 2px; }
   .total-box {
     background: var(--text);
     color: var(--gold);
@@ -198,12 +199,12 @@
     text-align: center;
     margin-top: 12px;
     font-weight: 800;
-    font-size: 1.1rem;
+    font-size: 1.2rem;
   }
 
   /* 신청 조건 */
   .no-condition {
-    font-size: 2.2rem;
+    font-size: 2.4rem;
     font-weight: 900;
     color: var(--korea-red);
     text-align: center;
@@ -212,7 +213,7 @@
   }
   .condition-list { list-style: none; display: flex; flex-direction: column; gap: 8px; }
   .condition-list li {
-    font-size: 1rem;
+    font-size: 1.1rem;
     color: var(--text);
     padding-left: 24px;
     position: relative;
@@ -231,12 +232,14 @@
     background: linear-gradient(135deg, #fff5f5, #ffe8e8);
     border: 1.5px solid var(--korea-red);
     border-radius: 10px;
-    padding: 14px 16px;
-    font-size: .95rem;
+    padding: 16px 18px;
+    font-size: 1.18rem;   /* 핵심 — 기본보다 크게 (묻히지 않게) */
+    font-weight: 600;
     color: var(--text);
     margin-bottom: 14px;
+    line-height: 1.6;
   }
-  .method-highlight strong { color: var(--korea-red); }
+  .method-highlight strong { color: var(--korea-red); font-weight: 800; }
   .step-list { display: flex; flex-direction: column; gap: 8px; }
   .step-item {
     background: #f9f9f9;
@@ -249,164 +252,85 @@
   .step-num {
     background: var(--korea-red);
     color: #fff;
-    width: 28px; height: 28px;
+    width: 30px; height: 30px;
     border-radius: 50%;
     display: flex;
     align-items: center;
     justify-content: center;
     font-weight: 800;
-    font-size: .9rem;
+    font-size: 1rem;
     flex-shrink: 0;
   }
-  .step-text { font-size: .95rem; color: var(--text); line-height: 1.55; flex: 1; }
+  .step-text { font-size: 1.08rem; color: var(--text); line-height: 1.6; flex: 1; }
   .warning-box {
     background: #fff8e1;
     border: 1.5px solid #ffc107;
     border-radius: 8px;
-    padding: 14px 16px;
-    font-size: .9rem;
+    padding: 16px 18px;
+    font-size: 1.12rem;   /* 경고 — 기본보다 크게 (묻히지 않게) */
     color: #856404;
-    line-height: 1.6;
+    line-height: 1.65;
     margin-top: 10px;
   }
-  .warning-box strong { color: #d32f2f; }
+  .warning-box strong { color: #d32f2f; font-weight: 800; }
 
   /* 당첨자 발표 */
   .announcement-box {
     background: linear-gradient(135deg, #f3eeff, #e8e0ff);
     border-radius: 12px;
     padding: 18px;
-    font-size: 1rem;
+    font-size: 1.1rem;
     color: var(--text);
     line-height: 1.65;
   }
   .announcement-box strong { color: var(--brand-purple); }
-  .announcement-box ul { margin: 8px 0 8px 18px; font-size: .95rem; color: var(--text); }
+  .announcement-box ul { margin: 8px 0 8px 18px; font-size: 1.05rem; color: var(--text); }
 
   /* 사용 방법 */
   .usage-section { margin-bottom: 18px; }
   .usage-section:last-child { margin-bottom: 0; }
   .usage-label {
-    font-size: .85rem;
+    font-size: .95rem;
     font-weight: 700;
     color: var(--korea-red);
     margin-bottom: 6px;
     letter-spacing: .3px;
   }
-  .usage-content { font-size: 1rem; color: var(--text); line-height: 1.5; }
+  .usage-content { font-size: 1.1rem; color: var(--text); line-height: 1.55; }
   .usage-content strong { color: var(--korea-red); font-weight: 700; }
   .usage-list { list-style: none; padding-left: 0; }
-  .usage-list li { padding: 5px 0 5px 18px; position: relative; font-size: .95rem; line-height: 1.5; }
+  .usage-list li { padding: 5px 0 5px 18px; position: relative; font-size: 1.1rem; line-height: 1.55; color: var(--text); }
   .usage-list li::before { content: '•'; position: absolute; left: 4px; color: var(--korea-red); font-weight: 800; }
-  .usage-ordered { margin-left: 18px; font-size: .95rem; line-height: 1.7; }
-  .usage-ordered ul { margin-left: 16px; margin-top: 4px; list-style: disc; color: var(--muted); font-size: .88rem; }
+  .usage-ordered { margin-left: 18px; font-size: 1.1rem; line-height: 1.75; color: var(--text); }
+  .usage-ordered ul { margin-left: 16px; margin-top: 4px; list-style: disc; color: var(--text); font-size: 1.05rem; }
 
-  /* 유의사항 */
-  .notice-list { list-style: decimal; padding-left: 20px; font-size: .88rem; color: var(--muted); line-height: 1.65; }
-  .notice-list li { margin-bottom: 7px; }
-  .notice-list strong { color: var(--text); font-weight: 700; }
+  /* 유의사항 — 중요 내용: 기본 폰트 + 검정 */
+  .notice-list { list-style: decimal; padding-left: 20px; font-size: 1.05rem; color: var(--text); line-height: 1.7; }
+  .notice-list li { margin-bottom: 9px; }
+  .notice-list strong { color: var(--text); font-weight: 800; }
 
-  /* ── 신청 폼 ── */
-  .form-section {
-    background: linear-gradient(135deg, #fff5f5, #ffe5e5);
-    padding: 32px 28px;
+  /* ── 신청 CTA → 별도 신청 페이지 ── */
+  .apply-cta-section {
+    background: linear-gradient(135deg, var(--korea-red) 0%, var(--korea-red-deep) 100%);
+    padding: 40px 28px;
+    text-align: center;
   }
-  .form-section .section-title { color: var(--korea-red); }
-  .form-section-title {
-    font-size: 1.1rem;
-    font-weight: 800;
-    color: var(--korea-red);
-    margin-bottom: 14px;
-    margin-top: 22px;
-    padding-bottom: 6px;
-    border-bottom: 2px solid var(--korea-red);
-  }
-  .form-section-title:first-child { margin-top: 0; }
-  .form-group { margin-bottom: 14px; }
-  .form-label {
+  .apply-cta-title { color: #fff; font-size: 1.45rem; font-weight: 800; margin-bottom: 8px; line-height: 1.4; }
+  .apply-cta-sub { color: rgba(255,255,255,.92); font-size: 1.1rem; margin-bottom: 22px; line-height: 1.6; }
+  .apply-cta-button {
     display: block;
-    font-size: .92rem;
-    font-weight: 700;
-    color: var(--text);
-    margin-bottom: 6px;
-  }
-  .form-label .required { color: var(--korea-red); margin-left: 2px; }
-  .form-input, .form-select {
     width: 100%;
-    padding: 12px 14px;
-    border: 1.5px solid var(--border);
-    border-radius: 8px;
-    font-size: 1rem;
-    background: #fff;
+    background: var(--gold);
     color: var(--text);
-    font-family: inherit;
-  }
-  .form-input:focus, .form-select:focus {
-    outline: 2px solid var(--korea-red);
-    outline-offset: 1px;
-    border-color: var(--korea-red);
-  }
-  .form-input::placeholder { color: #bbb; }
-  .radio-group { display: flex; gap: 10px; }
-  .radio-option {
-    flex: 1;
-    border: 1.5px solid var(--border);
-    border-radius: 8px;
-    padding: 14px;
-    text-align: center;
-    cursor: pointer;
-    background: #fff;
-    font-size: 1rem;
-    font-weight: 600;
-    transition: all 0.2s;
-    user-select: none;
-  }
-  .radio-option:hover { border-color: var(--korea-red); }
-  .radio-option.selected {
-    border-color: var(--korea-red);
-    background: var(--korea-red);
-    color: #fff;
-    font-weight: 700;
-  }
-  .point-warning {
-    display: none;
-    background: #fff;
-    border: 2px solid var(--orange);
-    border-radius: 8px;
-    padding: 14px;
-    font-size: .95rem;
-    color: var(--text);
-    margin-top: 10px;
-    line-height: 1.6;
-  }
-  .point-warning.active { display: block; }
-  .point-warning strong { color: var(--orange); }
-  .point-warning .guide-cta {
-    margin-top: 8px;
-    padding: 8px;
-    background: var(--cream);
-    border-radius: 6px;
-    text-align: center;
-    font-weight: 700;
-    color: var(--korea-red);
-  }
-  .submit-btn {
-    width: 100%;
-    background: var(--korea-red);
-    color: #fff;
-    border: none;
-    padding: 18px;
-    border-radius: 12px;
-    font-size: 1.1rem;
+    text-decoration: none;
+    padding: 20px;
+    border-radius: 14px;
+    font-size: 1.25rem;
     font-weight: 800;
-    cursor: pointer;
-    margin-top: 18px;
-    box-shadow: 0 6px 16px rgba(205,46,58,0.3);
-    transition: all .2s;
-    font-family: inherit;
+    box-shadow: 0 8px 20px rgba(255,215,0,0.4);
+    transition: transform .2s, box-shadow .2s;
   }
-  .submit-btn:hover:not(:disabled) { background: var(--korea-red-deep); transform: translateY(-1px); }
-  .submit-btn:disabled { background: #ccc; cursor: not-allowed; box-shadow: none; }
+  .apply-cta-button:hover { transform: translateY(-2px); box-shadow: 0 12px 26px rgba(255,215,0,0.5); }
 
   /* 푸터 */
   .page-footer {
@@ -414,7 +338,7 @@
     color: var(--cream);
     padding: 20px 16px;
     text-align: center;
-    font-size: .85rem;
+    font-size: .9rem;
     line-height: 1.6;
   }
   .page-footer strong { color: var(--gold); display: block; margin-bottom: 4px; }
@@ -545,7 +469,7 @@
         </div>
         <div class="step-item">
           <div class="step-num">3</div>
-          <div class="step-text">감다살🐙문어 이벤트 페이지 진입</div>
+          <div class="step-text">감다살🐙문어 챌린지 페이지 진입</div>
         </div>
         <div class="step-item">
           <div class="step-num">4</div>
@@ -574,7 +498,7 @@
         <strong>대한민국 축구 국가대표팀의 2026 북중미 월드컵 여정이 종료된 후 7일 이내</strong>
         <ul>
           <li>조별예선 탈락 시 → 6월 25일(남아공전) 종료 후</li>
-          <li>16강 이상 진출 시 → 한국이 최종 탈락하는 경기 종료 후</li>
+          <li>32강 진출 시 → 한국이 최종 탈락하는 경기 종료 후</li>
         </ul>
         <strong>발표 채널:</strong> 써주세요. 앱 공지 + 이벤트 페이지 + 개별 알림
       </div>
@@ -636,103 +560,11 @@
       </ol>
     </section>
 
-    <!-- 신청 폼 (페이지 내 간략 · 메인 신청은 별도 apply 페이지) -->
-    <section class="form-section">
-      <div class="section-title">📝 챌린지 신청하기</div>
-
-      <form id="applyForm" action="./apply/" method="get">
-
-        <!-- 1️⃣ 기본 정보 -->
-        <div class="form-section-title">1️⃣ 기본 정보</div>
-
-        <div class="form-group">
-          <label class="form-label">이름 <span class="required">*</span></label>
-          <input type="text" class="form-input" placeholder="홍길동" required>
-        </div>
-
-        <div class="form-group">
-          <label class="form-label">생년월일 <span class="required">*</span></label>
-          <input type="date" class="form-input" required>
-        </div>
-
-        <div class="form-group">
-          <label class="form-label">전화번호 <span class="required">*</span></label>
-          <input type="tel" class="form-input" placeholder="010-0000-0000" required>
-        </div>
-
-        <div class="form-group">
-          <label class="form-label">이메일 <span class="required">*</span></label>
-          <input type="email" class="form-input" placeholder="example@email.com" required>
-        </div>
-
-        <!-- 2️⃣ 포인트 확인 (최우선) -->
-        <div class="form-section-title">2️⃣ ⚠️ 포인트 확인 <small style="font-size:.7rem; font-weight:500;">(최우선)</small></div>
-
-        <div class="form-group">
-          <label class="form-label">감다살🐙미션 10,000P가 있나요? <span class="required">*</span></label>
-          <div class="radio-group">
-            <div class="radio-option" id="pointYes" onclick="selectPoint('yes')">✅ 있습니다</div>
-            <div class="radio-option" id="pointNo" onclick="selectPoint('no')">❌ 없습니다</div>
-          </div>
-          <div class="point-warning" id="pointWarning">
-            ⚠️ <strong>감다살🐙미션 10,000P 적립이 필요합니다.</strong><br>
-            신청을 종료합니다. 미션 포인트 적립 후 처음부터 다시 신청해주세요.
-            <div class="guide-cta">
-              👉 써주세요. 앱 → 포인트 적립소
-            </div>
-          </div>
-        </div>
-
-        <!-- 3️⃣ 예측 정보 -->
-        <div class="form-section-title">3️⃣ 예측 정보 <small style="font-size:.7rem; font-weight:500;">— 감으로 맞춰봐</small></div>
-
-        <div class="form-group">
-          <label class="form-label">① 한국 A조 조별 예선 성적 <span class="required">*</span></label>
-          <select class="form-select" required>
-            <option value="">선택하세요</option>
-            <option>3승 0무 0패</option>
-            <option>2승 1무 0패</option>
-            <option>2승 0무 1패</option>
-            <option>1승 2무 0패</option>
-            <option>1승 1무 1패</option>
-            <option>1승 0무 2패</option>
-            <option>0승 3무 0패</option>
-            <option>0승 2무 1패</option>
-            <option>0승 1무 2패</option>
-            <option>0승 0무 3패</option>
-          </select>
-        </div>
-
-        <div class="form-group">
-          <label class="form-label">② 체코전 한국 골 수 <span class="required">*</span></label>
-          <input type="number" class="form-input" min="0" max="20" placeholder="예: 2" required>
-        </div>
-
-        <div class="form-group">
-          <label class="form-label">③ 멕시코전 한국 골 수 <span class="required">*</span></label>
-          <input type="number" class="form-input" min="0" max="20" placeholder="예: 1" required>
-        </div>
-
-        <div class="form-group">
-          <label class="form-label">④ 남아공전 한국 골 수 <span class="required">*</span></label>
-          <input type="number" class="form-input" min="0" max="20" placeholder="예: 3" required>
-        </div>
-
-        <div class="form-group">
-          <label class="form-label">⑤ 한국 최종 성적 <span class="required">*</span></label>
-          <select class="form-select" required>
-            <option value="">선택하세요</option>
-            <option>조별예선 탈락</option>
-            <option>16강 진출 (16강 탈락)</option>
-            <option>8강 진출 (8강 탈락)</option>
-            <option>4강 진출 (4강 탈락)</option>
-            <option>결승 진출 (준우승)</option>
-            <option>우승 🏆</option>
-          </select>
-        </div>
-
-        <button type="submit" class="submit-btn" id="submitBtn" disabled>감다살🐙 챌린지 신청하기</button>
-      </form>
+    <!-- 신청 CTA → 별도 신청 페이지 -->
+    <section class="apply-cta-section">
+      <div class="apply-cta-title">🐙 감(感)이 살아있다면?</div>
+      <div class="apply-cta-sub">한국 운명 맞히고 최대 50만 원 GET<br>지금 바로 도전하세요!</div>
+      <a class="apply-cta-button" href="./apply/">감다살🐙 챌린지 신청하기 →</a>
     </section>
 
     <!-- 푸터 -->
@@ -743,33 +575,6 @@
 
   </div>
 </div>
-
-<script>
-  function selectPoint(value) {
-    const yes = document.getElementById('pointYes');
-    const no = document.getElementById('pointNo');
-    const warning = document.getElementById('pointWarning');
-    const btn = document.getElementById('submitBtn');
-
-    if (value === 'yes') {
-      yes.classList.add('selected');
-      no.classList.remove('selected');
-      warning.classList.remove('active');
-      btn.disabled = false;
-    } else {
-      yes.classList.remove('selected');
-      no.classList.add('selected');
-      warning.classList.add('active');
-      btn.disabled = true;
-    }
-  }
-
-  // 페이지 내 간략 폼 제출 → 메인 신청 페이지로 이동 (실제 접수는 별도 apply 페이지/서버 연동)
-  document.getElementById('applyForm').addEventListener('submit', function(e) {
-    e.preventDefault();
-    window.location.href = './apply/';
-  });
-</script>
 
 </body>
 </html>
