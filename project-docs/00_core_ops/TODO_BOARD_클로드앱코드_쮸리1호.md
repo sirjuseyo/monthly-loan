@@ -234,7 +234,12 @@
 | T-034 | apply-review-mockup.html 정적 목업 (C-1) | 완료 | 완료 | - | - | - | - | 쮸리(Claude) | 2026-05-10 | 커밋 `5b9069c` / PR #1 / feature/apply-review-form |
 | T-035 | apply-review.html HTML+CSS+JS 구조 (C-2~C-9) | 완료 | 완료 | - | - | - | - | 쮸리(Claude) | 2026-05-10 | 커밋 `5b9069c` / PR #1 / feature/apply-review-form |
 | T-036 | UI 탈리 수준 맞추기 (C-10) | 완료 | 완료 | - | - | - | - | 쮸리(Claude) | 2026-05-10 | 커밋 `5b9069c` / PR #1 / feature/apply-review-form |
-| T-037 | C-11 API 연동 + DEV/PRD 이중화 | 완료 | 완료 | 미반영 | - | - | - | 쮸리(Claude) | 2026-05-10 | 커밋 `5b9069c` / PR #1 / feature/apply-review-form / 서버팀 DEV 배포 후 테스트 필요 |
+| T-037 | C-11 API 연동 + DEV/PRD 이중화 | 완료 | 완료 | 검증완료 | 완료 | 완료(995343300) | - | 쮸리(Claude) | 2026-05-10 | merge `133d19a` / GitHub Pages / monthly-loan.sirjuseyo.com |
+| T-038 | debt_adjustment_types 마침표 제거 | 완료 | 완료 | 검증완료 | 완료 | 완료(995343300) | - | 쮸리(Claude) | 2026-05-12 | merge `133d19a` / 마침표 제거 확인 완료 |
+| T-039 | 신용정보 파일 장수 검증 (토스앱 5장/카카오페이 6장) | 완료 | 완료 | 검증완료 | 완료 | 완료 | - | 쮸리(Claude) | 2026-05-12 | main `12de74d` / PR #2 close / PRD URL DEV 테스트 완료 ✅ |
+| T-040 | submitTextData() 응답 파싱 버그 수정 | 완료 | 완료 | 검증완료 | 완료 | 완료 | - | 쮸리(Claude) | 2026-05-13 | merge `636e40e` / PR #3 close / PRD URL DEV 테스트 완료 ✅ |
+| T-041 | 완료 화면 카카오 채널/1:1 채팅방 링크 추가 | 완료 | 완료 | 검증완료 | 완료 | 완료 | - | 쮸리(Claude) | 2026-05-13 | merge `c99af81` / PR #4 close / GitHub Pages 배포 완료 ✅ |
+| T-042 | apply-review DEV/PRD 생년월일 캘린더 피커 추가 | 완료 | 완료 | 검증완료 | 완료 | 완료 | - | 쮸리(Claude) | 2026-05-22 | merge `9a56ac8` / PR #5 close / GitHub Pages 배포 완료 ✅ / Pages run 26256520695 |
 
 ---
 
@@ -276,8 +281,12 @@
 | **T-034** | WT-034 | - | **테스트 완료(DONE)** | **apply-review-mockup.html 정적 목업 제작 (C-1)** | 쮸리(Claude) | 2026-05-07 | 【파일】`apply-review/apply-review-mockup.html` / 탈리 기획서 v1.3 기준 21개 Rule 전체 반영, 5페이지 구조, 댄디어빠쮸너야님 컨펌 완료 |
 | **T-035** | WT-035 | - | **테스트 완료(DONE)** | **apply-review.html HTML+CSS+JS 구조 및 21개 Rule 구현 (C-2~C-9)** | 쮸리(Claude) | 2026-05-07 | 【파일】`apply-review/apply-review.html` / 써주세요 브랜드 아이덴티티, 21개 Rule 조건부 로직, 파일업로드 드래그앤드롭, API_URL placeholder, C-11 B-5 게이트 |
 | **T-036** | WT-036 | 5b9069c | **테스트 완료(DONE)** | **apply-review.html UI 탈리 수준 맞추기 (C-10)** | 쮸리(Claude) | 2026-05-09 | 【파일】`apply-review/apply-review.html` / 전체 폰트·여백 탈리 수준 맞추기, 배너 이미지 교체, 랜딩 레이아웃 개선 / 사장님 디자인 컨펌 완료 ✅ |
-| T-037 | WT-037 | 5b9069c | 진행중(In-Progress) | **C-11 API 연동 + DEV/PRD 이중화** | 쮸리(Claude) | 2026-05-10 | 【파일】`apply-review/apply-review.html` / `apply-review/apply-review-dev.html` / API-A 텍스트 제출, API-B 파일 업로드, submitForm 플로우, DEV 파일 생성 / 서버팀 DEV 배포 후 실테스트 필요 |
-| T-038 | WT-038 | 41266cc | 진행중(In-Progress) | **debt_adjustment_types `해당 안해요.` → `해당 안해요` 마침표 제거 (API SPEC 불일치 수정)** | 쮸리(Claude) | 2026-05-12 | 【파일】`apply-review/apply-review.html` / `apply-review/apply-review-dev.html` / API SPEC 허용값 `"해당 안해요"` (마침표 없음) 기준으로 코드 수정 |
+| **T-037** | WT-037 | 133d19a | **테스트 완료(DONE)** | **C-11 API 연동 + DEV/PRD 이중화** | 쮸리(Claude) | 2026-05-10 | 【파일】`apply-review/apply-review.html` / `apply-review/apply-review-dev.html` / API-A 텍스트 제출, API-B 파일 업로드, submitForm 플로우, DEV 파일 생성 / merge `133d19a` / GitHub Pages PRD 배포 완료 ✅ |
+| **T-038** | WT-038 | 133d19a | **테스트 완료(DONE)** | **debt_adjustment_types `해당 안해요.` → `해당 안해요` 마침표 제거 (API SPEC 불일치 수정)** | 쮸리(Claude) | 2026-05-12 | 【파일】`apply-review/apply-review.html` / `apply-review/apply-review-dev.html` / merge `133d19a` / 마침표 제거 확인 완료 ✅ |
+| T-039 | WT-039 | - | 진행중(In-Progress) | **신용정보 파일 장수 검증 추가 (토스앱 5장 / 카카오페이 6장)** | 쮸리(Claude) | 2026-05-12 | 【파일】`apply-review/apply-review.html` / `apply-review/apply-review-dev.html` / validateFiles() 함수 추가, Submit 차단 + 오류 메시지 표시 |
+| **T-040** | WT-040 | 6bc0fa7 | **테스트 완료(DONE)** | **submitTextData() 응답 파싱 버그 수정 (`json.application_id` → `json.data.application_id`)** | 쮸리(Claude) | 2026-05-13 | 【파일】`apply-review/apply-review.html` / `apply-review/apply-review-dev.html` / API-A 응답에서 application_id를 잘못 읽어 API-B URL이 /undefined/files로 구성되던 버그 수정 / 로컬 DEV 테스트 완료 ✅ applications 201 + files×6 201 |
+| **T-041** | WT-041 | d26f0ac | **테스트 완료(DONE)** | **완료 화면 카카오 링크 추가 (채널 추가 / 1:1 채팅방)** | 쮸리(Claude) | 2026-05-13 | 【파일】`apply-review/apply-review.html` / `apply-review/apply-review-dev.html` / 카톡 채널 추가 버튼 `pf.kakao.com/_AcXXxl` / 1:1 채팅방 버튼 `pf.kakao.com/_AcXXxl/chat` / 로컬 DEV 테스트 완료 ✅ |
+| **T-042** | WT-042 | 0ed0435 | **검증완료** | **apply-review DEV/PRD 생년월일 캘린더 피커 추가** | 쮸리(Claude) | 2026-05-22 | 【파일】`apply-review/apply-review-dev.html` / `apply-review/apply-review.html` / 성함↔휴대폰번호 사이 생년월일 필드 추가, apply-dev.html 인라인 캘린더 피커 이식, collectFormData()에 birth_date 추가 / merge `9a56ac8` / GitHub Pages 배포 완료 ✅ |
 
 
 ---
@@ -286,6 +295,7 @@
 
 | W-ID | 우선 순위 | T-ID | 상태 | 작업 타이틀 | 파일 | 한 줄 설명 | 작성일(연월일 시분) | 작성자 |
 |------|---------|------|------|----------|-----|----------|------|------|
+| ~~W-042~~ | ~~P1~~ | T-042 | ~~승인→착수~~ | ~~apply-review DEV/PRD 생년월일 캘린더 피커 추가~~ | ~~apply-review-dev.html, apply-review.html~~ | ~~T-042로 승격~~ | ~~2026-05-22~~ | ~~쮸리(Claude)~~ |
 
 
 ---

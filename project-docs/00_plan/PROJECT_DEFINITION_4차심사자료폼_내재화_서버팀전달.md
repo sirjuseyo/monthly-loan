@@ -46,6 +46,7 @@
 | 항목명 | 필드 설명 | 타입 | 필수 | 비고 |
 |--------|----------|------|------|------|
 | 성함 | 고객 이름 | 문자열 | ✅ | 한글 2~5자 |
+| 생년월일 | 고객 생년월일 | 문자열 | ✅ | YYYY.MM.DD 형식 |
 | 휴대폰번호 | 연락처 | 문자열 | ✅ | 01X 시작 10~11자리 |
 
 ### 3-2. 소득과 지출 (단위: 만 원, 모두 숫자)
@@ -141,6 +142,7 @@
 | 필드명 (제안) | 타입 | 필수 | 예시값 | 비고 |
 |--------------|------|------|--------|------|
 | `name` | string | ✅ | `"홍길동"` | 한글 2~5자 |
+| `birth_date` | string | ✅ | `"1990.05.15"` | YYYY.MM.DD 형식 |
 | `phone` | string | ✅ | `"01012345678"` | 숫자만, 01X 시작 10~11자리 |
 
 ##### 소득과 지출
@@ -179,6 +181,7 @@
 ```json
 {
   "name": "홍길동",
+  "birth_date": "1990.05.15",
   "phone": "01012345678",
 
   "annual_income": 3600,
@@ -258,6 +261,7 @@
 | 접수 번호 | VARCHAR | ✅ | 예: 2026-04-R-0001 |
 | **연결 키**: 1차 신청 ID | BIGINT (FK) | ❓ | 1차 신청(loan_applications)과 연결 여부 서버팀 판단 |
 | 성함 | VARCHAR | ✅ | 암호화 저장 권고 |
+| 생년월일 | VARCHAR | ✅ | YYYY.MM.DD 형식, 암호화 저장 권고 |
 | 휴대폰번호 | VARCHAR | ✅ | 암호화 저장 권고 |
 | 연소득 | INT | ✅ | 만 원 단위 |
 | 1년중 월최고소득 | INT | ✅ | |
@@ -335,7 +339,7 @@
 |------|----------|
 | 전송 | HTTPS 필수 (개인정보 + 파일 전송) |
 | 인증 | 어드민 API는 인증 없이 접근 불가 |
-| 개인정보 암호화 | 성함, 휴대폰번호 컬럼 암호화 저장 |
+| 개인정보 암호화 | 성함, 생년월일, 휴대폰번호 컬럼 암호화 저장 |
 | S3 접근 제어 | S3 버킷 퍼블릭 접근 차단, presigned URL로만 접근 |
 | CORS | `apply-4차.html` 서빙 도메인만 허용 |
 | 파일 검증 | 서버 측 파일 타입 검증 (확장자만 아닌 MIME 타입 체크) |
@@ -391,6 +395,12 @@
 - 탈리 4차 심사 폼 (참고용): `https://tally.so/r/mBvDvR` (탈리 대시보드 로그인 필요)
 - GitHub 레포: `https://github.com/sirjuseyo/monthly-loan`
 - 기획서: `PLAN_4차심사자료_내재화기획서.md` (워크스페이스 폴더)
+
+| 구분 | 실제 접속 URL | 단축 URL |
+|------|------------------------------|------|
+| PRD 폼 | `https://monthly-loan.sirjuseyo.com/apply-review/apply-review.html` | https://buly.kr/GEA7YaO |
+| DEV 폼 | `https://monthly-loan.sirjuseyo.com/apply-review/apply-review-dev.html` | - |
+| 정적 목업 | `https://monthly-loan.sirjuseyo.com/apply-review/apply-review-mockup.html` | - |
 
 ---
 

@@ -243,7 +243,7 @@ Authorization: Bearer {admin_token}
 
 ## 7. 참고 링크
 
-- 신청 폼: `monthly-loan.sirjuseyo.com/2026-04/apply.html`
+- 신청 폼: `https://monthly-loan.sirjuseyo.com/apply/apply.html`
 - GitHub 레포: `https://github.com/sirjuseyo/monthly-loan`
 - 탈리 기존 폼(참고용): `https://tally.so/r/mBvDvR`
 - 카카오 채널: `https://pf.kakao.com/_AcXXxl`

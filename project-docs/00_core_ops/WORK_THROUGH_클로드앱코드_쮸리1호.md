@@ -892,6 +892,233 @@ TECHSPEC Phase 2 "이 TECHSPEC 회신 후 즉시 착수" 조건 충족.
 
 ---
 
+## WT-039 · 신용정보 파일 장수 검증 추가 (토스앱 5장 / 카카오페이 6장)
+- 작성일: 2026-05-12 / 작성자: 쮸리(Claude)
+- 연동 T-ID: T-039
+
+[문제 위치]
+파일: apply-review/apply-review.html
+파일: apply-review/apply-review-dev.html
+라인: submitForm() 함수 — 신용정보 파일 장수 검증 없음
+
+[증상(문제 설명)]
+DEV 테스트 중 신용정보 화면 캡처를 1장만 올린 상태에서 Submit 버튼 클릭 가능.
+토스앱 5장 / 카카오페이 6장 필수임에도 장수 미달 시 오류 메시지 미표시.
+
+[원인]
+submitForm() 호출 시 파일 장수 검증 로직 없음.
+
+[진단(수정 이유)]
+사용자가 파일 부족 상태로 Submit → API-A 텍스트 제출은 성공하나 불완전한 신청 데이터가 DB에 저장될 수 있음.
+장수 미달 시 Submit 차단 + 오류 메시지 표시 필요.
+
+[처방(수정 코드)]
+
+| 파일 | 수정 내용 |
+|------|---------|
+| apply-review.html | validateFiles() 함수 추가, submitForm() 상단에 검증 호출 |
+| apply-review-dev.html | 동일 |
+| apply-review.html (HTML) | `#toss-slots` 하단 `err-credit-toss` div 추가 |
+| apply-review.html (HTML) | `#kakao-slots` 하단 `err-credit-kakao` div 추가 |
+| apply-review-dev.html (HTML) | 동일 |
+
+```javascript
+// T-039: 신용정보 파일 장수 검증
+function validateFiles() {
+  const tossOn = document.getElementById('tc-toss').classList.contains('on');
+  if (tossOn) {
+    const count = document.querySelectorAll('#toss-slots .up-zone.has-file').length;
+    const errEl = document.getElementById('err-credit-toss');
+    if (count < 5) { errEl.classList.add('on'); errEl.scrollIntoView({behavior:'smooth',block:'center'}); return false; }
+    errEl.classList.remove('on');
+  } else {
+    const count = document.querySelectorAll('#kakao-slots .up-zone.has-file').length;
+    const errEl = document.getElementById('err-credit-kakao');
+    if (count < 6) { errEl.classList.add('on'); errEl.scrollIntoView({behavior:'smooth',block:'center'}); return false; }
+    errEl.classList.remove('on');
+  }
+  return true;
+}
+
+// submitForm() 상단 추가
+if (!validateFiles()) return; // T-039: 신용정보 장수 검증 (2026-05-12)
+```
+
+[로컬 커밋]
+- 브랜치: `feature/T-039-credit-info-validation`
+- 커밋 해시: `a45d3d2`
+- 커밋 메시지: `T-039: 신용정보 파일 장수 검증 추가 (토스앱 5장 / 카카오페이 6장)`
+
+[원격 커밋]
+- 커밋 `a45d3d2` 원격 푸시: `feature/T-039-credit-info-validation` (2026-05-12)
+- PR #2 생성 → 범위 외 변경 포함으로 세르7호님이 직접 merge 않고 close
+- main 선별 반영 커밋: `12de74d`
+
+[깃 관리자(세르7호) 완료 보고서 원문]
+monthly-loan T-039 반영 완료했습니다.
+
+* 원격 반영:
+   * PR #2는 범위 외 변경 포함으로 직접 merge하지 않고 close
+   * 핵심 변경만 main commit 12de74d로 선별 반영
+* 배포:
+   * GitHub Pages main / root 반영 완료
+* 확인:
+   * apply-review.html HTTP/2 200
+   * apply-review-dev.html 본문 반영 확인
+   * 토스앱 5장 / 카카오페이 6장 미만 제출 차단 코드 반영 확인
+* 문서:
+   * GitDeployOps TODO/WORK_THROUGH 업데이트 완료
+   * 완료 보고서 WT-030 기록 완료
+   * 문서 커밋/푸시 완료: d8c65bd
+한 줄 버전:
+* monthly-loan T-039 신용정보 파일 장수 검증을 main commit 12de74d로 선별 반영했고, GitHub Pages 배포 및 URL 200 확인 완료했습니다. PR #2는 범위 외 변경 포함으로 직접 merge하지 않고 close했습니다.
+
+[현재 상태]
+PRD 배포 완료 — 댄디어빠쮸너야님 DEV 실테스트 대기 중
+
+---
+
+## WT-040 · submitTextData() 응답 파싱 버그 수정
+- 작성일: 2026-05-13 / 작성자: 쮸리(Claude)
+- 연동 T-ID: T-040
+
+[문제 위치]
+파일: apply-review/apply-review.html (line 1208)
+파일: apply-review/apply-review-dev.html (line 1223)
+함수: submitTextData() 마지막 return 구문
+
+[증상(문제 설명)]
+파일 업로드 시 400 오류 발생.
+API-B 업로드 URL이 `/applications/undefined/files` 로 구성됨.
+
+[원인]
+서버 응답 구조: `{ "data": { "application_id": 14 }, ... }`
+코드: `return json.application_id;` → `undefined` 반환
+→ `uploadFiles(undefined)` 호출 → URL에 `undefined` 삽입 → 400
+
+[진단(수정 이유)]
+API-B 코드 자체는 정상. API-A 응답에서 application_id를 최상위에서 읽으나
+실제 응답은 `data` 객체 안에 중첩되어 있어 `undefined` 반환.
+서버팀 CTO 확인 및 수정 방향 전달.
+
+[처방(수정 코드)]
+
+| 파일 | 수정 전 | 수정 후 |
+|------|---------|---------|
+| apply-review.html (line 1208) | `return json.application_id;` | `return json.data.application_id;` |
+| apply-review-dev.html (line 1223) | `return json.application_id;` | `return json.data.application_id;` |
+
+```javascript
+// 수정 전
+const json = await res.json();
+return json.application_id;
+
+// 수정 후
+const json = await res.json();
+return json.data.application_id;
+```
+
+[로컬 커밋]
+- 브랜치: `feature/T-040-fix-application-id-response`
+- 커밋 해시: `6bc0fa7`
+- 커밋 메시지: `fix: T-040 submitTextData() json.data.application_id 응답 파싱 수정`
+
+[원격 커밋]
+- 커밋 `6bc0fa7` 원격 푸시: `feature/T-040-fix-application-id-response` (2026-05-13)
+- PR #3 생성 → 범위 외 변경 포함으로 세르7호님이 직접 merge 않고 close
+- main 선별 반영 커밋: `636e40e`
+
+[깃 관리자(세르7호) 완료 보고서 원문]
+monthly-loan T-040 반영 완료했습니다.
+
+* 원격 반영:
+   * PR #3은 범위 외 변경이 포함되어 직접 merge하지 않고 close
+   * 핵심 변경만 main commit 636e40e로 선별 반영
+* 배포:
+   * GitHub Pages main / root 반영 완료
+* 확인:
+   * GitHub Pages latest build 636e40e built
+   * https://monthly-loan.sirjuseyo.com/apply-review/apply-review.html HTTP/2 200
+   * apply-review.html, apply-review-dev.html 모두 return json.data.application_id 반영 확인
+* 문서:
+   * GitDeployOps TODO/WORK_THROUGH 업데이트 완료
+   * 완료 보고서 WT-032 기록 완료
+   * 문서 commit/push 완료: 2ad6678
+한 줄 버전:
+* monthly-loan T-040 application_id 응답 파싱 보정을 main commit 636e40e로 선별 반영했고, GitHub Pages 배포 및 URL 200 확인 완료했습니다. PR #3은 범위 외 변경 포함으로 직접 merge하지 않고 close했습니다.
+
+[현재 상태]
+PRD 배포 완료 ✅ — T-040 검증완료
+
+---
+
+## WT-041 · 완료 화면 카카오 링크 추가 (채널 추가 / 1:1 채팅방)
+- 작성일: 2026-05-13 / 작성자: 쮸리(Claude)
+- 연동 T-ID: T-041
+
+[문제 위치]
+파일: apply-review/apply-review.html (line 891~892)
+파일: apply-review/apply-review-dev.html (line 906~907)
+HTML: 완료 화면(Page 5) `.done-btns` 내 버튼 2개
+
+[증상(문제 설명)]
+완료 화면의 "카톡 채널 추가하기", "1:1 채팅방 바로가기" 버튼이 `<button>` 태그로만 구성되어 링크가 없음.
+클릭해도 아무 동작 안 함.
+
+[원인]
+링크 연결 없이 `<button>` 태그로만 구현됨.
+
+[진단(수정 이유)]
+사용자가 제출 완료 후 카카오 채널/1:1 채팅방으로 이동할 수 없는 상태.
+`<a>` 태그로 교체하여 링크 연결 필요.
+
+[처방(수정 코드)]
+
+| 버튼 | 수정 전 | 수정 후 |
+|------|---------|---------|
+| 카톡 채널 추가하기 | `<button class="done-btn done-kakao">` | `<a href="https://pf.kakao.com/_AcXXxl" target="_blank" class="done-btn done-kakao">` |
+| 1:1 채팅방 바로가기 | `<button class="done-btn done-chat">` | `<a href="https://pf.kakao.com/_AcXXxl/chat" target="_blank" class="done-btn done-chat">` |
+
+```html
+<!-- 수정 후 -->
+<a href="https://pf.kakao.com/_AcXXxl" target="_blank" class="done-btn done-kakao">📌 카톡 채널 추가하기</a>
+<a href="https://pf.kakao.com/_AcXXxl/chat" target="_blank" class="done-btn done-chat">🗂️ 1:1 채팅방 바로가기</a>
+```
+
+[로컬 커밋]
+- 브랜치: `feature/T-041-kakao-link`
+- 커밋 해시: `d26f0ac`
+- 커밋 메시지: `feat: T-041 완료 화면 카카오 채널/1:1 채팅방 링크 추가`
+
+[원격 커밋]
+- 커밋 `d26f0ac` 원격 푸시: `feature/T-041-kakao-link` (2026-05-13)
+- PR #4 생성 → 범위 외 변경 포함으로 세르7호님이 직접 merge 않고 close
+- main 선별 반영 커밋: `c99af81`
+
+[깃 관리자(세르7호) 완료 보고서 원문]
+monthly-loan T-041 반영 완료했습니다.
+
+* 원격 반영:
+   * PR #4는 범위 외 변경이 포함되어 직접 merge하지 않고 close
+   * 핵심 변경만 main commit c99af81로 선별 반영
+* 배포:
+   * GitHub Pages 반영 완료
+* 확인:
+   * apply-review.html HTTP/2 200
+   * apply-review-dev.html HTTP/2 200
+   * 카카오 채널/1:1 채팅 링크 반영 확인
+* 문서:
+   * GitDeployOps TODO/WORK_THROUGH 업데이트 완료
+   * 완료 보고서 WT-034 기록 완료
+   * 문서 commit/push 완료: 4419107
+한 줄 버전:
+* monthly-loan T-041 완료 화면 카카오 링크를 main commit c99af81로 선별 반영했고, GitHub Pages 배포 및 URL 200 확인 완료했습니다.
+
+[현재 상태]
+PRD 배포 완료 ✅ — T-041 검증완료
+
+---
+
 ## WT-038 · debt_adjustment_types `해당 안해요.` → `해당 안해요` 마침표 제거
 - 작성일: 2026-05-12 / 작성자: 쮸리(Claude)
 - 연동 T-ID: T-038
@@ -974,3 +1201,73 @@ AdminCorsFilter allowedOrigins에 위 두 도메인 추가 부탁드립니다.
 [기록 위치]
 - WORK_THROUGH 본 WT-037-R1
 - PLAN_4차심사자료_내재화기획서.md D. DEV/PRD 이중화 섹션
+
+---
+
+## WT-042 · apply-review DEV/PRD 생년월일 캘린더 피커 추가
+- 작성일: 2026-05-22 / 작성자: 쮸리(Claude)
+- 연동 T-ID: T-042
+- 로컬 커밋 해시: `0ed0435`
+- 브랜치: `feature/T-042-birth-date`
+
+[문제 위치]
+파일: apply-review/apply-review-dev.html (DEV)
+파일: apply-review/apply-review.html (PRD)
+라인: Page 2(s2) — 기본정보 섹션, collectFormData() 함수
+
+[증상(문제 설명)]
+4차 심사 폼(apply-review)에 생년월일 입력 필드가 없음.
+1차 신청 폼(apply-dev.html)에는 인라인 캘린더 피커가 있으나 4차 심사 폼에는 누락.
+서버팀에 birth_date 필드 추가 요청 완료(PROJECT_DEFINITION 업데이트 완료).
+
+[원인]
+초기 개발 시 4차 심사 폼에 생년월일이 수집 항목에 없었음.
+댄디어빠쮸너야님 요청으로 추가.
+
+[진단(수정 이유)]
+apply-dev.html의 인라인 캘린더 피커를 동일 형식으로 apply-review에 이식.
+성함 ↔ 휴대폰번호 사이에 배치.
+
+[처방(수정 코드)]
+
+| 수정 영역 | 대상 파일 | 수정 내용 |
+|---------|---------|---------|
+| CSS | DEV, PRD | `.birth-picker`, `.birth-cal`, `.bc-nav`, `.bc-navbtn`, `.bc-label`, `.bc-dow`, `.bc-grid`, `.bc-day` 스타일 추가 |
+| HTML | DEV, PRD | `inp-name` 아래, `inp-phone` 위에 생년월일 `<div class="qb">` 블록 삽입 (`.birth-picker` > `.birth-cal` 구조) |
+| JS 캘린더 | DEV, PRD | `formatBirthInput()`, `showBirthCal()`, `hideBirthCal()`, `_renderBirthCal()`, `_selectBirthDay()`, `bcPrevMonth/NextMonth/PrevYear/NextYear()`, document click 리스너 |
+| JS 검증 | DEV, PRD | `goP3()` 함수 추가 — Page 2→3 전환 시 이름(한글2~5자)/생년월일(YYYY.MM.DD)/휴대폰번호(01X) 유효성 검증 |
+| JS API | DEV, PRD | `collectFormData()`에 `birth_date: v('inp-birth')` 추가 |
+| HTML 버튼 | DEV, PRD | Page 2 "다음" 버튼 `onclick="go(3)"` → `onclick="goP3()"` 변경 |
+
+[관련 문서 업데이트 (코드 수정 전 완료)]
+- ✅ `PLAN_4차심사자료_내재화기획서.md` v1.4 — Page 2 항목 테이블에 생년월일 행 추가
+- ✅ `PROJECT_DEFINITION_4차심사자료폼_내재화_서버팀전달.md` — §3-1, §4-2, §5-1, §7 총 5곳 birth_date 반영
+
+[원격 커밋]
+- 커밋 `0ed0435` 원격 푸시: `feature/T-042-birth-date` (2026-05-22)
+- PR #5 생성 → merge commit `9a56ac8`
+- GitHub Pages 배포 완료, Pages run: `26256520695`
+
+[깃 관리자 완료 보고서 원문]
+monthly-loan T-042 반영 완료했습니다.
+
+* 원격 머지:
+   * feature/T-042-birth-date -> main
+   * merge commit: 9a56ac853bc6409f23ae9d2a8a767bf25d4d012c
+   * 포함 commit: 0ed0435
+* 배포:
+   * GitHub Pages 완료
+   * Pages run: 26256520695
+* 확인:
+   * https://monthly-loan.sirjuseyo.com/apply-review/apply-review.html HTTP/2 200
+   * https://monthly-loan.sirjuseyo.com/apply-review/apply-review-dev.html HTTP/2 200
+   * 참고: /apply-review/는 index 파일이 없어 404
+* 문서:
+   * GitDeployOps TODO/WORK_THROUGH 업데이트 완료
+   * 완료 보고서 WT-079 기록 완료
+   * 문서 커밋/푸시: f639ca5
+한 줄 버전:
+* monthly-loan T-042 feature/T-042-birth-date -> main 반영 완료, GitHub Pages 배포 및 apply-review DEV/PRD HTML URL 검증 완료했습니다.
+
+[현재 상태]
+PRD 배포 완료 ✅ — T-042 검증완료
