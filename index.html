@@ -101,6 +101,11 @@ h1 em{font-style:normal;color:var(--purple);}
 .grad-bar{width:48%;height:3px;border-radius:10px;background:linear-gradient(90deg,var(--purple),var(--mint),var(--orange));}
 
 /* ── TABLET / DESKTOP ≥768px ── */
+/* gift-box 모바일 침범 보정 (T-017) — 6월 총 이미지가 5월 박스보다 세로가 길어
+   호국보훈의 달 텍스트 침범 → 모바일에서만 축소+상향. 데스크탑 불변 */
+@media(max-width:767px){
+  .gift-box{width:min(250px,68vw);top:-125px;right:-25px;}
+}
 @media(min-width:768px){
   .nav{padding:36px 60px 0;max-width:1280px;margin:0 auto;width:100%;}
   .logo-img{width:50px;height:50px;}
