@@ -497,6 +497,28 @@ textarea:focus {
   border-radius: 16px;
 }
 
+/* CTA 텍스트 버튼 (6월~, 이미지 버튼 대체 — T-013) */
+.script-cta-button-text {
+  display: block;
+  width: 100%;
+  max-width: 520px;
+  text-align: center;
+  background: #FF5400;
+  color: #fff;
+  font-size: 1.1rem;
+  font-weight: 700;
+  border-radius: 16px;
+  padding: 18px 24px;
+  text-decoration: none;
+  letter-spacing: -0.2px;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.script-cta-button-text:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 12px 24px rgba(255, 84, 0, 0.3);
+}
+
 .script-divider {
   height: 1px;
   background: #C9A6E8;

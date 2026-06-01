@@ -50,69 +50,43 @@ const LOAN_CONFIG = {
   "이벤트 대출": {
     basePoints: { credit: 35, interest: 27, principal: 28 },
     histories: {
-      "4월 한정 스페셜티": {
+      [MONTH_CONFIG.event.period]: {
         interestBonus: 5,
         principalBonus: 4,
         statuses: {
-          "벚꽃 🌸 대출": 8,
+          [MONTH_CONFIG.event.name]: 8,
         },
       },
     },
   },
 };
 
-const WAITING_SEAT_RANGES = [
-  {
-    seat: "Box Seat (귀빈석)",
-    startDate: "2026-04-01",
-    endDate: "2026-04-05",
-    creditDeadline: "앱에서 신청한 날로부터 48시간 내",
-    interestRate: "1%",
-    interestDeadline: "2026-04-15",
-    principalRate: "1%",
-    principalDeadline: "2026-04-15",
-  },
-  {
-    seat: "VIP Seat (1열)",
-    startDate: "2026-04-06",
-    endDate: "2026-04-10",
-    creditDeadline: "앱에서 신청한 날로부터 48시간 내",
-    interestRate: "1%",
-    interestDeadline: "2026-04-20",
-    principalRate: "2%",
-    principalDeadline: "2026-04-20",
-  },
-  {
-    seat: "Royal Seat (2열)",
-    startDate: "2026-04-11",
-    endDate: "2026-04-15",
-    creditDeadline: "앱에서 신청한 날로부터 48시간 내",
-    interestRate: "1%",
-    interestDeadline: "2026-04-25",
-    principalRate: "4%",
-    principalDeadline: "2026-04-25",
-  },
-  {
-    seat: "Standard Seat (3열)",
-    startDate: "2026-04-16",
-    endDate: "2026-04-20",
-    creditDeadline: "앱에서 신청한 날로부터 48시간 내",
-    interestRate: "1%",
-    interestDeadline: "2026-04-30",
-    principalRate: "6%",
-    principalDeadline: "2026-04-30",
-  },
-  {
-    seat: "Original Seat (입석)",
-    startDate: "2026-04-21",
-    endDate: "2026-04-25",
-    creditDeadline: "앱에서 신청한 날로부터 48시간 내",
-    interestRate: "1%",
-    interestDeadline: "2026-05-05",
-    principalRate: "8%",
-    principalDeadline: "2026-05-05",
-  },
-];
+// 좌석 날짜 자동 생성 (MONTH_CONFIG.applyPeriod.start 기준)
+function _addDays(dateStr, days) {
+  const d = new Date(dateStr + 'T00:00:00');
+  d.setDate(d.getDate() + days);
+  return d.toISOString().slice(0, 10);
+}
+function _generateSeatRanges(applyStart) {
+  const seats = [
+    { seat: 'Box Seat (귀빈석)',   principalRate: '1%' },
+    { seat: 'VIP Seat (1열)',      principalRate: '2%' },
+    { seat: 'Royal Seat (2열)',    principalRate: '4%' },
+    { seat: 'Standard Seat (3열)', principalRate: '6%' },
+    { seat: 'Original Seat (입석)', principalRate: '8%' },
+  ];
+  return seats.map((s, i) => ({
+    seat: s.seat,
+    startDate: _addDays(applyStart, i * 5),
+    endDate:   _addDays(applyStart, i * 5 + 4),
+    creditDeadline: '앱에서 신청한 날로부터 48시간 내',
+    interestRate: '1%',
+    interestDeadline: _addDays(applyStart, i * 5 + 14),
+    principalRate: s.principalRate,
+    principalDeadline: _addDays(applyStart, i * 5 + 14),
+  }));
+}
+const WAITING_SEAT_RANGES = _generateSeatRanges(MONTH_CONFIG.applyPeriod.start);
 
 const LOAN_PRODUCT_TABLE = [
   {
@@ -177,7 +151,7 @@ const LOAN_OPTION_STATUS_TABLE = {
     "바로 재대출": ["블찬원", "블찬이", "블찬현"],
   },
   "이벤트 대출": {
-    "4월 한정 스페셜티": ["벚꽃 🌸 대출"],
+    [MONTH_CONFIG.event.period]: [MONTH_CONFIG.event.name],
   },
 };
 
@@ -186,29 +160,29 @@ const LOAN_REVIEW_SCHEDULE = [
     option: "웨이팅 대출",
     history: "재대출",
     status: "Clean",
-    startDate: "2026-05-01",
-    endDate: "2026-05-05",
+    startDate: MONTH_CONFIG.reviewPeriod.start,
+    endDate: MONTH_CONFIG.reviewPeriod.end,
   },
   {
     option: "웨이팅 대출",
     history: "재대출",
     status: "Non-Clean",
-    startDate: "2026-05-01",
-    endDate: "2026-05-05",
+    startDate: MONTH_CONFIG.reviewPeriod.start,
+    endDate: MONTH_CONFIG.reviewPeriod.end,
   },
   {
     option: "웨이팅 대출",
     history: "신규",
     status: "One",
-    startDate: "2026-05-01",
-    endDate: "2026-05-05",
+    startDate: MONTH_CONFIG.reviewPeriod.start,
+    endDate: MONTH_CONFIG.reviewPeriod.end,
   },
   {
     option: "웨이팅 대출",
     history: "신규",
     status: "Several",
-    startDate: "2026-05-01",
-    endDate: "2026-05-05",
+    startDate: MONTH_CONFIG.reviewPeriod.start,
+    endDate: MONTH_CONFIG.reviewPeriod.end,
   },
   {
     option: "롸잇나우 대출",
@@ -235,13 +209,13 @@ const LOAN_REVIEW_SCHEDULE = [
     option: "블랙찬스 티켓",
     history: "바로 재대출",
     status: "블찬현",
-    startDate: "2026-05-01",
-    endDate: "2026-05-05",
+    startDate: MONTH_CONFIG.reviewPeriod.start,
+    endDate: MONTH_CONFIG.reviewPeriod.end,
   },
   {
     option: "이벤트 대출",
-    history: "4월 한정 스페셜티",
-    status: "벚꽃 🌸 대출",
+    history: MONTH_CONFIG.event.period,
+    status: MONTH_CONFIG.event.name,
     startDate: "매일",
     endDate: "",
   },
@@ -305,8 +279,8 @@ const POINT_SUMMARY_RAW = `
 20만 원	200,000	이포 상품	블랙찬스 티켓	Thanks Seat (감사석)	바로 재대출	블찬원	원리포 상품	5,000	0%	5000	1%	2,000	1%	2,000	10%	20,000	4%	8,000	15,000
 20만 원	200,000	이포 상품	블랙찬스 티켓	Thanks Seat (감사석)	바로 재대출	블찬이	이포 상품	5,000	0%	5000	1%	2,000	1%	2,000	0%	0	0%	0	7,000
 20만 원	200,000	이포 상품	블랙찬스 티켓	Thanks Seat (감사석)	바로 재대출	블찬현	원리현 상품	5,000	0%	5000	0%	0	0%	0	0%	0	0%	0	5,000
-10만 원	100,000	원리현 상품	이벤트 대출	Special Seat (특별석)	4월 한정 스페셜티	벚꽃 🌸 대출	이포 상품	5,000	0%	5,000	1%	1,000	1%	1,000	10%	10,000	0%	0	6,000
-20만 원	200,000	이포 상품	이벤트 대출	Special Seat (특별석)	4월 한정 스페셜티	벚꽃 🌸 대출	이포 상품	8,000	0%	8,000	1%	2,000	1%	2,000	0%	0	0%	0	10,000
+10만 원	100,000	원리현 상품	이벤트 대출	Special Seat (특별석)	${MONTH_CONFIG.event.period}	${MONTH_CONFIG.event.name}	이포 상품	5,000	0%	5,000	1%	1,000	1%	1,000	10%	10,000	0%	0	6,000
+20만 원	200,000	이포 상품	이벤트 대출	Special Seat (특별석)	${MONTH_CONFIG.event.period}	${MONTH_CONFIG.event.name}	이포 상품	8,000	0%	8,000	1%	2,000	1%	2,000	0%	0	0%	0	10,000
 30만 원	300,000	원리포 상품	웨이팅 대출	Box Seat (귀빈석)	재대출	Clean	원리포 상품	6,000	50%	3,000	1%	3,000	1%	3,000	10%	30,000	1%	3,000	9,000
 30만 원	300,000	원리포 상품	웨이팅 대출	Box Seat (귀빈석)	재대출	Non-Clean	원리포 상품	6,000	25%	4,500	1%	3,000	1%	3,000	10%	30,000	1%	3,000	10,500
 30만 원	300,000	원리포 상품	웨이팅 대출	Box Seat (귀빈석)	신규	One	원리포 상품	6,000	40%	3,600	1%	3,000	1%	3,000	10%	30,000	1%	3,000	9,600
@@ -331,7 +305,7 @@ const POINT_SUMMARY_RAW = `
 30만 원	300,000	원리포 상품	블랙찬스 티켓	Thanks Seat (감사석)	바로 재대출	블찬원	원리포 상품	6,000	0%	6000	1%	3,000	1%	3,000	10%	30,000	4%	12,000	21,000
 30만 원	300,000	원리포 상품	블랙찬스 티켓	Thanks Seat (감사석)	바로 재대출	블찬이	이포 상품	6,000	0%	6000	1%	3,000	1%	3,000	0%	0	0%	0	9,000
 30만 원	300,000	원리포 상품	블랙찬스 티켓	Thanks Seat (감사석)	바로 재대출	블찬현	원리현 상품	6,000	0%	6000	0%	0	0%	0	0%	0	0%	0	6,000
-30만 원	300,000	원리포 상품	이벤트 대출	Special Seat (특별석)	4월 한정 스페셜티	벚꽃 🌸 대출	이포 상품	12,000	0%	12,000	1%	3,000	1%	3,000	10%	30,000	0%	0	15,000
+30만 원	300,000	원리포 상품	이벤트 대출	Special Seat (특별석)	${MONTH_CONFIG.event.period}	${MONTH_CONFIG.event.name}	이포 상품	12,000	0%	12,000	1%	3,000	1%	3,000	10%	30,000	0%	0	15,000
 50만 원	500,000	원리포 상품	웨이팅 대출	Box Seat (귀빈석)	재대출	Clean	원리포 상품	12,000	50%	6,000	1%	5,000	1%	5,000	10%	50,000	1%	5,000	16,000
 50만 원	500,000	원리포 상품	웨이팅 대출	Box Seat (귀빈석)	재대출	Non-Clean	원리포 상품	12,000	25%	9,000	1%	5,000	1%	5,000	10%	50,000	1%	5,000	19,000
 50만 원	500,000	원리포 상품	웨이팅 대출	Box Seat (귀빈석)	신규	One	원리포 상품	12,000	40%	7,200	1%	5,000	1%	5,000	10%	50,000	1%	5,000	17,200
@@ -356,7 +330,7 @@ const POINT_SUMMARY_RAW = `
 50만 원	500,000	원리포 상품	블랙찬스 티켓	Thanks Seat (감사석)	바로 재대출	블찬원	원리포 상품	12,000	0%	12,000	1%	5,000	1%	5,000	10%	50,000	4%	20,000	37,000
 50만 원	500,000	원리포 상품	블랙찬스 티켓	Thanks Seat (감사석)	바로 재대출	블찬이	이포 상품	12,000	0%	12,000	1%	5,000	1%	5,000	0%	0	0%	0	17,000
 50만 원	500,000	원리포 상품	블랙찬스 티켓	Thanks Seat (감사석)	바로 재대출	블찬현	원리현 상품	12,000	0%	12,000	0%	0	0%	0	0%	0	0%	0	12,000
-50만 원	500,000	원리포 상품	이벤트 대출	Special Seat (특별석)	4월 한정 스페셜티	벚꽃 🌸 대출	이포 상품	20,000	0%	20,000	1%	5,000	1%	5,000	10%	50,000	0%	0	25,000
+50만 원	500,000	원리포 상품	이벤트 대출	Special Seat (특별석)	${MONTH_CONFIG.event.period}	${MONTH_CONFIG.event.name}	이포 상품	20,000	0%	20,000	1%	5,000	1%	5,000	10%	50,000	0%	0	25,000
 `
   ;
 

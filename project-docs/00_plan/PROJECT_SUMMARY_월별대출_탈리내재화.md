@@ -45,7 +45,7 @@
 | 소스 관리 | 없음 | GitHub |
 | 배포 (현재) | Tally 호스팅 | GitHub Pages |
 | 배포 (목표) | - | AWS |
-| 도메인 (현재) | tally.so/r/mBvDvR | monthly-loan.sirjuseyo.com/2026-04/apply.html |
+| 도메인 (현재) | tally.so/r/mBvDvR | https://monthly-loan.sirjuseyo.com/apply/apply.html |
 | 도메인 (목표) | - | apply.sirjuseyo.com (AWS 이전 후) |
 
 ---
@@ -103,7 +103,7 @@
 
 ### 서브도메인 `apply.sirjuseyo.com`
 - **결정: B안** → AWS 배포 시 서버팀이 설정
-- 현재: GitHub Pages (monthly-loan.sirjuseyo.com/2026-04/apply.html)
+- 현재: GitHub Pages (https://monthly-loan.sirjuseyo.com/apply/apply.html)
 - GitHub Pages는 레포당 커스텀 도메인 1개 제한 → AWS 이전 후 적용
 
 ### DEV/PRD 이중화
@@ -126,8 +126,8 @@
 
 | 항목 | 위치 |
 |------|------|
-| 신청 폼 PRD | monthly-loan.sirjuseyo.com/2026-04/apply.html |
-| 신청 폼 DEV | monthly-loan.sirjuseyo.com/2026-04/apply-dev.html |
+| 신청 폼 PRD | https://monthly-loan.sirjuseyo.com/apply/apply.html |
+| 신청 폼 DEV | https://monthly-loan.sirjuseyo.com/apply/apply-dev.html |
 | GitHub 레포 | github.com/sirjuseyo/monthly-loan |
 | 탈리 기존 폼 | tally.so/r/mBvDvR |
 | 카카오 채널 | pf.kakao.com/_AcXXxl |
