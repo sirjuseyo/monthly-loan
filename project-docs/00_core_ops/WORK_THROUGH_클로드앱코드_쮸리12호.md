@@ -6,6 +6,122 @@
 
 ---
 
+## WT-036 · T-036 [공통푸터 수정] 고객센터 사업문의·광고문의 삭제
+| 항목 | 내용 |
+|---|---|
+| 작성일시 | 2026-06-03 | 작성자 | 쮸티12호 |
+| 상태 | 진행중 — footer.js 수정 완료, DEV 검증 완료 |
+
+[처방] `footer.js`(공통자산 1파일) 고객센터 카드에서 사업문의(dandy@)·광고문의(hailey@) 2줄 삭제 → 대표전화+고객문의(customer@)만. ※1파일=12페이지 전부 반영.
+[검증] DEV 브라우저: 고객센터 rows=[대표전화, 고객문의], dandy/hailey 없음 확인.
+
+---
+
+## WT-037 · T-037 [신청폼 탭 통일] 호국보훈 상세→신청폼 같은 탭
+| 항목 | 내용 |
+|---|---|
+| 작성일시 | 2026-06-03 | 작성자 | 쮸티12호 |
+| 상태 | 진행중 — DEV+PRD 수정 완료, DEV 검증 완료 |
+
+[문제] 호국보훈 상세 신청버튼 `target="_blank"`(별도탭) ↔ 감다살 같은탭 → 불일치.
+[처방] `2026-06/index-dev.html`(DEV) + `2026-06/index.html`(PRD) SpringMarch-waiting-button `target="_blank"` 제거 → 같은 탭(감다살과 통일). ※감다살 무수정.
+[검증] DEV 브라우저: 신청버튼 target=(none), href=../apply/apply-dev.html 확인.
+
+---
+
+## WT-035 · T-035 [공통푸터] 써주세요 공용 푸터 전 페이지 이식 (footer.js)
+
+| 항목 | 내용 |
+|---|---|
+| 회차 | 1~2회차 |
+| 작성일시 | 2026-06-03 |
+| 작성자 | 쮸티12호 |
+| 레포 | 웹 `monthly-loan` |
+| 상태 | 진행중(In-Progress) — 구현+브라우저 검증 완료, 사장님 테스트·커밋 대기 |
+
+---
+
+[작업 목표] 써주세요 공용 푸터(Contact~저작권, 소스 sirjuseyoWeb/index.html 386~489 원본 그대로)를 월별대출 전 페이지에 이식. 공통자산 방식(중복0·유지보수1곳).
+
+[1회차 — footer.js 공통자산 + 12페이지 링크]
+- 신규 `/footer.js` 생성: 소스 푸터 HTML+CSS 추출, `#sjy-footer`로 CSS 스코핑(원본 디자인 유지+기존 페이지 무충돌), DOMContentLoaded 시 body 끝에 주입
+- 12개 페이지(홈·호국보훈상세/신청폼·감다살상세/신청폼·loan-checker, PRD+DEV)에 `<script src="/footer.js"></script>` 1줄씩
+- 홈(가) 우선 적용 → 브라우저 검증(Contact·법적·About us·저작권 전부)
+
+[2회차 — 자산 도메인 정정 (중요)]
+- 1회차 자산 절대경로를 `https://sirjuseyo.com/`으로 했으나 → apex는 404
+- CNAME 확인: 메인 사이트 = `www.sirjuseyo.com` → 전부 `https://www.sirjuseyo.com/`으로 정정
+- 검증(curl): 로고·약관3·PDF3 전부 www 200
+
+[검증 — Chrome 실측(localhost:5503)]
+- 홈: 푸터 주입·로고 로드(naturalWidth 300)·링크 www 정상
+- 감다살 신청폼(다른 CSS 프레임워크): 푸터 원본 그대로 렌더링·로고·저작권 정상 (스코핑 무충돌 확인)
+- 12개 전부 `footer.js` 스크립트 1줄 보유 확인
+
+[남은 작업] 사장님 테스트 → 커밋·푸시·PR
+> ※ 저작권 텍스트 "(sirjuseyo.com)"은 원본 그대로 유지(URL만 www)
+
+---
+
+## WT-034 · T-034 [Phase 6~7] PRD DB 테이블 생성 (운영 RDS)
+
+| 항목 | 내용 |
+|---|---|
+| 회차 | 1회차 |
+| 작성일시 | 2026-06-03 |
+| 작성자 | 쮸티12호 |
+| 대상 | 운영 RDS `sjy-nano-production` / DB `nano` |
+| 상태 | 테스트 완료(DONE) — 운영 테이블 생성·검증 완료 |
+
+---
+
+[작업 목표] 운영(PRD) DB에 challenge_worldcup_2026_application 테이블 생성 (DEV와 동일, 쮸티12호 직접 — 서버 PRD 배포 선행조건)
+
+[① 읽기전용 확인 — 운영 맞는지·테이블 부재]
+- host `sjy-nano-production`(운영 확실) / DB `nano` / 계정 `sirjuseyo@%` / @@read_only=0
+- nano 총 58 테이블(실 운영 DB 확인) / challenge 테이블수=0(부재 확인)
+
+[② 사장님 승인 → CREATE TABLE 실행]
+- DDL: `project-docs/00_plan/DDL_challenge_worldcup_2026_application_20260602.sql` (PK bigint 반영본)
+- 검증: 테이블존재=1 / 25컬럼 / 5인덱스 / PK **bigint**·auto_increment·PRI / 기본값(status_cd=RECEIVED·point_confirmed_cd=N·is_deleted=0·total_hit_count=0) 정상
+- 기존 58개 테이블 무변경(신규 1개만 추가)
+
+[결과] 운영 DB 준비 완료 → 서버 PRD 배포 시 Hibernate schema-validation 통과 예정. (DEV와 동일 스키마)
+
+[남은 작업(Phase 7)] 서버 PRD 배포 → 어드민 PRD → 웹 PR#11 main머지 → 운영 동선확인 (일괄 작업요청서)
+
+### 📥 깃 & 배포 관리자 작업 완료 보고서 원문 — PRD 일괄 배포 (보관, 정책 201~205 · 마지막 WT-ID 밑)
+> 감다살🐙문어 챌린지 운영(PRD) 전체 배포 완료. 원문 그대로 보관.
+```
+[깃 & 배포 관리자 → 개발자/사장님]
+감다살🐙문어 챌린지 PRD 일괄 배포 완료했습니다.
+
+작업 내용:
+- sirjuseyo-admin 전체 dev->main 병합 없이 요청 커밋만 선별 cherry-pick
+  - 31beb1f T-025 신청 접수 API / d4af3c2 T-026 bean scan 핫픽스 / b493ec0 T-031 어드민 조회·채점 API
+- 서버 PRD image main-20260602T185211UTC 배포
+- EKS dispatch 실패 후 수동 GitOps 보정: sirjuseyo-eks commit 8df234b
+- admin-web 전체 dev->main 병합 없이 T-032만 선별 반영: 8d45657 / 운영 S3·CloudFront 배포
+- monthly-loan PR #11 main merge: merge commit bbeb1a9
+
+검증:
+- 서버 Deploy run 26841122436 success / admin-prod-deploy rollout success, pod 1/1, restart 0 / PRD liveness 200
+- 신청 API GET -> 405(allow POST) / 운영 신청 POST 201, 생성 id 1
+- 어드민 인증 API 비인증 호출 401 / admin-web https://admin.sirjuseyo.com/ 200
+- CloudFront invalidation ICXV90F1K5SQCUYUR5TQ4XP2D1 completed
+- monthly-loan Pages run 26841581778 success / 홈·상세·신청 URL 200
+
+주의:
+- 운영 테스트 신청 데이터 id 1 생성됨
+- 어드민 실제 조회·채점은 관리자 로그인 세션 필요 → 비인증 401까지만 확인
+
+문서: project-docs 반영 / 문서 커밋 feea658
+
+한 줄: 감다살🐙문어 챌린지 PRD 일괄 배포 완료, 서버 b493ec0/EKS 8df234b/admin-web 8d45657/monthly-loan bbeb1a9 반영 및 운영 POST 201까지 확인.
+```
+
+---
+
 ## WT-033 · T-033 [Phase 5 회귀수정] DEV 홈/챌린지 — DEV 배너 + DEV→DEV 링크 + PRD 승무패
 
 | 항목 | 내용 |
@@ -59,8 +175,40 @@
 - DEV: `index-dev.html`, `2026-06/index-dev.html`, `2026-06/worldcup-challenge/index-dev.html`, `2026-06/worldcup-challenge/apply/index-dev.html`, `loan-checker/index-dev.html` (+ 기존 `apply/apply-dev.html`는 배너 기보유)
 - PRD: `index.html` (승무패 링크 1건)
 
+[커밋·푸시·PR — ✅ 완료]
+- 코드 커밋 `2e405ab`(DEV5+PRD1) / 문서 커밋 `ff9fc87`
+- 푸시 `feature/T-001-jun-loan-landing` / PR #11 (feature → main)
+
+### 📤 깃 & 배포 관리자 작업요청서 (보관, 양식 6-⑥)
+```
+[개발자 -> 깃 관리자 전달]
+
+monthly-loan T-033 작업 완료했습니다.
+`feature/T-001-jun-loan-landing` 원격 푸시 완료했고 PR은 `#11`입니다.
+
+작업 내용:
+- DEV 환경 배너(주황 #FF5400) 추가: 홈/호국보훈상세/감다살상세/감다살신청폼/loan-checker
+- DEV→DEV 링크 정합: 홈(신청·승무패·검사) / 호국보훈상세 신청 / loan-checker CTA(정적+인라인JS detailUrl→DEV 변환)
+- PRD index.html 승무패 ./2026-06/ → ./2026-06/worldcup-challenge/ (호국보훈→감다살)
+
+검증:
+- Chrome 실측(localhost:5503): 홈/loan-checker 모든 링크 DEV 이동 + 배너 표시 확인
+
+커밋:
+- `2e405ab` `fix(dev): DEV 배너 + DEV→DEV 링크 정합 + PRD 승무패 링크 [T-033]`
+
+문서:
+- `project-docs` (웹 레포 monthly-loan, 문서 전용)
+- 브랜치: `feature/T-001-jun-loan-landing`
+- PR: `#11` (코드와 동일 PR)
+- 문서 커밋: `ff9fc87` `docs: T-033 DEV 배너/링크 + PRD 승무패 기록 (WT-033 1~5회차) [T-033]`
+
+한 줄 버전:
+- monthly-loan T-033 완료, feature/T-001-jun-loan-landing 푸시 및 PR #11 생성, Chrome 실측 검증 했습니다. 깃 & 배포 관리자님 검토 부탁드립니다.
+```
+
 [남은 작업]
-- 사장님 최종 확인 → 커밋·푸시·PR (PRD 배포는 Phase 7에 서버와 동반)
+- 깃&배포 관리자 PR #11 검토·반영 → 작업완료서 수령
 
 ---
 
