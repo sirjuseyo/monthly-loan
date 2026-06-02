@@ -9,6 +9,12 @@
 </head>
 
 <body>
+
+  <!-- DEV 환경 표시 배너 -->
+  <div style="background:#FF5400;color:#fff;text-align:center;padding:8px;font-size:13px;font-weight:700;font-family:'Noto Sans KR',sans-serif;letter-spacing:0.5px;">
+    🚧 DEV 테스트 환경 — 실사용자 접근 금지
+  </div>
+
   <main class="app-main">
     <section class="hero-banner">
       <img src="assets/img/hero-loan-eligibility-checker_typeB.jpg" alt="대출가능성검사기 이벤트 배너" />
@@ -532,7 +538,7 @@
 
         <div class="script-cta">
           <a class="script-cta-button-text" id="ctaButton"
-            href="https://monthly-loan.sirjuseyo.com/2026-06/"
+            href="../2026-06/index-dev.html"
             target="_blank" rel="noopener noreferrer">
             🪖 호국보훈의 달 대출 신청하기 →
           </a>
@@ -582,7 +588,10 @@
       // CTA 버튼
       var cta = document.getElementById('ctaButton');
       if (cta) {
-        cta.href = cfg.detailUrl;
+        // [DEV] PRD detailUrl을 DEV 경로로 변환 (PRD 무영향 — index-dev 전용 스크립트)
+        cta.href = cfg.detailUrl
+          .replace('https://monthly-loan.sirjuseyo.com/', '../')
+          .replace(/\/$/, '/index-dev.html');
         cta.textContent = cfg.ctaText;
       }
     });
