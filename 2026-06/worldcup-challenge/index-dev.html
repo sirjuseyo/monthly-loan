@@ -1,0 +1,584 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="color-scheme" content="light">
+<title>감다살🐙문어 챌린지 — 2026 북중미 월드컵 | 써주세요.</title>
+<meta name="description" content="응원하다 50만 원 줍줍? 감다살🐙문어 챌린지 — 한국 운명 맞히고 50만 원 GET. 2026 북중미 월드컵 한정 이벤트.">
+<link href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.css" rel="stylesheet">
+<style>
+  :root {
+    --korea-red: #CD2E3A;
+    --korea-red-deep: #B71C1C;
+    --gold: #FFD700;
+    --gold-deep: #D4AF37;
+    --brand-purple: #380097;
+    --orange: #FF5400;
+    --cream: #FAF7F2;
+    --text: #1A1A2E;
+    --muted: #888;
+    --border: #E5E0F0;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: 'Pretendard', 'Noto Sans KR', -apple-system, sans-serif;
+    background: #ececec;
+    color: var(--text);
+    font-size: 1.1rem;   /* 6월 호국보훈 페이지 본문(1.1em) 기준 — 기본 폰트 확대 */
+    line-height: 1.6;
+  }
+  /* 페이지 컨테이너 (모바일 폭 중앙 정렬) */
+  .page-card {
+    max-width: 480px;
+    margin: 0 auto;
+    background: #fff;
+    min-height: 100vh;
+    box-shadow: 0 0 40px rgba(0,0,0,.08);
+    overflow: hidden;
+  }
+  .page-content { background: var(--cream); overflow: hidden; }
+
+  /* ── 히어로: 이미지 영역 ── */
+  .hero-image { padding: 0; background: #f0f0f0; }
+  .hero-img-real { width: 100%; display: block; }
+
+  /* ── 히어로: 텍스트 영역 ── */
+  .hero-text {
+    background: linear-gradient(135deg, var(--korea-red) 0%, var(--korea-red-deep) 100%);
+    padding: 56px 32px;
+    color: #fff;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+  }
+  .hero-text::before {
+    content: '🐙';
+    position: absolute;
+    font-size: 280px;
+    opacity: 0.08;
+    top: 50%; left: 50%;
+    transform: translate(-50%, -50%);
+    pointer-events: none;
+  }
+  .hero-text::after {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 4px;
+    background: linear-gradient(90deg, var(--gold), #FFA500, var(--gold));
+  }
+  .hero-tag {
+    display: inline-block;
+    background: var(--gold);
+    color: var(--text);
+    font-size: 1.05rem;
+    font-weight: 800;
+    padding: 10px 22px;
+    border-radius: 999px;
+    margin-bottom: 24px;
+    position: relative;
+    letter-spacing: .5px;
+    box-shadow: 0 4px 12px rgba(255,215,0,0.3);
+  }
+  .hero-main {
+    font-size: 3.2rem;
+    font-weight: 900;
+    line-height: 1.15;
+    margin-bottom: 22px;
+    position: relative;
+    letter-spacing: -1.5px;
+    text-shadow: 0 2px 8px rgba(0,0,0,0.15);
+  }
+  .hero-main .highlight {
+    color: var(--gold);
+    text-shadow: 0 2px 6px rgba(0,0,0,0.3);
+    font-size: 1.15em;
+    display: inline-block;
+    transform: rotate(-2deg);
+  }
+  .hero-sub {
+    font-size: 1.3rem;
+    font-weight: 700;
+    opacity: .98;
+    line-height: 1.6;
+    position: relative;
+    margin-top: 8px;
+  }
+  .hero-sub-line2 {
+    display: block;
+    margin-top: 14px;
+    font-size: 1.1rem;
+    opacity: .92;
+    font-weight: 600;
+  }
+
+  /* ── 섹션 공통 ── */
+  section { padding: 28px; background: #fff; }
+  section + section { border-top: 1px solid var(--border); }
+  .section-title {
+    font-size: 1.3rem;
+    font-weight: 800;
+    color: var(--text);
+    margin-bottom: 14px;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+  }
+
+  /* 이벤트 소개 */
+  .intro-quote {
+    background: var(--cream);
+    border-left: 4px solid var(--korea-red);
+    padding: 16px 18px;
+    font-size: 1.1rem;
+    line-height: 1.75;
+    color: var(--text);
+    border-radius: 0 8px 8px 0;
+  }
+  .intro-quote strong { color: var(--korea-red); font-weight: 800; }
+
+  /* 신청 기간 */
+  .period-box {
+    background: linear-gradient(135deg, #fff5f5, #ffe5e5);
+    border: 1.5px solid var(--korea-red);
+    border-radius: 12px;
+    padding: 18px 16px;
+    text-align: center;
+  }
+  .period-label {
+    font-size: .9rem;
+    color: var(--korea-red);
+    font-weight: 700;
+    margin-bottom: 6px;
+    letter-spacing: .5px;
+  }
+  .period-date { font-size: 1.3rem; font-weight: 900; color: var(--text); }
+
+  /* 경기 일정 */
+  .match-list { display: flex; flex-direction: column; gap: 10px; }
+  .match-card {
+    background: #fff;
+    border: 1.5px solid var(--border);
+    border-radius: 12px;
+    padding: 14px;
+    transition: all .2s;
+  }
+  .match-card:hover { border-color: var(--korea-red); transform: translateY(-1px); }
+  .match-date { font-size: 1.0rem; color: var(--korea-red); font-weight: 700; margin-bottom: 4px; }
+  .match-teams { font-size: 1.25rem; font-weight: 800; color: var(--text); margin-bottom: 6px; }
+  .match-venue { font-size: 1.05rem; color: var(--text); }
+
+  /* 혜택 */
+  .ticket-list { display: flex; flex-direction: column; gap: 10px; }
+  .ticket-item {
+    background: linear-gradient(135deg, #fffbf0, #fff5e0);
+    border: 1.5px solid var(--gold-deep);
+    border-radius: 12px;
+    padding: 14px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 12px;
+  }
+  .ticket-condition { flex: 1; font-size: 1.05rem; color: var(--text); line-height: 1.45; }
+  .ticket-condition small { color: var(--text); font-size: 1rem; }
+  .ticket-reward {
+    font-size: 1.1rem;
+    font-weight: 800;
+    color: var(--korea-red);
+    text-align: right;
+    white-space: nowrap;
+  }
+  .ticket-reward small { display: block; font-size: .85rem; color: var(--gold-deep); margin-bottom: 2px; }
+  .total-box {
+    background: var(--text);
+    color: var(--gold);
+    padding: 16px;
+    border-radius: 12px;
+    text-align: center;
+    margin-top: 12px;
+    font-weight: 800;
+    font-size: 1.2rem;
+  }
+
+  /* 신청 조건 */
+  .no-condition {
+    font-size: 2.4rem;
+    font-weight: 900;
+    color: var(--korea-red);
+    text-align: center;
+    margin: 6px 0 14px;
+    letter-spacing: 4px;
+  }
+  .condition-list { list-style: none; display: flex; flex-direction: column; gap: 8px; }
+  .condition-list li {
+    font-size: 1.1rem;
+    color: var(--text);
+    padding-left: 24px;
+    position: relative;
+    line-height: 1.5;
+  }
+  .condition-list li::before {
+    content: '✓';
+    position: absolute;
+    left: 0;
+    color: var(--korea-red);
+    font-weight: 800;
+  }
+
+  /* 신청 방법 */
+  .method-highlight {
+    background: linear-gradient(135deg, #fff5f5, #ffe8e8);
+    border: 1.5px solid var(--korea-red);
+    border-radius: 10px;
+    padding: 16px 18px;
+    font-size: 1.18rem;   /* 핵심 — 기본보다 크게 (묻히지 않게) */
+    font-weight: 600;
+    color: var(--text);
+    margin-bottom: 14px;
+    line-height: 1.6;
+  }
+  .method-highlight strong { color: var(--korea-red); font-weight: 800; }
+  .step-list { display: flex; flex-direction: column; gap: 8px; }
+  .step-item {
+    background: #f9f9f9;
+    border-radius: 10px;
+    padding: 12px 14px;
+    display: flex;
+    gap: 10px;
+    align-items: flex-start;
+  }
+  .step-num {
+    background: var(--korea-red);
+    color: #fff;
+    width: 30px; height: 30px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 800;
+    font-size: 1rem;
+    flex-shrink: 0;
+  }
+  .step-text { font-size: 1.08rem; color: var(--text); line-height: 1.6; flex: 1; }
+  .warning-box {
+    background: #fff8e1;
+    border: 1.5px solid #ffc107;
+    border-radius: 8px;
+    padding: 16px 18px;
+    font-size: 1.12rem;   /* 경고 — 기본보다 크게 (묻히지 않게) */
+    color: #856404;
+    line-height: 1.65;
+    margin-top: 10px;
+  }
+  .warning-box strong { color: #d32f2f; font-weight: 800; }
+
+  /* 당첨자 발표 */
+  .announcement-box {
+    background: linear-gradient(135deg, #f3eeff, #e8e0ff);
+    border-radius: 12px;
+    padding: 18px;
+    font-size: 1.1rem;
+    color: var(--text);
+    line-height: 1.65;
+  }
+  .announcement-box strong { color: var(--brand-purple); }
+  .announcement-box ul { margin: 8px 0 8px 18px; font-size: 1.05rem; color: var(--text); }
+
+  /* 사용 방법 */
+  .usage-section { margin-bottom: 18px; }
+  .usage-section:last-child { margin-bottom: 0; }
+  .usage-label {
+    font-size: 1.15rem;
+    font-weight: 700;
+    color: var(--korea-red);
+    margin-bottom: 6px;
+    letter-spacing: .3px;
+  }
+  .usage-content { font-size: 1.1rem; color: var(--text); line-height: 1.55; }
+  .usage-content strong { color: var(--korea-red); font-weight: 700; }
+  .usage-list { list-style: none; padding-left: 0; }
+  .usage-list li { padding: 5px 0 5px 18px; position: relative; font-size: 1.1rem; line-height: 1.55; color: var(--text); }
+  .usage-list li::before { content: '•'; position: absolute; left: 4px; color: var(--korea-red); font-weight: 800; }
+  .usage-ordered { margin-left: 18px; font-size: 1.1rem; line-height: 1.75; color: var(--text); }
+  .usage-ordered ul { margin-left: 16px; margin-top: 4px; list-style: disc; color: var(--text); font-size: 1.05rem; }
+
+  /* 유의사항 — 중요 내용: 기본 폰트 + 검정 */
+  .notice-list { list-style: decimal; padding-left: 20px; font-size: 1.05rem; color: var(--text); line-height: 1.7; }
+  .notice-list li { margin-bottom: 9px; }
+  .notice-list strong { color: var(--text); font-weight: 800; }
+
+  /* ── 신청 CTA → 별도 신청 페이지 ── */
+  .apply-cta-section {
+    background: linear-gradient(135deg, var(--korea-red) 0%, var(--korea-red-deep) 100%);
+    padding: 40px 28px;
+    text-align: center;
+  }
+  .apply-cta-title { color: #fff; font-size: 1.45rem; font-weight: 800; margin-bottom: 8px; line-height: 1.4; }
+  .apply-cta-sub { color: rgba(255,255,255,.92); font-size: 1.1rem; margin-bottom: 22px; line-height: 1.6; }
+  .apply-cta-button {
+    display: block;
+    width: 100%;
+    background: var(--gold);
+    color: var(--text);
+    text-decoration: none;
+    padding: 20px;
+    border-radius: 14px;
+    font-size: 1.25rem;
+    font-weight: 800;
+    box-shadow: 0 8px 20px rgba(255,215,0,0.4);
+    transition: transform .2s, box-shadow .2s;
+  }
+  .apply-cta-button:hover { transform: translateY(-2px); box-shadow: 0 12px 26px rgba(255,215,0,0.5); }
+
+  /* 푸터 */
+  .page-footer {
+    background: var(--text);
+    color: var(--cream);
+    padding: 20px 16px;
+    text-align: center;
+    font-size: .9rem;
+    line-height: 1.6;
+  }
+  .page-footer strong { color: var(--gold); display: block; margin-bottom: 4px; }
+</style>
+</head>
+<body>
+
+<div class="page-card">
+  <div class="page-content">
+
+    <!-- 히어로: 이미지 영역 -->
+    <section class="hero-image">
+      <img src="./assets/worldcup-challenge-jun-001.jpg" alt="2026 북중미 월드컵 대한민국 화이팅" class="hero-img-real">
+    </section>
+
+    <!-- 히어로: 텍스트 영역 -->
+    <section class="hero-text">
+      <div class="hero-tag">🔮 예언 챌린지</div>
+      <h1 class="hero-main">
+        응원하다<br>
+        <span class="highlight">50만 원</span> 줍줍?
+      </h1>
+      <p class="hero-sub">
+        감다살🐙문어 챌린지
+        <span class="hero-sub-line2">한국 운명 맞히고 50만 원 GET</span>
+      </p>
+    </section>
+
+    <!-- 이벤트 소개 -->
+    <section>
+      <div class="section-title">감다살🐙문어가 뭐예요?</div>
+      <div class="intro-quote">
+        <strong>감다살🐙문어 — 감(感) 다 살아있는 문어 챌린지.</strong><br>
+        2010년 파울 문어처럼, 당신의 감으로 한국 A조 결과를 맞혀보세요.<br><br>
+        · 조별 예선 성적 → 추가 대출 10만 원<br>
+        · 경기당 점수까지 → +10만 원 × 3경기 = 30만 원<br>
+        · 최종 성적까지 → +10만 원<br><br>
+        전부 맞히면 <strong>총 최대 50만 원</strong>.
+      </div>
+    </section>
+
+    <!-- 신청 기간 -->
+    <section>
+      <div class="section-title">📅 신청 기간</div>
+      <div class="period-box">
+        <div class="period-label">CHALLENGE PERIOD</div>
+        <div class="period-date">2026.6.1(월) ~ 6.11(목)</div>
+      </div>
+    </section>
+
+    <!-- 한국 A조 경기 -->
+    <section>
+      <div class="section-title">⚽ 한국 A조 경기 일정 (한국 시간)</div>
+      <div class="match-list">
+        <div class="match-card">
+          <div class="match-date">📅 2026.6.12(금) 오전 11:00</div>
+          <div class="match-teams">🇰🇷 vs 🇨🇿 체코</div>
+          <div class="match-venue">📍 과달라하라 — 에스타디오 아크론</div>
+        </div>
+        <div class="match-card">
+          <div class="match-date">📅 2026.6.19(금) 오전 10:00</div>
+          <div class="match-teams">🇰🇷 vs 🇲🇽 멕시코</div>
+          <div class="match-venue">📍 과달라하라 — 에스타디오 아크론</div>
+        </div>
+        <div class="match-card">
+          <div class="match-date">📅 2026.6.25(목) 오전 10:00</div>
+          <div class="match-teams">🇰🇷 vs 🇿🇦 남아공</div>
+          <div class="match-venue">📍 몬테레이 — 에스타디오 BBVA</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 혜택 -->
+    <section>
+      <div class="section-title">🎁 혜택 — 감다살🐙티켓 최대 5장</div>
+      <div class="ticket-list">
+        <div class="ticket-item">
+          <div class="ticket-condition">① 조별 예선 성적 적중<br><small>(예: 2승 1무)</small></div>
+          <div class="ticket-reward"><small>🐙 ×1</small>10만 원</div>
+        </div>
+        <div class="ticket-item">
+          <div class="ticket-condition">② 체코전 한국 골 수 적중</div>
+          <div class="ticket-reward"><small>🐙 ×1</small>10만 원</div>
+        </div>
+        <div class="ticket-item">
+          <div class="ticket-condition">③ 멕시코전 한국 골 수 적중</div>
+          <div class="ticket-reward"><small>🐙 ×1</small>10만 원</div>
+        </div>
+        <div class="ticket-item">
+          <div class="ticket-condition">④ 남아공전 한국 골 수 적중</div>
+          <div class="ticket-reward"><small>🐙 ×1</small>10만 원</div>
+        </div>
+        <div class="ticket-item">
+          <div class="ticket-condition">⑤ 한국 최종 성적 적중<br><small>(32강·16강·8강·4강·결승·우승)</small></div>
+          <div class="ticket-reward"><small>🐙 ×1</small>10만 원</div>
+        </div>
+      </div>
+      <div class="total-box">✨ 전부 맞히면 총 최대 50만 원</div>
+    </section>
+
+    <!-- 신청 조건 -->
+    <section>
+      <div class="section-title">📋 신청 조건</div>
+      <div class="no-condition">無</div>
+      <ul class="condition-list">
+        <li>써주세요.에서 대출을 원하는 청년 서민 누구나</li>
+        <li>현재 상환 중인 분도 OK</li>
+        <li>대출 받고자 하는 분도 OK</li>
+        <li>1인 1회 신청 (중복 X)</li>
+        <li>신청 후 수정·취소 불가 (감은 한 번에)</li>
+      </ul>
+    </section>
+
+    <!-- 신청 방법 -->
+    <section>
+      <div class="section-title">🎯 신청 방법</div>
+      <div class="method-highlight">
+        💡 <strong>핵심:</strong> 감다살🐙미션 10,000P 적립이 곧 참가 자격
+      </div>
+      <div class="step-list">
+        <div class="step-item">
+          <div class="step-num">1</div>
+          <div class="step-text">써주세요. 앱 → 포인트 적립소 방문</div>
+        </div>
+        <div class="step-item">
+          <div class="step-num">2</div>
+          <div class="step-text">감다살🐙미션 포인트 <strong>10,000P 적립</strong></div>
+        </div>
+        <div class="step-item">
+          <div class="step-num">3</div>
+          <div class="step-text">감다살🐙문어 챌린지 페이지 진입</div>
+        </div>
+        <div class="step-item">
+          <div class="step-num">4</div>
+          <div class="step-text">
+            신청 폼 작성<br>
+            · 기본 정보 (이름·생년월일·전번·이메일)<br>
+            · ⚠️ 포인트 확인 (감다살🐙미션 10,000P 보유?)<br>
+            · 예측 정보 5종
+          </div>
+        </div>
+        <div class="step-item">
+          <div class="step-num">5</div>
+          <div class="step-text">제출 → 자동 접수 완료</div>
+        </div>
+      </div>
+      <div class="warning-box">
+        ⚠️ <strong>감다살🐙미션 10,000P가 없다면 신청은 자동 무효입니다.</strong><br>
+        ⚠️ <strong>신청 후 운영자가 감다살🐙미션 10,000P를 차감합니다.</strong> 진행 중인 다른 미션 포인트가 있다면 추가 적립해야 합니다.
+      </div>
+    </section>
+
+    <!-- 당첨자 발표 -->
+    <section>
+      <div class="section-title">📢 당첨자 발표</div>
+      <div class="announcement-box">
+        <strong>대한민국 축구 국가대표팀의 2026 북중미 월드컵 여정이 종료된 후 7일 이내</strong>
+        <ul>
+          <li>조별예선 탈락 시 → 6월 25일(남아공전) 종료 후</li>
+          <li>32강 진출 시 → 한국이 최종 탈락하는 경기 종료 후</li>
+        </ul>
+        <strong>발표 채널:</strong> 써주세요. 앱 & 웹 공지
+      </div>
+    </section>
+
+    <!-- 감다살 티켓 사용 방법 -->
+    <section>
+      <div class="section-title">🎟️ 감다살🐙티켓 사용 방법</div>
+
+      <div class="usage-section">
+        <div class="usage-label">⏰ 사용 가능 시점</div>
+        <div class="usage-content">당첨자 발표일로부터 <strong>6개월 이내</strong></div>
+      </div>
+
+      <div class="usage-section">
+        <div class="usage-label">📝 사용 방법</div>
+        <ol class="usage-ordered">
+          <li>무조건 <strong>현재 상환 중</strong>이어야 합니다.
+            <ul>
+              <li>대출 신청 및 승인/입금 후 사용 가능합니다.</li>
+            </ul>
+          </li>
+          <li><strong>써주세요. 톡</strong>으로 감다살🐙티켓 사용 문의</li>
+          <li>이후 기존 대출과 같은 방식으로 진행
+            <ul>
+              <li>승인 후 바로 대출</li>
+              <li>10만 원(원리현) · 20만 원(이포) · 30만·50만 원(원리포)</li>
+            </ul>
+          </li>
+          <li>계약은 <strong>모두사인</strong>으로 진행</li>
+        </ol>
+      </div>
+
+      <div class="usage-section">
+        <div class="usage-label">🎫 사용 가능 티켓</div>
+        <ul class="usage-list">
+          <li><strong>최대 2매</strong></li>
+          <li>상환 중 일반 대출 금액이 50만 원이라면 추가 대출은 <strong>20만 원까지</strong> 가능</li>
+          <li>남은 티켓은 <strong>모든 대출(일반 대출 + 추가 대출) 상환 후 재대출 + 추가 대출</strong>에 사용</li>
+        </ul>
+      </div>
+
+      <div class="usage-section">
+        <div class="usage-label">🔒 양도</div>
+        <div class="usage-content">본인 한정 (타인 양도 불가)</div>
+      </div>
+    </section>
+
+    <!-- 챌린지 유의사항 -->
+    <section>
+      <div class="section-title">⚠️ 챌린지 유의사항</div>
+      <ol class="notice-list">
+        <li>본 챌린지는 [써주세요.] 운영 정책에 따라 사전 예고 없이 변경되거나 조기 종료될 수 있습니다.</li>
+        <li>신청 시 입력한 개인정보는 [써주세요.] 개인정보 처리방침에 따라 보관·활용되며, 향후 마케팅·이벤트 안내·서비스 개선 등에 사용됩니다.</li>
+        <li>적중자가 다수인 경우에도, 모두에게 동일한 추가 대출 혜택이 적용됩니다.</li>
+        <li>적중자가 없을 경우 별도의 대체 보상은 제공되지 않습니다.</li>
+        <li>본 챌린지의 추가 대출 혜택은 현금 환급 또는 다른 형태로 변경되지 않습니다.</li>
+        <li>감다살🐙미션 10,000P는 이벤트 신청 자격을 위한 적립이며, 환불·이전·양도되지 않습니다.</li>
+        <li>추가 대출은 <strong>상환 중인 대출 건 외의 새로운 대출 건</strong>으로 [써주세요.] 대출 정책·절차·운영 규정을 따르며, 정상적인 상환 의무가 발생합니다.</li>
+        <li>추가 대출은 <strong>한도 상향과는 별개의 운영 정책</strong>입니다. 예를 들어 직전 마지막 대출이 10만 원이고 현재 신청이 20만 원이라면, 한도 상향 정책을 준수해야 합니다.</li>
+        <li>감다살🐙티켓은 당첨자 발표일로부터 <strong>6개월 이내</strong> 사용해야 하며, 기한 경과 시 자동 소멸됩니다.</li>
+        <li>본 챌린지 운영과 관련된 모든 최종 결정은 [써주세요.] 운영팀의 판단에 따릅니다.</li>
+      </ol>
+    </section>
+
+    <!-- 신청 CTA → 별도 신청 페이지 -->
+    <section class="apply-cta-section">
+      <div class="apply-cta-title">🐙 감(感)이 살아있다면?</div>
+      <div class="apply-cta-sub">한국 운명 맞히고 최대 50만 원 GET<br>지금 바로 도전하세요!</div>
+      <a class="apply-cta-button" href="./apply/index-dev.html">감다살🐙 챌린지 신청하기 →</a>
+    </section>
+
+    <!-- 푸터 -->
+    <footer class="page-footer">
+      <strong>© 2026 써주세요.</strong>
+      감다살🐙문어 챌린지 · 2026 북중미 월드컵 한정 이벤트
+    </footer>
+
+  </div>
+</div>
+
+</body>
+</html>

@@ -699,13 +699,28 @@
 
     <h2 class="spec">📐 gift-box (Battlefield Cross) 이미지 스펙</h2>
     <table class="spec-table">
-      <tr><th colspan="2">CSS 배치 (5월·6월 동일)</th></tr>
+      <tr><th colspan="2">CSS 배치 — 데스크탑 (≥768px, 5월·6월 동일)</th></tr>
       <tr><td>position</td><td><code>absolute</code></td></tr>
       <tr><td>top</td><td><code>-110px</code></td></tr>
       <tr><td>right</td><td><code>-55px</code></td></tr>
       <tr><td>width</td><td><code>min(341px, 90vw)</code></td></tr>
       <tr><td>z-index</td><td><code>5</code></td></tr>
       <tr><td>pointer-events</td><td><code>none</code></td></tr>
+      <tr><th colspan="2" style="background:rgba(74,222,128,.12);">🆕 CSS 배치 — 모바일 (≤767px, 6월 보정 T-017)</th></tr>
+      <tr style="background:rgba(74,222,128,.06);">
+        <td colspan="2" style="font-size:.82rem;line-height:1.7;padding:8px 12px;">
+          <strong>[증상]</strong> 모바일에서 총 이미지가 "🪖 호국보훈의 달" 텍스트 침범<br>
+          <strong>[원인]</strong> 6월 총 이미지 <code>1.5:1</code>이 5월 박스장미 <code>1.83:1</code>보다 세로가 길어 더 늘어짐<br>
+          <strong>[처방]</strong> 모바일만 축소+상향 (데스크탑·이미지 불변):
+          <table style="width:100%;margin-top:6px;font-size:.78rem;border-collapse:collapse;">
+            <tr style="background:rgba(0,0,0,.04);"><th style="padding:3px;text-align:left;">속성</th><th style="padding:3px;text-align:left;">데스크탑</th><th style="padding:3px;text-align:left;">모바일</th></tr>
+            <tr><td style="padding:3px;">width</td><td style="padding:3px;"><code>min(341px,90vw)</code></td><td style="padding:3px;"><code>min(250px,68vw)</code></td></tr>
+            <tr><td style="padding:3px;">top</td><td style="padding:3px;"><code>-110px</code></td><td style="padding:3px;"><code>-125px</code></td></tr>
+            <tr><td style="padding:3px;">right</td><td style="padding:3px;"><code>-55px</code></td><td style="padding:3px;"><code>-25px</code></td></tr>
+          </table>
+          <small style="color:#aa9988;display:block;margin-top:5px;">검증: 침범 38px → 여백 26px 확보. 웹/앱 실기기 정상(2026-06-02). 다음 달 1.83:1 와이드 이미지면 이 보정 불필요.</small>
+        </td>
+      </tr>
       <tr><th colspan="2">6월 이미지 사양</th></tr>
       <tr><td>출력 해상도</td><td><code>1792 × 1024 px</code></td></tr>
       <tr><td>가로세로 비율</td><td><code>1.75:1</code> (landscape)</td></tr>
