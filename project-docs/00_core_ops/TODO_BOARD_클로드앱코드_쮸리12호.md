@@ -324,11 +324,11 @@ git checkout -b feature/T-001-jun-loan-landing
 
 > 🚨 **미푸시(원격 대기) 추적 — 다음 한꺼번에 푸시할 대상 (2026-06-02 기준)**
 >
-> **[레포 A] 웹 `monthly-loan` (sirjuseyoWeb)**
-> - **T-018, T-019, T-021, T-022** → 원격푸시 `대기` (로컬 커밋만 완료)
-> - 미푸시 커밋 6개: `a30eefd`(T-018 골격) `37fb69e`(T-018 이미지) `6d93dc1`(T-019) `8ef6521`(T-021) `93eb6fc`(T-022코드) `d2bd3ea`(T-022문서)
-> - 원격 최신: `8199d4b` (T-015~T-017, PR #9 MERGED까지)
-> - ⚠️ 푸시 시 **위 6커밋 전부** + 미커밋 변경분 확인 필수. (이전 Battlefield PNG 누락 사고 재발 방지)
+> **[레포 A] 웹 `monthly-loan` — ✅ 원격 푸시 + PR #10 (관리자 검토 대기)**
+> - 브랜치 `feature/T-001-jun-loan-landing` 8커밋 푸시 완료 (`8199d4b..766380d`)
+> - **PR #10** (`feature → main`): https://github.com/sirjuseyo/monthly-loan/pull/10 — T-018·019·021·022·029·030 (챌린지 상세+신청폼)
+> - 남은 것: 깃&배포 관리자 PR #10 검토·머지 → 웹 반영
+> - ※ 본 보드/문서 추가 변경분(PR#10 기록 등)은 다음 문서 커밋에 포함 예정(자기참조 기록)
 >
 > **[레포 B] 서버 `sirjuseyo-admin` — ✅ dev 머지·DEV 배포 완료 (미푸시 아님)**
 > - **PR #24** (`feature → dev`) **dev 머지 완료**: `50f1b02`(T-025) + `ee8d8ee`(T-026) / 최종 dev merge `073fb21`
@@ -355,10 +355,12 @@ git checkout -b feature/T-001-jun-loan-landing
 | T-015 | 월드컵 카드 → 예언 챌린지 기획서·와이어프레임 수정 | 완료 | 완료 | 검증완료 | - | - | 쮸티12호 | 2026-06-02 | PR #9 MERGED(89d50ab) / 문서반영 |
 | T-016 | 월드컵 카드 → 예언 챌린지 코드 반영 (DEV/PRD) | 완료 | 완료 | 검증완료 | - | - | 쮸티12호 | 2026-06-02 | PR #9 MERGED / 웹·앱 라이브 정상 |
 | T-017 | gift-box 모바일 텍스트 침범 보정 | 완료 | 완료 | 검증완료 | - | - | 쮸티12호 | 2026-06-02 | PR #9 MERGED / 웹·앱 모바일 실기기 정상 |
-| T-018 | 감다살문어 챌린지 상세+신청 폴더 골격 생성 | 완료 | 대기 | - | - | - | 쮸티12호 | 2026-06-02 | `worldcup-challenge/` + 히어로 JPG 변환 |
-| T-019 | 감다살문어 챌린지 상세 페이지 코딩 (DEV/PRD) | 완료 | 대기 | 검증완료 | - | - | 쮸티12호 | 2026-06-02 | 와이어프레임 100% 이식 / 로컬 테스트 완료 |
-| T-021 | 챌린지 상세 페이지 수정 8건 | 완료 | 대기 | 검증완료 | - | - | 쮸티12호 | 2026-06-02 | 폰트·폼삭제·CTA / 로컬 테스트 완료 |
-| T-022 | 챌린지 상세 페이지 2차 수정 7건 | 완료 | 대기 | 검증완료 | - | - | 쮸티12호 | 2026-06-02 | 폰트가이드라인 + 텍스트 / 로컬 테스트 완료 |
+| T-018 | 감다살문어 챌린지 상세+신청 폴더 골격 생성 | 완료 | 완료 | 검증완료 | 완료 | 완료 | 쮸티12호 | 2026-06-02 | PR#10 main머지(`1938b0e`)·운영배포(GitHub Pages) |
+| T-019 | 감다살문어 챌린지 상세 페이지 코딩 (DEV/PRD) | 완료 | 완료 | 검증완료 | 완료 | 완료 | 쮸티12호 | 2026-06-02 | 와이어프레임 100% 이식 / 로컬 테스트 완료 |
+| T-021 | 챌린지 상세 페이지 수정 8건 | 완료 | 완료 | 검증완료 | 완료 | 완료 | 쮸티12호 | 2026-06-02 | 폰트·폼삭제·CTA / 로컬 테스트 완료 |
+| T-022 | 챌린지 상세 페이지 2차 수정 7건 | 완료 | 완료 | 검증완료 | 완료 | 완료 | 쮸티12호 | 2026-06-02 | 폰트가이드라인 + 텍스트 / 로컬 테스트 완료 |
+| T-029 | 감다살문어 챌린지 신청 폼 (DEV/PRD) | 완료 | 완료 | 검증완료 | 완료 | 완료 | 쮸티12호 | 2026-06-02 | 와이어프레임 이식·§7-4매핑·§7-5오류 / DEV로컬실테스트(DB id=2,3) / PR#10 운영배포 |
+| T-030 | 챌린지 상세 CTA DEV/PRD 라우팅 정합 | 완료 | 완료 | 검증완료 | 완료 | 완료 | 쮸티12호 | 2026-06-02 | DEV상세→DEV폼 / 사장님 재테스트(id=3) / PR#10 운영배포 |
 | T-025 | 감다살문어 챌린지 신청 접수 API (sirjuseyo-admin) | 완료 | 완료 | 검증완료 | 미반영 | 미반영 | 쮸티12호 | 2026-06-02 | 서버레포 / PR #24 dev머지(`8533c05`) / DEV image `dev-20260602T021207UTC` rollout success·liveness200 / API기능테스트(#18) 진행예정 |
 | T-026 | [핫픽스] challenge Repository/Entity bean scan 추가 | 완료 | 완료 | 검증완료 | 미반영 | 미반영 | 쮸티12호 | 2026-06-02 | 서버레포 / `ee8d8ee` dev머지(`073fb21`) / `NanoDataSourceConfig` scan에 challenge 추가 |
 | T-027 | [핫픽스] 챌린지 PK int→BIGINT (DEV DB ALTER) | - | - | 검증완료 | 미반영 | 미반영 | 쮸티12호 | 2026-06-02 | 서버레포 코드커밋 없음(DB ALTER만) / DEV `nano` PK bigint 교정 / TECHSPEC·DDL 문서 bigint 반영 |
@@ -398,8 +400,9 @@ git checkout -b feature/T-001-jun-loan-landing
 | **T-026** | WT-026 | W-026 | 로컬커밋+원격푸시 완료 | **진행중(In-Progress)** | **[Phase 1 핫픽스] challenge Repository/Entity Spring bean 미등록 수정** | 쮸티12호 | 2026-06-02 | 【레포】`sirjuseyo-admin` / `NanoDataSourceConfig` `@EnableJpaRepositories.basePackages` + `.packages()`에 `...challenge` 2줄씩 추가 / 컴파일✅ / **커밋 `ee8d8ee` 푸시✅(PR#24 자동갱신)** / 관리자 보고: PR#24 dev머지(`8533c05`) 후 기동실패→롤백, DEV 정상 |
 | **T-027** | WT-027 | W-027 | DEV ALTER+문서 완료 | **진행중(In-Progress)** | **[Phase 1 핫픽스2] 챌린지 PK BIGINT 정합 (DB ALTER)** | 쮸티12호 | 2026-06-02 | 【대상】DEV `nano` DB + TECHSPEC §4-3/DDL 문서 / ②안: DEV 분리확인(row 0)→`ALTER` PK `int`→`bigint`✅(NOT NULL·auto_increment·PRI)→TECHSPEC/DDL 문서 bigint 반영✅. Entity Long 유지(코드 무변경) |
 | **T-028** | WT-028 | W-028 | 개발자 테스트 완료 | **진행중(In-Progress)** ※개발자검증 完 | **[Phase 1 #18] 개발자 API 테스트 (API↔DB 연동·적재)** | 쮸티12호 | 2026-06-02 | DEV 실호출: 정상201(id=1, DB실적재·한글·하이픈제거·RECEIVED 확인) + 400 3종(필수누락/포인트N/중복phone) 정확 / DB 1건만(오염無)·**테스트데이터 보존** / ⚠️종합 `테스트완료`는 최종 클라 테스트 후 결정 |
-| **T-030** | WT-030 | W-030 | 수정+사장님 재테스트 통과 | **진행중(In-Progress)** | **[Phase 2 수정A] 상세→신청 CTA DEV/PRD 라우팅 정합** | 쮸티12호 | 2026-06-02 | `index-dev.html` 상세 CTA `./apply/`→`./apply/index-dev.html` / **사장님 재테스트✅: DEV상세→DEV폼→완료화면→DB id=3(박준호,우승→WIN) 적재 확인** / 커밋 대기 |
-| **T-029** | WT-029 | W-029 | 구현+DEV로컬테스트 완료 | **진행중(In-Progress)** | **[Phase 2] 클라 신청 폼 구현 (DEV+PRD 동시)** | 쮸티12호 | 2026-06-02 | 【파일】`apply/index.html`(PRD) + `index-dev.html`(DEV) / 와이어프레임 100% 이식·§7-4매핑·§7-5오류·히어로이미지 / **DEV 로컬 실테스트✅(localhost:5500→실fetch→완료화면→DB id=2 적재, 매핑 Y/R16 확인)** / 남음: 커밋·푸시·PR |
+| **T-031** | WT-031 | W-032 | 푸시완료 `b5fe8a4`(PR#25) | **진행중(In-Progress)** | **[Phase 3-🅐] 어드민 서버 API (sirjuseyo-admin)** | 쮸티12호 | 2026-06-02 | 【레포】`Claude_Server_20260413/sirjuseyo-admin` / §5-2~5-6: 목록·상세·채점·상태·CSV API (인증 `/challenge/**`) / dev 먼저 배포 |
+| **T-030** | WT-030 | W-030 | 푸시완료 `210a1f3`(PR#10) | **진행중(In-Progress)** | **[Phase 2 수정A] 상세→신청 CTA DEV/PRD 라우팅 정합** | 쮸티12호 | 2026-06-02 | `index-dev.html` 상세 CTA `./apply/`→`./apply/index-dev.html` / **사장님 재테스트✅: DB id=3(박준호,우승→WIN) 적재** / 로컬커밋 완료, 원격푸시 대기 |
+| **T-029** | WT-029 | W-029 | 푸시완료 `210a1f3`(PR#10) | **진행중(In-Progress)** | **[Phase 2] 클라 신청 폼 구현 (DEV+PRD 동시)** | 쮸티12호 | 2026-06-02 | 【파일】`apply/index.html`(PRD) + `apply/index-dev.html`(DEV) / 와이어프레임 100% 이식·§7-4매핑·§7-5오류·히어로이미지 / **DEV 로컬 실테스트✅(실fetch→완료화면→DB id=2 적재)** / 로컬커밋 완료, 원격푸시 대기 |
 
 
 
@@ -458,6 +461,9 @@ git checkout -b feature/T-001-jun-loan-landing
 | ~~W-028~~ | ~~P0~~ | T-028 | ~~대기~~ → **T-028 생성됨 (승인·착수)** | ~~[Phase 1 #18] 개발자 API 테스트~~ | `dev-admin-api.sirjuseyo.com` (curl) + DEV `nano` DB(SELECT) | 클라 없이 개발자가 직접 `POST .../applications` → 201+id → DB row 적재 확인 → 400 케이스. **테스트 데이터 삭제 금지(사장님 확인용 보존)** | 2026-06-02 | 쮸티12호 |
 | ~~W-030~~ | ~~P0(긴급)~~ | T-030 | ~~대기~~ → **T-030 생성됨 (승인·착수)** | **[Phase 2 수정A] 상세→신청 CTA DEV/PRD 라우팅 정합** | `2026-06/worldcup-challenge/index-dev.html`(상세 DEV) | DEV 상세의 신청 CTA `href="./apply/"`가 디렉토리 기본문서=`index.html`(PRD 신청폼→운영 admin-api)로 연결됨. DEV 상세는 DEV 신청폼(`./apply/index-dev.html`)으로 가야 함. PRD 상세(`index.html`)는 `./apply/` 유지(정상). | 2026-06-02 | 쮸티12호 |
 | ~~W-031~~ | ~~P0~~ | - | **철회(불필요)** | ~~[Phase 2 수정B] 신청폼 오류처리 §7-5 정합~~ | - | **철회 사유:** "No message available"는 #1(PRD 폼 오연결→운영404) 때문에만 발생. W-030으로 DEV 정상 연결 후 그 에러 자체가 안 남. 정상 운영 응답(201/400/429/500/network)은 현재 코드가 이미 처리. 404 대비는 과한 작업이라 철회(사장님 판단). | 2026-06-02 | 쮸티12호 |
+| ~~W-032~~ | ~~P0~~ | T-031 | ~~대기~~ → **T-031 생성됨 (승인·착수)** | **[Phase 3-🅐] 어드민 서버 API (sirjuseyo-admin, `/challenge/**` 인증)** | `Claude_Server_20260413/sirjuseyo-admin` | §5-2~5-6 신규: GET 목록(status_cd·name·phone 필터+페이지네이션+코드→한글라벨) / GET 상세 / PATCH 채점(hit5합=total_hit_count·×10=ticket_amount·0→MISS·≥1→HIT 자동) / PATCH 상태변경 / GET CSV export / `/challenge/**` 인증·RateLimit(IP분당10)·HTTPS / **DEV 배포(dev 먼저)**→CTO보고. ⚠️UI(W-033) 호출 대상=선행 | 2026-06-02 | 쮸티12호 |
+| **W-033** | **P0** | - | **대기 (승인 필요)** | **[Phase 3-🅑] 어드민 UI (admin-web, Vue.js)** | `Claude_Server_20260413/admin-web` | §6/§8-2: `feature/worldcup-challenge-2026-admin` / 사이드바(신청>감다살🐙문어 챌린지, NanoCredit 아래) / 리스트(`applicationList`: 상태필터6·이름·휴대폰검색·테이블(신청ID/접수일시/성함/휴대폰/예측5종/적중수/보상금액/상태/상세,코드→라벨)·행수10/20/50/100·페이지네이션) / 상세(`detail/:id`: 채점5체크박스+자동계산×10만·상태변경PATCH→재조회·관리자메모·ID네비) / CSV / 오류처리(401/500/network) / **DEV 배포(dev 먼저)**→CTO보고. ⚠️W-032 선행 | 2026-06-02 | 쮸티12호 |
+| **W-034** | **최후순위 (모든 작업 완료 후 작업 예정)** | - | **대기 (보류 — 최후 처리)** | **[보안] 신청접수 API Rate Limit (IP 분당 10회→429)** | `Claude_Server_20260413/sirjuseyo-admin` (신청접수 `/open/challenge/...` 대상) | TECHSPEC §5-1 Rate Limit: 동일 IP 분당 10회 초과 시 429. ※중복신청 방지(전화번호)와 별개 기능(IP 속도제한·봇도배 방지). ※어드민(/challenge)과 무관. ※급하지 않음 — **모든 Phase 작업 완료 후 착수** | 2026-06-02 | 쮸티12호 |
 | ~~W-029~~ | ~~P0~~ | T-029 | ~~대기~~ → **T-029 생성됨 (승인·착수)** | **[Phase 2] 클라 신청 폼 구현 (DEV+PRD 동시)** | `2026-06/worldcup-challenge/apply/index.html`(PRD) + `apply/index-dev.html`(DEV) ※폴더·스켈레톤 기존 | 와이어프레임(`apply-감다살문어챌린지-worldcup_20260602.html`) 100% 이식 → 두 파일 동시 구현(API Base만 분기: PRD `admin-api`/DEV `dev-admin-api`) / 클라검증(이름·휴대폰·이메일·골0~20·필수·동의) / `FINAL_RESULT_CD`·`POINT_CD` 매핑 / `fetch` POST `/open/challenge/worldcup-challenge-2026/applications` / 성공화면(201·application_id) / 오류처리(400서버msg·429·500·network) / 히어로이미지 / DEV 로컬테스트(실신청→201→DB적재) / 기록·커밋·푸시·PR. ※세부단계 #1~12는 본 W-ID 내 체크리스트, 도중 별개이슈는 새 W-ID | 2026-06-02 | 쮸티12호 |
 
 
