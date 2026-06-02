@@ -6,6 +6,64 @@
 
 ---
 
+## WT-033 · T-033 [Phase 5 회귀수정] DEV 홈/챌린지 — DEV 배너 + DEV→DEV 링크 + PRD 승무패
+
+| 항목 | 내용 |
+|---|---|
+| 회차 | 1~5회차 (반복 수정) |
+| 작성일시 | 2026-06-02 |
+| 작성자 | 쮸티12호 |
+| 레포 | 웹 `monthly-loan` |
+| 상태 | 진행중(In-Progress) — 수정 완료, 사장님 재테스트·커밋 대기 |
+
+---
+
+[문제 — Phase 5 회귀 점검 중 사장님 발견]
+- DEV 홈(`index-dev.html`) 등에 DEV 표시 배너 없음
+- DEV 페이지가 PRD로 연결됨 (홈DEV 신청하기→/2026-06/(PRD), 승무패→/2026-06/(PRD), 호국보훈상세DEV 신청→apply.html(PRD))
+
+[처방]
+(A) DEV 배너 추가 (apply-dev.html 패턴 동일: 주황 #FF5400 바 "🚧 DEV 테스트 환경 — 실사용자 접근 금지", body 직후):
+- `index-dev.html`(홈) / `2026-06/worldcup-challenge/index-dev.html`(감다살 상세) / `2026-06/worldcup-challenge/apply/index-dev.html`(감다살 신청폼)
+(B) DEV→DEV 링크 정합:
+- `index-dev.html`: 호국보훈 신청하기 `./2026-06/`→`./2026-06/index-dev.html` / 승무패 `./2026-06/`→`./2026-06/worldcup-challenge/index-dev.html`
+- `2026-06/index-dev.html`: 호국보훈 신청 `https://.../apply/apply.html`(절대PRD)→`../apply/apply-dev.html`(상대DEV, 로컬테스트 가능)
+- ※PRD 파일(index.html 등) 무수정 확인
+
+[1회차 검증] 배너 3곳 + DEV 링크 정합 grep 확인 / PRD 무손상
+
+---
+
+[2회차 — 사장님 발견: 호국보훈 상세 DEV 배너 누락]
+- `2026-06/index-dev.html`(호국보훈 상세 DEV)에도 DEV 배너 추가 (1회차 배너 목록에서 빠졌음)
+- 검증: DEV 배너 보유 5곳(홈·호국보훈상세·호국보훈신청폼·감다살상세·감다살신청폼)
+
+[3회차 — 사장님 승인(A): loan-checker 포함]
+- `loan-checker/index-dev.html`: DEV 배너 추가
+- 홈 `index-dev.html`: 검사 시작하기 `./loan-checker/`→`./loan-checker/index-dev.html`
+- `loan-checker/index-dev.html` CTA 정적 href `https://.../2026-06/`→`../2026-06/index-dev.html`
+
+[4회차 — loan-checker JS 덮어쓰기 정정 (사장님 "여전히 PRD" 재발견)]
+- 원인: loan-checker `index-dev.html` 인라인 스크립트(591행)가 `cta.href = cfg.detailUrl`로 정적 href를 month-config의 PRD URL로 다시 덮어씀
+- 수정: DEV 전용 스크립트라 PRD 무영향. detailUrl을 DEV 경로로 변환:
+  `cta.href = cfg.detailUrl.replace('https://monthly-loan.sirjuseyo.com/','../').replace(/\/$/,'/index-dev.html')`
+- 검증: **Chrome 실측(localhost:5503)** — 홈 검사→`loan-checker/index-dev.html` / loan-checker CTA(JS 실행 후)→`../2026-06/index-dev.html` / 배너 true. 전부 DEV 확인.
+- ※기존 PRD 화면 "여전히 PRD"는 사장님 5502 서버/브라우저 캐시였음(파일·런타임은 정상)
+
+[5회차 — 사장님 지시(item3): PRD 홈 승무패 링크 정정]
+- `index.html`(PRD 홈) 승무패 `./2026-06/`(호국보훈)→`./2026-06/worldcup-challenge/`(감다살 PRD 상세)
+- ※W-035 당초 'PRD 무수정' 범위였으나 사장님 지시로 PRD 1건 수정 (범위 확장)
+- ⚠️ **배포 타이밍 경고**: PRD 감다살 신청폼→PRD admin-api(챌린지 API 미배포). 이 PRD 링크 단독 운영배포 시 실사용자 신청 404. **반드시 Phase 7(서버 PRD)과 함께 출시**.
+
+[최종 변경 파일 (6 DEV + 1 PRD)]
+- DEV: `index-dev.html`, `2026-06/index-dev.html`, `2026-06/worldcup-challenge/index-dev.html`, `2026-06/worldcup-challenge/apply/index-dev.html`, `loan-checker/index-dev.html` (+ 기존 `apply/apply-dev.html`는 배너 기보유)
+- PRD: `index.html` (승무패 링크 1건)
+
+[남은 작업]
+- 사장님 최종 확인 → 커밋·푸시·PR (PRD 배포는 Phase 7에 서버와 동반)
+
+---
+
 ## WT-032 · T-032 [Phase 3-🅑] 어드민 UI (admin-web, Vue.js)
 
 | 항목 | 내용 |
@@ -15,7 +73,7 @@
 | 작성자 | 쮸티12호 |
 | 레포 | `Claude_Server_20260413/admin-web` |
 | 브랜치 | `feature/worldcup-challenge-2026-admin` (origin/dev 최신화 후 분기) |
-| 상태 | 진행중(In-Progress) — 코드 완성, 커밋·푸시·PR·DEV배포 대기 |
+| 상태 | 테스트 완료(DONE) — DEV 배포·사장님 검증 완료 (PR#18 `a98ece0`, 정정 재배포 후 메뉴·리스트·상세·채점 정상) |
 
 ---
 
@@ -35,9 +93,56 @@
 - ⚠️ 로컬 정식 빌드 미완: node-sass(4.13)↔Node20 비호환으로 기존 scss 파일에서 실패(환경 문제, 내 파일과 무관·내 파일 plain style). 관리자 CI(정상 env) 빌드 검증 예정.
 - 코드 구조: 선배 벤치마크와 동일 패턴, plain `<style>`(scss 미사용)
 
-[남은 작업]
-1. 로컬 커밋 → 푸시 → PR(feature → dev)
-2. 깃&배포 관리자 DEV 배포 요청 (dev 먼저)
+[DEV 배포 완료 — 깃&배포 관리자 PR #18 dev 머지 + DEV 정적 배포]
+- merge commit `a98ece0` / Docker Node12 build 성공 / S3 `dev-admin.sirjuseyo.com` + CloudFront invalidation Completed / DEV WEB 200
+- `/challenge/**` 비인증 401 (인증경계 정상)
+- ⚠️ `admin-web main...dev` diverged (PR 후 dev ahead 4 / behind 4) → **PRD 전체 dev→main 병합 금지, T-032 커밋만 선별 반영**
+
+### 📥 깃 & 배포 관리자 작업 완료 보고서 원문 (보관 — 정책 201~205, 마지막 WT-ID 밑)
+```
+[DEV : 깃 & 배포 관리자 -> 개발자]
+admin-web T-032 반영 완료했습니다.
+
+원격 머지: feature/worldcup-challenge-2026-admin -> dev / PR #18 / merge commit a98ece08080217162a36d533e8b2a1c58786dcfd
+DEV 정적 배포:
+- Docker Node12 npm install && npm run build:dev 성공
+- S3 s3://dev-admin.sirjuseyo.com/ / CloudFront invalidation IOBM0Y5ZZSSLU6RLSDZLPSQ3W status Completed
+- DEV WEB https://dev-admin.sirjuseyo.com/ HTTP/2 200
+확인:
+- admin-web 레포에는 GitHub Actions workflow/checks 없음
+- https://dev-admin-api.sirjuseyo.com/challenge/worldcup-challenge-2026/applications 비인증 HTTP/2 401 (어드민 API 인증경계 정상)
+주의:
+- 로컬 Node v25 build는 구형 webpack/OpenSSL 오류로 실패했으나 Docker Node12 기준 빌드 성공
+- admin-web main...dev diverged. PR 병합 후 dev ahead 4 / behind 4 → PRD 전체 dev->main 병합 금지. PRD 반영 요청 시 T-032 대상 커밋만 선별 반영
+문서: GitDeployOps TODO/WORK_THROUGH 업데이트, 완료보고서 WT-011 / project-docs commit 0aefda4
+
+한 줄: admin-web T-032 PR #18 dev merge 완료, Docker Node12 DEV build 및 S3/CloudFront 정적 배포 완료, DEV URL 200 및 어드민 API 비인증 401 확인. PRD는 main/dev diverged로 전체 병합 금지.
+```
+
+### 📥 깃 & 배포 관리자 작업 완료 보고서 원문 — ②차(DEV 오배포 정정 재배포) (직전 보고서 밑 이어서 보관)
+> ⚠️ 1차 DEV 배포 산출물이 **로컬 main 기준으로 빌드**되어 메뉴 미노출 → dev 기준 정정 재배포. **개발자 커밋/푸시는 정상(추가 수정 불필요)** 확인됨.
+```
+[깃 & 배포 관리자 → 개발자]
+admin-web T-032 DEV 오배포 정정 재배포 완료했습니다.
+
+원인:
+- PR #18은 dev에 정상 머지됐으나, 이전 DEV 배포 산출물이 로컬 main 기준으로 생성됨
+- 개발자 커밋/푸시는 정상이며 추가 수정/복원 작업 불필요
+
+재배포:
+- 원격 dev commit a98ece08080217162a36d533e8b2a1c58786dcfd 기준 재빌드
+- Docker Node12 npm run build:dev 성공 / S3 s3://dev-admin.sirjuseyo.com/ 재동기화
+- CloudFront /* 무효화: I9QWZI8CB2HREAM0E9WYK6DS27
+
+검증:
+- DEV WEB https://dev-admin.sirjuseyo.com/ → HTTP/2 200
+- 배포 JS /29.js 에 '감다살🐙문어 챌린지' 및 '/pages/worldcup-challenge/list' 포함 확인
+- DEV admin API 비인증 → HTTP/2 401
+
+문서: T-012/W-012/WT-012 검증완료, WORK_THROUGH WT-012 / 원격 문서 커밋 ecb53c7
+
+한 줄: admin-web T-032 DEV 오배포 정정 완료, 원격 dev a98ece0 기준 클린 재빌드/재업로드/CloudFront 무효화 완료, DEV URL 200 및 메뉴 번들 포함 확인.
+```
 
 ---
 
@@ -50,7 +155,7 @@
 | 작성자 | 쮸티12호 |
 | 레포 | `Claude_Server_20260413/sirjuseyo-admin` |
 | 브랜치 | `feature/worldcup-challenge-2026-admin-api` (origin/dev 최신화 후 분기) |
-| 상태 | 진행중(In-Progress) — 코드+컴파일 완료, 커밋·푸시·PR·DEV배포 대기 |
+| 상태 | 테스트 완료(DONE) — DEV 배포·검증 완료 (PR#25 `436447a`) |
 
 ---
 
