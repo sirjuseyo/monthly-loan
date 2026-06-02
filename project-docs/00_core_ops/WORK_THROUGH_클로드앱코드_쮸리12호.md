@@ -6,6 +6,41 @@
 
 ---
 
+## WT-032 · T-032 [Phase 3-🅑] 어드민 UI (admin-web, Vue.js)
+
+| 항목 | 내용 |
+|---|---|
+| 회차 | 1회차 |
+| 작성일시 | 2026-06-02 |
+| 작성자 | 쮸티12호 |
+| 레포 | `Claude_Server_20260413/admin-web` |
+| 브랜치 | `feature/worldcup-challenge-2026-admin` (origin/dev 최신화 후 분기) |
+| 상태 | 진행중(In-Progress) — 코드 완성, 커밋·푸시·PR·DEV배포 대기 |
+
+---
+
+[작업 목표]
+감다살🐙문어 챌린지 어드민 화면(리스트·상세·채점·CSV) 구현. **선배(review-application) 화면 카피캣 — 자의적 디자인 0.**
+
+[처방 — 신규 3 + 수정 2]
+- `service/worldcupChallenge/worldcupChallengeAPI.js` — review API 패턴 카피 + 챌린지 엔드포인트 + CSV(blob)
+- `views/pages/worldcup-challenge/WorldcupChallengeApplicationList.vue` — ReviewApplicationList 카피캣 (필터·페이지네이션·테이블·CSV / `cw-` prefix / 6상태 / §6-2 컬럼: 예측5종·적중수·보상금액 추가)
+- `views/pages/worldcup-challenge/WorldcupChallengeApplicationDetail.vue` — ReviewApplicationDetail 카피캣 (ID네비·헤더·2열카드 / `cwd-` prefix / 섹션: 기본정보·예측5종·채점입력5체크박스+자동계산·상태변경·메모)
+- `router/index.js` — lazy import 2 + route 2 (review 라우트 패턴 동일)
+- `_nav.js` — 사이드바 메뉴 "감다살🐙문어 챌린지" 추가 (TECHSPEC §6-1: 신청>Nano Credit 아래)
+
+[검증]
+- 정식 lint(vue-cli-service lint): 실제 코드 에러 0. 잔여는 전부 도구 아티팩트
+  (.vue Parsing error = 벤치마크 review도 동일 / .js vue규칙오적용 = vue-eslint-parser 버전 불일치)
+- ⚠️ 로컬 정식 빌드 미완: node-sass(4.13)↔Node20 비호환으로 기존 scss 파일에서 실패(환경 문제, 내 파일과 무관·내 파일 plain style). 관리자 CI(정상 env) 빌드 검증 예정.
+- 코드 구조: 선배 벤치마크와 동일 패턴, plain `<style>`(scss 미사용)
+
+[남은 작업]
+1. 로컬 커밋 → 푸시 → PR(feature → dev)
+2. 깃&배포 관리자 DEV 배포 요청 (dev 먼저)
+
+---
+
 ## WT-031 · T-031 [Phase 3-🅐] 어드민 서버 API (sirjuseyo-admin, /challenge/** 인증)
 
 | 항목 | 내용 |
@@ -65,14 +100,50 @@ sirjuseyo-admin T-031 작업 완료했습니다.
 커밋:
 - `b5fe8a4` `feat(challenge): 감다살문어 챌린지 어드민 조회·채점 API [T-031]`
 
-PR: #25 (feature/worldcup-challenge-2026-admin-api → dev)
+문서:
+- project-docs (웹 레포 monthly-loan, 문서 전용)
+- 브랜치: feature/T-001-jun-loan-landing
+- PR: 문서 PR 별도 미생성 (project-docs는 push-only 정책)
+- 문서 커밋: `f86619e` `docs(challenge): Phase3-🅐 어드민 API 기록 [T-031/W-032·W-034]`
 
-한 줄: sirjuseyo-admin T-031 완료, feature 푸시 및 PR #25 생성, 컴파일 검증 했습니다.
-깃 & 배포 관리자님 feature → dev 검토 부탁드립니다. (dev 먼저 배포)
+한 줄 버전:
+- sirjuseyo-admin T-031 완료, feature/worldcup-challenge-2026-admin-api 푸시 및 PR #25 생성 완료, 컴파일(BUILD SUCCESSFUL) 검증 했습니다. 깃 & 배포 관리자님 feature → dev 검토 부탁드립니다. (dev 먼저 배포)
 ```
 
-[남은 작업]
-- 깃&배포 관리자 PR #25 검토·머지 → DEV 배포 (작업완료서 수령)
+[DEV 배포 완료 — 깃&배포 관리자 PR #25 dev 머지 + DEV 배포]
+- merge commit `436447a` / DEV image `dev-20260602T133152UTC` / rollout success·pod 1/1·liveness 200
+- `/challenge/**` 비인증 GET → 401 (인증경계 정상) / bean·schema validation 오류 미재발
+
+### 📥 깃 & 배포 관리자 작업 완료 보고서 원문 (보관 — 정책 201~205, 마지막 WT-ID 밑)
+```
+[깃 & 배포 관리자 → 개발자]
+sirjuseyo-admin T-031 감다살문어 챌린지 어드민 조회/채점 API PR #25 dev 반영 및 DEV 배포 검증 완료했습니다.
+
+작업 내용:
+- PR #25 feature/worldcup-challenge-2026-admin-api → dev 병합 완료
+- merge commit: 436447a74e3022682f30d06f20a2a367284cd920
+- 신규 DEV image 생성 및 ECR push 완료 / DEV Kubernetes 배포 반영 완료
+- /challenge/** 어드민 인증 경계 확인
+
+검증:
+- PR CI build-test → pass / admin Deploy GitHub Actions run 26823104036 → success
+- DEV image dev-20260602T133152UTC (digest sha256:5febe86e...0f5a88)
+- admin-dev-deploy rollout success / pod admin-dev-deploy-54c4447dd-4kmbv Ready 1/1 restart 0
+- https://dev-admin-api.sirjuseyo.com/liveness → HTTP/2 200
+- 비인증 GET /challenge/worldcup-challenge-2026/applications → HTTP/2 401
+- Spring 로그: repository scan 17/25 정상 / member·nano EMF 초기화 정상 / Started AdminApplication / 이전 bean 미등록·schema validation 오류 미재발
+
+배포 특이사항:
+- EKS 자동 Repository Dispatch run 26823219064는 'Missing kustomization for admin/dev'로 실패
+- 수동으로 sirjuseyo-eks/admin/dev/kustomization.yaml image tag 갱신 후 반영
+- GitOps commit: e7cf571 deploy(dev): apply admin challenge management image / kubectl apply -k admin/dev 완료
+
+문서:
+- GitDeployOps TODO_BOARD W-009/T-009 검증완료 / WORK_THROUGH WT-009 완료보고서
+- 문서 커밋: 3368e95 docs(gitdeploy): record admin challenge management dev deployment
+
+한 줄: sirjuseyo-admin T-031 PR #25 dev merge 완료, image dev-20260602T133152UTC DEV 배포 완료, rollout success, pod 1/1 restart 0, liveness 200, /challenge/** 비인증 401 확인.
+```
 
 ---
 
