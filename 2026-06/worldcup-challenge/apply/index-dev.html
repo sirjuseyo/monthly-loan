@@ -1,11 +1,1262 @@
 <!DOCTYPE html>
 <html lang="ko">
+
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>감다살🐙문어 챌린지 신청 — 2026 북중미 월드컵 (DEV)</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>감다살🐙문어 챌린지 신청 — 써주세요. (DEV)</title>
+  <!-- 브랜드 폰트: Noto Sans KR (써주세요 브랜드 아이덴티티 ver1.0.2 기준) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    /*
+     * 써주세요 브랜드 컬러 시스템 (brand_identity_ver1.0.2)
+     * MAIN:  #380097  PANTONE 2735 XGC  — 퍼플 (메인 브랜드)
+     * SUB1:  #A6D6DE  PANTONE 304 CP    — 민트 블루 (서브 포인트)
+     * SUB2:  #FF5400  PANTONE 16-1362   — 버밀리언 오렌지 (강조/경고)
+     * 원칙: 흰 배경 도미넌트 / 브랜드 컬러는 포인트 용도로만 사용
+     */
+    :root {
+      --purple:       #380097;
+      --purple-light: #f0eaff;  /* 선택 상태 배경 */
+      --purple-mid:   #c4a7f0;  /* 호버 보더 */
+      --mint:         #A6D6DE;
+      --mint-light:   #f0f9fb;  /* 민트 배경 틴트 */
+      --orange:       #FF5400;
+      --gray-100:     #f5f5f7;
+      --gray-200:     #e5e7eb;
+      --gray-400:     #9ca3af;
+      --gray-500:     #6b7280;
+      --gray-700:     #374151;
+      --text:         #1a1a1a;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      /* 브랜드 아이덴티티: 흰 배경 도미넌트 */
+      font-family: 'Noto Sans KR', -apple-system, BlinkMacSystemFont, sans-serif;
+      background: #f0eaff; /* 바깥 여백에만 아주 연한 퍼플 */
+      color: var(--text);
+    }
+
+    .page {
+      max-width: 480px;
+      margin: 0 auto;
+      background: #ffffff;
+      min-height: 100vh;
+    }
+
+
+
+    /* ── Progress bar ── */
+    .progress-bar {
+      height: 4px;
+      background: var(--gray-200);
+      position: sticky;
+      top: 0;
+      z-index: 50;
+    }
+
+    .progress-fill {
+      height: 100%;
+      /* 브랜드 메인 퍼플 */
+      background: var(--purple);
+      transition: width 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    /* ── 화면 섹션 ── */
+    .screen {
+      display: none;
+    }
+
+    .screen.active {
+      display: block;
+    }
+
+    /* ── 랜딩 ── */
+    .landing {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 0 0 40px;
+      background: #ffffff;
+    }
+
+    .landing img {
+      width: 100%;
+      display: block;
+    }
+
+    .landing .start-wrap {
+      padding: 0 24px;
+      width: 100%;
+      margin-top: 28px;
+    }
+
+    /* ── 랜딩 히어로 이미지 (실제 이미지) ── */
+    .landing-img-real {
+      width: calc(100% - 48px);
+      margin: 0 24px 28px;
+      border-radius: 12px;
+      display: block;
+    }
+
+    /* ── 랜딩 헤더 (타이틀 + CTA) ── */
+    .landing-header {
+      padding: 40px 24px 36px;
+      width: 100%;
+    }
+    .landing-title {
+      font-size: 28px;
+      font-weight: 800;
+      line-height: 1.55;
+      color: var(--text);
+      margin-bottom: 24px;
+      letter-spacing: -0.3px;
+    }
+    .landing-cta {
+      font-size: 18px;
+      color: var(--gray-700);
+      line-height: 2.4;
+      background: var(--purple-light);
+      border-radius: 14px;
+      padding: 20px 20px;
+      /* 브랜드 메인 퍼플 라인 */
+      border-left: 4px solid var(--purple);
+      margin-top: 72px;
+      margin-bottom: 48px;
+    }
+    .cta-highlight {
+      /* 브랜드 메인 퍼플 */
+      color: var(--purple);
+      font-size: 18px;
+      font-weight: 800;
+    }
+
+    /* ── 뒤로 버튼 ── */
+    .back-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+      color: var(--gray-400);
+      font-size: 13px;
+      margin-bottom: 24px;
+      cursor: pointer;
+      font-weight: 500;
+      transition: color 0.15s;
+    }
+    .back-btn:hover {
+      color: var(--purple);
+    }
+
+    /* ── 섹션 패딩 ── */
+    .section {
+      padding: 32px 24px 40px;
+    }
+
+    /* ── 질문 제목 ── */
+    .q-title {
+      font-size: 22px;
+      font-weight: 700;
+      line-height: 1.55;
+      margin-bottom: 16px;
+      letter-spacing: -0.2px;
+    }
+
+    .q-title .req {
+      /* 브랜드 오렌지 — 필수 표시 */
+      color: var(--orange);
+    }
+
+    .q-hint {
+      font-size: 14px;
+      color: var(--gray-400);
+      margin-bottom: 12px;
+      line-height: 1.7;
+    }
+
+    /* ── 설명 박스 ── */
+    .desc-box {
+      background: var(--mint-light);
+      border-radius: 12px;
+      padding: 20px 20px;
+      font-size: 16px;
+      color: var(--gray-700);
+      line-height: 1.75;
+      /* 브랜드 민트 포인트 라인 */
+      border-left: 3px solid var(--mint);
+      margin-bottom: 10px;
+    }
+
+    /* ── 선택지 ── */
+    .opts {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      margin-bottom: 4px;
+    }
+
+    .opt {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding: 15px 16px;
+      border: 1.5px solid var(--gray-200);
+      border-radius: 14px;
+      font-size: 17px;
+      font-weight: 500;
+      cursor: pointer;
+      transition: all 0.15s;
+      background: #ffffff;
+    }
+
+    .opt:hover {
+      /* 브랜드 민트 호버 */
+      border-color: var(--purple-mid);
+      background: var(--purple-light);
+    }
+
+    .opt.sel {
+      /* 브랜드 메인 퍼플 선택 상태 */
+      border-color: var(--purple);
+      background: var(--purple-light);
+    }
+
+    .opt-key {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 26px;
+      height: 26px;
+      background: var(--gray-100);
+      border-radius: 6px;
+      font-size: 12px;
+      font-weight: 700;
+      color: var(--gray-500);
+      flex-shrink: 0;
+    }
+
+    .opt.sel .opt-key {
+      /* 선택된 키: 브랜드 퍼플 */
+      background: var(--purple);
+      color: #ffffff;
+    }
+
+    /* ── 텍스트 입력 ── */
+    .inp-box {
+      width: 100%;
+      padding: 15px 16px;
+      border: 1.5px solid var(--gray-200);
+      border-radius: 14px;
+      font-size: 15px;
+      font-family: 'Noto Sans KR', sans-serif;
+      color: var(--text);
+      background: #ffffff;
+      outline: none;
+      transition: border-color 0.15s, box-shadow 0.15s;
+    }
+
+    .inp-box:focus {
+      /* 포커스 시 브랜드 퍼플 */
+      border-color: var(--purple);
+      box-shadow: 0 0 0 3px rgba(56, 0, 151, 0.08);
+    }
+
+    textarea.inp-box {
+      min-height: 100px;
+      resize: none;
+      line-height: 1.7;
+    }
+
+    select.inp-box {
+      appearance: none;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath fill='%236b7280' d='M6 8L0 0h12z'/%3E%3C/svg%3E");
+      background-repeat: no-repeat;
+      background-position: right 16px center;
+      cursor: pointer;
+    }
+
+    /* ── 버튼 (브랜드 메인 퍼플) ── */
+    .nav-btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      /* 브랜드 메인 컬러 */
+      background: var(--purple);
+      color: #ffffff;
+      border: none;
+      border-radius: 14px;
+      padding: 0 24px;
+      min-height: 54px;       /* 브랜드 기준 최소 높이 */
+      font-size: 16px;
+      font-weight: 700;
+      font-family: 'Noto Sans KR', sans-serif;
+      margin-top: 20px;
+      cursor: pointer;
+      transition: opacity 0.15s, transform 0.1s;
+      letter-spacing: -0.1px;
+    }
+
+    .nav-btn:hover {
+      opacity: 0.88;
+    }
+
+    .nav-btn:active {
+      transform: scale(0.98);
+    }
+
+    .nav-btn.full {
+      width: 100%;
+    }
+
+    /* ── 개인정보 박스 ── */
+    .privacy-box {
+      background: var(--gray-100);
+      border-radius: 14px;
+      padding: 24px;
+      font-size: 17px;
+      color: var(--gray-700);
+      line-height: 2.0;
+      margin-bottom: 20px;
+    }
+
+    .privacy-box strong {
+      display: block;
+      font-size: 17px;
+      font-weight: 700;
+      margin-bottom: 12px;
+      color: var(--text);
+    }
+
+    /* ── 완료 화면 ── */
+    .ty-title {
+      font-size: 22px;
+      font-weight: 700;
+      line-height: 1.6;
+      margin-bottom: 16px;
+      letter-spacing: -0.2px;
+    }
+
+    .ty-warn {
+      /* 브랜드 오렌지 — 강조 경고 */
+      color: var(--orange);
+      font-size: 18px;
+      font-weight: 700;
+      margin-bottom: 24px;
+    }
+
+    .ty-info {
+      background: var(--purple-light);
+      border-radius: 14px;
+      padding: 28px 24px;
+      font-size: 18px;
+      line-height: 2.3;
+      color: var(--gray-700);
+      margin-bottom: 28px;
+      border-left: 4px solid var(--purple);
+    }
+
+    .ty-info strong {
+      color: var(--purple);
+    }
+
+    .kakao-row {
+      display: flex;
+      gap: 12px;
+    }
+
+    .kakao-btn {
+      flex: 1;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      padding: 18px 10px;
+      border-radius: 14px;
+      background: #FEE500;
+      color: #111;
+      font-size: 17px;
+      font-weight: 700;
+      font-family: 'Noto Sans KR', sans-serif;
+      text-decoration: none;
+      min-height: 60px;
+    }
+
+    /* ── 에러 메시지 ── */
+    .err-msg {
+      /* 에러는 오렌지 계열 유지 */
+      color: #e53e3e;
+      font-size: 12px;
+      margin-top: 6px;
+      display: none;
+    }
+
+    .err-msg.show {
+      display: block;
+    }
+
+    /* ── 생년월일 인라인 캘린더 피커 (탈리 방식) ── */
+    .birth-picker { position: relative; }
+
+    .birth-cal {
+      display: none;
+      position: absolute;
+      top: calc(100% + 6px);
+      left: 0; right: 0;
+      background: #ffffff;
+      border: 1.5px solid var(--purple);
+      border-radius: 14px;
+      padding: 14px 12px;
+      z-index: 200;
+      box-shadow: 0 8px 28px rgba(56, 0, 151, 0.14);
+    }
+    .birth-cal.open { display: block; }
+
+    /* 연/월 네비게이션 */
+    .bc-nav {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 10px;
+    }
+    .bc-navbtn {
+      background: none;
+      border: none;
+      font-size: 14px;
+      cursor: pointer;
+      color: var(--purple);
+      padding: 5px 8px;
+      border-radius: 8px;
+      line-height: 1;
+      font-weight: 700;
+    }
+    .bc-navbtn:hover { background: var(--purple-light); }
+    .bc-label {
+      font-size: 15px;
+      font-weight: 700;
+      color: var(--text);
+    }
+
+    /* 요일 헤더 */
+    .bc-dow {
+      display: grid;
+      grid-template-columns: repeat(7, 1fr);
+      text-align: center;
+      font-size: 11px;
+      color: var(--gray-400);
+      font-weight: 600;
+      margin-bottom: 4px;
+    }
+
+    /* 날짜 그리드 */
+    .bc-grid {
+      display: grid;
+      grid-template-columns: repeat(7, 1fr);
+      gap: 2px;
+    }
+    .bc-day {
+      aspect-ratio: 1;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 13px;
+      font-family: 'Noto Sans KR', sans-serif;
+      cursor: pointer;
+      border-radius: 8px;
+      transition: all 0.1s;
+    }
+    .bc-day:not(.empty):hover {
+      background: var(--purple-light);
+      color: var(--purple);
+      font-weight: 600;
+    }
+    .bc-day.sel {
+      background: var(--purple);
+      color: #ffffff;
+      font-weight: 700;
+    }
+    .bc-day.empty { cursor: default; }
+
+    /* ── 기간 선택 불가 인라인 경고 ── */
+    .period-warn {
+      display: none;
+      margin-top: 12px;
+      padding: 14px 16px;
+      background: #fff5f0;
+      border-radius: 12px;
+      border-left: 3px solid var(--orange);
+      font-size: 13px;
+      color: var(--orange);
+      font-weight: 600;
+      line-height: 1.7;
+    }
+
+    /* 닫기 버튼 (포인트 없을 때) */
+    .close-btn {
+      display: block;
+      width: 100%;
+      margin-top: 14px;
+      padding: 12px;
+      background: var(--orange);
+      color: #fff;
+      border: none;
+      border-radius: 10px;
+      font-size: 14px;
+      font-weight: 700;
+      cursor: pointer;
+      font-family: inherit;
+      transition: background .2s;
+    }
+    .close-btn:hover {
+      background: #d94800;
+    }
+  </style>
 </head>
+
 <body>
-  <!-- TODO: 감다살문어 챌린지 신청 폼 (DEV) — 기획서/apply 와이어프레임 기준 코딩 예정 -->
+
+  <div class="progress-bar">
+    <div class="progress-fill" id="progressFill" style="width:0%"></div>
+  </div>
+
+  <div class="page">
+
+    <!-- ══════════════════════════════════ -->
+    <!-- SCREEN 0 · 랜딩                   -->
+    <!-- ══════════════════════════════════ -->
+    <div id="s0" class="screen active">
+      <div class="landing">
+        <!-- 페이지 타이틀 + CTA 참여 유도 문구 -->
+        <div class="landing-header">
+          <h1 class="landing-title">🔮 감다살🐙문어 챌린지 신청을 시작합니다!</h1>
+          <p class="landing-cta">
+            📍현재 고객님은<br><br>
+            <strong class="cta-highlight">[감다살🐙문어 챌린지]</strong>를 신청중입니다.<br>
+            한국 A조 결과를 예언하고 <strong class="cta-highlight">최대 50만 원</strong> 추가 대출 받으세요.
+          </p>
+        </div>
+        <!-- 히어로 이미지 (상세 페이지와 동일 에셋) -->
+        <img class="landing-img-real" src="../assets/worldcup-challenge-jun-001.jpg" alt="감다살🐙문어 챌린지 — 2026 북중미 월드컵 대한민국 화이팅" />
+        <div class="start-wrap">
+          <button class="nav-btn full" onclick="goTo('s-point')">🐙 예언 챌린지 시작하기 →</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- ══════════════════════════════════ -->
+    <!-- SCREEN POINT · 감다살🐙미션 10,000P 보유 확인 (최우선)  -->
+    <!-- ══════════════════════════════════ -->
+    <div id="s-point" class="screen">
+      <div class="section">
+        <div class="back-btn" onclick="goBack()">← 뒤로</div>
+        <div class="q-title">⚠️ 감다살🐙미션 10,000P를 적립하셨나요?<span class="req"> *</span></div>
+        <div class="q-hint">* 챌린지 참가 자격을 위한 적립입니다. 신청 후 운영자가 차감합니다.</div>
+        <div class="opts" id="opts-point">
+          <div class="opt" data-val="있습니다" onclick="selectPointYes(this)"><span class="opt-key">A</span>
+            네, 10,000P 적립했습니다.</div>
+          <div class="opt" data-val="없습니다" onclick="selectPointNo(this)"><span class="opt-key">B</span>
+            아니요, 아직 적립 안 했어요.</div>
+        </div>
+        <!-- 포인트 없음 경고 + 닫기 버튼 -->
+        <div class="period-warn" id="warn-point">
+          ⚠️ <strong>감다살🐙미션 10,000P가 없으면 신청은 자동 무효입니다.</strong><br>
+          써주세요. 앱 → 포인트 적립소에서 먼저 적립해주세요.<br>
+          적립 완료 후 처음부터 다시 신청해주세요.
+          <button class="close-btn" onclick="closeForm()">✖ 신청 페이지 닫기</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- ══════════════════════════════════ -->
+    <!-- Q1 · 성함                         -->
+    <!-- 탈리 수식:                        -->
+    <!--   Q1 is empty     → hide Q2~Q6+privacy -->
+    <!--   Q1 is not empty → show Q2       -->
+    <!-- ══════════════════════════════════ -->
+    <div id="s-q1" class="screen">
+      <div class="section">
+        <div class="back-btn" onclick="goBack()">← 뒤로</div>
+        <div class="q-title">1. 고객님의 성함을 알려주세요!<span class="req"> *</span></div>
+        <div class="q-hint">* 한글 실명으로 입력해주세요. (2~5자)</div>
+        <!-- 한글만 허용, 최대 5자, 외국어/숫자/특수문자 차단 -->
+        <input id="inp-q1" class="inp-box" type="text"
+          placeholder="홍길동"
+          maxlength="5"
+          oninput="formatNameInput(event)" />
+        <div class="err-msg" id="err-q1">성함을 입력해주세요.</div>
+        <button class="nav-btn" onclick="submitQ1()">✅ 입력 완료 →</button>
+      </div>
+    </div>
+
+    <!-- ══════════════════════════════════ -->
+    <!-- Q2 · 생년월일                     -->
+    <!-- 탈리 수식:                        -->
+    <!--   Q2 is not empty → show Q3       -->
+    <!--   Q2 is not empty → hide Q4~Q6+privacy -->
+    <!-- ══════════════════════════════════ -->
+    <div id="s-q2" class="screen">
+      <div class="section">
+        <div class="back-btn" onclick="goBack()">← 뒤로</div>
+        <div class="q-title">2. 고객님의 생년월일을 적어주세요.<span class="req"> *</span></div>
+        <div class="q-hint">* 숫자만 입력하시면 자동으로 2001.01.01 형식으로 변환됩니다.</div>
+        <!-- 인라인 캘린더 피커: 클릭 시 입력창 바로 아래 캘린더 펼쳐짐 (탈리 방식) -->
+        <div class="birth-picker" id="birth-picker">
+          <input id="inp-q2" class="inp-box" type="text"
+            placeholder="2001.01.01"
+            maxlength="10"
+            inputmode="numeric"
+            oninput="formatBirthInput(event)"
+            onfocus="showBirthCal()"
+            autocomplete="off" />
+          <div class="birth-cal" id="birth-cal">
+            <!-- 연/월 네비게이션: ◀◀ 이전년 ◀ 이전달 | 2000년 1월 | 다음달 ▶ 다음년 ▶▶ -->
+            <div class="bc-nav">
+              <button class="bc-navbtn" onclick="bcPrevYear()">◀◀</button>
+              <button class="bc-navbtn" onclick="bcPrevMonth()">◀</button>
+              <span class="bc-label" id="bc-label"></span>
+              <button class="bc-navbtn" onclick="bcNextMonth()">▶</button>
+              <button class="bc-navbtn" onclick="bcNextYear()">▶▶</button>
+            </div>
+            <!-- 요일 헤더: 월요일 시작 -->
+            <div class="bc-dow">
+              <span>월</span><span>화</span><span>수</span><span>목</span>
+              <span>금</span><span>토</span><span>일</span>
+            </div>
+            <!-- 날짜 그리드 (JS 렌더링) -->
+            <div class="bc-grid" id="bc-grid"></div>
+          </div>
+        </div>
+        <div class="err-msg" id="err-q2">생년월일을 입력해주세요.</div>
+        <button class="nav-btn" onclick="submitQ2()">✅ 입력 완료 →</button>
+      </div>
+    </div>
+
+    <!-- ══════════════════════════════════ -->
+    <!-- Q3 · 휴대폰 번호                  -->
+    <!-- 탈리 수식:                        -->
+    <!--   Q3 is not empty → show Q4       -->
+    <!--   Q3 is not empty → hide Q5~Q6+privacy -->
+    <!-- ══════════════════════════════════ -->
+    <div id="s-q3" class="screen">
+      <div class="section">
+        <div class="back-btn" onclick="goBack()">← 뒤로</div>
+        <div class="q-title">3. 본인 명의 휴대폰 번호를 적어주세요.<span class="req"> *</span></div>
+        <div class="q-hint">* 숫자만 입력해주세요. (예: 01012345678)</div>
+        <!-- 숫자 전용 키패드, 최대 11자리, 오입력 방어 -->
+        <input id="inp-q3" class="inp-box" type="tel"
+          placeholder="01012345678"
+          maxlength="11"
+          inputmode="numeric"
+          oninput="formatPhoneInput(event)" />
+        <div class="err-msg" id="err-q3">휴대폰 번호를 입력해주세요.</div>
+        <button class="nav-btn" onclick="submitQ3()">✅ 입력 완료 →</button>
+      </div>
+    </div>
+
+    <!-- ══════════════════════════════════ -->
+    <!-- Q4 · 이메일                       -->
+    <!-- 탈리 수식:                        -->
+    <!--   Q4 is not empty → show Q5       -->
+    <!--   Q4 is not empty → hide Divider+privacy -->
+    <!-- ══════════════════════════════════ -->
+    <div id="s-q4" class="screen">
+      <div class="section">
+        <div class="back-btn" onclick="goBack()">← 뒤로</div>
+        <div class="q-title">4. 자주 사용하시는 이메일 주소를 알려주세요!<span class="req"> *</span></div>
+        <div class="q-hint">* 예: abc@naver.com / abc@gmail.com</div>
+        <!-- 이메일 형식 오입력 방어 -->
+        <input id="inp-q4" class="inp-box" type="email"
+          placeholder="abc@naver.com"
+          oninput="onQ4Change()" />
+        <div class="err-msg" id="err-q4">이메일 주소를 입력해주세요.</div>
+        <button class="nav-btn" onclick="submitQ4()">✅ 입력 완료 →</button>
+      </div>
+    </div>
+
+    <!-- ══════════════════════════════════ -->
+    <!-- P1 · 예측 ① 한국 A조 조별 예선 성적   -->
+    <!-- ══════════════════════════════════ -->
+    <div id="s-p1" class="screen">
+      <div class="section">
+        <div class="back-btn" onclick="goBack()">← 뒤로</div>
+        <div class="q-title">🔮 예언 ① 한국 A조 조별 예선 성적은?<span class="req"> *</span></div>
+        <div class="q-hint">* 한국이 3경기를 마치고 거둘 성적을 예측해주세요.</div>
+        <div class="opts" id="opts-p1">
+          <div class="opt" data-val="3승 0무 0패" onclick="selectOpt('opts-p1',this,'s-p2')"><span class="opt-key">A</span> 3승 0무 0패</div>
+          <div class="opt" data-val="2승 1무 0패" onclick="selectOpt('opts-p1',this,'s-p2')"><span class="opt-key">B</span> 2승 1무 0패</div>
+          <div class="opt" data-val="2승 0무 1패" onclick="selectOpt('opts-p1',this,'s-p2')"><span class="opt-key">C</span> 2승 0무 1패</div>
+          <div class="opt" data-val="1승 2무 0패" onclick="selectOpt('opts-p1',this,'s-p2')"><span class="opt-key">D</span> 1승 2무 0패</div>
+          <div class="opt" data-val="1승 1무 1패" onclick="selectOpt('opts-p1',this,'s-p2')"><span class="opt-key">E</span> 1승 1무 1패</div>
+          <div class="opt" data-val="1승 0무 2패" onclick="selectOpt('opts-p1',this,'s-p2')"><span class="opt-key">F</span> 1승 0무 2패</div>
+          <div class="opt" data-val="0승 3무 0패" onclick="selectOpt('opts-p1',this,'s-p2')"><span class="opt-key">G</span> 0승 3무 0패</div>
+          <div class="opt" data-val="0승 2무 1패" onclick="selectOpt('opts-p1',this,'s-p2')"><span class="opt-key">H</span> 0승 2무 1패</div>
+          <div class="opt" data-val="0승 1무 2패" onclick="selectOpt('opts-p1',this,'s-p2')"><span class="opt-key">I</span> 0승 1무 2패</div>
+          <div class="opt" data-val="0승 0무 3패" onclick="selectOpt('opts-p1',this,'s-p2')"><span class="opt-key">J</span> 0승 0무 3패</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ══════════════════════════════════ -->
+    <!-- P2 · 예측 ② 체코전 한국 골 수        -->
+    <!-- ══════════════════════════════════ -->
+    <div id="s-p2" class="screen">
+      <div class="section">
+        <div class="back-btn" onclick="goBack()">← 뒤로</div>
+        <div class="q-title">🔮 예언 ② 체코전에서 한국이 넣을 골 수는?<span class="req"> *</span></div>
+        <div class="q-hint">* 1차전 · 2026.6.12(금) 오전 11:00 · 과달라하라</div>
+        <input id="inp-p2" class="inp-box" type="number" min="0" max="20"
+          placeholder="0"
+          inputmode="numeric"
+          oninput="onP2Change()" />
+        <div class="err-msg" id="err-p2">한국이 넣을 골 수를 입력해주세요.</div>
+        <button class="nav-btn" onclick="submitP2()">✅ 입력 완료 →</button>
+      </div>
+    </div>
+
+    <!-- ══════════════════════════════════ -->
+    <!-- P3 · 예측 ③ 멕시코전 한국 골 수      -->
+    <!-- ══════════════════════════════════ -->
+    <div id="s-p3" class="screen">
+      <div class="section">
+        <div class="back-btn" onclick="goBack()">← 뒤로</div>
+        <div class="q-title">🔮 예언 ③ 멕시코전에서 한국이 넣을 골 수는?<span class="req"> *</span></div>
+        <div class="q-hint">* 2차전 · 2026.6.19(금) 오전 10:00 · 과달라하라</div>
+        <input id="inp-p3" class="inp-box" type="number" min="0" max="20"
+          placeholder="0"
+          inputmode="numeric"
+          oninput="onP3Change()" />
+        <div class="err-msg" id="err-p3">한국이 넣을 골 수를 입력해주세요.</div>
+        <button class="nav-btn" onclick="submitP3()">✅ 입력 완료 →</button>
+      </div>
+    </div>
+
+    <!-- ══════════════════════════════════ -->
+    <!-- P4 · 예측 ④ 남아공전 한국 골 수      -->
+    <!-- ══════════════════════════════════ -->
+    <div id="s-p4" class="screen">
+      <div class="section">
+        <div class="back-btn" onclick="goBack()">← 뒤로</div>
+        <div class="q-title">🔮 예언 ④ 남아공전에서 한국이 넣을 골 수는?<span class="req"> *</span></div>
+        <div class="q-hint">* 3차전 · 2026.6.25(목) 오전 10:00 · 몬테레이</div>
+        <input id="inp-p4" class="inp-box" type="number" min="0" max="20"
+          placeholder="0"
+          inputmode="numeric"
+          oninput="onP4Change()" />
+        <div class="err-msg" id="err-p4">한국이 넣을 골 수를 입력해주세요.</div>
+        <button class="nav-btn" onclick="submitP4()">✅ 입력 완료 →</button>
+      </div>
+    </div>
+
+    <!-- ══════════════════════════════════ -->
+    <!-- P5 · 예측 ⑤ 한국 최종 성적           -->
+    <!-- ══════════════════════════════════ -->
+    <div id="s-p5" class="screen">
+      <div class="section">
+        <div class="back-btn" onclick="goBack()">← 뒤로</div>
+        <div class="q-title">🔮 예언 ⑤ 한국의 최종 성적은?<span class="req"> *</span></div>
+        <div class="q-hint">* 2026 북중미 월드컵은 48국 / 12조 / 32강 토너먼트입니다. 한국이 최종 도달할 라운드를 예측해주세요.</div>
+        <div class="opts" id="opts-p5">
+          <div class="opt" data-val="조별예선 탈락" onclick="selectOpt('opts-p5',this,'s-privacy')"><span class="opt-key">A</span> 조별예선 탈락</div>
+          <div class="opt" data-val="32강 진출 (32강 탈락)" onclick="selectOpt('opts-p5',this,'s-privacy')"><span class="opt-key">B</span> 32강 진출 (32강 탈락)</div>
+          <div class="opt" data-val="16강 진출 (16강 탈락)" onclick="selectOpt('opts-p5',this,'s-privacy')"><span class="opt-key">C</span> 16강 진출 (16강 탈락)</div>
+          <div class="opt" data-val="8강 진출 (8강 탈락)" onclick="selectOpt('opts-p5',this,'s-privacy')"><span class="opt-key">D</span> 8강 진출 (8강 탈락)</div>
+          <div class="opt" data-val="4강 진출 (4강 탈락)" onclick="selectOpt('opts-p5',this,'s-privacy')"><span class="opt-key">E</span> 4강 진출 (4강 탈락)</div>
+          <div class="opt" data-val="결승 진출 (준우승)" onclick="selectOpt('opts-p5',this,'s-privacy')"><span class="opt-key">F</span> 결승 진출 (준우승)</div>
+          <div class="opt" data-val="우승" onclick="selectOpt('opts-p5',this,'s-privacy')"><span class="opt-key">G</span> 🏆 우승</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ══════════════════════════════════ -->
+    <!-- 개인정보 동의                     -->
+    <!-- ══════════════════════════════════ -->
+    <div id="s-privacy" class="screen">
+      <div class="section">
+        <div class="back-btn" onclick="goBack()">← 뒤로</div>
+        <div class="privacy-box">
+          <strong>[개인정보 수집과 이용에 대한 동의]</strong>
+          [감다살🐙문어 챌린지] 운영 관련하여 개인정보 수집과 이용에 관한 동의를 받고자 합니다.<br><br>
+          - 수집하는 자: 써주세요연계대부<br>
+          - 개인정보 수집 및 이용 목적: [감다살🐙문어 챌린지] 신청 접수, 적중 확인, 추가 대출 안내, 마케팅 및 서비스 개선<br>
+          - 수집하는 개인정보 항목: 이름, 생년월일, 연락처, 이메일, 예측 정보<br>
+          - 개인정보 보유 및 이용 기간: 수집 일로부터 300일<br><br>
+          ※ 귀하께서는 동의하지 않을 권리가 있습니다. 동의하지 않을 경우 챌린지 신청 접수가 취소됨을 알려드립니다.
+        </div>
+        <div class="q-title">개인정보 수집과 이용에 동의하시나요?<span class="req"> *</span></div>
+        <div class="opts" id="opts-privacy">
+          <div class="opt" data-val="동의" onclick="selectPrivacy(this)">
+            <span class="opt-key">A</span> 네, 동의합니다.
+          </div>
+        </div>
+        <div class="err-msg" id="err-privacy">개인정보 수집 및 이용에 동의해주세요.</div>
+      </div>
+    </div>
+
+    <!-- ══════════════════════════════════ -->
+    <!-- 완료 화면                         -->
+    <!-- ══════════════════════════════════ -->
+    <div id="s-done" class="screen">
+      <div class="section">
+        <div class="ty-title">🎉 감다살🐙문어 챌린지 신청이 접수되었습니다!</div>
+        <div class="ty-warn">📋 반드시 아래 정보를 [써주세요. 채널]에 남겨주셔야 진행이 가능합니다.<br>❌ 남겨주시지 않으면 진행이 불가합니다.</div>
+        <div class="ty-info" id="summary-box"></div>
+        <div class="kakao-row">
+          <a class="kakao-btn" href="https://pf.kakao.com/_AcXXxl" target="_blank">👥 카톡 채널 추가하기</a>
+          <a class="kakao-btn" href="https://pf.kakao.com/_AcXXxl/chat" target="_blank">💬 1:1 채팅방 바로가기</a>
+        </div>
+      </div>
+    </div>
+
+  </div><!-- /page -->
+
+  <script>
+    /*
+     * 써주세요 대출 신청 폼 [PRD — 실사용자 전용]
+     * 탈리(Tally) 수식 → JavaScript 구현
+     * 작성일: 2026-04-23 / 작성자: 쮸리(Claude)
+     *
+     * [화면 흐름]
+     * s0 (랜딩) → s-point (포인트 확인) → s-q1 (이름) → s-q2 (생일)
+     * → s-q3 (전번) → s-q4 (메일) → s-p1 (조별예선) → s-p2 (체코전)
+     * → s-p3 (멕시코전) → s-p4 (남아공전) → s-p5 (최종성적)
+     * → s-privacy (개인정보 동의) → s-done (완료)
+     */
+
+    /* ══════════════════════════════════════════════════
+       API 설정 — DEV (개발 서버)
+       TECHSPEC v105 §7-2 / §5-1 — sirjuseyo-admin 라우팅
+       ══════════════════════════════════════════════════ */
+    const ENV = 'DEV';
+    const API_URL = 'https://dev-admin-api.sirjuseyo.com/open/challenge/worldcup-challenge-2026/applications'; // [DEV]
+
+    /* 코드 매핑 (TECHSPEC §7-4) — 화면 표시값 → 서버 코드값 */
+    const FINAL_RESULT_CD = {
+      "조별예선 탈락": "GROUP_FAIL",
+      "32강 진출 (32강 탈락)": "R32",
+      "16강 진출 (16강 탈락)": "R16",
+      "8강 진출 (8강 탈락)": "R8",
+      "4강 진출 (4강 탈락)": "R4",
+      "결승 진출 (준우승)": "FINAL",
+      "우승": "WIN"
+    };
+    const POINT_CD = { "있습니다": "Y", "없습니다": "N" };
+
+    /* 신청 데이터 → API POST 전송 (TECHSPEC §7-5 오류 처리)
+       반환: { ok: true } 또는 { ok: false, message: '사용자 안내 문구' } */
+    async function submitToAPI(payload) {
+      try {
+        const res = await fetch(API_URL, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(payload)
+        });
+        if (res.ok) return { ok: true }; // 201 Created
+        // 오류 응답: 서버 message 추출 시도
+        let serverMsg = '';
+        try { const data = await res.json(); serverMsg = (data && data.message) ? data.message : ''; } catch (e) {}
+        if (res.status === 400) return { ok: false, message: serverMsg || '입력 정보를 다시 확인해주세요.' };
+        if (res.status === 429) return { ok: false, message: '잠시 후 다시 시도해주세요.' };
+        if (res.status >= 500) return { ok: false, message: '일시적 오류가 발생했습니다.' };
+        return { ok: false, message: serverMsg || '신청 중 오류가 발생했습니다.' };
+      } catch (e) {
+        // 네트워크 오류
+        console.warn('[써주세요] API 전송 실패:', e.message);
+        return { ok: false, message: '네트워크 연결을 확인해주세요.' };
+      }
+    }
+
+    // ── 상태 저장 ──────────────────────────────────────
+    const state = {
+      point_confirmed: '',
+      q1_name: '', q2_birth: '', q3_phone: '', q4_email: '',
+      p1_group_result: '',
+      p2_czech_goals: '',
+      p3_mexico_goals: '',
+      p4_southafrica_goals: '',
+      p5_final_result: ''
+    };
+
+    // ── 화면 히스토리 (뒤로가기) ─────────────────────
+    const history = [];
+    let currentScreen = 's0';
+
+    // ── 진행률 맵 ─────────────────────────────────────
+    const progressMap = {
+      's0': 0,
+      's-point': 8,
+      's-q1': 16, 's-q2': 24, 's-q3': 32, 's-q4': 40,
+      's-p1': 50, 's-p2': 60, 's-p3': 70, 's-p4': 80, 's-p5': 90,
+      's-privacy': 95, 's-done': 100
+    };
+
+    // ── 화면 전환 ─────────────────────────────────────
+    function goTo(id) {
+      if (!id) return;
+      document.getElementById(currentScreen).classList.remove('active');
+      document.getElementById(id).classList.add('active');
+      history.push(currentScreen);
+      currentScreen = id;
+      document.getElementById('progressFill').style.width = (progressMap[id] || 0) + '%';
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+
+    function goBack() {
+      if (history.length === 0) return;
+      const prev = history.pop();
+      document.getElementById(currentScreen).classList.remove('active');
+      document.getElementById(prev).classList.add('active');
+      currentScreen = prev;
+      document.getElementById('progressFill').style.width = (progressMap[prev] || 0) + '%';
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+
+    // ── 감다살🐙미션 10,000P 보유 확인 (S-POINT 전용) ─────────────────────
+    // 있음 → 다음 화면 / 없음 → 인라인 경고 표시 후 진행 차단
+    function selectPointYes(el) {
+      document.querySelectorAll('#opts-point .opt').forEach(o => o.classList.remove('sel'));
+      el.classList.add('sel');
+      state.point_confirmed = '있습니다';
+      document.getElementById('warn-point').style.display = 'none';
+      setTimeout(() => goTo('s-q1'), 200);
+    }
+    function selectPointNo(el) {
+      document.querySelectorAll('#opts-point .opt').forEach(o => o.classList.remove('sel'));
+      el.classList.add('sel');
+      state.point_confirmed = '없습니다';
+      // 인라인 경고 표시, 다음 화면 이동 없음
+      document.getElementById('warn-point').style.display = 'block';
+    }
+
+    // ── 신청 페이지 닫기 (포인트 없을 때) ─────────────────────
+    function closeForm() {
+      // 1. window.close() 시도 (탭이 스크립트로 열렸을 때만 동작)
+      window.close();
+      // 2. 닫히지 않으면 메인 페이지로 이동 (PRD에서는 적립소 URL로 교체)
+      setTimeout(() => {
+        // 적립소 또는 메인 페이지로 이동
+        window.location.href = 'https://monthly-loan.sirjuseyo.com/2026-06/';
+      }, 100);
+    }
+
+    // ── 객관식 선택 ───────────────────────────────────
+    function selectOpt(groupId, el, nextId) {
+      document.querySelectorAll('#' + groupId + ' .opt').forEach(o => o.classList.remove('sel'));
+      el.classList.add('sel');
+      if (groupId === 'opts-p1') state.p1_group_result = el.dataset.val;
+      if (groupId === 'opts-p5') state.p5_final_result = el.dataset.val;
+      if (nextId) setTimeout(() => goTo(nextId), 200);
+    }
+
+    // ── 개인정보 동의 → API 전송 → 완료 화면 ──────────
+    function selectPrivacy(el) {
+      document.querySelectorAll('#opts-privacy .opt').forEach(o => o.classList.remove('sel'));
+      el.classList.add('sel');
+      const errEl = document.getElementById('err-privacy');
+      errEl.classList.remove('show');
+      setTimeout(async () => {
+        buildSummary();
+        // 신청 데이터 수집 (TECHSPEC §7-4 페이로드)
+        const payload = {
+          name:                      state.q1_name,
+          birth_date:                state.q2_birth,
+          phone:                     state.q3_phone,
+          email:                     state.q4_email,
+          point_confirmed_cd:        POINT_CD[state.point_confirmed],
+          predict_group_result:      state.p1_group_result,
+          predict_czech_goals:       parseInt(state.p2_czech_goals),
+          predict_mexico_goals:      parseInt(state.p3_mexico_goals),
+          predict_southafrica_goals: parseInt(state.p4_southafrica_goals),
+          predict_final_result_cd:   FINAL_RESULT_CD[state.p5_final_result],
+          privacy_agreed:            true
+        };
+        // API POST → 성공이면 완료 화면, 실패면 안내 문구 노출
+        const result = await submitToAPI(payload);
+        if (result.ok) {
+          goTo('s-done');
+        } else {
+          el.classList.remove('sel');
+          errEl.textContent = result.message;
+          errEl.classList.add('show');
+        }
+      }, 200);
+    }
+
+    /* ══════════════════════════════════════════════════
+       탈리 수식 JS 구현
+       ══════════════════════════════════════════════════ */
+
+    // Q1 성함
+    // When Q1 is empty     → Q2~Q6+privacy 전부 hide (초기화 역할)
+    // When Q1 is not empty → Q2 show
+    // 오입력 방어: 한글만 허용 (외국어/숫자/특수문자 차단), 2~5자
+    function formatNameInput(e) {
+      // 입력 중에는 차단하지 않음 (모바일 한글 IME 조합 중 자모가 가-힣 범위 밖이라 차단되는 버그 방지)
+      // 검증은 submitQ1()에서만 수행
+      const val = e.target.value;
+      if (val) document.getElementById('err-q1').classList.remove('show');
+    }
+    function submitQ1() {
+      const val = document.getElementById('inp-q1').value.trim();
+      const errEl = document.getElementById('err-q1');
+      // 한글 2~5자 유효성 검사
+      const nameRegex = /^[가-힣]{2,5}$/;
+      if (!val) {
+        errEl.textContent = '성함을 입력해주세요.';
+        errEl.classList.add('show'); return;
+      }
+      if (!nameRegex.test(val)) {
+        errEl.textContent = '한글 실명을 입력해주세요. (2~5자)';
+        errEl.classList.add('show'); return;
+      }
+      // When Q1 is not empty → Show Q2
+      state.q1_name = val;
+      goTo('s-q2');
+    }
+
+    // Q2 생년월일 — 인라인 캘린더 피커 (탈리 방식)
+    // When Q2 is not empty → Show Q3 / Hide Q4, Q5, Q6, Privacy
+
+    let _bcy = 1990, _bcm = 0; // 캘린더 현재 연도/월 (0-indexed)
+    let _bcOpen = false;
+
+    // 마스크 입력: 숫자만 허용 → 자동으로 YYYY.MM.DD 형식 변환
+    function formatBirthInput(e) {
+      let v = e.target.value.replace(/[^0-9]/g, '');
+      let r = '';
+      if (v.length > 0) r += v.slice(0, 4);       // YYYY
+      if (v.length > 4) r += '.' + v.slice(4, 6); // .MM
+      if (v.length > 6) r += '.' + v.slice(6, 8); // .DD
+      e.target.value = r;
+      if (r) document.getElementById('err-q2').classList.remove('show');
+      // 입력된 날짜로 캘린더 싱크
+      const m = r.match(/^(\d{4})\.(\d{2})/);
+      if (m) { _bcy = +m[1]; _bcm = +m[2] - 1; _renderBirthCal(); }
+    }
+
+    // 입력창 포커스 시 → 캘린더 펼치기
+    function showBirthCal() {
+      const val = document.getElementById('inp-q2').value;
+      const m = val.match(/^(\d{4})\.(\d{2})/);
+      if (m) { _bcy = +m[1]; _bcm = +m[2] - 1; }
+      else { _bcy = 1990; _bcm = 0; } // 기본: 1990년 1월
+      _renderBirthCal();
+      document.getElementById('birth-cal').classList.add('open');
+      _bcOpen = true;
+    }
+
+    function hideBirthCal() {
+      document.getElementById('birth-cal').classList.remove('open');
+      _bcOpen = false;
+    }
+
+    // 캘린더 날짜 그리드 렌더링
+    function _renderBirthCal() {
+      const MONTHS = ['1월','2월','3월','4월','5월','6월','7월','8월','9월','10월','11월','12월'];
+      document.getElementById('bc-label').textContent = `${_bcy}년 ${MONTHS[_bcm]}`;
+      const grid = document.getElementById('bc-grid');
+      grid.innerHTML = '';
+      // 월 첫째 날 요일 (월요일 시작: 월=0, 일=6)
+      const firstDay = new Date(_bcy, _bcm, 1).getDay();
+      const offset = firstDay === 0 ? 6 : firstDay - 1;
+      const total = new Date(_bcy, _bcm + 1, 0).getDate();
+      // 현재 선택된 날짜
+      const curVal = document.getElementById('inp-q2').value;
+      const sm = curVal.match(/^(\d{4})\.(\d{2})\.(\d{2})$/);
+      const selD = sm && +sm[1] === _bcy && +sm[2] - 1 === _bcm ? +sm[3] : -1;
+      // 빈 칸
+      for (let i = 0; i < offset; i++) {
+        const e = document.createElement('div'); e.className = 'bc-day empty'; grid.appendChild(e);
+      }
+      // 날짜
+      for (let d = 1; d <= total; d++) {
+        const e = document.createElement('div');
+        e.className = 'bc-day' + (d === selD ? ' sel' : '');
+        e.textContent = d;
+        const day = d; // closure
+        e.onclick = () => _selectBirthDay(day);
+        grid.appendChild(e);
+      }
+    }
+
+    // 날짜 선택 → 입력창 채우기, 캘린더 닫기
+    function _selectBirthDay(d) {
+      const mm = String(_bcm + 1).padStart(2, '0');
+      const dd = String(d).padStart(2, '0');
+      document.getElementById('inp-q2').value = `${_bcy}.${mm}.${dd}`;
+      document.getElementById('err-q2').classList.remove('show');
+      hideBirthCal();
+    }
+
+    // 월/년 네비게이션
+    function bcPrevMonth() { _bcm--; if (_bcm < 0) { _bcm = 11; _bcy--; } _renderBirthCal(); }
+    function bcNextMonth() { _bcm++; if (_bcm > 11) { _bcm = 0; _bcy++; } _renderBirthCal(); }
+    function bcPrevYear()  { _bcy--; _renderBirthCal(); }
+    function bcNextYear()  { _bcy++; _renderBirthCal(); }
+
+    // 외부 클릭 시 캘린더 닫기
+    document.addEventListener('click', function(e) {
+      if (_bcOpen && !document.getElementById('birth-picker').contains(e.target)) hideBirthCal();
+    });
+
+    function submitQ2() {
+      hideBirthCal();
+      const val = document.getElementById('inp-q2').value.trim();
+      const dateRegex = /^\d{4}\.(0[1-9]|1[0-2])\.(0[1-9]|[12]\d|3[01])$/;
+      const errEl = document.getElementById('err-q2');
+      if (!val) {
+        errEl.textContent = '생년월일을 입력해주세요.';
+        errEl.classList.add('show'); return;
+      }
+      if (!dateRegex.test(val)) {
+        errEl.textContent = '2001.01.01 형식으로 입력해주세요.';
+        errEl.classList.add('show'); return;
+      }
+      // When Q2 is not empty → Show Q3
+      state.q2_birth = val;
+      goTo('s-q3');
+    }
+
+    // Q3 휴대폰
+    // When Q3 is not empty → Show Q4 / Hide Q5, Q6, Privacy
+    // 오입력 방어: 숫자만 허용, 최대 11자리, 010/011/016/017/018/019 시작, 10~11자리
+    function formatPhoneInput(e) {
+      // 숫자 외 문자 즉시 제거
+      let val = e.target.value.replace(/[^0-9]/g, '');
+      // 최대 11자리 제한
+      if (val.length > 11) val = val.slice(0, 11);
+      e.target.value = val;
+      if (val) document.getElementById('err-q3').classList.remove('show');
+    }
+    function submitQ3() {
+      const val = document.getElementById('inp-q3').value.trim();
+      const errEl = document.getElementById('err-q3');
+      // 유효한 한국 휴대폰 번호: 010/011/016/017/018/019 시작, 총 10~11자리
+      const phoneRegex = /^01[016789]\d{7,8}$/;
+      if (!val) {
+        errEl.textContent = '휴대폰 번호를 입력해주세요.';
+        errEl.classList.add('show'); return;
+      }
+      if (!phoneRegex.test(val)) {
+        errEl.textContent = '올바른 휴대폰 번호를 입력해주세요. (예: 01012345678)';
+        errEl.classList.add('show'); return;
+      }
+      // When Q3 is not empty → Show Q4
+      state.q3_phone = val;
+      goTo('s-q4');
+    }
+
+    // Q4 이메일
+    // When Q4 is not empty → Show Q5 / Hide Divider, Privacy
+    // 오입력 방어: 이메일 형식 검증 (@ + 도메인 + 확장자 필수)
+    function onQ4Change() {
+      const val = document.getElementById('inp-q4').value.trim();
+      if (val) document.getElementById('err-q4').classList.remove('show');
+    }
+    function submitQ4() {
+      const val = document.getElementById('inp-q4').value.trim();
+      const errEl = document.getElementById('err-q4');
+      // 이메일 형식 검증: 로컬@도메인.확장자 (표준 RFC 5322 기반 실용 정규식)
+      const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/;
+      if (!val) {
+        errEl.textContent = '이메일 주소를 입력해주세요.';
+        errEl.classList.add('show'); return;
+      }
+      if (!emailRegex.test(val)) {
+        errEl.textContent = '올바른 이메일 형식으로 입력해주세요. (예: abc@naver.com)';
+        errEl.classList.add('show'); return;
+      }
+      // When Q4 is not empty → Show P1 (예측 시작)
+      state.q4_email = val;
+      goTo('s-p1');
+    }
+
+    // ── P2 체코전 한국 골 수 ──────────────────────────
+    function onP2Change() {
+      const val = document.getElementById('inp-p2').value.trim();
+      if (val !== '') document.getElementById('err-p2').classList.remove('show');
+    }
+    function submitP2() {
+      const val = document.getElementById('inp-p2').value.trim();
+      const errEl = document.getElementById('err-p2');
+      if (val === '') {
+        errEl.textContent = '한국이 넣을 골 수를 입력해주세요.';
+        errEl.classList.add('show'); return;
+      }
+      const n = parseInt(val);
+      if (isNaN(n) || n < 0 || n > 20) {
+        errEl.textContent = '0~20 사이의 숫자를 입력해주세요.';
+        errEl.classList.add('show'); return;
+      }
+      state.p2_czech_goals = val;
+      goTo('s-p3');
+    }
+
+    // ── P3 멕시코전 한국 골 수 ────────────────────────
+    function onP3Change() {
+      const val = document.getElementById('inp-p3').value.trim();
+      if (val !== '') document.getElementById('err-p3').classList.remove('show');
+    }
+    function submitP3() {
+      const val = document.getElementById('inp-p3').value.trim();
+      const errEl = document.getElementById('err-p3');
+      if (val === '') {
+        errEl.textContent = '한국이 넣을 골 수를 입력해주세요.';
+        errEl.classList.add('show'); return;
+      }
+      const n = parseInt(val);
+      if (isNaN(n) || n < 0 || n > 20) {
+        errEl.textContent = '0~20 사이의 숫자를 입력해주세요.';
+        errEl.classList.add('show'); return;
+      }
+      state.p3_mexico_goals = val;
+      goTo('s-p4');
+    }
+
+    // ── P4 남아공전 한국 골 수 ────────────────────────
+    function onP4Change() {
+      const val = document.getElementById('inp-p4').value.trim();
+      if (val !== '') document.getElementById('err-p4').classList.remove('show');
+    }
+    function submitP4() {
+      const val = document.getElementById('inp-p4').value.trim();
+      const errEl = document.getElementById('err-p4');
+      if (val === '') {
+        errEl.textContent = '한국이 넣을 골 수를 입력해주세요.';
+        errEl.classList.add('show'); return;
+      }
+      const n = parseInt(val);
+      if (isNaN(n) || n < 0 || n > 20) {
+        errEl.textContent = '0~20 사이의 숫자를 입력해주세요.';
+        errEl.classList.add('show'); return;
+      }
+      state.p4_southafrica_goals = val;
+      goTo('s-p5');
+    }
+
+    // ── 완료 요약 생성 ────────────────────────────────
+    function buildSummary() {
+      // 생년월일 6자리: "2000.01.01" → "000101"
+      const birth6 = state.q2_birth.replace(/[^0-9]/g, '').slice(2, 8);
+      document.getElementById('summary-box').innerHTML =
+        '1. 이벤트: <strong>감다살🐙문어 챌린지</strong><br>' +
+        '2. 성함: <strong>' + state.q1_name + '</strong><br>' +
+        '3. 생년월일 6자리: <strong>' + birth6 + '</strong><br>' +
+        '4. 휴대폰 번호: <strong>' + state.q3_phone + '</strong><br>' +
+        '5. 예언 ① 조별 예선: <strong>' + state.p1_group_result + '</strong><br>' +
+        '6. 예언 ② 체코전 골: <strong>' + state.p2_czech_goals + '골</strong><br>' +
+        '7. 예언 ③ 멕시코전 골: <strong>' + state.p3_mexico_goals + '골</strong><br>' +
+        '8. 예언 ④ 남아공전 골: <strong>' + state.p4_southafrica_goals + '골</strong><br>' +
+        '9. 예언 ⑤ 최종 성적: <strong>' + state.p5_final_result + '</strong>';
+    }
+  </script>
+
 </body>
+
 </html>
