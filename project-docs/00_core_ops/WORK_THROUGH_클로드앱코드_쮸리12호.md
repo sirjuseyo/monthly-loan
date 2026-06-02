@@ -17,6 +17,22 @@
 
 ---
 
+## WT-038 · T-038 [감다살 신청폼] 포인트 미보유 닫기 → 감다살 챌린지 홈
+
+| 항목 | 내용 |
+|---|---|
+| 작성일시 | 2026-06-03 | 작성자 | 쮸티12호 |
+| 상태 | 진행중 — DEV+PRD 수정 완료, DEV 브라우저 검증 완료 |
+
+[문제] 감다살 신청폼 포인트 "아니오" → 경고 → "닫기"(closeForm) → `window.close()`(같은탭 무효) + `https://monthly-loan.sirjuseyo.com/2026-06/`(호국보훈 PRD)로 리다이렉트. → ①감다살 아닌 호국보훈으로 감 ②DEV→PRD 샘 ③같은탭이라 window.close() 먹통.
+[결정] 외부웹이라 앱 적립소 불가 / 웹홈은 앱홈과 동일 UI라 무의미 → **감다살 챌린지 홈(상세)으로 복귀** (사장님 확정).
+[처방] `closeForm()`에서 window.close()·구 PRD URL 삭제 → 상대경로 리다이렉트:
+- DEV `apply/index-dev.html` → `../index-dev.html` (감다살 상세 DEV)
+- PRD `apply/index.html` → `../index.html` (감다살 상세 PRD)
+[검증] DEV 브라우저(localhost:5503): closeForm() → `/worldcup-challenge/index-dev.html`(감다살 상세 DEV·배너) 복귀 확인. 같은 탭·DEV→DEV.
+
+---
+
 ## WT-037 · T-037 [신청폼 탭 통일] 호국보훈 상세→신청폼 같은 탭
 | 항목 | 내용 |
 |---|---|
@@ -26,6 +42,29 @@
 [문제] 호국보훈 상세 신청버튼 `target="_blank"`(별도탭) ↔ 감다살 같은탭 → 불일치.
 [처방] `2026-06/index-dev.html`(DEV) + `2026-06/index.html`(PRD) SpringMarch-waiting-button `target="_blank"` 제거 → 같은 탭(감다살과 통일). ※감다살 무수정.
 [검증] DEV 브라우저: 신청버튼 target=(none), href=../apply/apply-dev.html 확인.
+
+---
+
+### 📥 깃 & 배포 관리자 작업 완료 보고서 원문 — T-035/036/037 (보관, 정책 201~205 · 마지막 WT-ID 밑)
+```
+[GitHub Pages PRD : 깃 & 배포 관리자 → 개발자]
+monthly-loan T-035/T-036/T-037 반영 완료했습니다.
+
+작업 내용:
+- PR #12 feature/T-001-jun-loan-landing → main merge 완료 / merge commit 27262b15aa1cbe452c36c34b4ca7840216a9413c
+- GitHub Pages 운영 배포 완료 / 공통 footer.js 및 12개 DEV/PRD 페이지 script 포함 확인
+- 호국보훈 상세 신청버튼 target="_blank" 제거 확인
+
+검증:
+- GitHub Pages run 26852413538 success
+- https://monthly-loan.sirjuseyo.com/footer.js HTTP/2 200 / 홈·호국보훈상세·loan-checker 200
+- footer.js 내 #sjy-footer, www.sirjuseyo.com 절대경로, 대표전화/고객문의 확인
+- 사업문의/광고문의/dandy/hailey 미노출 확인 / 12개 페이지 모두 /footer.js 포함 확인
+
+문서: TODO_BOARD·WORK_THROUGH 반영 / 문서 커밋 cc0a8f5
+
+한 줄: monthly-loan T-035/036/037 PR #12 main 반영 완료, merge 27262b1, Pages run 26852413538 success, 공통 footer 및 신청 같은 탭 반영 확인.
+```
 
 ---
 
