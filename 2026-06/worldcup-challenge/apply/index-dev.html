@@ -941,13 +941,8 @@
 
     // ── 신청 페이지 닫기 (포인트 없을 때) ─────────────────────
     function closeForm() {
-      // 1. window.close() 시도 (탭이 스크립트로 열렸을 때만 동작)
-      window.close();
-      // 2. 닫히지 않으면 메인 페이지로 이동 (PRD에서는 적립소 URL로 교체)
-      setTimeout(() => {
-        // 적립소 또는 메인 페이지로 이동
-        window.location.href = 'https://monthly-loan.sirjuseyo.com/2026-06/';
-      }, 100);
+      // 포인트 미보유 → 감다살 챌린지 홈(상세)으로 복귀 (같은 탭, DEV→DEV)
+      window.location.href = '../index-dev.html';
     }
 
     // ── 객관식 선택 ───────────────────────────────────
