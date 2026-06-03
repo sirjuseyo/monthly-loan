@@ -6,6 +6,35 @@
 
 ---
 
+## WT-039 · T-039 [감다살 상세 카피·UI 일괄 수정] 단순 텍스트/스타일
+
+| 항목 | 내용 |
+|---|---|
+| 작성일시 | 2026-06-04 | 작성자 | 쮸티12호 |
+| 상태 | 진행중 — DEV+PRD 수정 완료, 커밋·PR 대기 |
+
+[배경] 감다살🐙문어 챌린지 상세 페이지(DEV `index-dev.html` + PRD `index.html`) 카피·UI를 사장님 지시로 단건씩 다수 수정. **단순 텍스트/스타일 수정이라 W-041 분석출력 생략, 수정 내역으로 일괄 표기(사장님 지시).**
+[대상] `2026-06/worldcup-challenge/index-dev.html`(DEV) + `index.html`(PRD) 2파일 동일 반영.
+
+[처방 — 수정 내역]
+① **보상설명**: 경기당 `+10만 원×3경기=30만 원`→`추가 대출 10만 원×3경기` / 최종 `+10만 원`→`추가 대출 10만 원` / 총합 `총 최대 50만 원.`(끝 점 삭제) → 최종 `전부 맞히면 추가 대출 최대 50만 원`
+② **🐙티켓 5박스**: reward `10만 원`→`추가 대출 10만 원` / condition `한국`→`대한민국`
+③ **합계박스(✨)**: `총 최대 50만 원`→`추가 대출 최대 50만 원` (보상설명과 통일, 「총」 삭제)
+④ **사용방법**: `승인/입금 후`→`승인 후` / 톡문의 어순재배열 / `진행`→`진행하는데요. 단,` / `승인 후 바로 대출`→`⚡ 신청 후 바로 심사! 바로 입금!`(강조) / `10만(원리현)·20만(이포)·30만·50만(원리포)`→`💎 이자 미션과 원금 미션이 없는 10·20만 원(원리현)`(강조)
+⑤ **자격**: `이벤트 신청 자격`→`챌린지 신청 자격`
+⑥ **경기일정 `.match-date`**: 빨강+볼드 제거 (color `--korea-red`→`--text`, font-weight 700→400)
+⑦ **💡핵심박스**: 2줄 레이아웃 + 본문 볼드 제거(`.method-highlight` font-weight 600→400) + 불릿 `∙`
+⑧ **⚠️박스**: `집중`→`신청 전 필수 확인` 타이틀 / 본문 2줄 불릿 `∙` / 차감 워딩(`차감합니다.`→`차감하며,`)
+⑨ **`6개월 이내`**: 빨강→검정 볼드 (인라인 `color:var(--text)`)
+⑩ **푸터**: `감다살🐙문어 챌린지 · 2026 북중미 월드컵 한정 이벤트`→`2026 북중미 월드컵 한정 · 감다살🐙문어 챌린지`
+⑪ **하단CTA**: `한국 운명`→`대한민국 운명`
+⑫ **`한국`→`대한민국` 전 페이지 통일**(meta·히어로·경기일정제목·유의사항·주석·티켓 등) ※단 `(한국 시간)`은 표준표현이라 한국 유지(사장님 지시)
+
+[검증] grep `한국` 잔여 0건(DEV/PRD 양쪽) / DEV·PRD 동일 반영. DEV 브라우저 미리보기 확인.
+[배포 정책] 웹 레포(monthly-loan)는 dev 브랜치 없음 — feature→main 단일. PRD `index.html`+DEV `index-dev.html` 동시 배포(GitHub Pages 1회).
+
+---
+
 ## WT-036 · T-036 [공통푸터 수정] 고객센터 사업문의·광고문의 삭제
 | 항목 | 내용 |
 |---|---|
@@ -30,6 +59,27 @@
 - DEV `apply/index-dev.html` → `../index-dev.html` (감다살 상세 DEV)
 - PRD `apply/index.html` → `../index.html` (감다살 상세 PRD)
 [검증] DEV 브라우저(localhost:5503): closeForm() → `/worldcup-challenge/index-dev.html`(감다살 상세 DEV·배너) 복귀 확인. 같은 탭·DEV→DEV.
+
+---
+
+### 📥 깃 & 배포 관리자 작업 완료 보고서 원문 — T-038 (보관, 정책 201~205 · 마지막 WT-ID 밑)
+```
+[GitHub Pages PRD : 깃 & 배포 관리자 → 개발자]
+monthly-loan T-038 반영 완료했습니다.
+
+작업 내용:
+- PR #13 feature/T-001-jun-loan-landing → main merge 완료 / merge commit 71615ee9d999c6ba9d8962fd7f8361e1f08417bc
+- GitHub Pages 운영 배포 완료
+
+검증:
+- GitHub Pages run 26855320854 success / PRD·DEV 신청폼 HTTP/2 200
+- main 기준 DEV closeForm() → ../index-dev.html 확인 / PRD closeForm() → ../index.html 확인
+- window.close() 제거 확인 / 호국보훈 PRD 절대 URL 리다이렉트 제거 확인
+
+문서: TODO_BOARD·WORK_THROUGH 반영 / 문서 커밋 6f4836d
+
+한 줄: monthly-loan T-038 PR #13 main 반영 완료, merge 71615ee, Pages run 26855320854 success, 감다살 신청폼 닫기 DEV/PRD 상대경로 복귀 확인.
+```
 
 ---
 
