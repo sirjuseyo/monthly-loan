@@ -217,6 +217,7 @@ git checkout -b feature/T-001-jun-loan-landing
 | T-ID | 작업 타이틀 | 로컬커밋 | 원격푸시 | DEV 빌드 | PRD 코드배포 | PRD 빌드 | PRD 운영배포 | PRD 스토어배포 | 작업자 | 작업일시(연월일 시분) | 비고 |
 |---|---|---|---|---|---|---|---|---|---|---|---|
 | T-ID | 작업 설명 | 상태값 | 상태값 | 상태값 | 상태값 | 상태값 | 상태값 | 상태값 | 담당자 | 연-월-일 시:분 | 메모 |
+| **T-039** | 감다살 상세 카피·UI 일괄 수정(DEV+PRD) | ✅ `2e72d17` | ✅ | ✅ 반영완료 | **대기(PR#14 머지대기)** | - (웹) | **대기(Pages 배포)** | - (웹) | 쮸티12호 | 2026-06-04 | 웹 feature/T-001→main / **PR#14 MERGEABLE·CLEAN** / **diverged: ahead 1·behind 15** — 웹 구조상 누적 behind, T-039 단일커밋만 반영(전체머지·리베이스 불필요) / GitHub Pages PRD `index.html`+DEV `index-dev.html` 동시배포 / 작업요청서 전달 |
 
 ### 프로젝트별 컬럼 사용 매트릭스
 
