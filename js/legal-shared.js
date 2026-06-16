@@ -178,9 +178,9 @@
       '<div class="copyright-box">' +
         '<img class="copyright-logo" src="/imgs/home/logoPurpleSplash@2x.png" alt="써주세요 로고" />' +
         '<div class="copyright-text">' +
-          'This website is owned and operated by ALBITF &amp; ALBIT Inc.<br>' +
-          '© 2026 ALBITF &amp; ALBIT Inc. All rights reserved.<br>' +
-          '<span class="copyright-brand">써주세요.(sirjuseyo.com)는 써주세요연계대부(ALBITF)와 주식회사 혁사호재(ALBIT Inc.)의 공동운영 서비스입니다.</span>' +
+          'This website is owned and operated by ALBITF.<br>' +
+          '© 2026 ALBITF. All rights reserved.<br>' +
+          '<span class="copyright-brand">써주세요.(sirjuseyo.com)는 써주세요연계대부(ALBITF)의 서비스입니다.</span>' +
         '</div>' +
       '</div>' +
     '</div>';
