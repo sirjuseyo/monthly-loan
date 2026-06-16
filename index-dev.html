@@ -16,13 +16,15 @@
   --text:#1A1A2E;
   --gray:#888;
 }
-html,body{background:var(--cream);min-height:100vh;font-family:'Noto Sans KR',sans-serif;}
+html,body{background:var(--cream);min-height:100vh;font-family:'Apple SD Gothic Neo','Noto Sans KR',-apple-system,BlinkMacSystemFont,sans-serif;}
 
 /* wrap = 전체 페이지 컨테이너 */
 .wrap{
   position:relative;
   overflow:hidden;
   min-height:100vh;
+  max-width:480px;
+  margin:0 auto;
 }
 
 /* 배경 orb */
@@ -100,59 +102,8 @@ h1 em{font-style:normal;color:var(--purple);}
 .footer{padding:24px 24px 32px;display:flex;justify-content:center;position:relative;z-index:2;}
 .grad-bar{width:48%;height:3px;border-radius:10px;background:linear-gradient(90deg,var(--purple),var(--mint),var(--orange));}
 
-/* ── TABLET / DESKTOP ≥768px ── */
-/* gift-box 모바일 침범 보정 (T-017) — 6월 총 이미지가 5월 박스보다 세로가 길어
-   호국보훈의 달 텍스트 침범 → 모바일에서만 축소+상향. 데스크탑 불변 */
-@media(max-width:767px){
-  .gift-box{width:min(250px,68vw);top:-125px;right:-25px;}
-}
-@media(min-width:768px){
-  .nav{padding:36px 60px 0;max-width:1280px;margin:0 auto;width:100%;}
-  .logo-img{width:50px;height:50px;}
-  .brand{font-size:1.05rem;}
-
-  .content{
-    flex-direction:row;
-    align-items:center;
-    max-width:1280px;
-    margin:0 auto;
-    padding:40px 60px 40px;
-    gap:48px;
-    min-height:calc(100vh - 100px);
-  }
-
-  .hero{flex:1;padding:0;}
-  .cards-header{margin-bottom:12px;}
-  .live-badge{padding:7px 16px;}
-  .live-text{font-size:.75rem;}
-  h1{font-size:3.2rem;margin-bottom:16px;}
-  .sub{font-size:.95rem;margin-bottom:0;}
-
-  .cards{flex:1;padding:0;gap:20px;}
-  .main-card{border-radius:28px;padding:36px;}
-  .main-tag{font-size:.9rem;margin-bottom:12px;}
-  .main-title{font-size:1.6rem;margin-bottom:8px;}
-  .main-sub{font-size:.9rem;margin-bottom:24px;}
-  .main-btn{font-size:1.1rem;padding:16px 28px;}
-  .checker-card{border-radius:28px;padding:36px;}
-  .checker-icon{width:52px;height:52px;font-size:1.4rem;}
-  .checker-name{font-size:1.2rem;}
-  .checker-desc{font-size:.9rem;}
-  .checker-btn{font-size:1.1rem;padding:16px;border-radius:14px;}
-
-  .footer{max-width:1280px;margin:0 auto;padding:0 60px 40px;justify-content:flex-start;}
-  .grad-bar{width:80px;}
-
-  .orb-big{width:500px;height:500px;top:-150px;right:-150px;opacity:.06;}
-  .orb-sm{width:200px;height:200px;top:250px;left:-60px;}
-}
-
-@media(min-width:1280px){
-  .nav{padding:44px 80px 0;}
-  .content{padding:60px 80px;gap:80px;}
-  h1{font-size:4rem;}
-  .footer{padding:0 80px 48px;}
-}
+/* gift-box 모바일 보정 */
+.gift-box{width:min(250px,68vw);top:-125px;right:-25px;}
 </style>
 </head>
 <body>
@@ -225,6 +176,6 @@ h1 em{font-style:normal;color:var(--purple);}
     <div class="grad-bar"></div>
   </div>
 </div>
-  <script src="/footer.js"></script>
+  <script src="/js/legal-shared.js"></script>
 </body>
 </html>
