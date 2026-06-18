@@ -358,6 +358,7 @@ git checkout -b feature/T-001-jun-loan-landing
 | **T-006** | WT-006 | W-006 | `a9fdac0` | **완료(Done)** | **6월 대출 페이지 신청절차 step-icon 빨간 원 크기 축소** | 쮸티12-1호 | 2026-06-19 00:25 | 【파일】`2026-06/index.html`, `2026-06/index-dev.html` / `.step-icon { font-size: 1em, width/height: 1.8em }` |
 | **T-007** | WT-007 | W-007 | `e69d2b8` | **완료(Done)** | **6월 대출 페이지 procedure-list 파란 원 크기 축소** | 쮸티12-1호 | 2026-06-19 00:40 | 【파일】`2026-06/index.html`, `2026-06/index-dev.html` / `li::before { font-size: 1.4em → 1em }`, `li { padding-left: 3em → 2.5em }` |
 | **T-008** | WT-008 | W-008 | `062433f` | **완료(Done)** | **홈 화면 18px 초과 폰트 18px 통일** | 쮸티12-1호 | 2026-06-19 01:35 | 【파일】`index.html`, `index-dev.html` / `.nav-menu`, `.main-title`, `.checker-icon`, `.worldcup-title` → 18px |
+| **T-009** | WT-009 | W-009 | - | **진행중(In-Progress)** | **월드컵 챌린지 페이지 18px 초과 폰트 18px 통일** | 쮸티12-1호 | 2026-06-19 02:20 | 【파일】`2026-06/worldcup-challenge/index-dev.html` / 9개 항목 → 18px (히어로 영역 제외) |
 
 
 ---
