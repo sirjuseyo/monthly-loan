@@ -2062,3 +2062,24 @@ apply.html과 동일 4건 적용. 로컬 커밋: `cc0ae69`
 
 ---
 
+
+### WT-005: 6월 대출 페이지 .card-title 폰트 18px 수정
+
+| 항목 | 내용 |
+|------|------|
+| 작업일 | 2026-06-18 |
+| 작업자 | 쮸티12-1호 |
+| 대상 파일 | `2026-06/index.html`, `2026-06/index-dev.html` |
+| 연관 W-ID | W-005 |
+| 연관 T-ID | T-005 |
+| 커밋 해시 | `6b0e53a` (index-dev), 이전 커밋 (index.html) |
+| 작업 이력 | 1차 작업 |
+| 상태 | 진행중(In-Progress) |
+
+**변경 (2건 × 2파일):**
+- ① `.card-title { font-size: 1.5rem(24px) }` → `18px` (565라인)
+- ② 반응형 `.card-title { font-size: 1.35rem }` → `18px` (752라인)
+- 대상: 블랙찬스 티켓, 한도상향 카드 섹션 타이틀
+- index.html, index-dev.html 양쪽 동일 적용
+
+---
