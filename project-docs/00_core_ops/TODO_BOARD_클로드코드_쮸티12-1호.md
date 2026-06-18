@@ -374,6 +374,7 @@ git checkout -b feature/T-001-jun-loan-landing
 | W-006 | P1 | T-006 | **완료** | **6월 대출 페이지 신청절차 step-icon 원 크기 축소** | `2026-06/index.html`, `2026-06/index-dev.html` | `.step-icon { font-size: 1.5em → 1em, width/height: 2.2em → 1.8em }` — 빨간 원이 법적고지 텍스트(24px)보다 시각적으로 커 보이는 착시 해소 | 2026-06-19 00:20 | 쮸티12-1호 |
 | W-007 | P1 | T-007 | **완료** | **6월 대출 페이지 procedure-list 파란 원 크기 축소** | `2026-06/index.html`, `2026-06/index-dev.html` | `li::before { font-size: 1.4em → 1em }`, `li { padding-left: 3em → 2.5em }` — 파란 CSS counter 원이 ~44px로 과대, 빨간 원(T-006 수정 후 ~29px)과 불균형 | 2026-06-19 00:35 | 쮸티12-1호 |
 | W-008 | P1 | T-008 | **완료** | **홈 화면 18px 초과 폰트 18px 통일** | `index.html`, `index-dev.html` | `.nav-menu(1.3rem=20.8px)`, `.main-title(1.4rem=22.4px)`, `.checker-icon(1.2rem=19.2px)`, `.worldcup-title(1.2rem=19.2px)` → 18px | 2026-06-19 01:30 | 쮸티12-1호 |
+| W-009 | P1 | T-009 | **대기** | **월드컵 챌린지 페이지 18px 초과 폰트 18px 통일** | `2026-06/worldcup-challenge/index-dev.html` | `.section-title(20.8px)`, `.period-date(20.8px)`, `.match-teams(20px)`, `.total-box(19.2px)`, `.no-condition(38.4px)`, `.method-highlight(18.88px)`, `.usage-label(18.4px)`, `.apply-cta-title(23.2px)`, `.apply-cta-button(20px)` → 18px (9개 항목, 히어로 영역 제외) | 2026-06-19 02:15 | 쮸티12-1호 |
 
 
 
