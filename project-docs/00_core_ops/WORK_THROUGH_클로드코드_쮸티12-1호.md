@@ -1965,7 +1965,22 @@ apply.html과 동일 4건 적용. 로컬 커밋: `cc0ae69`
 **주의사항:**
 - `legal-shared.js`는 `.page` 또는 `.wrap` 클래스 감지 후 상단·하단 주입 (`if (!page) return;`)
 - 기존 `footer.js`가 주입하던 구형 하단 콘텐츠(About us, Contact 등)는 이 교체로 자동 제거됨
-- 로컬 브라우저(127.0.0.1:5502) 검증: 사장님 직접 확인 대기
+- 로컬 브라우저(127.0.0.1:5502) 검증: `index.html` PRD 테스트 완료 ✅
+
+---
+
+**2차 작업 — 2026-06-18, 쮸티12-1호**
+
+| 항목 | 내용 |
+|------|------|
+| 작업 이력 | 2차 작업 |
+| 커밋 해시 | `1339e07` |
+| 대상 파일 | `2026-06/index-dev.html` |
+| 상태 | 진행중(In-Progress) |
+
+**변경 (2건):**
+- ① `<main class="max-w-4xl mx-auto ...">` → `<main class="wrap max-w-4xl mx-auto ...">` 추가 (1030라인)
+- ② `<script src="/footer.js"></script>` → `<script src="/js/legal-shared.js"></script>` 교체 (3308라인)
 
 ---
 

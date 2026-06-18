@@ -333,7 +333,7 @@ git checkout -b feature/T-001-jun-loan-landing
 
 | T-ID | WT-ID | W-ID | 최종 해시 | 상태 | 작업 타이틀 | 작업자 | 작업일시(연월일 시분) | 비고 |
 |---|---|---|---|---|---|---|---|---|
-| **T-001** | WT-001 | W-001 | `165a165` | **진행중(In-Progress)** | **6월 대출 프로모션 페이지 상단·하단 `legal-shared.js` 연결** | 쮸티12-1호 | 2026-06-18 23:00 | 【파일】`2026-06/index.html` / `<main>`에 wrap 클래스 추가 + footer.js → js/legal-shared.js 교체 |
+| **T-001** | WT-001 | W-001 | `1339e07` | **진행중(In-Progress)** | **6월 대출 프로모션 페이지 상단·하단 `legal-shared.js` 연결** | 쮸티12-1호 | 2026-06-18 23:00 | 【파일】`2026-06/index.html`, `2026-06/index-dev.html` / wrap 클래스 추가 + footer.js → js/legal-shared.js 교체 |
 
 
 ---
