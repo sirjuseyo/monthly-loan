@@ -2039,3 +2039,26 @@ apply.html과 동일 4건 적용. 로컬 커밋: `cc0ae69`
 
 ---
 
+### WT-004: 6월 대출 페이지 본문 폰트 18px 일괄 통일
+
+| 항목 | 내용 |
+|------|------|
+| 작업일 | 2026-06-19 |
+| 작업자 | 쮸티12-1호 |
+| 대상 파일 | `2026-06/index.html`, `2026-06/index-dev.html` |
+| 연관 W-ID | W-004 |
+| 연관 T-ID | T-004 |
+| 커밋 해시 | `90e5ae6` |
+| 작업 이력 | 1차 작업 |
+| 상태 | 진행중(In-Progress) |
+
+**변경 (5건 × 2파일):**
+- ① `h1` CSS에 `font-size: 18px !important` 추가 (Tailwind `text-[1.2rem]/sm:text-3xl` 오버라이드)
+- ② `h2.section-title`: `1.4em(22.4px)` → `18px`
+- ③ `h3.sub-section-title`: `1.5em(24px)` → `18px`
+- ④ `.SpringMarch-waiting-button`: `1.6em(25.6px)` → `18px`
+- ⑤ `.section-box`: `1.75rem(28px)` → `18px`
+- index.html, index-dev.html 양쪽 동일 적용
+
+---
+

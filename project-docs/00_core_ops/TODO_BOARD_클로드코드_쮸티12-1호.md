@@ -336,6 +336,7 @@ git checkout -b feature/T-001-jun-loan-landing
 | **T-001** | WT-001 | W-001 | `1339e07` | **진행중(In-Progress)** | **6월 대출 프로모션 페이지 상단·하단 `legal-shared.js` 연결** | 쮸티12-1호 | 2026-06-18 23:00 | 【파일】`2026-06/index.html`, `2026-06/index-dev.html` / wrap 클래스 추가 + footer.js → js/legal-shared.js 교체 |
 | **T-002** | WT-002 | W-002 | `6fa6dbb` | **진행중(In-Progress)** | **6월 대출 페이지 PC 좌우 너비 480px 고정** | 쮸티12-1호 | 2026-06-18 23:30 | 【파일】`2026-06/index.html`, `2026-06/index-dev.html` / `.wrap { max-width:480px; margin:0 auto; }` CSS 추가 |
 | **T-003** | WT-003 | W-003 | `632e98c` | **진행중(In-Progress)** | **6월 대출 페이지 상단 법적고지 하단 여백 추가** | 쮸티12-1호 | 2026-06-18 23:50 | 【파일】`2026-06/index.html`, `2026-06/index-dev.html` / `.legal-top { margin-bottom: 20px; }` 추가 |
+| **T-004** | WT-004 | W-004 | `90e5ae6` | **진행중(In-Progress)** | **6월 대출 페이지 본문 폰트 18px 일괄 통일** | 쮸티12-1호 | 2026-06-19 00:00 | 【파일】`2026-06/index.html`, `2026-06/index-dev.html` / 5개 항목 18px 일괄 수정 |
 
 
 ---
@@ -346,7 +347,8 @@ git checkout -b feature/T-001-jun-loan-landing
 |------|---------|------|------|----------|-----|----------|------|------|
 | W-001 | P0 | T-001 | **완료** | **6월 대출 프로모션 페이지 상단·하단 `legal-shared.js` 연결** | `2026-06/index.html`, `2026-06/index-dev.html` | `footer.js` → `js/legal-shared.js` 교체 (상단·하단 법적고지 자동 주입, 컨테이너 wrap 클래스 추가) | 2026-06-18 17:30 | 쮸티12-1호 |
 | W-002 | P0 | T-002 | **완료** | **6월 대출 페이지 PC 좌우 너비 480px 고정** | `2026-06/index.html`, `2026-06/index-dev.html` | `.wrap { max-width:480px; margin:0 auto; }` CSS 추가 — 루트 index.html과 동일하게 PC에서도 모바일 너비로 고정 | 2026-06-18 23:30 | 쮸티12-1호 |
-| W-003 | P0 | T-003 | **완료** | **6월 대출 페이지 상단 법적고지 하단 여백 추가** | `2026-06/index.html`, `2026-06/index-dev.html` | 이 페이지에만 `.legal-top { margin-bottom: 20px; }` 추가 — legal-shared.js 미수정, 이 페이지만 적용 | 2026-06-18 23:50 | 쮸티12-1호 |
+| W-003 | P0 | T-003 | **완료** | **6월 대출 페이지 상단 법적고지 하단 여백 추가** |
+| W-004 | P0 | T-004 | **완료** | **6월 대출 페이지 본문 폰트 18px 일괄 통일** | `2026-06/index.html`, `2026-06/index-dev.html` | 법적고지(24px) 규정 준수 — 본문 최대 18px 기준으로 5개 항목 일괄 수정: h1버튼(19.2/30px), section-title(22.4px), sub-section-title(24px), section-box(28px), SpringMarch-waiting-button(25.6px) | 2026-06-18 23:55 | 쮸티12-1호 | `2026-06/index.html`, `2026-06/index-dev.html` | 이 페이지에만 `.legal-top { margin-bottom: 20px; }` 추가 — legal-shared.js 미수정, 이 페이지만 적용 | 2026-06-18 23:50 | 쮸티12-1호 |
 
 
 
