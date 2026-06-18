@@ -2164,3 +2164,42 @@ monthly-loan T-001~T-007 작업 완료했습니다.
 한 줄 버전:
 - `monthly-loan T-001~T-007 완료, feature/T-001-jun-loan-landing 푸시 및 PR #16 업데이트 완료, 브라우저 로컬 검증했습니다. 깃 & 배포 관리자님 feature → dev 검토 부탁드립니다.`
 
+
+---
+
+## 깃 & 배포 관리자 완료 보고서 (T-001~T-007)
+
+[GitHub Pages PRD : 깃 & 배포 관리자 -> 개발자]
+
+monthly-loan T-001~T-007 반영 완료했습니다.
+`feature/T-001-jun-loan-landing`의 누적형 PR #16 전체 병합은 하지 않았고, 요청 범위에 해당하는
+`2026-06/index.html`, `2026-06/index-dev.html`만 `e69d2b8` 기준으로 `main`에 선별 반영했습니다.
+
+반영 내용:
+- T-001 legal-shared.js 연결
+- T-002 .wrap max-width 480px !important
+- T-003 상단 법적고지 하단 여백 20px
+- T-004 본문 폰트 18px 일괄 통일
+- T-005 card-title 18px
+- T-006 step-icon 빨간 원 축소
+- T-007 procedure-list 파란 원 축소
+
+실반영 커밋:
+- `8af7421` fix(loan): apply T-001~T-007 June page updates [Ser7-1]
+
+검증:
+- 원격 `main` HEAD = `8af7421` 확인
+- GitHub Pages live 응답 `HTTP/2 200` 확인
+- live header `last-modified` 갱신 확인
+
+판단:
+- `monthly-loan` 레포는 `dev` 브랜치가 없고, PR #16 base도 `main`입니다.
+- 또한 PR #16은 누적형 open PR이라 전체 병합 시 요청 범위 밖 변경까지 함께 들어갈 수 있어 전체 병합하지 않았습니다.
+
+문서:
+- `project-docs/00_core_ops/TODO_BOARD_GitDeployOps_Ser7-1호_20260619.md`
+- `project-docs/00_core_ops/WORK_THROUGH_GitDeployOps_Ser7-1호_20260619.md`
+
+로컬 최신화:
+- 로컬 `monthly-loan main` HEAD와 원격 `origin/main`이 동일한 `8af7421`로 확인되어 최신화 완료했습니다.
+
