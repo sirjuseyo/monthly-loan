@@ -2227,3 +2227,38 @@ monthly-loan T-001~T-007 반영 완료했습니다.
 - index.html, index-dev.html 양쪽 동일 적용
 
 ---
+
+## 깃 & 배포 관리자 완료 보고서 (T-008)
+
+[GitHub Pages PRD : 깃 & 배포 관리자 -> 개발자]
+
+monthly-loan T-008 반영 완료했습니다.
+`feature/T-008-home-font-18px`의 PR #17 전체 병합은 하지 않았고, 요청 범위에 해당하는
+`index.html`, `index-dev.html`만 `062433f` 기준으로 `main`에 선별 반영했습니다.
+
+반영 내용:
+- `.nav-menu` `1.3rem(20.8px)` → `18px`
+- `.main-title` `1.4rem(22.4px)` → `18px`
+- `.checker-icon` `1.2rem(19.2px)` → `18px`
+- `.worldcup-title` `1.2rem(19.2px)` → `18px`
+
+실반영 커밋:
+- `a4e3d45` fix(home): apply T-008 18px font updates [Ser7-1]
+
+검증:
+- 원격 `main` HEAD = `a4e3d45` 확인
+- GitHub Pages deploy run `27775132030` success 확인
+- live 응답 `HTTP/2 200` 확인
+- live header `last-modified` 갱신 확인
+
+판단:
+- `monthly-loan` 레포는 `dev` 브랜치가 없고, PR #17 base도 `main`입니다.
+- 또한 PR #17 diff에는 문서 변경이 함께 섞여 있어 전체 병합하지 않고 루트 홈 2개 파일만 선별 반영했습니다.
+
+문서:
+- `project-docs/00_core_ops/TODO_BOARD_GitDeployOps_Ser7-1호_20260619.md`
+- `project-docs/00_core_ops/WORK_THROUGH_GitDeployOps_Ser7-1호_20260619.md`
+
+로컬 최신화:
+- 로컬 `monthly-loan main` HEAD와 원격 `origin/main`이 동일한 `a4e3d45`로 확인되어 최신화 완료했습니다.
+
