@@ -359,6 +359,7 @@ git checkout -b feature/T-001-jun-loan-landing
 | **T-007** | WT-007 | W-007 | `e69d2b8` | **완료(Done)** | **6월 대출 페이지 procedure-list 파란 원 크기 축소** | 쮸티12-1호 | 2026-06-19 00:40 | 【파일】`2026-06/index.html`, `2026-06/index-dev.html` / `li::before { font-size: 1.4em → 1em }`, `li { padding-left: 3em → 2.5em }` |
 | **T-008** | WT-008 | W-008 | `062433f` | **완료(Done)** | **홈 화면 18px 초과 폰트 18px 통일** | 쮸티12-1호 | 2026-06-19 01:35 | 【파일】`index.html`, `index-dev.html` / `.nav-menu`, `.main-title`, `.checker-icon`, `.worldcup-title` → 18px |
 | **T-009** | WT-009 | W-009 | - | **진행중(In-Progress)** | **월드컵 챌린지 페이지 18px 초과 폰트 18px 통일** | 쮸티12-1호 | 2026-06-19 02:20 | 【파일】`2026-06/worldcup-challenge/index-dev.html` / 9개 항목 → 18px (히어로 영역 제외) |
+| **T-010** | WT-010 | W-010 | - | **진행중(In-Progress)** | **월드컵 챌린지 페이지 legal-shared.js 연결** | 쮸티12-1호 | 2026-06-19 03:00 | 【파일】`2026-06/worldcup-challenge/index-dev.html`, `index.html` / `.page` 클래스 추가, 하드코딩 footer 제거, `footer.js` → `legal-shared.js` 교체 |
 
 
 ---
@@ -376,7 +377,7 @@ git checkout -b feature/T-001-jun-loan-landing
 | W-007 | P1 | T-007 | **완료** | **6월 대출 페이지 procedure-list 파란 원 크기 축소** | `2026-06/index.html`, `2026-06/index-dev.html` | `li::before { font-size: 1.4em → 1em }`, `li { padding-left: 3em → 2.5em }` — 파란 CSS counter 원이 ~44px로 과대, 빨간 원(T-006 수정 후 ~29px)과 불균형 | 2026-06-19 00:35 | 쮸티12-1호 |
 | W-008 | P1 | T-008 | **완료** | **홈 화면 18px 초과 폰트 18px 통일** | `index.html`, `index-dev.html` | `.nav-menu(1.3rem=20.8px)`, `.main-title(1.4rem=22.4px)`, `.checker-icon(1.2rem=19.2px)`, `.worldcup-title(1.2rem=19.2px)` → 18px | 2026-06-19 01:30 | 쮸티12-1호 |
 | W-009 | P1 | T-009 | **진행중** | **월드컵 챌린지 페이지 18px 초과 폰트 18px 통일** | `2026-06/worldcup-challenge/index-dev.html` | `.section-title(20.8px)`, `.period-date(20.8px)`, `.match-teams(20px)`, `.total-box(19.2px)`, `.no-condition(38.4px)`, `.method-highlight(18.88px)`, `.usage-label(18.4px)`, `.apply-cta-title(23.2px)`, `.apply-cta-button(20px)` → 18px (9개 항목, 히어로 영역 제외) | 2026-06-19 02:15 | 쮸티12-1호 |
-| W-010 | P0 | T-010 | **대기** | **월드컵 챌린지 페이지 legal-shared.js 연결** | `2026-06/worldcup-challenge/index-dev.html`, `2026-06/worldcup-challenge/index.html` | T-001과 동일 — 상단 법적고지 + 하단 콘텐츠 자동 주입 (`legal-shared.js` 연결, `.page` 또는 `.wrap` 클래스 추가) | 2026-06-19 02:30 | 쮸티12-1호 |
+| W-010 | P0 | T-010 | **진행중** | **월드컵 챌린지 페이지 legal-shared.js 연결** | `2026-06/worldcup-challenge/index-dev.html`, `2026-06/worldcup-challenge/index.html` | T-001과 동일 — 상단 법적고지 + 하단 콘텐츠 자동 주입 (`legal-shared.js` 연결, `.page` 또는 `.wrap` 클래스 추가) | 2026-06-19 02:30 | 쮸티12-1호 |
 
 
 
