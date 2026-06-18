@@ -2262,3 +2262,55 @@ monthly-loan T-008 반영 완료했습니다.
 로컬 최신화:
 - 로컬 `monthly-loan main` HEAD와 원격 `origin/main`이 동일한 `a4e3d45`로 확인되어 최신화 완료했습니다.
 
+---
+
+### WT-009: 월드컵 챌린지 페이지 18px 초과 폰트 18px 통일
+
+| 항목 | 내용 |
+|------|------|
+| 작업일 | 2026-06-19 |
+| 작업자 | 쮸티12-1호 |
+| 대상 파일 | `2026-06/worldcup-challenge/index-dev.html` |
+| 연관 W-ID | W-009 |
+| 연관 T-ID | T-009 |
+| 커밋 해시 | `d783299` |
+| 브랜치 | `feature/T-009-worldcup-font-18px` (신규) |
+| PR | #18 |
+| 상태 | 진행중(In-Progress) |
+
+**변경 (9건):**
+- ① `.section-title { font-size: 1.3rem(20.8px) }` → `18px`
+- ② `.period-date { font-size: 1.3rem(20.8px) }` → `18px`
+- ③ `.match-teams { font-size: 1.25rem(20px) }` → `18px`
+- ④ `.total-box { font-size: 1.2rem(19.2px) }` → `18px`
+- ⑤ `.no-condition { font-size: 2.4rem(38.4px) }` → `18px`
+- ⑥ `.method-highlight { font-size: 1.18rem(18.88px) }` → `18px`
+- ⑦ `.usage-label { font-size: 1.15rem(18.4px) }` → `18px`
+- ⑧ `.apply-cta-title { font-size: 1.45rem(23.2px) }` → `18px`
+- ⑨ `.apply-cta-button { font-size: 1.25rem(20px) }` → `18px`
+- 히어로 영역(이미지·텍스트) 제외, 본문 전체 18px 이하 준수
+- index-dev.html(DEV)만 대상
+
+---
+
+### WT-010: 월드컵 챌린지 페이지 legal-shared.js 연결
+
+| 항목 | 내용 |
+|------|------|
+| 작업일 | 2026-06-19 |
+| 작업자 | 쮸티12-1호 |
+| 대상 파일 | `2026-06/worldcup-challenge/index-dev.html`, `2026-06/worldcup-challenge/index.html` |
+| 연관 W-ID | W-010 |
+| 연관 T-ID | T-010 |
+| 커밋 해시 | `d783299` (T-009와 동일 커밋) |
+| 브랜치 | `feature/T-009-worldcup-font-18px` |
+| PR | #18 |
+| 상태 | 진행중(In-Progress) |
+
+**변경 (3건 × 2파일):**
+- ① `<div class="page-card">` → `<div class="page-card page">` (legal-shared.js 감지용 클래스 추가)
+- ② 하드코딩 `<footer class="page-footer">...</footer>` 제거
+- ③ `<script src="/footer.js"></script>` → `<script src="/js/legal-shared.js"></script>` 교체
+- DEV(`index-dev.html`) + PRD(`index.html`) 양쪽 동일 적용
+
+
