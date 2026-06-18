@@ -352,7 +352,8 @@ git checkout -b feature/T-001-jun-loan-landing
 | W-003 | P0 | T-003 | **완료** | **6월 대출 페이지 상단 법적고지 하단 여백 추가** |
 | W-004 | P0 | T-004 | **완료** |
 | W-005 | P0 | T-005 | **완료** | **6월 대출 페이지 카드 타이틀 폰트 18px 수정** | `2026-06/index.html`, `2026-06/index-dev.html` | `.card-title { font-size: 1.5rem(24px) → 18px }` — 블랙찬스 티켓·한도상향 카드 본문 텍스트 18px 기준 초과 | 2026-06-19 00:10 | 쮸티12-1호 | **6월 대출 페이지 본문 폰트 18px 일괄 통일** | `2026-06/index.html`, `2026-06/index-dev.html` | 법적고지(24px) 규정 준수 — 본문 최대 18px 기준으로 5개 항목 일괄 수정: h1버튼(19.2/30px), section-title(22.4px), sub-section-title(24px), section-box(28px), SpringMarch-waiting-button(25.6px) | 2026-06-18 23:55 | 쮸티12-1호 | `2026-06/index.html`, `2026-06/index-dev.html` | 이 페이지에만 `.legal-top { margin-bottom: 20px; }` 추가 — legal-shared.js 미수정, 이 페이지만 적용 | 2026-06-18 23:50 | 쮸티12-1호 |
-| W-006 | P1 | T-006 | **대기** | **6월 대출 페이지 신청절차 step-icon 원 크기 축소** | `2026-06/index.html`, `2026-06/index-dev.html` | `.step-icon { font-size: 1.5em → 1em, width/height: 2.2em → 1.8em }` — 빨간 원이 법적고지 텍스트(24px)보다 시각적으로 커 보이는 착시 해소 | 2026-06-19 00:20 | 쮸티12-1호 |
+| W-006 | P1 | T-006 | **완료** | **6월 대출 페이지 신청절차 step-icon 원 크기 축소** | `2026-06/index.html`, `2026-06/index-dev.html` | `.step-icon { font-size: 1.5em → 1em, width/height: 2.2em → 1.8em }` — 빨간 원이 법적고지 텍스트(24px)보다 시각적으로 커 보이는 착시 해소 | 2026-06-19 00:20 | 쮸티12-1호 |
+| W-007 | P1 | T-007 | **대기** | **6월 대출 페이지 procedure-list 파란 원 크기 축소** | `2026-06/index.html`, `2026-06/index-dev.html` | `li::before { font-size: 1.4em → 1em }`, `li { padding-left: 3em → 2.5em }` — 파란 CSS counter 원이 ~44px로 과대, 빨간 원(T-006 수정 후 ~29px)과 불균형 | 2026-06-19 00:35 | 쮸티12-1호 |
 
 
 
