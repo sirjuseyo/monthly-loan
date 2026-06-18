@@ -2004,3 +2004,18 @@ apply.html과 동일 4건 적용. 로컬 커밋: `cc0ae69`
 
 ---
 
+**2차 작업 — 2026-06-18, 쮸티12-1호**
+
+| 항목 | 내용 |
+|------|------|
+| 작업 이력 | 2차 작업 (수정) |
+| 커밋 해시 | `6fa6dbb` |
+| 상태 | 진행중(In-Progress) |
+
+**변경 (1건):**
+- `.wrap { max-width: 480px; margin: 0 auto; }` → `!important` 추가
+- 원인: Tailwind CDN `max-w-4xl(896px)`이 `.wrap` CSS를 오버라이드하여 480px 고정이 적용되지 않음
+- index.html, index-dev.html 양쪽 모두 수정
+
+---
+
