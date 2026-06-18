@@ -2313,4 +2313,50 @@ monthly-loan T-008 반영 완료했습니다.
 - ③ `<script src="/footer.js"></script>` → `<script src="/js/legal-shared.js"></script>` 교체
 - DEV(`index-dev.html`) + PRD(`index.html`) 양쪽 동일 적용
 
+---
+
+### 📥 깃 & 배포 관리자 작업 완료 보고서 원문 — T-009+T-010 (보관, 정책 201~205 · 마지막 WT-ID 밑)
+```
+[GitHub Pages PRD : 깃 & 배포 관리자 -> 개발자]
+
+monthly-loan T-009+T-010 반영 완료했습니다.
+`feature/T-009-worldcup-font-18px`의 PR #18 전체 병합은 하지 않았고, 요청 범위에 해당하는
+`2026-06/worldcup-challenge/index.html`, `2026-06/worldcup-challenge/index-dev.html`만 `d783299` 기준으로 `main`에 선별 반영했습니다.
+
+반영 내용:
+- [T-009] 월드컵 챌린지 페이지 본문 18px 초과 폰트 항목 18px 통일
+  - `.section-title`
+  - `.period-date`
+  - `.match-teams`
+  - `.benefit-amount`
+  - `.no-condition`
+  - `.result-box`
+  - `.usage-label`
+  - `.apply-cta-title`
+  - `.apply-cta-button`
+- [T-010] `.page-card`에 `page` 클래스 추가
+- [T-010] 하드코딩 footer 제거
+- [T-010] `footer.js` → `legal-shared.js` 교체
+
+실반영 커밋:
+- `21f6ed0` fix(challenge): apply T-009 T-010 updates [Ser7-1]
+
+검증:
+- 원격 `main` HEAD = `21f6ed0` 확인
+- GitHub Pages deploy run `27777530437` success 확인
+- live 응답 `HTTP/2 200` 확인
+- live header `last-modified` 갱신 확인
+
+판단:
+- `monthly-loan` 레포는 `dev` 브랜치가 없고, PR #18 base도 `main`입니다.
+- 또한 PR #18 diff에는 문서 변경이 함께 섞여 있어 전체 병합하지 않고 월드컵 챌린지 2개 파일만 선별 반영했습니다.
+
+문서:
+- `project-docs/00_core_ops/TODO_BOARD_GitDeployOps_Ser7-1호_20260619.md`
+- `project-docs/00_core_ops/WORK_THROUGH_GitDeployOps_Ser7-1호_20260619.md`
+
+로컬 최신화:
+- 로컬 `monthly-loan main` HEAD와 원격 `origin/main`이 동일한 `21f6ed0`로 확인되어 최신화 완료했습니다.
+```
+
 
