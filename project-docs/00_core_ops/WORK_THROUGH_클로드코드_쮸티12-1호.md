@@ -2083,3 +2083,24 @@ apply.html과 동일 4건 적용. 로컬 커밋: `cc0ae69`
 - index.html, index-dev.html 양쪽 동일 적용
 
 ---
+
+### WT-006: 6월 대출 페이지 신청절차 step-icon 빨간 원 크기 축소
+
+| 항목 | 내용 |
+|------|------|
+| 작업일 | 2026-06-19 |
+| 작업자 | 쮸티12-1호 |
+| 대상 파일 | `2026-06/index.html`, `2026-06/index-dev.html` |
+| 연관 W-ID | W-006 |
+| 연관 T-ID | T-006 |
+| 커밋 해시 | `a9fdac0` |
+| 작업 이력 | 1차 작업 |
+| 상태 | 완료(Done) |
+
+**변경 (2건 × 2파일):**
+- ① `.step-box .step-icon { font-size: 1.5em }` → `1em`
+- ② `.step-box .step-icon { width/height: 2.2em }` → `1.8em`
+- 원인: 빨간 원(~40px)이 법적고지 텍스트(24px)보다 시각적으로 커 보이는 착시
+- index.html, index-dev.html 양쪽 동일 적용
+
+---

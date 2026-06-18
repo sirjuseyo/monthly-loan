@@ -338,7 +338,7 @@ git checkout -b feature/T-001-jun-loan-landing
 | **T-003** | WT-003 | W-003 | `632e98c` | **진행중(In-Progress)** | **6월 대출 페이지 상단 법적고지 하단 여백 추가** | 쮸티12-1호 | 2026-06-18 23:50 | 【파일】`2026-06/index.html`, `2026-06/index-dev.html` / `.legal-top { margin-bottom: 20px; }` 추가 |
 | **T-004** | WT-004 | W-004 | `90e5ae6` | **진행중(In-Progress)** | **6월 대출 페이지 본문 폰트 18px 일괄 통일** | 쮸티12-1호 | 2026-06-19 00:00 | 【파일】`2026-06/index.html`, `2026-06/index-dev.html` / 5개 항목 18px 일괄 수정 |
 | **T-005** | WT-005 | W-005 | `6b0e53a` | **완료(Done)** | **6월 대출 페이지 카드 타이틀 폰트 18px 수정** | 쮸티12-1호 | 2026-06-19 00:10 | 【파일】`2026-06/index.html`, `2026-06/index-dev.html` / `.card-title` 1.5rem(24px) → 18px |
-| **T-006** | WT-006 | W-006 | - | **진행중(In-Progress)** | **6월 대출 페이지 신청절차 step-icon 빨간 원 크기 축소** | 쮸티12-1호 | 2026-06-19 00:25 | 【파일】`2026-06/index.html`, `2026-06/index-dev.html` / `.step-icon { font-size: 1em, width/height: 1.8em }` |
+| **T-006** | WT-006 | W-006 | `a9fdac0` | **완료(Done)** | **6월 대출 페이지 신청절차 step-icon 빨간 원 크기 축소** | 쮸티12-1호 | 2026-06-19 00:25 | 【파일】`2026-06/index.html`, `2026-06/index-dev.html` / `.step-icon { font-size: 1em, width/height: 1.8em }` |
 
 
 ---
