@@ -2124,3 +2124,43 @@ apply.html과 동일 4건 적용. 로컬 커밋: `cc0ae69`
 - index.html, index-dev.html 양쪽 동일 적용
 
 ---
+
+---
+
+## 깃 관리자 전달 작업 완료 보고서 (T-001~T-007)
+
+monthly-loan T-001~T-007 작업 완료했습니다.
+`feature/T-001-jun-loan-landing` 원격 푸시 완료했고 PR은 `#16`입니다.
+
+작업 내용:
+- `legal-shared.js` 연결 — 상단·하단 법적고지 자동 주입, `<main>`에 `wrap` 클래스 추가 (T-001)
+- PC 좌우 너비 480px 고정 — `.wrap { max-width: 480px !important; margin: 0 auto !important; }` (T-002)
+- 상단 법적고지 하단 여백 20px — `.legal-top { margin-bottom: 20px; }` (T-003)
+- 본문 폰트 18px 일괄 통일 — h1/h2/h3/버튼/section-box/card-title 6개 항목 (T-004, T-005)
+- 신청절차 빨간 원(step-icon) 크기 축소 — font-size 1.5em→1em, 크기 2.2em→1.8em (T-006)
+- 웨이팅 파란 원(procedure-list li::before) 크기 축소 — font-size 1.4em→1em, padding-left 3em→2.5em (T-007)
+
+검증:
+- index.html 브라우저 로컬 확인 완료 (상단·하단 법적고지 주입, 480px 레이아웃, 폰트/원 크기)
+- index-dev.html 동일 수정 적용 + DEV 배너 정상 표시 확인 완료
+
+커밋:
+- `165a165` T-001: 6월 대출 프로모션 페이지 legal-shared.js 연결
+- `1339e07` T-001: 6월 DEV 페이지 legal-shared.js 연결
+- `c21ccdd` T-002: 6월 대출 페이지 PC 좌우 너비 480px 고정
+- `6fa6dbb` T-002: .wrap max-width !important 추가 — Tailwind 오버라이드 수정
+- `632e98c` T-003: 상단 법적고지 하단 여백 20px 추가
+- `90e5ae6` T-004: 본문 폰트 18px 일괄 통일 (법적고지 24px 규정 준수)
+- `6b0e53a` T-005: index-dev.html .card-title 폰트 18px 수정
+- `a9fdac0` T-006: step-icon 빨간 원 크기 축소
+- `e69d2b8` T-007: procedure-list 파란 원 크기 축소
+
+문서:
+- `project-docs` (monthly-loan-repo 내 포함)
+- 브랜치: `feature/T-001-jun-loan-landing`
+- PR: `#16`
+- 문서 커밋: `642244d` [T-007] WT-007 작성, T-007 완료 처리
+
+한 줄 버전:
+- `monthly-loan T-001~T-007 완료, feature/T-001-jun-loan-landing 푸시 및 PR #16 업데이트 완료, 브라우저 로컬 검증했습니다. 깃 & 배포 관리자님 feature → dev 검토 부탁드립니다.`
+
