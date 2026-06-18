@@ -2104,3 +2104,23 @@ apply.html과 동일 4건 적용. 로컬 커밋: `cc0ae69`
 - index.html, index-dev.html 양쪽 동일 적용
 
 ---
+
+### WT-007: 6월 대출 페이지 procedure-list 파란 원 크기 축소
+
+| 항목 | 내용 |
+|------|------|
+| 작업일 | 2026-06-19 |
+| 작업자 | 쮸티12-1호 |
+| 대상 파일 | `2026-06/index.html`, `2026-06/index-dev.html` |
+| 연관 W-ID | W-007 |
+| 연관 T-ID | T-007 |
+| 커밋 해시 | `e69d2b8` |
+| 작업 이력 | 1차 작업 |
+| 상태 | 완료(Done) |
+
+**변경 (2건 × 2파일):**
+- ① `.procedure-list li::before { font-size: 1.4em }` → `1em` (파란 원 ~44px → ~29px)
+- ② `.procedure-list li { padding-left: 3em }` → `2.5em` (원 크기 축소에 맞춰 여백 조정)
+- index.html, index-dev.html 양쪽 동일 적용
+
+---
