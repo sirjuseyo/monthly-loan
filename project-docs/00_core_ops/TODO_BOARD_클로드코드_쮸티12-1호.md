@@ -341,6 +341,7 @@ git checkout -b feature/T-001-jun-loan-landing
 | T-014 | 대출 검사기 법적고지↔콘텐츠 간격 | ✅ `5297575` | - | 검증완료 | - | - | 쮸티12-1호 | 2026-06-20 16:40 | `.legal-top { margin-bottom: 20px; }` |
 | T-015 | 대출 검사기 폼 패널 2열 → 1열 | ✅ `15592a9` | - | 검증완료 | - | - | 쮸티12-1호 | 2026-06-20 16:45 | `.form-grid { grid-template-columns: 1fr !important; }` |
 | T-016 | 대출 검사기 뚝딱 버튼 법적고지 위로 이동 | ✅ `8bac5d8` | - | 검증완료 | - | - | 쮸티12-1호 | 2026-06-20 16:55 | `div.action-area` `</main>` 안으로 이동 + 구분선 |
+| T-017 | 대출 검사기 두 번째 이미지 숨김 | ✅ `bd47edb` | - | 검증완료 | - | - | 쮸티12-1호 | 2026-06-20 17:00 | `loan-eligibility-checker-02.jpg` `display:none` |
 
 
 ---
@@ -372,7 +373,8 @@ git checkout -b feature/T-001-jun-loan-landing
 | **T-014** | WT-014 | W-014 | `5297575` | **테스트 완료(DONE)** | **대출 가능성 검사기 법적고지↔콘텐츠 간격** | 쮸티12-1호 | 2026-06-20 16:40 | 【파일】`loan-checker/index-dev.html` / `.legal-top { margin-bottom: 20px; }` 추가 |
 | **T-015** | WT-015 | W-015 | `15592a9` | **테스트 완료(DONE)** | **대출 가능성 검사기 폼 패널 2열 → 1열 변경** | 쮸티12-1호 | 2026-06-20 16:45 | 【파일】`loan-checker/index-dev.html` / `.form-grid` 2열(repeat(2,1fr)) → 1열 오버라이드 |
 | **T-016** | WT-016 | W-016 | `8bac5d8` | **테스트 완료(DONE)** | **대출 가능성 검사기 뚝딱 버튼 → 하단 법적고지 위로 이동** | 쮸티12-1호 | 2026-06-20 16:55 | 【파일】`loan-checker/index-dev.html` / `div.action-area`를 `</main>` 안으로 이동 + 상단 여백으로 구분 |
-| **T-017** | WT-017 | W-017 | - | **진행중(In-Progress)** | **대출 가능성 검사기 두 번째 이미지 숨김 처리** | 쮸티12-1호 | 2026-06-20 17:00 | 【파일】`loan-checker/index-dev.html` / `hero-banner` 두 번째 `loan-eligibility-checker-02.jpg` `display:none` |
+| **T-017** | WT-017 | W-017 | `bd47edb` | **테스트 완료(DONE)** | **대출 가능성 검사기 두 번째 이미지 숨김 처리** | 쮸티12-1호 | 2026-06-20 17:00 | 【파일】`loan-checker/index-dev.html` / `hero-banner` 두 번째 `loan-eligibility-checker-02.jpg` `display:none` |
+| **T-018** | WT-018 | W-018 | - | **진행중(In-Progress)** | **대출 가능성 검사기 4번째 이미지 → 텍스트 박스 교체** | 쮸티12-1호 | 2026-06-20 17:10 | 【파일】`loan-checker/index-dev.html` / `loan-eligibility-checker-title.jpg` 이미지 → 텍스트박스 ("대출 가능성 검사기 / 지금 바로 확인해 보세요.", 센터정렬, ≤18px) |
 | **T-011** | WT-011 | W-011 | `af8d679` | **테스트 완료(DONE)** | **월드컵 챌린지 페이지 법적고지↔콘텐츠 영역 시각적 구분** | 쮸티12-1호 | 2026-06-20 16:00 | 【파일】`2026-06/worldcup-challenge/index-dev.html`, `index.html` / `.legal-top { margin-bottom: 20px; }` 추가 |
 | **T-010** | WT-010 | W-010 | `21f6ed0` | **완료(Done)** | **월드컵 챌린지 페이지 legal-shared.js 연결** | 쮸티12-1호 | 2026-06-19 03:00 | 【파일】`2026-06/worldcup-challenge/index-dev.html`, `index.html` / `.page` 클래스 추가, 하드코딩 footer 제거, `footer.js` → `legal-shared.js` 교체 |
 
@@ -392,7 +394,8 @@ git checkout -b feature/T-001-jun-loan-landing
 | W-007 | P1 | T-007 | **완료** | **6월 대출 페이지 procedure-list 파란 원 크기 축소** | `2026-06/index.html`, `2026-06/index-dev.html` | `li::before { font-size: 1.4em → 1em }`, `li { padding-left: 3em → 2.5em }` — 파란 CSS counter 원이 ~44px로 과대, 빨간 원(T-006 수정 후 ~29px)과 불균형 | 2026-06-19 00:35 | 쮸티12-1호 |
 | W-008 | P1 | T-008 | **완료** | **홈 화면 18px 초과 폰트 18px 통일** | `index.html`, `index-dev.html` | `.nav-menu(1.3rem=20.8px)`, `.main-title(1.4rem=22.4px)`, `.checker-icon(1.2rem=19.2px)`, `.worldcup-title(1.2rem=19.2px)` → 18px | 2026-06-19 01:30 | 쮸티12-1호 |
 | W-009 | P1 | T-009 | **진행중** | **월드컵 챌린지 페이지 18px 초과 폰트 18px 통일** | `2026-06/worldcup-challenge/index-dev.html` | `.section-title(20.8px)`, `.period-date(20.8px)`, `.match-teams(20px)`, `.total-box(19.2px)`, `.no-condition(38.4px)`, `.method-highlight(18.88px)`, `.usage-label(18.4px)`, `.apply-cta-title(23.2px)`, `.apply-cta-button(20px)` → 18px (9개 항목, 히어로 영역 제외) | 2026-06-19 02:15 | 쮸티12-1호 |
-| W-017 | P1 | T-017 | **진행중** | **대출 가능성 검사기 두 번째 이미지 숨김 처리** | `loan-checker/index-dev.html` | 상단 이미지 4개 중 두 번째 `loan-eligibility-checker-02.jpg`('대출이 필요하신 분 주목') `display:none` 숨김 | 2026-06-20 17:00 | 쮸티12-1호 |
+| W-018 | P1 | T-018 | **진행중** | **대출 가능성 검사기 4번째 이미지 → 텍스트 박스 교체** | `loan-checker/index-dev.html` | `loan-eligibility-checker-title.jpg` 이미지 제거 → 텍스트 박스 ("대출 가능성 검사기" + "지금 바로 확인해 보세요.", 센터정렬, 박스 충분한 크기, 텍스트 ≤18px) | 2026-06-20 17:10 | 쮸티12-1호 |
+| W-017 | P1 | T-017 | **완료** | **대출 가능성 검사기 두 번째 이미지 숨김 처리** | `loan-checker/index-dev.html` | 상단 이미지 4개 중 두 번째 `loan-eligibility-checker-02.jpg`('대출이 필요하신 분 주목') `display:none` 숨김 | 2026-06-20 17:00 | 쮸티12-1호 |
 | W-016 | P0 | T-016 | **완료** | **대출 가능성 검사기 뚝딱 버튼 → 하단 법적고지 위로 이동** | `loan-checker/index-dev.html` | `div.action-area`가 `</main>` 밖에 있어 legal-shared.js 하단 주입 후 아래로 밀림 → `</main>` 안으로 이동 + 상단 여백으로 법적고지와 구분 | 2026-06-20 16:55 | 쮸티12-1호 |
 | W-015 | P0 | T-015 | **완료** | **대출 가능성 검사기 폼 패널 2열 → 1열 변경** | `loan-checker/index-dev.html` | `@media(min-width:960px)` 내 `.form-grid { grid-template-columns: repeat(2,1fr) }` → 1열 오버라이드. ①~⑤ 패널 세로 1열 배치 | 2026-06-20 16:45 | 쮸티12-1호 |
 | W-012 | P0 | - | **완료** | **대출 가능성 검사기 모바일 앱 사이즈 변경** | `loan-checker/index-dev.html` | `.app-main { max-width: 1100px }` → 480px 오버라이드 (인라인 `<style>`) + `.app-main` → `class="app-main page"` (legal-shared.js 감지 클래스 추가) | 2026-06-20 16:30 | 쮸티12-1호 |
