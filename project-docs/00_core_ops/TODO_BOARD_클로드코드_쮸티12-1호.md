@@ -343,6 +343,7 @@ git checkout -b feature/T-001-jun-loan-landing
 | T-016 | 대출 검사기 뚝딱 버튼 법적고지 위로 이동 | ✅ `8bac5d8` | - | 검증완료 | - | - | 쮸티12-1호 | 2026-06-20 16:55 | `div.action-area` `</main>` 안으로 이동 + 구분선 |
 | T-017 | 대출 검사기 두 번째 이미지 숨김 | ✅ `bd47edb` | - | 검증완료 | - | - | 쮸티12-1호 | 2026-06-20 17:00 | `loan-eligibility-checker-02.jpg` `display:none` |
 | T-018 | 대출 검사기 4번째 이미지 → 텍스트 박스 | ✅ `e16b96f` | - | 검증완료 | - | - | 쮸티12-1호 | 2026-06-20 17:10 | 퍼플 그라디언트 박스, 18px/14px 텍스트 |
+| T-019 | 대출 검사기 result-panel h2 24px → 18px | ✅ `e86d599` | - | 검증완료 | - | - | 쮸티12-1호 | 2026-06-20 17:30 | `.result-panel h2` 브라우저 기본 24px → 18px |
 
 
 ---
@@ -376,7 +377,7 @@ git checkout -b feature/T-001-jun-loan-landing
 | **T-016** | WT-016 | W-016 | `8bac5d8` | **테스트 완료(DONE)** | **대출 가능성 검사기 뚝딱 버튼 → 하단 법적고지 위로 이동** | 쮸티12-1호 | 2026-06-20 16:55 | 【파일】`loan-checker/index-dev.html` / `div.action-area`를 `</main>` 안으로 이동 + 상단 여백으로 구분 |
 | **T-017** | WT-017 | W-017 | `bd47edb` | **테스트 완료(DONE)** | **대출 가능성 검사기 두 번째 이미지 숨김 처리** | 쮸티12-1호 | 2026-06-20 17:00 | 【파일】`loan-checker/index-dev.html` / `hero-banner` 두 번째 `loan-eligibility-checker-02.jpg` `display:none` |
 | **T-018** | WT-018 | W-018 | `e16b96f` | **테스트 완료(DONE)** | **대출 가능성 검사기 4번째 이미지 → 텍스트 박스 교체** | 쮸티12-1호 | 2026-06-20 17:10 | 【파일】`loan-checker/index-dev.html` / `loan-eligibility-checker-title.jpg` 이미지 → 텍스트박스 ("대출 가능성 검사기 / 지금 바로 확인해 보세요.", 센터정렬, ≤18px) |
-| **T-019** | WT-019 | W-019 | - | **진행중(In-Progress)** | **대출 가능성 검사기 ①~⑤ 패널 폰트 18px 초과 통일** | 쮸티12-1호 | 2026-06-20 17:20 | 【파일】`loan-checker/index-dev.html` / `.title-bar-text(clamp 최소 20.8px)`, `.page-intro h1(28.8px)`, `.script-cta-button-text(17.6px)` 등 18px 초과 항목 → 18px |
+| **T-019** | WT-019 | W-019 | `e86d599` | **테스트 완료(DONE)** | **대출 가능성 검사기 ①~⑤ 패널 폰트 18px 초과 통일** | 쮸티12-1호 | 2026-06-20 17:20 | 【파일】`loan-checker/index-dev.html` / `.result-panel h2` 브라우저 기본값 24px → 18px (뚝딱 결과 패널 헤딩) |
 | **T-011** | WT-011 | W-011 | `af8d679` | **테스트 완료(DONE)** | **월드컵 챌린지 페이지 법적고지↔콘텐츠 영역 시각적 구분** | 쮸티12-1호 | 2026-06-20 16:00 | 【파일】`2026-06/worldcup-challenge/index-dev.html`, `index.html` / `.legal-top { margin-bottom: 20px; }` 추가 |
 | **T-010** | WT-010 | W-010 | `21f6ed0` | **완료(Done)** | **월드컵 챌린지 페이지 legal-shared.js 연결** | 쮸티12-1호 | 2026-06-19 03:00 | 【파일】`2026-06/worldcup-challenge/index-dev.html`, `index.html` / `.page` 클래스 추가, 하드코딩 footer 제거, `footer.js` → `legal-shared.js` 교체 |
 

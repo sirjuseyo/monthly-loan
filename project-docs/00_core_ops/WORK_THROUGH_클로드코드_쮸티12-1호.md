@@ -2315,6 +2315,187 @@ monthly-loan T-008 반영 완료했습니다.
 
 ---
 
+---
+
+### WT-011: 월드컵 챌린지 페이지 법적고지↔콘텐츠 영역 시각적 구분
+
+| 항목 | 내용 |
+|------|------|
+| 작업일 | 2026-06-20 |
+| 작업자 | 쮸티12-1호 |
+| 대상 파일 | `2026-06/worldcup-challenge/index-dev.html`, `2026-06/worldcup-challenge/index.html` |
+| 연관 W-ID | W-011 |
+| 연관 T-ID | T-011 |
+| 커밋 해시 | `af8d679` |
+| 브랜치 | `feature/T-009-worldcup-font-18px` |
+| 상태 | 테스트 완료(DONE) |
+
+**변경:**
+- 인라인 `<style>` 블록에 `.legal-top { margin-bottom: 20px; }` 추가 (DEV+PRD 양쪽 동일 적용)
+- 상단 법적고지 영역과 페이지 콘텐츠 영역 사이 시각적 여백 구분
+
+---
+
+### WT-012: 대출 가능성 검사기 모바일 앱 사이즈 변경
+
+| 항목 | 내용 |
+|------|------|
+| 작업일 | 2026-06-20 |
+| 작업자 | 쮸티12-1호 |
+| 대상 파일 | `loan-checker/index-dev.html` |
+| 연관 W-ID | W-012 |
+| 연관 T-ID | T-012 |
+| 커밋 해시 | `5297575` |
+| 브랜치 | `feature/T-009-worldcup-font-18px` |
+| 상태 | 테스트 완료(DONE) |
+
+**변경:**
+- 인라인 `<style>` 블록에 `.app-main { max-width: 480px !important; margin: 0 auto !important; }` 추가 (`loan-checker/styles.css`의 1100px 오버라이드)
+- `<main class="app-main">` → `<main class="app-main page">` (.page 클래스 추가 — legal-shared.js 감지)
+
+---
+
+### WT-013: 대출 가능성 검사기 법적고지 연결 (상단+하단)
+
+| 항목 | 내용 |
+|------|------|
+| 작업일 | 2026-06-20 |
+| 작업자 | 쮸티12-1호 |
+| 대상 파일 | `loan-checker/index-dev.html` |
+| 연관 W-ID | W-013 |
+| 연관 T-ID | T-013 |
+| 커밋 해시 | `5297575` |
+| 브랜치 | `feature/T-009-worldcup-font-18px` |
+| 상태 | 테스트 완료(DONE) |
+
+**변경:**
+- `<script src="/footer.js"></script>` → `<script src="/js/legal-shared.js"></script>` 교체
+- 상단 법적고지 자동 주입 + 하단 콘텐츠 자동 주입
+
+---
+
+### WT-014: 대출 가능성 검사기 법적고지↔콘텐츠 간격
+
+| 항목 | 내용 |
+|------|------|
+| 작업일 | 2026-06-20 |
+| 작업자 | 쮸티12-1호 |
+| 대상 파일 | `loan-checker/index-dev.html` |
+| 연관 W-ID | W-014 |
+| 연관 T-ID | T-014 |
+| 커밋 해시 | `5297575` |
+| 브랜치 | `feature/T-009-worldcup-font-18px` |
+| 상태 | 테스트 완료(DONE) |
+
+**변경:**
+- 인라인 `<style>` 블록에 `.legal-top { margin-bottom: 20px; }` 추가 (다른 페이지와 동일)
+
+---
+
+### WT-015: 대출 가능성 검사기 폼 패널 2열 → 1열 변경
+
+| 항목 | 내용 |
+|------|------|
+| 작업일 | 2026-06-20 |
+| 작업자 | 쮸티12-1호 |
+| 대상 파일 | `loan-checker/index-dev.html` |
+| 연관 W-ID | W-015 |
+| 연관 T-ID | T-015 |
+| 커밋 해시 | `15592a9` |
+| 브랜치 | `feature/T-009-worldcup-font-18px` |
+| 상태 | 테스트 완료(DONE) |
+
+**변경:**
+- 인라인 `<style>` 블록에 `.form-grid { grid-template-columns: 1fr !important; }` 추가
+- `styles.css`의 `@media(min-width:960px)` 내 `repeat(2,1fr)` 2열 → 1열 오버라이드
+
+---
+
+### WT-016: 대출 가능성 검사기 뚝딱 버튼 → 하단 법적고지 위로 이동
+
+| 항목 | 내용 |
+|------|------|
+| 작업일 | 2026-06-20 |
+| 작업자 | 쮸티12-1호 |
+| 대상 파일 | `loan-checker/index-dev.html` |
+| 연관 W-ID | W-016 |
+| 연관 T-ID | T-016 |
+| 커밋 해시 | `8bac5d8` |
+| 브랜치 | `feature/T-009-worldcup-font-18px` |
+| 상태 | 테스트 완료(DONE) |
+
+**변경:**
+- `div.action-area`가 `</main>` 밖에 있어 legal-shared.js `beforeend` 주입 후 하단 콘텐츠 아래로 밀리던 문제 해결
+- `div.action-area`를 `</main>` 닫기 태그 바로 앞으로 이동
+- 인라인 `<style>` 블록에 `.action-area { margin-top: 24px; padding-top: 24px; border-top: 2px solid #E5E0F0; }` 추가 (구분선)
+
+---
+
+### WT-017: 대출 가능성 검사기 두 번째 이미지 숨김 처리
+
+| 항목 | 내용 |
+|------|------|
+| 작업일 | 2026-06-20 |
+| 작업자 | 쮸티12-1호 |
+| 대상 파일 | `loan-checker/index-dev.html` |
+| 연관 W-ID | W-017 |
+| 연관 T-ID | T-017 |
+| 커밋 해시 | `bd47edb` |
+| 브랜치 | `feature/T-009-worldcup-font-18px` |
+| 상태 | 테스트 완료(DONE) |
+
+**변경:**
+- 상단 이미지 4개 중 두 번째 `loan-eligibility-checker-02.jpg` ('대출이 필요하신 분 주목') `section.hero-banner`에 `style="display:none;"` 추가
+
+---
+
+### WT-018: 대출 가능성 검사기 4번째 이미지 → 텍스트 박스 교체
+
+| 항목 | 내용 |
+|------|------|
+| 작업일 | 2026-06-20 |
+| 작업자 | 쮸티12-1호 |
+| 대상 파일 | `loan-checker/index-dev.html` |
+| 연관 W-ID | W-018 |
+| 연관 T-ID | T-018 |
+| 커밋 해시 | `e16b96f` |
+| 브랜치 | `feature/T-009-worldcup-font-18px` |
+| 상태 | 테스트 완료(DONE) |
+
+**변경:**
+- `loan-eligibility-checker-title.jpg` 이미지 제거
+- 퍼플 그라디언트 텍스트 박스 교체:
+  ```html
+  <div class="title-text-box">
+    <p class="title-text-main">대출 가능성 검사기</p>
+    <p class="title-text-sub">지금 바로 확인해 보세요.</p>
+  </div>
+  ```
+- 인라인 `<style>`: `.title-text-box { background: linear-gradient(135deg,#380097,#5a00cc); color:#fff; text-align:center; padding:40px 24px; width:100%; }` / `.title-text-main { font-size:18px; font-weight:900; }` / `.title-text-sub { font-size:14px; opacity:.88; }`
+
+---
+
+### WT-019: 대출 가능성 검사기 ①~⑤ 패널 폰트 18px 초과 통일
+
+| 항목 | 내용 |
+|------|------|
+| 작업일 | 2026-06-20 |
+| 작업자 | 쮸티12-1호 |
+| 대상 파일 | `loan-checker/index-dev.html` |
+| 연관 W-ID | W-019 |
+| 연관 T-ID | T-019 |
+| 커밋 해시 | `e86d599` (재수정) |
+| 브랜치 | `feature/T-009-worldcup-font-18px` |
+| 상태 | 테스트 완료(DONE) |
+
+**변경:**
+- 인라인 `<style>` 블록에 `.result-panel h2 { font-size: 18px !important; }` 추가
+- 브라우저 기본 `h2` = 24px → CSS 명시 없으면 18px 규정 위반 → 오버라이드
+- 1차 수정(`ec9a3d6`): `.page-intro h1`, `.title-bar-text` 셀렉터 → 해당 요소 HTML에 미존재 → 무효
+- 재수정(`e86d599`): `.result-panel h2` 셀렉터로 정확히 타겟팅 → 사장님 검증 완료
+
+---
+
 ### 📥 깃 & 배포 관리자 작업 완료 보고서 원문 — T-009+T-010 (보관, 정책 201~205 · 마지막 WT-ID 밑)
 ```
 [GitHub Pages PRD : 깃 & 배포 관리자 -> 개발자]
