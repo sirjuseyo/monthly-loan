@@ -335,6 +335,7 @@ git checkout -b feature/T-001-jun-loan-landing
 | T-008 | 홈 화면 18px 초과 폰트 통일 | ✅ `062433f` | ✅ | 검증완료 | ✅ 선별반영 `a4e3d45` | ✅ Pages 배포 | 쮸티12-1호 | 2026-06-19 01:35 | PR #17 선별반영, HTTP/2 200 확인, run `27775132030` |
 | T-009 | 월드컵 챌린지 폰트 18px 통일 | ✅ `d783299` | ✅ | 검증완료 | ✅ 선별반영 `21f6ed0` | ✅ Pages 배포 | 쮸티12-1호 | 2026-06-19 03:00 | PR #18 선별반영, HTTP/2 200 확인, run `27777530437` |
 | T-010 | 월드컵 챌린지 legal-shared.js 연결 | ✅ `d783299` | ✅ | 검증완료 | ✅ 선별반영 `21f6ed0` | ✅ Pages 배포 | 쮸티12-1호 | 2026-06-19 03:00 | PR #18 선별반영, HTTP/2 200 확인, run `27777530437` |
+| T-011 | 월드컵 챌린지 법적고지↔콘텐츠 구분 | ✅ `af8d679` | - | 검증완료 | - | - | 쮸티12-1호 | 2026-06-20 16:00 | 다음 배포 배치 시작점, `.legal-top { margin-bottom: 20px; }` DEV+PRD |
 
 
 ---
@@ -361,7 +362,7 @@ git checkout -b feature/T-001-jun-loan-landing
 | **T-007** | WT-007 | W-007 | `e69d2b8` | **완료(Done)** | **6월 대출 페이지 procedure-list 파란 원 크기 축소** | 쮸티12-1호 | 2026-06-19 00:40 | 【파일】`2026-06/index.html`, `2026-06/index-dev.html` / `li::before { font-size: 1.4em → 1em }`, `li { padding-left: 3em → 2.5em }` |
 | **T-008** | WT-008 | W-008 | `062433f` | **완료(Done)** | **홈 화면 18px 초과 폰트 18px 통일** | 쮸티12-1호 | 2026-06-19 01:35 | 【파일】`index.html`, `index-dev.html` / `.nav-menu`, `.main-title`, `.checker-icon`, `.worldcup-title` → 18px |
 | **T-009** | WT-009 | W-009 | `21f6ed0` | **완료(Done)** | **월드컵 챌린지 페이지 18px 초과 폰트 18px 통일** | 쮸티12-1호 | 2026-06-19 02:20 | 【파일】`2026-06/worldcup-challenge/index-dev.html` / 9개 항목 → 18px (히어로 영역 제외) |
-| **T-011** | WT-011 | W-011 | - | **진행중(In-Progress)** | **월드컵 챌린지 페이지 법적고지↔콘텐츠 영역 시각적 구분** | 쮸티12-1호 | 2026-06-20 16:00 | 【파일】`2026-06/worldcup-challenge/index-dev.html`, `index.html` / `.legal-top { margin-bottom: 20px; }` 추가 |
+| **T-011** | WT-011 | W-011 | `af8d679` | **테스트 완료(DONE)** | **월드컵 챌린지 페이지 법적고지↔콘텐츠 영역 시각적 구분** | 쮸티12-1호 | 2026-06-20 16:00 | 【파일】`2026-06/worldcup-challenge/index-dev.html`, `index.html` / `.legal-top { margin-bottom: 20px; }` 추가 |
 | **T-010** | WT-010 | W-010 | `21f6ed0` | **완료(Done)** | **월드컵 챌린지 페이지 legal-shared.js 연결** | 쮸티12-1호 | 2026-06-19 03:00 | 【파일】`2026-06/worldcup-challenge/index-dev.html`, `index.html` / `.page` 클래스 추가, 하드코딩 footer 제거, `footer.js` → `legal-shared.js` 교체 |
 
 
