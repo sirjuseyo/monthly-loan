@@ -336,6 +336,9 @@ git checkout -b feature/T-001-jun-loan-landing
 | T-009 | 월드컵 챌린지 폰트 18px 통일 | ✅ `d783299` | ✅ | 검증완료 | ✅ 선별반영 `21f6ed0` | ✅ Pages 배포 | 쮸티12-1호 | 2026-06-19 03:00 | PR #18 선별반영, HTTP/2 200 확인, run `27777530437` |
 | T-010 | 월드컵 챌린지 legal-shared.js 연결 | ✅ `d783299` | ✅ | 검증완료 | ✅ 선별반영 `21f6ed0` | ✅ Pages 배포 | 쮸티12-1호 | 2026-06-19 03:00 | PR #18 선별반영, HTTP/2 200 확인, run `27777530437` |
 | T-011 | 월드컵 챌린지 법적고지↔콘텐츠 구분 | ✅ `af8d679` | - | 검증완료 | - | - | 쮸티12-1호 | 2026-06-20 16:00 | 다음 배포 배치 시작점, `.legal-top { margin-bottom: 20px; }` DEV+PRD |
+| T-012 | 대출 검사기 모바일 사이즈 변경 | ✅ `5297575` | - | 검증완료 | - | - | 쮸티12-1호 | 2026-06-20 16:40 | `.app-main` 480px 오버라이드 + `.page` 클래스 |
+| T-013 | 대출 검사기 법적고지 연결 (상단+하단) | ✅ `5297575` | - | 검증완료 | - | - | 쮸티12-1호 | 2026-06-20 16:40 | `footer.js` → `legal-shared.js` 교체 |
+| T-014 | 대출 검사기 법적고지↔콘텐츠 간격 | ✅ `5297575` | - | 검증완료 | - | - | 쮸티12-1호 | 2026-06-20 16:40 | `.legal-top { margin-bottom: 20px; }` |
 
 
 ---
@@ -362,9 +365,10 @@ git checkout -b feature/T-001-jun-loan-landing
 | **T-007** | WT-007 | W-007 | `e69d2b8` | **완료(Done)** | **6월 대출 페이지 procedure-list 파란 원 크기 축소** | 쮸티12-1호 | 2026-06-19 00:40 | 【파일】`2026-06/index.html`, `2026-06/index-dev.html` / `li::before { font-size: 1.4em → 1em }`, `li { padding-left: 3em → 2.5em }` |
 | **T-008** | WT-008 | W-008 | `062433f` | **완료(Done)** | **홈 화면 18px 초과 폰트 18px 통일** | 쮸티12-1호 | 2026-06-19 01:35 | 【파일】`index.html`, `index-dev.html` / `.nav-menu`, `.main-title`, `.checker-icon`, `.worldcup-title` → 18px |
 | **T-009** | WT-009 | W-009 | `21f6ed0` | **완료(Done)** | **월드컵 챌린지 페이지 18px 초과 폰트 18px 통일** | 쮸티12-1호 | 2026-06-19 02:20 | 【파일】`2026-06/worldcup-challenge/index-dev.html` / 9개 항목 → 18px (히어로 영역 제외) |
-| **T-012** | WT-012 | W-012 | - | **진행중(In-Progress)** | **대출 가능성 검사기 모바일 앱 사이즈 변경** | 쮸티12-1호 | 2026-06-20 16:40 | 【파일】`loan-checker/index-dev.html` / `.app-main` max-width 480px 오버라이드 + `.page` 클래스 추가 |
-| **T-013** | WT-013 | W-013 | - | **진행중(In-Progress)** | **대출 가능성 검사기 법적고지 연결 (상단+하단)** | 쮸티12-1호 | 2026-06-20 16:40 | 【파일】`loan-checker/index-dev.html` / `footer.js` → `legal-shared.js` 교체 |
-| **T-014** | WT-014 | W-014 | - | **진행중(In-Progress)** | **대출 가능성 검사기 법적고지↔콘텐츠 간격** | 쮸티12-1호 | 2026-06-20 16:40 | 【파일】`loan-checker/index-dev.html` / `.legal-top { margin-bottom: 20px; }` 추가 |
+| **T-012** | WT-012 | W-012 | `5297575` | **테스트 완료(DONE)** | **대출 가능성 검사기 모바일 앱 사이즈 변경** | 쮸티12-1호 | 2026-06-20 16:40 | 【파일】`loan-checker/index-dev.html` / `.app-main` max-width 480px 오버라이드 + `.page` 클래스 추가 |
+| **T-013** | WT-013 | W-013 | `5297575` | **테스트 완료(DONE)** | **대출 가능성 검사기 법적고지 연결 (상단+하단)** | 쮸티12-1호 | 2026-06-20 16:40 | 【파일】`loan-checker/index-dev.html` / `footer.js` → `legal-shared.js` 교체 |
+| **T-014** | WT-014 | W-014 | `5297575` | **테스트 완료(DONE)** | **대출 가능성 검사기 법적고지↔콘텐츠 간격** | 쮸티12-1호 | 2026-06-20 16:40 | 【파일】`loan-checker/index-dev.html` / `.legal-top { margin-bottom: 20px; }` 추가 |
+| **T-015** | WT-015 | W-015 | - | **진행중(In-Progress)** | **대출 가능성 검사기 폼 패널 2열 → 1열 변경** | 쮸티12-1호 | 2026-06-20 16:45 | 【파일】`loan-checker/index-dev.html` / `.form-grid` 2열(repeat(2,1fr)) → 1열 오버라이드 |
 | **T-011** | WT-011 | W-011 | `af8d679` | **테스트 완료(DONE)** | **월드컵 챌린지 페이지 법적고지↔콘텐츠 영역 시각적 구분** | 쮸티12-1호 | 2026-06-20 16:00 | 【파일】`2026-06/worldcup-challenge/index-dev.html`, `index.html` / `.legal-top { margin-bottom: 20px; }` 추가 |
 | **T-010** | WT-010 | W-010 | `21f6ed0` | **완료(Done)** | **월드컵 챌린지 페이지 legal-shared.js 연결** | 쮸티12-1호 | 2026-06-19 03:00 | 【파일】`2026-06/worldcup-challenge/index-dev.html`, `index.html` / `.page` 클래스 추가, 하드코딩 footer 제거, `footer.js` → `legal-shared.js` 교체 |
 
@@ -384,9 +388,10 @@ git checkout -b feature/T-001-jun-loan-landing
 | W-007 | P1 | T-007 | **완료** | **6월 대출 페이지 procedure-list 파란 원 크기 축소** | `2026-06/index.html`, `2026-06/index-dev.html` | `li::before { font-size: 1.4em → 1em }`, `li { padding-left: 3em → 2.5em }` — 파란 CSS counter 원이 ~44px로 과대, 빨간 원(T-006 수정 후 ~29px)과 불균형 | 2026-06-19 00:35 | 쮸티12-1호 |
 | W-008 | P1 | T-008 | **완료** | **홈 화면 18px 초과 폰트 18px 통일** | `index.html`, `index-dev.html` | `.nav-menu(1.3rem=20.8px)`, `.main-title(1.4rem=22.4px)`, `.checker-icon(1.2rem=19.2px)`, `.worldcup-title(1.2rem=19.2px)` → 18px | 2026-06-19 01:30 | 쮸티12-1호 |
 | W-009 | P1 | T-009 | **진행중** | **월드컵 챌린지 페이지 18px 초과 폰트 18px 통일** | `2026-06/worldcup-challenge/index-dev.html` | `.section-title(20.8px)`, `.period-date(20.8px)`, `.match-teams(20px)`, `.total-box(19.2px)`, `.no-condition(38.4px)`, `.method-highlight(18.88px)`, `.usage-label(18.4px)`, `.apply-cta-title(23.2px)`, `.apply-cta-button(20px)` → 18px (9개 항목, 히어로 영역 제외) | 2026-06-19 02:15 | 쮸티12-1호 |
-| W-012 | P0 | - | **대기** | **대출 가능성 검사기 모바일 앱 사이즈 변경** | `loan-checker/index-dev.html` | `.app-main { max-width: 1100px }` → 480px 오버라이드 (인라인 `<style>`) + `.app-main` → `class="app-main page"` (legal-shared.js 감지 클래스 추가) | 2026-06-20 16:30 | 쮸티12-1호 |
-| W-013 | P0 | - | **대기** | **대출 가능성 검사기 법적고지 연결 (상단+하단)** | `loan-checker/index-dev.html` | `footer.js` → `legal-shared.js` 교체 → 상단 법적고지 자동 주입 + 기존 하단 콘텐츠 제거 + legal-shared.js 하단 콘텐츠 자동 주입 | 2026-06-20 16:30 | 쮸티12-1호 |
-| W-014 | P0 | - | **대기** | **대출 가능성 검사기 법적고지↔콘텐츠 간격** | `loan-checker/index-dev.html` | `.legal-top { margin-bottom: 20px; }` 추가 (다른 페이지와 동일) | 2026-06-20 16:30 | 쮸티12-1호 |
+| W-015 | P0 | T-015 | **진행중** | **대출 가능성 검사기 폼 패널 2열 → 1열 변경** | `loan-checker/index-dev.html` | `@media(min-width:960px)` 내 `.form-grid { grid-template-columns: repeat(2,1fr) }` → 1열 오버라이드. ①~⑤ 패널 세로 1열 배치 | 2026-06-20 16:45 | 쮸티12-1호 |
+| W-012 | P0 | - | **완료** | **대출 가능성 검사기 모바일 앱 사이즈 변경** | `loan-checker/index-dev.html` | `.app-main { max-width: 1100px }` → 480px 오버라이드 (인라인 `<style>`) + `.app-main` → `class="app-main page"` (legal-shared.js 감지 클래스 추가) | 2026-06-20 16:30 | 쮸티12-1호 |
+| W-013 | P0 | T-013 | **완료** | **대출 가능성 검사기 법적고지 연결 (상단+하단)** | `loan-checker/index-dev.html` | `footer.js` → `legal-shared.js` 교체 → 상단 법적고지 자동 주입 + 기존 하단 콘텐츠 제거 + legal-shared.js 하단 콘텐츠 자동 주입 | 2026-06-20 16:30 | 쮸티12-1호 |
+| W-014 | P0 | T-014 | **완료** | **대출 가능성 검사기 법적고지↔콘텐츠 간격** | `loan-checker/index-dev.html` | `.legal-top { margin-bottom: 20px; }` 추가 (다른 페이지와 동일) | 2026-06-20 16:30 | 쮸티12-1호 |
 | W-011 | P1 | - | **대기** | **월드컵 챌린지 페이지 법적고지↔콘텐츠 영역 시각적 구분** | `2026-06/worldcup-challenge/index-dev.html` | 6월 호국보훈 페이지(`2026-06/index-dev.html`)처럼 상단 법적고지 영역과 페이지 콘텐츠 영역 사이에 시각적 구분선/여백 추가 | 2026-06-20 15:55 | 쮸티12-1호 |
 | W-010 | P0 | T-010 | **진행중** | **월드컵 챌린지 페이지 legal-shared.js 연결** | `2026-06/worldcup-challenge/index-dev.html`, `2026-06/worldcup-challenge/index.html` | T-001과 동일 — 상단 법적고지 + 하단 콘텐츠 자동 주입 (`legal-shared.js` 연결, `.page` 또는 `.wrap` 클래스 추가) | 2026-06-19 02:30 | 쮸티12-1호 |
 
