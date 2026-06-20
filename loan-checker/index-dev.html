@@ -10,6 +10,7 @@
     .app-main { max-width: 480px !important; margin: 0 auto !important; }
     .legal-top { margin-bottom: 20px; }
     .form-grid { grid-template-columns: 1fr !important; }
+    .action-area { margin-top: 24px; padding-top: 24px; border-top: 2px solid #E5E0F0; }
   </style>
 </head>
 
@@ -370,14 +371,14 @@
         </div>
       </section>
     </form>
-  </main>
 
-  <div class="action-area">
-    <button type="button" class="primary-button" id="calculateButton">
-      <img src="assets/img/cta-loan-abracadabra.jpg" alt="대출 나와라, 뚝딱!" />
-    </button>
-    <p id="recalcNote" class="recalc-note hidden">🪄 선택(입력) 항목을 변경하면, '뚝딱!' 다시 눌러!</p>
-  </div>
+    <div class="action-area">
+      <button type="button" class="primary-button" id="calculateButton">
+        <img src="assets/img/cta-loan-abracadabra.jpg" alt="대출 나와라, 뚝딱!" />
+      </button>
+      <p id="recalcNote" class="recalc-note hidden">🪄 선택(입력) 항목을 변경하면, '뚝딱!' 다시 눌러!</p>
+    </div>
+  </main>
 
   <section class="result-panel hidden" id="resultPanel">
     <h2>🧮 미션 포인트 안내</h2>
