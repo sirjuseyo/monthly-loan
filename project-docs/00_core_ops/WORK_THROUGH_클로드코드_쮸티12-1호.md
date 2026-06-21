@@ -2496,6 +2496,50 @@ monthly-loan T-008 반영 완료했습니다.
 
 ---
 
+### 📥 깃 & 배포 관리자 작업 완료 보고서 원문 — T-011~T-019 (보관, 정책 201~205 · 마지막 WT-ID 밑)
+```
+[GitHub Pages PRD : 깃 & 배포 관리자 -> 개발자]
+
+monthly-loan T-011~T-019 반영 완료했습니다.
+`feature/T-009-worldcup-font-18px`의 PR #18 전체 병합은 하지 않았고, 요청 범위에 해당하는
+`2026-06/worldcup-challenge/index.html`, `2026-06/worldcup-challenge/index-dev.html`, `loan-checker/index-dev.html`
+3개 파일만 `origin/feature/T-009-worldcup-font-18px` 기준으로 `main`에 선별 반영했습니다.
+
+반영 내용:
+- [T-011] 월드컵 챌린지 `.legal-top { margin-bottom: 20px; }` 추가
+- [T-012] 대출 검사기 `.app-main` 480px 오버라이드 + `.page` 클래스 추가
+- [T-013] 대출 검사기 `footer.js` → `legal-shared.js` 교체
+- [T-014] 대출 검사기 `.legal-top { margin-bottom: 20px; }` 추가
+- [T-015] 대출 검사기 `.form-grid` 2열 → 1열 오버라이드
+- [T-016] 대출 검사기 `action-area`를 `</main>` 안으로 이동 + 구분선 추가
+- [T-017] 대출 검사기 두 번째 이미지 `display:none` 처리
+- [T-018] 대출 검사기 4번째 이미지 → 퍼플 그라디언트 텍스트 박스 교체
+- [T-019] 대출 검사기 `.result-panel h2` 18px 오버라이드
+
+실반영 커밋:
+- `c3063b3` fix(checker): apply T-011~T-019 updates [Ser7-1]
+
+검증:
+- 원격 `main` HEAD = `c3063b3` 확인
+- GitHub Pages deploy run `27898271068` success 확인
+- `https://monthly-loan.sirjuseyo.com/2026-06/worldcup-challenge/` live 응답 `HTTP/2 200` 확인
+- `https://monthly-loan.sirjuseyo.com/loan-checker/index-dev.html` live 응답 `HTTP/2 200` 확인
+- 두 URL 모두 live header `last-modified` 갱신 확인
+
+판단:
+- `monthly-loan` 레포는 `dev` 브랜치가 없고, PR #18 base도 `main`입니다.
+- 또한 PR #18 diff에는 문서 변경이 함께 섞여 있어 전체 병합하지 않고 요청서 마지막 줄에 명시된 3개 파일만 선별 반영했습니다.
+
+문서:
+- `project-docs/00_core_ops/TODO_BOARD_GitDeployOps_Ser7-1호_20260619.md`
+- `project-docs/00_core_ops/WORK_THROUGH_GitDeployOps_Ser7-1호_20260619.md`
+
+로컬 최신화:
+- 로컬 `monthly-loan main` HEAD와 원격 `origin/main`이 동일한 `c3063b3`로 확인되어 최신화 완료했습니다.
+```
+
+---
+
 ### 📥 깃 & 배포 관리자 작업 완료 보고서 원문 — T-009+T-010 (보관, 정책 201~205 · 마지막 WT-ID 밑)
 ```
 [GitHub Pages PRD : 깃 & 배포 관리자 -> 개발자]
