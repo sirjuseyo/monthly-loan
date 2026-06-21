@@ -6,6 +6,16 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>대출가능성검사기</title>
   <link rel="stylesheet" href="styles.css" />
+  <style>
+    .app-main { max-width: 480px !important; margin: 0 auto !important; }
+    .legal-top { margin-bottom: 20px; }
+    .form-grid { grid-template-columns: 1fr !important; }
+    .result-panel h2 { font-size: 18px !important; }
+    .action-area { margin-top: 24px; padding-top: 24px; border-top: 2px solid #E5E0F0; }
+    .title-text-box { background: linear-gradient(135deg, #380097, #5a00cc); color: #fff; text-align: center; padding: 40px 24px; width: 100%; }
+    .title-text-main { font-size: 18px; font-weight: 900; letter-spacing: -0.5px; margin-bottom: 10px; }
+    .title-text-sub { font-size: 14px; font-weight: 400; opacity: .88; }
+  </style>
 </head>
 
 <body>
@@ -15,18 +25,21 @@
     🚧 DEV 테스트 환경 — 실사용자 접근 금지
   </div>
 
-  <main class="app-main">
+  <main class="app-main page">
     <section class="hero-banner">
       <img src="assets/img/hero-loan-eligibility-checker_typeB.jpg" alt="대출가능성검사기 이벤트 배너" />
     </section>
-    <section class="hero-banner">
+    <section class="hero-banner" style="display:none;">
       <img src="assets/img/loan-eligibility-checker-02.jpg" alt="대출가능성검사기 안내 배너" />
     </section>
     <section class="hero-banner">
       <img src="assets/img/loan-eligibility-checker-03.jpg" alt="대출가능성검사기 안내 배너 2" />
     </section>
     <section class="hero-banner">
-      <img src="assets/img/loan-eligibility-checker-title.jpg" alt="대출가능성검사기 타이틀" />
+      <div class="title-text-box">
+        <p class="title-text-main">대출 가능성 검사기</p>
+        <p class="title-text-sub">지금 바로 확인해 보세요.</p>
+      </div>
     </section>
     <section class="page-intro">
       <p id="liveClock" aria-live="polite">--:--:--</p>
@@ -365,14 +378,14 @@
         </div>
       </section>
     </form>
-  </main>
 
-  <div class="action-area">
-    <button type="button" class="primary-button" id="calculateButton">
-      <img src="assets/img/cta-loan-abracadabra.jpg" alt="대출 나와라, 뚝딱!" />
-    </button>
-    <p id="recalcNote" class="recalc-note hidden">🪄 선택(입력) 항목을 변경하면, '뚝딱!' 다시 눌러!</p>
-  </div>
+    <div class="action-area">
+      <button type="button" class="primary-button" id="calculateButton">
+        <img src="assets/img/cta-loan-abracadabra.jpg" alt="대출 나와라, 뚝딱!" />
+      </button>
+      <p id="recalcNote" class="recalc-note hidden">🪄 선택(입력) 항목을 변경하면, '뚝딱!' 다시 눌러!</p>
+    </div>
+  </main>
 
   <section class="result-panel hidden" id="resultPanel">
     <h2>🧮 미션 포인트 안내</h2>
@@ -596,7 +609,7 @@
       }
     });
   </script>
-  <script src="/footer.js"></script>
+  <script src="/js/legal-shared.js"></script>
 </body>
 
 </html>
