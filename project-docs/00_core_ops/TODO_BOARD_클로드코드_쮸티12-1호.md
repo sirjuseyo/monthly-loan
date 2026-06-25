@@ -407,6 +407,7 @@ git checkout -b feature/T-001-jun-loan-landing
 | W-014 | P0 | T-014 | **완료** | **대출 가능성 검사기 법적고지↔콘텐츠 간격** | `loan-checker/index-dev.html` | `.legal-top { margin-bottom: 20px; }` 추가 (다른 페이지와 동일) | 2026-06-20 16:30 | 쮸티12-1호 |
 | W-011 | P1 | - | **대기** | **월드컵 챌린지 페이지 법적고지↔콘텐츠 영역 시각적 구분** | `2026-06/worldcup-challenge/index-dev.html` | 6월 호국보훈 페이지(`2026-06/index-dev.html`)처럼 상단 법적고지 영역과 페이지 콘텐츠 영역 사이에 시각적 구분선/여백 추가 | 2026-06-20 15:55 | 쮸티12-1호 |
 | W-010 | P0 | T-010 | **진행중** | **월드컵 챌린지 페이지 legal-shared.js 연결** | `2026-06/worldcup-challenge/index-dev.html`, `2026-06/worldcup-challenge/index.html` | T-001과 동일 — 상단 법적고지 + 하단 콘텐츠 자동 주입 (`legal-shared.js` 연결, `.page` 또는 `.wrap` 클래스 추가) | 2026-06-19 02:30 | 쮸티12-1호 |
+| W-020 | P0 | - | **대기** | **legal-shared.js 서비스 링크 절대경로 수정** | `js/legal-shared.js` | Contact 섹션 서비스 카드 링크 3개 `/privacy/...` → `https://www.sirjuseyo.com/privacy/...` 절대경로 변경 — monthly-loan 로컬·라이브에서 404 발생 중 | 2026-06-26 | 쮸티12-1호 |
 
 
 
