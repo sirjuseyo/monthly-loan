@@ -2317,6 +2317,39 @@ monthly-loan T-008 반영 완료했습니다.
 
 ---
 
+### WT-020: legal-shared.js 서비스 링크 절대경로 수정
+
+| 항목 | 내용 |
+|------|------|
+| 작업일 | 2026-06-26 |
+| 작업자 | 쮸티12-1호 |
+| 대상 파일 | `js/legal-shared.js` |
+| 연관 W-ID | W-020 |
+| 연관 T-ID | T-020 |
+| 커밋 해시 | `ab9eac8` |
+| 브랜치 | `feature/T-009-worldcup-font-18px` |
+| 상태 | 테스트 완료(DONE) |
+
+**문제:**
+`legal-shared.js` Contact 섹션 서비스 카드의 링크가 루트 상대경로(`/privacy/...`)로 되어 있어 monthly-loan 도메인에서 404 발생.
+- `monthly-loan.sirjuseyo.com/privacy/...` → 파일 없음 → 404
+- privacy 파일은 `sirjuseyoWeb` 레포에만 존재 (`www.sirjuseyo.com/privacy/`)
+
+**처방:**
+서비스 카드 링크 3개를 절대경로로 변경 + `target="_blank" rel="noopener"` 추가
+
+| 항목 | 변경 전 | 변경 후 |
+|---|---|---|
+| 서비스 이용약관 | `/privacy/01_terms.html` | `https://www.sirjuseyo.com/privacy/01_terms.html` |
+| 개인정보 처리방침 | `/privacy/index002.html` | `https://www.sirjuseyo.com/privacy/index002.html` |
+| 대부거래 표준약관 | `/privacy/08_standard-terms.html` | `https://www.sirjuseyo.com/privacy/08_standard-terms.html` |
+
+**검증:**
+- `http://127.0.0.1:5502/index-dev.html` → 서비스 이용약관 클릭 → `www.sirjuseyo.com/privacy/01_terms.html` 정상 오픈 확인 (사장님 로컬 테스트 완료)
+- `sirjuseyoWeb/js/legal-shared.js`는 별도 파일로 미수정 → www.sirjuseyo.com 영향 없음
+
+---
+
 ### WT-011: 월드컵 챌린지 페이지 법적고지↔콘텐츠 영역 시각적 구분
 
 | 항목 | 내용 |
