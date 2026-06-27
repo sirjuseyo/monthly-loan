@@ -57,7 +57,7 @@
     /* ── 법적 고지 하단 ── */
     '<div class="legal-bottom">' +
       '<div class="legal-group">' +
-        '<div class="legal-group-title">대출금리 연 12% (연체금리는 약정이자율 +6%P 이내, 연 18%이내)</div>' +
+        '<div class="legal-group-title">대출금리 연 12% (연체금리는 약정이자율 +3%P 이내, 연 15%이내)</div>' +
         '<div class="legal-group-body">' +
           '<p>단, 2025년 2월 1일부터 신규체결, 갱신, 연장되는 계약에 한함. 해당 상품은 소액신용대출 상품입니다.</p>' +
           '<p>만 20세 이상 고객 대상으로 개인신용평점 등 신용도 및 당사 평가 기준에 따라 대출 가능 여부 및 이자율 산출</p>' +
