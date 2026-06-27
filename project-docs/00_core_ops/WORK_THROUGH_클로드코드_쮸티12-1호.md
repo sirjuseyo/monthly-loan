@@ -2398,7 +2398,7 @@ monthly-loan T-020 반영 완료했습니다.
 | 연관 T-ID | T-021 |
 | 커밋 해시 | `d586839` |
 | 브랜치 | `feature/T-009-worldcup-font-18px` |
-| 상태 | 테스트 완료(DONE) |
+| 상태 | 검증완료 |
 
 **문제:**
 하단 법적고지 그룹1 타이틀의 연체금리 수치가 구버전(+6%P·18%)으로 기재되어 있어 수정 필요.
@@ -2423,7 +2423,7 @@ monthly-loan T-020 반영 완료했습니다.
 | 연관 T-ID | T-022 |
 | 커밋 해시 | `a1660d1` |
 | 브랜치 | `feature/T-014-hero-slider-cleanup` (sirjuseyoWeb 레포) |
-| 상태 | 테스트 완료(DONE) |
+| 상태 | 검증완료 |
 
 **처방:**
 | 항목 | 변경 전 | 변경 후 |
@@ -2445,7 +2445,7 @@ monthly-loan T-020 반영 완료했습니다.
 | 연관 T-ID | T-023 |
 | 커밋 해시 | `05a34aa` |
 | 브랜치 | `feature/T-009-worldcup-font-18px` |
-| 상태 | 테스트 완료(DONE) |
+| 상태 | 검증완료 |
 
 **처방:**
 1. `footer.js` 파일 상단에 DEPRECATED 코멘트 추가 (구버전 보관용)
@@ -2460,6 +2460,82 @@ monthly-loan T-020 반영 완료했습니다.
 | `loan-checker/index.html` | `.page` 클래스 추가 + 교체 |
 | `2026-06/worldcup-challenge/apply/index.html` | footer.js 주석처리 → legal-shared.js 교체 |
 | `2026-06/worldcup-challenge/apply/index-dev.html` | 동일 |
+
+---
+
+### 📥 깃 & 배포 관리자 작업 완료 보고서 원문 — T-021/T-023 (보관, 정책 201~205 · WT-023 밑)
+```
+[GitHub Pages PRD : 깃 & 배포 관리자 -> 개발자]
+
+monthly-loan T-021/T-023 반영 완료했습니다.
+`feature/T-009-worldcup-font-18px`의 PR #18 전체 병합은 하지 않았고, 요청 범위에 해당하는
+`js/legal-shared.js`, `footer.js`, `apply/apply.html`, `apply/apply-dev.html`, `loan-checker/index.html`,
+`2026-06/worldcup-challenge/apply/index.html`, `2026-06/worldcup-challenge/apply/index-dev.html`
+7개 파일만 선별 반영했습니다.
+
+반영 내용:
+- T-021: `js/legal-shared.js` 연체금리 문구 `+6%P·18%` → `+3%P·15%`
+- T-023: `footer.js` 상단 DEPRECATED 코멘트 추가
+- T-023: 5개 HTML 파일 `footer.js` 주석처리 + `/js/legal-shared.js` 교체
+  - `apply/apply.html`
+  - `apply/apply-dev.html`
+  - `loan-checker/index.html` (`.app-main`에 `page` 클래스 추가 포함)
+  - `2026-06/worldcup-challenge/apply/index.html`
+  - `2026-06/worldcup-challenge/apply/index-dev.html`
+
+실반영 커밋:
+- `16835ad` fix(legal): apply T-021 T-023 updates [Ser7-1]
+
+검증:
+- 원격 `main` HEAD = `16835ad` 확인
+- GitHub Pages deploy run `28295021232` success 확인
+- `https://monthly-loan.sirjuseyo.com/js/legal-shared.js` live 응답 `HTTP/2 200` 확인
+- live JS header `last-modified` 갱신 확인
+
+판단:
+- `monthly-loan` 레포는 `dev` 브랜치가 없고, PR #18 base도 `main`입니다.
+- `d586839`, `05a34aa` 외 다른 변경도 feature 브랜치에 누적되어 있어 전체 병합하지 않고 요청 파일만 선별 반영했습니다.
+
+문서:
+- `project-docs/00_core_ops/TODO_BOARD_GitDeployOps_Ser7-1호_20260619.md`
+- `project-docs/00_core_ops/WORK_THROUGH_GitDeployOps_Ser7-1호_20260619.md`
+
+로컬 최신화:
+- 로컬 `monthly-loan main` HEAD와 원격 `origin/main`이 동일한 `16835ad`로 확인되어 최신화 완료했습니다.
+```
+
+---
+
+### 📥 깃 & 배포 관리자 작업 완료 보고서 원문 — T-022 (보관, 정책 201~205 · WT-022 연동)
+```
+[GitHub Pages PRD : 깃 & 배포 관리자 -> 개발자]
+
+sirjuseyo-web T-022 반영 완료했습니다.
+`feature/T-014-hero-slider-cleanup`의 누적 변경 전체 병합은 하지 않았고, 요청 범위에 해당하는
+`js/legal-shared.js`만 `a1660d1` 기준으로 `main`에 선별 반영했습니다.
+
+반영 내용:
+- `js/legal-shared.js` 연체금리 문구 `+6%P·18%` → `+3%P·15%`
+
+실반영 커밋:
+- `ee5b8e3` fix(legal): apply T-022 overdue copy [Ser7-1]
+
+검증:
+- 원격 `main` HEAD = `ee5b8e3` 확인
+- GitHub Pages deploy run `28295021225` success 확인
+- `https://www.sirjuseyo.com/js/legal-shared.js` live 응답 `HTTP/2 200` 확인
+- live JS header `last-modified` 갱신 확인
+
+판단:
+- `feature/T-014-hero-slider-cleanup`에는 T-022 외 다른 변경도 누적되어 있어 전체 병합하지 않고 `js/legal-shared.js`만 선별 반영했습니다.
+
+문서:
+- `project-docs/00_core_ops/TODO_BOARD_GitDeployOps_Ser7-1호_20260619.md`
+- `project-docs/00_core_ops/WORK_THROUGH_GitDeployOps_Ser7-1호_20260619.md`
+
+로컬 최신화:
+- 로컬 `sirjuseyo-web main` HEAD와 원격 `origin/main`이 동일한 `ee5b8e3`로 확인되어 최신화 완료했습니다.
+```
 
 ---
 
