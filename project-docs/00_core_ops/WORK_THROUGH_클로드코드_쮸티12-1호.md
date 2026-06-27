@@ -2387,6 +2387,82 @@ monthly-loan T-020 반영 완료했습니다.
 
 ---
 
+### WT-021: [monthly-loan] 하단 법적고지 연체금리 문구 수정
+
+| 항목 | 내용 |
+|------|------|
+| 작업일 | 2026-06-27 |
+| 작업자 | 쮸티12-1호 |
+| 대상 파일 | `js/legal-shared.js` |
+| 연관 W-ID | W-021 |
+| 연관 T-ID | T-021 |
+| 커밋 해시 | `d586839` |
+| 브랜치 | `feature/T-009-worldcup-font-18px` |
+| 상태 | 진행중(In-Progress) |
+
+**문제:**
+하단 법적고지 그룹1 타이틀의 연체금리 수치가 구버전(+6%P·18%)으로 기재되어 있어 수정 필요.
+
+**처방:**
+| 항목 | 변경 전 | 변경 후 |
+|---|---|---|
+| 연체금리 | `+6%P 이내, 연 18%이내` | `+3%P 이내, 연 15%이내` |
+
+**수정 위치:** `js/legal-shared.js` 60번줄 `.legal-group-title`
+
+---
+
+### WT-022: [sirjuseyoWeb] 하단 법적고지 연체금리 문구 수정
+
+| 항목 | 내용 |
+|------|------|
+| 작업일 | 2026-06-27 |
+| 작업자 | 쮸티12-1호 |
+| 대상 파일 | `sirjuseyoWeb/js/legal-shared.js` |
+| 연관 W-ID | W-022 |
+| 연관 T-ID | T-022 |
+| 커밋 해시 | `a1660d1` |
+| 브랜치 | `feature/T-014-hero-slider-cleanup` (sirjuseyoWeb 레포) |
+| 상태 | 진행중(In-Progress) |
+
+**처방:**
+| 항목 | 변경 전 | 변경 후 |
+|---|---|---|
+| 연체금리 | `+6%P 이내, 연 18%이내` | `+3%P 이내, 연 15%이내` |
+
+**수정 위치:** `sirjuseyoWeb/js/legal-shared.js` 60번줄 `.legal-group-title`
+
+---
+
+### WT-023: [monthly-loan] footer.js → legal-shared.js 교체 + deprecated 처리
+
+| 항목 | 내용 |
+|------|------|
+| 작업일 | 2026-06-27 |
+| 작업자 | 쮸티12-1호 |
+| 대상 파일 | `footer.js`, `apply/apply.html`, `apply/apply-dev.html`, `loan-checker/index.html`, `2026-06/worldcup-challenge/apply/index.html`, `2026-06/worldcup-challenge/apply/index-dev.html` |
+| 연관 W-ID | W-023 |
+| 연관 T-ID | T-023 |
+| 커밋 해시 | `05a34aa` |
+| 브랜치 | `feature/T-009-worldcup-font-18px` |
+| 상태 | 진행중(In-Progress) |
+
+**처방:**
+1. `footer.js` 파일 상단에 DEPRECATED 코멘트 추가 (구버전 보관용)
+2. 5개 HTML 파일에서 `<script src="/footer.js">` 주석처리 + `/js/legal-shared.js` 교체
+3. `loan-checker/index.html` — `.app-main`에 `page` 클래스 추가 (legal-shared.js 감지 대응)
+
+| 파일 | 처리 내용 |
+|---|---|
+| `footer.js` | DEPRECATED 코멘트 추가 |
+| `apply/apply.html` | footer.js 주석처리 → legal-shared.js 교체 |
+| `apply/apply-dev.html` | 동일 |
+| `loan-checker/index.html` | `.page` 클래스 추가 + 교체 |
+| `2026-06/worldcup-challenge/apply/index.html` | footer.js 주석처리 → legal-shared.js 교체 |
+| `2026-06/worldcup-challenge/apply/index-dev.html` | 동일 |
+
+---
+
 ### WT-011: 월드컵 챌린지 페이지 법적고지↔콘텐츠 영역 시각적 구분
 
 | 항목 | 내용 |

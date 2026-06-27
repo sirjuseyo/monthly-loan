@@ -382,9 +382,9 @@ git checkout -b feature/T-001-jun-loan-landing
 | **T-011** | WT-011 | W-011 | `af8d679` | **검증완료** | **월드컵 챌린지 페이지 법적고지↔콘텐츠 영역 시각적 구분** | 쮸티12-1호 | 2026-06-20 16:00 | 【파일】`2026-06/worldcup-challenge/index-dev.html`, `index.html` / `.legal-top { margin-bottom: 20px; }` 추가 |
 | **T-010** | WT-010 | W-010 | `21f6ed0` | **완료(Done)** | **월드컵 챌린지 페이지 legal-shared.js 연결** | 쮸티12-1호 | 2026-06-19 03:00 | 【파일】`2026-06/worldcup-challenge/index-dev.html`, `index.html` / `.page` 클래스 추가, 하드코딩 footer 제거, `footer.js` → `legal-shared.js` 교체 |
 | **T-020** | WT-020 | W-020 | `ab9eac8` | **검증완료** | **legal-shared.js 서비스 링크 절대경로 수정** | 쮸티12-1호 | 2026-06-26 | 【파일】`js/legal-shared.js` / 서비스 카드 링크 3개 `/privacy/...` → `https://www.sirjuseyo.com/privacy/...` + `target="_blank"` 추가 |
-| **T-021** | WT-021 | W-021 | - | **진행중(In-Progress)** | **[monthly-loan] 하단 법적고지 연체금리 문구 수정** | 쮸티12-1호 | 2026-06-27 | 【파일】`js/legal-shared.js` / `+6%P 이내, 연 18%이내` → `+3%P 이내, 연 15%이내` |
-| **T-022** | WT-022 | W-022 | - | **진행중(In-Progress)** | **[sirjuseyoWeb] 하단 법적고지 연체금리 문구 수정** | 쮸티12-1호 | 2026-06-27 | 【파일】`sirjuseyoWeb/js/legal-shared.js` / `+6%P 이내, 연 18%이내` → `+3%P 이내, 연 15%이내` |
-| **T-023** | WT-023 | W-023 | - | **진행중(In-Progress)** | **[monthly-loan] footer.js → legal-shared.js 교체 + deprecated 처리** | 쮸티12-1호 | 2026-06-27 | 【파일】`apply/apply.html`, `apply/apply-dev.html`, `loan-checker/index.html`, `2026-06/worldcup-challenge/apply/index.html`, `2026-06/worldcup-challenge/apply/index-dev.html`, `footer.js` |
+| **T-021** | WT-021 | W-021 | `d586839` | **진행중(In-Progress)** | **[monthly-loan] 하단 법적고지 연체금리 문구 수정** | 쮸티12-1호 | 2026-06-27 | 【파일】`js/legal-shared.js` / `+6%P 이내, 연 18%이내` → `+3%P 이내, 연 15%이내` |
+| **T-022** | WT-022 | W-022 | `a1660d1` | **진행중(In-Progress)** | **[sirjuseyoWeb] 하단 법적고지 연체금리 문구 수정** | 쮸티12-1호 | 2026-06-27 | 【파일】`sirjuseyoWeb/js/legal-shared.js` / `+6%P 이내, 연 18%이내` → `+3%P 이내, 연 15%이내` |
+| **T-023** | WT-023 | W-023 | `05a34aa` | **진행중(In-Progress)** | **[monthly-loan] footer.js → legal-shared.js 교체 + deprecated 처리** | 쮸티12-1호 | 2026-06-27 | 【파일】`apply/apply.html`, `apply/apply-dev.html`, `loan-checker/index.html`, `2026-06/worldcup-challenge/apply/index.html`, `2026-06/worldcup-challenge/apply/index-dev.html`, `footer.js` |
 
 
 ---
