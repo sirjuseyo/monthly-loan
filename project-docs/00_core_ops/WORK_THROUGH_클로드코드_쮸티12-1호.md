@@ -2398,7 +2398,7 @@ monthly-loan T-020 반영 완료했습니다.
 | 연관 T-ID | T-021 |
 | 커밋 해시 | `d586839` |
 | 브랜치 | `feature/T-009-worldcup-font-18px` |
-| 상태 | 진행중(In-Progress) |
+| 상태 | 테스트 완료(DONE) |
 
 **문제:**
 하단 법적고지 그룹1 타이틀의 연체금리 수치가 구버전(+6%P·18%)으로 기재되어 있어 수정 필요.
@@ -2423,7 +2423,7 @@ monthly-loan T-020 반영 완료했습니다.
 | 연관 T-ID | T-022 |
 | 커밋 해시 | `a1660d1` |
 | 브랜치 | `feature/T-014-hero-slider-cleanup` (sirjuseyoWeb 레포) |
-| 상태 | 진행중(In-Progress) |
+| 상태 | 테스트 완료(DONE) |
 
 **처방:**
 | 항목 | 변경 전 | 변경 후 |
@@ -2445,7 +2445,7 @@ monthly-loan T-020 반영 완료했습니다.
 | 연관 T-ID | T-023 |
 | 커밋 해시 | `05a34aa` |
 | 브랜치 | `feature/T-009-worldcup-font-18px` |
-| 상태 | 진행중(In-Progress) |
+| 상태 | 테스트 완료(DONE) |
 
 **처방:**
 1. `footer.js` 파일 상단에 DEPRECATED 코멘트 추가 (구버전 보관용)

@@ -345,6 +345,9 @@ git checkout -b feature/T-001-jun-loan-landing
 | T-018 | 대출 검사기 4번째 이미지 → 텍스트 박스 | ✅ `e16b96f` | ✅ | 검증완료 | ✅ 선별반영 `c3063b3` | ✅ Pages 배포 | 쮸티12-1호 | 2026-06-20 17:10 | PR #18 선별반영, HTTP/2 200 확인, run `27898271068` |
 | T-019 | 대출 검사기 result-panel h2 24px → 18px | ✅ `e86d599` | ✅ | 검증완료 | ✅ 선별반영 `c3063b3` | ✅ Pages 배포 | 쮸티12-1호 | 2026-06-20 17:30 | PR #18 선별반영, HTTP/2 200 확인, run `27898271068` |
 | T-020 | legal-shared.js 서비스 링크 절대경로 수정 | ✅ `ab9eac8` | ✅ | 검증완료 | ✅ 선별반영 `b112c62` | ✅ Pages 배포 | 쮸티12-1호 | 2026-06-26 | PR #18 선별반영, HTTP/2 200 확인, run `28282393428` |
+| T-021 | [monthly-loan] 하단 법적고지 연체금리 수정 | ✅ `d586839` | 배포대기 | 테스트완료 | - | - | 쮸티12-1호 | 2026-06-27 | `+6%P·18%` → `+3%P·15%` / PR #18 추가 커밋 선별반영 요청 |
+| T-022 | [sirjuseyoWeb] 하단 법적고지 연체금리 수정 | ✅ `a1660d1` | 배포대기 | 테스트완료 | - | - | 쮸티12-1호 | 2026-06-27 | sirjuseyoWeb 레포 `feature/T-014-hero-slider-cleanup` / `+6%P·18%` → `+3%P·15%` |
+| T-023 | [monthly-loan] footer.js→legal-shared.js 교체 | ✅ `05a34aa` | 배포대기 | 테스트완료 | - | - | 쮸티12-1호 | 2026-06-27 | 5개 HTML + loan-checker `.page` 클래스 추가 / footer.js DEPRECATED / PR #18 추가 커밋 선별반영 요청 |
 
 
 ---
@@ -382,9 +385,9 @@ git checkout -b feature/T-001-jun-loan-landing
 | **T-011** | WT-011 | W-011 | `af8d679` | **검증완료** | **월드컵 챌린지 페이지 법적고지↔콘텐츠 영역 시각적 구분** | 쮸티12-1호 | 2026-06-20 16:00 | 【파일】`2026-06/worldcup-challenge/index-dev.html`, `index.html` / `.legal-top { margin-bottom: 20px; }` 추가 |
 | **T-010** | WT-010 | W-010 | `21f6ed0` | **완료(Done)** | **월드컵 챌린지 페이지 legal-shared.js 연결** | 쮸티12-1호 | 2026-06-19 03:00 | 【파일】`2026-06/worldcup-challenge/index-dev.html`, `index.html` / `.page` 클래스 추가, 하드코딩 footer 제거, `footer.js` → `legal-shared.js` 교체 |
 | **T-020** | WT-020 | W-020 | `ab9eac8` | **검증완료** | **legal-shared.js 서비스 링크 절대경로 수정** | 쮸티12-1호 | 2026-06-26 | 【파일】`js/legal-shared.js` / 서비스 카드 링크 3개 `/privacy/...` → `https://www.sirjuseyo.com/privacy/...` + `target="_blank"` 추가 |
-| **T-021** | WT-021 | W-021 | `d586839` | **진행중(In-Progress)** | **[monthly-loan] 하단 법적고지 연체금리 문구 수정** | 쮸티12-1호 | 2026-06-27 | 【파일】`js/legal-shared.js` / `+6%P 이내, 연 18%이내` → `+3%P 이내, 연 15%이내` |
-| **T-022** | WT-022 | W-022 | `a1660d1` | **진행중(In-Progress)** | **[sirjuseyoWeb] 하단 법적고지 연체금리 문구 수정** | 쮸티12-1호 | 2026-06-27 | 【파일】`sirjuseyoWeb/js/legal-shared.js` / `+6%P 이내, 연 18%이내` → `+3%P 이내, 연 15%이내` |
-| **T-023** | WT-023 | W-023 | `05a34aa` | **진행중(In-Progress)** | **[monthly-loan] footer.js → legal-shared.js 교체 + deprecated 처리** | 쮸티12-1호 | 2026-06-27 | 【파일】`apply/apply.html`, `apply/apply-dev.html`, `loan-checker/index.html`, `2026-06/worldcup-challenge/apply/index.html`, `2026-06/worldcup-challenge/apply/index-dev.html`, `footer.js` |
+| **T-021** | WT-021 | W-021 | `d586839` | **테스트 완료(DONE)** | **[monthly-loan] 하단 법적고지 연체금리 문구 수정** | 쮸티12-1호 | 2026-06-27 | 【파일】`js/legal-shared.js` / `+6%P 이내, 연 18%이내` → `+3%P 이내, 연 15%이내` |
+| **T-022** | WT-022 | W-022 | `a1660d1` | **테스트 완료(DONE)** | **[sirjuseyoWeb] 하단 법적고지 연체금리 문구 수정** | 쮸티12-1호 | 2026-06-27 | 【파일】`sirjuseyoWeb/js/legal-shared.js` / `+6%P 이내, 연 18%이내` → `+3%P 이내, 연 15%이내` |
+| **T-023** | WT-023 | W-023 | `05a34aa` | **테스트 완료(DONE)** | **[monthly-loan] footer.js → legal-shared.js 교체 + deprecated 처리** | 쮸티12-1호 | 2026-06-27 | 【파일】`apply/apply.html`, `apply/apply-dev.html`, `loan-checker/index.html`, `2026-06/worldcup-challenge/apply/index.html`, `2026-06/worldcup-challenge/apply/index-dev.html`, `footer.js` |
 
 
 ---
@@ -413,9 +416,9 @@ git checkout -b feature/T-001-jun-loan-landing
 | W-011 | P1 | - | **대기** | **월드컵 챌린지 페이지 법적고지↔콘텐츠 영역 시각적 구분** | `2026-06/worldcup-challenge/index-dev.html` | 6월 호국보훈 페이지(`2026-06/index-dev.html`)처럼 상단 법적고지 영역과 페이지 콘텐츠 영역 사이에 시각적 구분선/여백 추가 | 2026-06-20 15:55 | 쮸티12-1호 |
 | W-010 | P0 | T-010 | **진행중** | **월드컵 챌린지 페이지 legal-shared.js 연결** | `2026-06/worldcup-challenge/index-dev.html`, `2026-06/worldcup-challenge/index.html` | T-001과 동일 — 상단 법적고지 + 하단 콘텐츠 자동 주입 (`legal-shared.js` 연결, `.page` 또는 `.wrap` 클래스 추가) | 2026-06-19 02:30 | 쮸티12-1호 |
 | W-020 | P0 | T-020 | **완료** | **legal-shared.js 서비스 링크 절대경로 수정** | `js/legal-shared.js` | Contact 섹션 서비스 카드 링크 3개 `/privacy/...` → `https://www.sirjuseyo.com/privacy/...` 절대경로 변경 — monthly-loan 로컬·라이브에서 404 발생 중 | 2026-06-26 | 쮸티12-1호 |
-| W-021 | P0 | T-021 | **진행중** | **[monthly-loan] 하단 법적고지 연체금리 문구 수정** | `js/legal-shared.js` | `+6%P 이내, 연 18%이내` → `+3%P 이내, 연 15%이내` / monthly-loan-repo legal-shared.js 수정 | 2026-06-27 | 쮸티12-1호 |
-| W-022 | P0 | T-022 | **진행중** | **[sirjuseyoWeb] 하단 법적고지 연체금리 문구 수정** | `sirjuseyoWeb/js/legal-shared.js` | `+6%P 이내, 연 18%이내` → `+3%P 이내, 연 15%이내` / sirjuseyoWeb 레포 별도 브랜치·PR | 2026-06-27 | 쮸티12-1호 |
-| W-023 | P0 | T-023 | **진행중** | **[monthly-loan] footer.js → legal-shared.js 교체 + deprecated 처리** | `apply/apply.html`, `apply/apply-dev.html`, `loan-checker/index.html`, `2026-06/worldcup-challenge/apply/index.html`, `2026-06/worldcup-challenge/apply/index-dev.html`, `footer.js` | 5개 HTML 파일 `footer.js` 주석처리 + `legal-shared.js` 교체 / `footer.js` 파일 상단에 DEPRECATED 코멘트 추가 | 2026-06-27 | 쮸티12-1호 |
+| W-021 | P0 | T-021 | **배포대기** | **[monthly-loan] 하단 법적고지 연체금리 문구 수정** | `js/legal-shared.js` | `+6%P 이내, 연 18%이내` → `+3%P 이내, 연 15%이내` / monthly-loan-repo legal-shared.js 수정 | 2026-06-27 | 쮸티12-1호 |
+| W-022 | P0 | T-022 | **배포대기** | **[sirjuseyoWeb] 하단 법적고지 연체금리 문구 수정** | `sirjuseyoWeb/js/legal-shared.js` | `+6%P 이내, 연 18%이내` → `+3%P 이내, 연 15%이내` / sirjuseyoWeb 레포 별도 브랜치·PR | 2026-06-27 | 쮸티12-1호 |
+| W-023 | P0 | T-023 | **배포대기** | **[monthly-loan] footer.js → legal-shared.js 교체 + deprecated 처리** | `apply/apply.html`, `apply/apply-dev.html`, `loan-checker/index.html`, `2026-06/worldcup-challenge/apply/index.html`, `2026-06/worldcup-challenge/apply/index-dev.html`, `footer.js` | 5개 HTML 파일 `footer.js` 주석처리 + `legal-shared.js` 교체 / `footer.js` 파일 상단에 DEPRECATED 코멘트 추가 | 2026-06-27 | 쮸티12-1호 |
 
 
 
