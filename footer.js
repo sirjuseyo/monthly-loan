@@ -1,4 +1,10 @@
 /*
+ * ⚠️ DEPRECATED — 이 파일은 더 이상 사용하지 않습니다.
+ * 상단·하단 법적 고지는 /js/legal-shared.js 를 사용하세요.
+ * 각 HTML에서 <script src="/footer.js"> 는 주석 처리되어 있습니다.
+ *
+ * 구버전 파일 — 삭제하지 말고 보관만 할 것
+ * ─────────────────────────────────────────────
  * 써주세요 공용 푸터 (공통 자산) — 월별대출 전 페이지 공통
  * 소스: sirjuseyoWeb/index.html (Contact ~ 저작권, 원본 그대로)
  * 사용: 각 페이지 </body> 직전에  <script src="/footer.js"></script>  한 줄
