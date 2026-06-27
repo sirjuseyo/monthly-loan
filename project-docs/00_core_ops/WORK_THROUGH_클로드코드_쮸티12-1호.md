@@ -2350,6 +2350,43 @@ monthly-loan T-008 반영 완료했습니다.
 
 ---
 
+### 📥 깃 & 배포 관리자 작업 완료 보고서 원문 — T-020 (보관, 정책 201~205 · WT-020 밑)
+```
+[GitHub Pages PRD : 깃 & 배포 관리자 -> 개발자]
+
+monthly-loan T-020 반영 완료했습니다.
+`feature/T-009-worldcup-font-18px`의 PR #18 전체 병합은 하지 않았고, 요청 범위에 해당하는
+`js/legal-shared.js`만 `ab9eac8` 기준으로 `main`에 선별 반영했습니다.
+
+반영 내용:
+- `/privacy/01_terms.html` → `https://www.sirjuseyo.com/privacy/01_terms.html`
+- `/privacy/index002.html` → `https://www.sirjuseyo.com/privacy/index002.html`
+- `/privacy/08_standard-terms.html` → `https://www.sirjuseyo.com/privacy/08_standard-terms.html`
+- 세 링크 모두 `target="_blank" rel="noopener"` 추가
+
+실반영 커밋:
+- `b112c62` fix(legal): apply T-020 service links [Ser7-1]
+
+검증:
+- 원격 `main` HEAD = `b112c62` 확인
+- GitHub Pages deploy run `28282393428` success 확인
+- `https://monthly-loan.sirjuseyo.com/js/legal-shared.js` live 응답 `HTTP/2 200` 확인
+- live JS header `last-modified` 갱신 확인
+
+판단:
+- `monthly-loan` 레포는 `dev` 브랜치가 없고, PR #18 base도 `main`입니다.
+- 실제 `ab9eac8` 커밋은 `js/legal-shared.js` 단일 변경이지만, PR #18에는 다른 코드/문서 변경도 누적되어 있어 전체 병합하지 않고 해당 파일만 선별 반영했습니다.
+
+문서:
+- `project-docs/00_core_ops/TODO_BOARD_GitDeployOps_Ser7-1호_20260619.md`
+- `project-docs/00_core_ops/WORK_THROUGH_GitDeployOps_Ser7-1호_20260619.md`
+
+로컬 최신화:
+- 로컬 `monthly-loan main` HEAD와 원격 `origin/main`이 동일한 `b112c62`로 확인되어 최신화 완료했습니다.
+```
+
+---
+
 ### WT-011: 월드컵 챌린지 페이지 법적고지↔콘텐츠 영역 시각적 구분
 
 | 항목 | 내용 |
