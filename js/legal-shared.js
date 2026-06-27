@@ -101,9 +101,9 @@
       '<div class="contact-card">' +
         '<div class="contact-card-title"><span>📄</span> 서비스</div>' +
         '<div class="service-links">' +
-          '<a href="/privacy/01_terms.html">서비스 이용약관</a>' +
-          '<a href="/privacy/index002.html">개인정보 처리방침</a>' +
-          '<a href="/privacy/08_standard-terms.html">대부거래 표준약관</a>' +
+          '<a href="https://www.sirjuseyo.com/privacy/01_terms.html" target="_blank" rel="noopener">서비스 이용약관</a>' +
+          '<a href="https://www.sirjuseyo.com/privacy/index002.html" target="_blank" rel="noopener">개인정보 처리방침</a>' +
+          '<a href="https://www.sirjuseyo.com/privacy/08_standard-terms.html" target="_blank" rel="noopener">대부거래 표준약관</a>' +
         '</div>' +
       '</div>' +
     '</div>' +
