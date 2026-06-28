@@ -40,7 +40,7 @@ html,body{background:var(--cream);min-height:100vh;font-family:'Apple SD Gothic 
 .nav-left{display:flex;align-items:center;gap:9px;}
 .logo-img{width:34px;height:34px;max-width:34px;max-height:34px;object-fit:contain;border-radius:50%;}
 .brand{font-size:.9rem;font-weight:400;color:var(--purple);}
-.nav-menu{font-size:18px;color:var(--purple);cursor:pointer;} /* T-008: 1.3rem(20.8px) → 18px */
+.nav-menu{font-size:1.3rem;color:var(--purple);cursor:pointer;}
 
 /* content 영역: 모바일은 세로 스택, 데스크탑은 좌우 분할 */
 .content{
@@ -77,12 +77,12 @@ h1 em{font-style:normal;color:var(--purple);}
 .main-card::before{content:'';position:absolute;top:-22px;right:-22px;width:88px;height:88px;background:var(--purple);border-radius:50%;opacity:.06;}
 .main-card::after{content:'';position:absolute;bottom:-10px;left:28px;width:52px;height:52px;background:var(--purple);border-radius:50%;opacity:.04;}
 .main-tag{font-size:.85rem;font-weight:700;color:var(--purple);letter-spacing:.3px;margin-bottom:10px;position:relative;z-index:1;}
-.main-title{font-size:18px;font-weight:900;color:var(--text);margin-bottom:6px;position:relative;z-index:1;letter-spacing:-.5px;} /* T-008: 1.4rem(22.4px) → 18px */
+.main-title{font-size:1.4rem;font-weight:900;color:var(--text);margin-bottom:6px;position:relative;z-index:1;letter-spacing:-.5px;}
 .main-sub{font-size:.85rem;font-weight:300;color:var(--gray);margin-bottom:20px;position:relative;z-index:1;}
 .main-btn{display:block;text-align:center;background:var(--orange);color:#fff;font-size:1.1rem;font-weight:700;border-radius:14px;padding:15px 20px;text-decoration:none;position:relative;z-index:1;letter-spacing:-.2px;}
 .checker-card{background:#fff;border:2px solid var(--mint);border-radius:22px;padding:30px;}
 .checker-header{display:flex;align-items:center;gap:12px;margin-bottom:18px;}
-.checker-icon{width:46px;height:46px;background:rgba(166,214,222,.15);border:1.5px solid var(--mint);border-radius:14px;display:flex;align-items:center;justify-content:center;font-size:18px;flex-shrink:0;} /* T-008: 1.2rem(19.2px) → 18px */
+.checker-icon{width:46px;height:46px;background:rgba(166,214,222,.15);border:1.5px solid var(--mint);border-radius:14px;display:flex;align-items:center;justify-content:center;font-size:1.2rem;flex-shrink:0;}
 .checker-name{font-size:1.1rem;font-weight:700;color:var(--text);margin-bottom:4px;letter-spacing:-.3px;}
 .checker-desc{font-size:.85rem;font-weight:300;color:var(--gray);}
 .checker-btn{display:block;width:100%;text-align:center;font-size:1.1rem;font-weight:700;border-radius:14px;padding:15px;text-decoration:none;color:#3a9aaa;background:transparent;border:2px solid var(--mint);letter-spacing:-.2px;}
@@ -93,7 +93,7 @@ h1 em{font-style:normal;color:var(--purple);}
 .worldcup-visual{width:100%;height:180px;object-fit:cover;display:block;}
 .worldcup-body{padding:18px 20px 20px;}
 .worldcup-tag{display:inline-block;background:rgba(205,46,58,.1);color:#CD2E3A;font-size:.75rem;font-weight:700;padding:4px 10px;border-radius:6px;margin-bottom:10px;}
-.worldcup-title{font-size:18px;font-weight:900;color:#1A1A2E;margin-bottom:4px;letter-spacing:-.3px;} /* T-008: 1.2rem(19.2px) → 18px */
+.worldcup-title{font-size:1.2rem;font-weight:900;color:#1A1A2E;margin-bottom:4px;letter-spacing:-.3px;}
 .worldcup-sub{font-size:.9rem;font-weight:700;color:#CD2E3A;margin-bottom:16px;line-height:1.6;}
 .worldcup-subcopy{font-style:italic;font-size:.92rem;color:#CD2E3A;font-weight:700;margin-bottom:14px;}
 .worldcup-desc{font-size:.85rem;color:#555;font-weight:500;line-height:1.65;margin-bottom:16px;}
@@ -104,6 +104,130 @@ h1 em{font-style:normal;color:var(--purple);}
 
 /* gift-box 모바일 보정 */
 .gift-box{width:min(250px,68vw);top:-125px;right:-25px;}
+</style>
+<style>
+  /* ── 써주세요. 강제 고지 팝업 v5 ── */
+  :root{--brand:#6429E0;--brand-deep:#3A1693;--brand-soft:#F2ECFE;--brand-mist:#FAF8FE;--lilac:#A98BFF;--ink:#1C1530;--ink-soft:#6A6280;--line:#ECE7F5;--paper:#FFFFFF;--safe:#11A07A;--safe-soft:#E4F6F0;--warn:#D9480F;--warn-soft:#FBEEE6;--gold:#FFD84D;--shadow:0 24px 60px -20px rgba(58,22,147,.45),0 8px 24px -12px rgba(28,21,48,.25);--r:18px;}
+  .overlay{position:fixed;inset:0;z-index:9999;background:rgba(20,12,46,.66);backdrop-filter:blur(3px);display:flex;align-items:center;justify-content:center;padding:20px 0;animation:fade .28s ease both}
+  .overlay[hidden]{display:none}
+  .popup{width:100%;max-width:480px;max-height:calc(100dvh - 40px);background:var(--paper);border-radius:var(--r);box-shadow:var(--shadow);display:flex;flex-direction:column;overflow:hidden;animation:pop .42s cubic-bezier(.2,.9,.25,1.05) both}
+  .pop-head{flex:0 0 auto;padding:15px 18px 13px;background:linear-gradient(180deg,#6F36EC 0%,var(--brand) 100%);color:#fff}
+  .pop-head__row{display:grid;grid-template-columns:1fr auto 1fr;align-items:center;gap:8px}
+  .pop-head__lead{display:flex;align-items:center;gap:8px;min-width:0}
+  .pop-head__logo{height:20px;filter:brightness(0) invert(1)}
+  .pop-head__name{font-weight:800;font-size:16px;letter-spacing:-.02em;white-space:nowrap}
+  .pop-head__badge{justify-self:center;font-size:14px;font-weight:700;background:rgba(255,255,255,.18);padding:6px 13px;border-radius:999px;white-space:nowrap}
+  .progress{height:3px;background:rgba(255,255,255,.22);border-radius:99px;margin-top:11px;overflow:hidden}
+  .progress__bar{height:100%;width:0;background:#fff;border-radius:99px;transition:width .12s linear}
+  .pop-body{flex:1 1 auto;overflow-y:auto;background:var(--brand-mist);overscroll-behavior:contain}
+  .pop-body::-webkit-scrollbar{width:7px}
+  .pop-body::-webkit-scrollbar-thumb{background:#d9cdf3;border-radius:99px}
+  .block{padding:20px 18px;background:var(--paper);border-bottom:8px solid var(--brand-mist)}
+  .eyebrow{font-size:16px;font-weight:800;letter-spacing:-.01em;color:var(--brand);display:inline-flex;align-items:center;gap:6px;margin-bottom:12px}
+  .entry{padding:20px 18px 18px;text-align:center;background:linear-gradient(180deg,#F6F1FF 0%,#FFFFFF 100%);border-bottom:8px solid var(--brand-mist)}
+  .entry__h{font-size:18px;font-weight:800;line-height:1.5;letter-spacing:-.02em;color:var(--ink)}
+  .entry__h b{color:var(--brand)}
+  .entry__checks{margin-top:14px;display:flex;flex-direction:column;gap:7px}
+  .ck{display:flex;align-items:center;gap:9px;text-align:left;background:#fff;border:1px solid var(--line);border-radius:11px;padding:12px 14px;font-size:15px;font-weight:600;color:var(--ink)}
+  .ck i{flex:0 0 auto;width:20px;height:20px;border-radius:50%;background:var(--safe);color:#fff;display:grid;place-items:center;font-size:12px;font-style:normal;font-weight:800}
+  .core{background:var(--paper);padding:22px 18px}
+  .core__card{border-radius:16px;padding:20px 18px;text-align:left;color:#fff;background:linear-gradient(140deg,#7B43F0 0%,#5A1FD6 60%,#4413B0 100%);box-shadow:0 18px 38px -18px rgba(68,19,176,.7);position:relative;overflow:hidden}
+  .core__card::after{content:'';position:absolute;right:-30px;top:-30px;width:120px;height:120px;border-radius:50%;background:rgba(255,255,255,.08)}
+  .core__line{font-size:18px;font-weight:800;line-height:1.6;letter-spacing:-.02em;color:#fff;word-break:keep-all;position:relative}
+  .core__line + .core__line{margin-top:7px}
+  .core__line .num{color:var(--gold);margin-right:4px}
+  .core__line mark{background:var(--gold);color:#3A1693;padding:2px 8px;border-radius:7px;-webkit-box-decoration-break:clone;box-decoration-break:clone}
+  .core__note{margin-top:12px;background:var(--brand-soft);border-radius:13px;padding:14px 16px;border-left:3px solid var(--brand);font-size:16px;line-height:1.6;color:#39305a}
+  .core__note b{color:var(--brand-deep);font-weight:800}
+  .cred-note{margin:6px 0 4px 14px;padding:10px 12px;background:#FBF6FF;border-left:3px solid var(--brand);border-radius:0 9px 9px 0;font-size:15px;line-height:1.55;color:#4a4368}
+  .cred-note b{color:var(--brand-deep);font-weight:800}
+  .lede{font-size:15px;line-height:1.6;color:#39305a;font-weight:500}
+  .lede b{color:var(--brand-deep);font-weight:800}
+  .li{display:flex;gap:8px;font-size:15px;line-height:1.55;color:#4a4368;margin-top:7px}
+  .li::before{content:'';flex:0 0 auto;width:5px;height:5px;border-radius:50%;background:var(--lilac);margin-top:8px}
+  .li b{color:var(--brand-deep);font-weight:700}
+  .li em{font-style:normal;color:#9a8fc0}
+  .p2{font-size:15px;line-height:1.6;color:#4a4368}.p2 b{color:var(--brand-deep)}
+  .law{background:linear-gradient(180deg,#FFFFFF 0%,#FBF9FF 100%)}
+  .facts{margin-top:6px;display:grid;gap:10px}
+  .fact{display:flex;gap:12px;background:#fff;border:1px solid var(--line);border-left:3px solid var(--brand);border-radius:12px;padding:14px}
+  .fact__n{flex:0 0 auto;width:24px;height:24px;border-radius:7px;background:var(--brand);color:#fff;font-size:14px;font-weight:800;display:grid;place-items:center}
+  .fact__d{font-size:15px;line-height:1.62;color:#39305a;font-weight:500}
+  .fact__d b{color:var(--brand-deep);font-weight:700}
+  .missions{margin-top:14px;display:grid;gap:8px}
+  .m{display:flex;gap:11px;align-items:flex-start;background:var(--brand-soft);border-radius:13px;padding:13px 14px}
+  .m__n{flex:0 0 auto;width:23px;height:23px;border-radius:7px;background:var(--brand);color:#fff;font-size:13px;font-weight:800;display:grid;place-items:center}
+  .m__t{font-size:15px;line-height:1.5}
+  .m__t strong{font-size:16px;font-weight:800;color:var(--brand-deep)}
+  .m__t span{color:var(--ink-soft);display:block;margin-top:2px;font-size:15px}
+  .keep{margin-top:12px;padding:11px 13px;background:#fafafd;border:1px dashed var(--line);border-radius:10px}
+  .keep p{font-size:15px;color:var(--ink-soft);line-height:1.5}
+  .keep p + p{margin-top:5px}
+  .keep b{color:var(--brand-deep)}
+  .amt{border:1px solid var(--line);border-radius:14px;overflow:hidden;margin-top:12px}
+  .amt__h{background:var(--brand);color:#fff;font-size:16px;font-weight:800;padding:11px 14px}
+  .prod{padding:12px 14px;border-top:2px solid #CDBFEF}
+  .prod:first-of-type{border-top:0}
+  .prod__name{font-size:15px;font-weight:800;color:var(--brand-deep);margin-bottom:6px}
+  .opt + .opt{margin-top:9px;padding-top:9px;border-top:1px dashed #B7A8E4}
+  .opt__way{font-size:15px;color:var(--ink-soft);line-height:1.45}
+  .opt__col{font-size:15px;font-weight:700;color:var(--ink);line-height:1.5;margin-top:2px}
+  .opt__col b{color:var(--brand)}
+  .opt__none{font-size:15px;font-weight:700;color:var(--warn)}
+  .amt-note{margin-top:11px;font-size:15px;color:var(--ink-soft);line-height:1.6}
+  .amt-note .li2{display:flex;gap:8px;margin-top:5px}
+  .amt-note .li2::before{content:'·';flex:0 0 auto;font-weight:800;color:var(--lilac)}
+  .amt-note .subli{display:flex;gap:6px;margin:5px 0 2px 18px;color:#9a8fc0;font-size:15px;line-height:1.5}
+  .amt-note .subli::before{content:'↳';flex:0 0 auto;color:var(--lilac);font-weight:700}
+  .ctbl{border:1px solid var(--line);border-radius:10px;overflow:hidden;margin-top:11px;max-width:300px}
+  .ctr{display:grid;grid-template-columns:1fr 1.3fr;font-size:15px}
+  .ctr + .ctr{border-top:1px solid var(--line)}
+  .ctd{padding:9px 12px}
+  .ctd:first-child{border-right:1px solid var(--line);font-weight:800;color:var(--brand-deep)}
+  .ctd:last-child{color:var(--ink);font-weight:600}
+  .flow{display:grid;gap:0;margin-top:4px}
+  .step{display:flex;align-items:center;gap:13px;background:#fff;border:1.5px solid var(--line);border-radius:14px;padding:14px 15px;position:relative;z-index:1}
+  .step__tag{flex:0 0 auto;font-size:15px;font-weight:800;color:#fff;padding:5px 11px;border-radius:8px;min-width:54px;text-align:center}
+  .step--c .step__tag{background:var(--lilac)}.step--l .step__tag{background:var(--brand)}.step--r .step__tag{background:var(--safe)}
+  .step__big{font-size:17px;font-weight:800;letter-spacing:-.02em;color:var(--ink)}
+  .step__big small{font-size:15px;font-weight:600;color:var(--ink-soft);margin-left:4px}
+  .step--r .step__big{color:var(--safe)}
+  .arrow{height:16px;display:grid;place-items:center;color:var(--lilac);font-size:15px}
+  .breakdown{margin-top:14px;background:var(--brand-soft);border-radius:14px;padding:14px}
+  .breakdown__cap{font-size:15px;font-weight:800;color:var(--brand-deep);margin-bottom:10px}
+  .chips{display:grid;grid-template-columns:1fr 1fr 1fr;gap:7px}
+  .chip{background:#fff;border-radius:10px;padding:10px 6px;text-align:center}
+  .chip b{display:block;font-size:16px;font-weight:800;color:var(--brand-deep);letter-spacing:-.02em}
+  .chip span{font-size:15px;color:var(--ink-soft);font-weight:600;margin-top:1px;display:block}
+  .inote{margin-top:12px;font-size:15px;color:var(--ink-soft);line-height:1.55;display:flex;gap:6px}
+  .inote::before{content:'ⓘ';color:var(--lilac);font-weight:800;flex:0 0 auto}
+  .approve{background:var(--safe-soft);border-radius:13px;padding:14px;display:flex;gap:10px;align-items:flex-start}
+  .approve__ic{flex:0 0 auto;font-size:19px}
+  .approve__t{font-size:15px;line-height:1.55;color:#1d5e4b}.approve__t b{font-weight:800;color:var(--safe)}
+  .reject{display:flex;gap:10px;background:var(--warn-soft);border-radius:12px;padding:13px;margin-top:9px}
+  .reject__ic{flex:0 0 auto;width:23px;height:23px;border-radius:7px;background:var(--warn);color:#fff;display:grid;place-items:center;font-size:13px;font-weight:800}
+  .reject__t{font-size:15px;line-height:1.5;color:#5a3a26}.reject__t b{color:var(--warn);font-weight:800}
+  .reject__t em{font-style:normal;color:#9c6b4d;font-size:15px;display:block;margin-top:3px}
+  .agree{margin:14px 0 2px}
+  .agree label{display:flex;gap:11px;align-items:center;cursor:pointer;background:#fff;border:1.5px solid var(--line);border-radius:12px;padding:14px;transition:all .15s}
+  .agree input{position:absolute;opacity:0;width:0;height:0}
+  .agree .bx{flex:0 0 auto;width:23px;height:23px;border-radius:7px;border:2px solid #c9bff0;display:grid;place-items:center;color:#fff;font-size:14px;font-weight:800;transition:all .15s}
+  .agree .tx{font-size:15px;font-weight:700;color:var(--ink)}
+  .agree input:checked + .bx{background:var(--safe);border-color:var(--safe)}
+  .agree input:checked ~ .tx{color:var(--brand-deep)}
+  .agree label:has(input:checked){border-color:var(--safe);background:var(--safe-soft)}
+  .agree input:focus-visible + .bx{outline:2px solid var(--brand);outline-offset:2px}
+  .pop-foot{flex:0 0 auto;padding:11px 16px 13px;background:#fff;border-top:1px solid var(--line)}
+  .foot-status{display:flex;align-items:center;gap:7px;font-size:15px;color:var(--ink-soft);font-weight:600;margin-bottom:10px;justify-content:center;text-align:center}
+  .foot-status .dot{flex:0 0 auto;width:6px;height:6px;border-radius:50%;background:#d9cdf3}
+  .foot-status.ready{color:var(--safe)}.foot-status.ready .dot{background:var(--safe)}
+  .cta{width:100%;border:0;border-radius:13px;cursor:not-allowed;padding:15px;font-size:16px;font-weight:800;font-family:inherit;background:#E6E0F2;color:#a99fce;transition:all .18s}
+  .cta.on{cursor:pointer;background:var(--brand);color:#fff;box-shadow:0 12px 22px -10px rgba(100,41,224,.7)}
+  .cta.on:hover{background:var(--brand-deep);transform:translateY(-1px)}
+  .cta.on:focus-visible{outline:2px solid var(--brand);outline-offset:2px}
+  @keyframes fade{from{opacity:0}to{opacity:1}}
+  @keyframes pop{from{opacity:0;transform:translateY(14px) scale(.97)}to{opacity:1;transform:none}}
+  @media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
 </style>
 </head>
 <body>
@@ -176,6 +300,136 @@ h1 em{font-style:normal;color:var(--purple);}
     <div class="grad-bar"></div>
   </div>
 </div>
+<!-- 써주세요. 강제 고지 팝업 — DEV(재노출 방지 비활성화) -->
+<div class="overlay" id="overlay" role="dialog" aria-modal="true" aria-labelledby="coreKey">
+  <div class="popup">
+    <header class="pop-head">
+      <div class="pop-head__row">
+        <div class="pop-head__lead">
+          <img class="pop-head__logo" src="https://www.sirjuseyo.com/imgs/home/logoPurpleSplash@2x.png" alt="" onerror="this.style.display='none'">
+          <span class="pop-head__name">써주세요.</span>
+        </div>
+        <span class="pop-head__badge">📋 이용 전 필독</span>
+        <span aria-hidden="true"></span>
+      </div>
+      <div class="progress"><div class="progress__bar" id="bar"></div></div>
+    </header>
+    <div class="pop-body" id="body">
+      <section class="entry">
+        <p class="entry__h">써주세요.는 <b>투명한 등록 대부 서비스</b>입니다.</p>
+        <div class="entry__checks">
+          <div class="ck"><i>✓</i> 선이자를 미리 떼지 않습니다.</div>
+          <div class="ck"><i>✓</i> 이자제한법을 준수합니다.</div>
+          <div class="ck"><i>✓</i> 가족·지인에게 대출 사실을 알리지 않습니다.</div>
+          <div class="ck"><i>✓</i> 고객 정보를 영업에 활용하거나 거래하지 않습니다.</div>
+        </div>
+      </section>
+      <section class="core">
+        <div class="core__card">
+          <p class="core__line" id="coreKey">써주세요.는</p>
+          <p class="core__line"><span class="num">1.</span><mark>포인트를 활용하는 대안 신용 대출</mark> 플랫폼입니다.</p>
+          <p class="core__line"><span class="num">2.</span>원금의 일부와 이자 전부를 포인트로 상환합니다.</p>
+        </div>
+        <div class="core__note">써주세요.는 포인트 적립 행위와 적립 주기(앱 체류 기간)를 <b>집중적으로 분석</b>합니다. 이는 급하게 빌리고 끝나는 무분별한 대출이 아니라, 꼭 필요하고 갚아나갈 수 있는 대출인지 함께 점검하는 과정이며, 무리한 연체를 미리 막아 <b>고객님을 보호</b>합니다.</div>
+      </section>
+      <section class="block law">
+        <span class="eyebrow">🔒 포인트 활용, 이렇게 운영됩니다</span>
+        <div class="facts">
+          <div class="fact"><span class="fact__n">1</span><p class="fact__d">써주세요.는 신청 시 포인트를 <b>선적립</b>하는 <b>포인트 활용 대출</b>입니다. 승인 전까지 고객님의 마이 포인트에 그대로 보관됩니다.</p></div>
+          <div class="fact"><span class="fact__n">2</span><p class="fact__d">그 <b>선적립</b> 포인트로 원리금을 상환합니다. <b>대부업법상 원리금을 포인트로 상환하는 것은 적법합니다.</b> 승인 후에는 원금의 일부와 이자를 현금 대신 이 선적립 포인트로 상환하며, 상환 시점에 차감되어 그만큼 현금 부담이 줄어듭니다.</p></div>
+          <div class="fact"><span class="fact__n">3</span><p class="fact__d"><b>크레딧 미션</b> 포인트는 신용조회비용으로 사용되며, 승인 시 차감됩니다.</p></div>
+          <div class="fact"><span class="fact__n">4</span><p class="fact__d"><b>선적립</b> 포인트는 <b>승인 및 상환 시에만 차감</b>되고, 한도가 발생하지 않으면(불승인) <b>전액 환전</b>해 드립니다. 가져가는 돈이 아니라 맡겨두는 예치금입니다.</p></div>
+        </div>
+      </section>
+      <section class="block">
+        <span class="eyebrow">💜 활용 포인트, 어떻게 쓰이나요?</span>
+        <p class="lede">세 가지 용도로 사용됩니다.</p>
+        <div class="missions">
+          <div class="m"><div class="m__n">1</div><div class="m__t"><strong>크레딧 미션</strong><span>신용조회비용 · 승인 시 차감</span></div></div>
+          <div class="m"><div class="m__n">2</div><div class="m__t"><strong>원금 미션</strong><span>원금 상환에 현금 대신 · 상환 시 차감</span></div></div>
+          <div class="m"><div class="m__n">3</div><div class="m__t"><strong>이자 미션</strong><span>이자 상환에 현금 대신 · 상환 시 차감</span></div></div>
+        </div>
+        <div class="keep"><p>활용 포인트는 상환 전까지 <b>마이 포인트</b>에 그대로 보관됩니다.</p><p>단, 크레딧 미션 포인트는 승인 시 차감됩니다.</p></div>
+        <div class="agree"><label><input type="checkbox" class="cb"><span class="bx">✓</span><span class="tx">포인트 활용 대출의 구조를 확인했습니다</span></label></div>
+      </section>
+      <section class="block">
+        <span class="eyebrow">💳 포인트 활용 설정</span>
+        <div class="li"><span>대출 신청 금액의 <b>최소 3.5%</b>부터 시작합니다.</span></div>
+        <div class="li"><span>신청 금액·상품에 따라 하한이 달라집니다.</span></div>
+        <div class="li"><span><b>크레딧·이자·원금 미션</b>을 모두 합한 값입니다.</span></div>
+        <div class="li"><span>활용 포인트 구조는 다음과 같습니다.</span></div>
+        <div class="amt"><div class="amt__h">10만 원</div><div class="prod"><div class="prod__name">웨이팅</div><div class="opt"><div class="opt__way">현금 상환</div><div class="opt__col"><b>활용 4%</b> = 크레딧 4%</div></div></div><div class="prod"><div class="prod__name">롸잇나우</div><div class="opt"><div class="opt__way">원금 중 일부와 이자 전부를 포인트로 상환</div><div class="opt__col"><b>활용 15%</b> = 크레딧 4% + 이자 1% + 원금 10%</div></div></div><div class="prod"><div class="prod__name">블랙찬스</div><div class="opt"><div class="opt__way">현금 상환</div><div class="opt__col"><b>활용 4%</b> = 크레딧 4%</div></div><div class="opt"><div class="opt__way">이자만 포인트로 상환</div><div class="opt__col"><b>활용 5%</b> = 크레딧 4% + 이자 1%</div></div><div class="opt"><div class="opt__way">원금 중 일부와 이자 전부를 포인트로 상환</div><div class="opt__col"><b>활용 15%</b> = 크레딧 4% + 이자 1% + 원금 10%</div></div></div><div class="prod"><div class="prod__name">이벤트</div><div class="opt"><div class="opt__way">이자만 포인트로 상환</div><div class="opt__col"><b>활용 6%</b> = 크레딧 5% + 이자 1%</div></div></div></div>
+        <div class="amt"><div class="amt__h">20만 원</div><div class="prod"><div class="prod__name">웨이팅</div><div class="opt"><div class="opt__way">이자만 포인트로 상환</div><div class="opt__col"><b>활용 3.5%</b> = 크레딧 2.5% + 이자 1%</div></div></div><div class="prod"><div class="prod__name">롸잇나우</div><div class="opt"><div class="opt__way">원금 중 일부와 이자 전부를 포인트로 상환</div><div class="opt__col"><b>활용 13.5%</b> = 크레딧 2.5% + 이자 1% + 원금 10%</div></div></div><div class="prod"><div class="prod__name">블랙찬스</div><div class="opt"><div class="opt__way">현금 상환</div><div class="opt__col"><b>활용 2.5%</b> = 크레딧 2.5%</div></div><div class="opt"><div class="opt__way">이자만 포인트로 상환</div><div class="opt__col"><b>활용 3.5%</b> = 크레딧 2.5% + 이자 1%</div></div><div class="opt"><div class="opt__way">원금 중 일부와 이자 전부를 포인트로 상환</div><div class="opt__col"><b>활용 13.5%</b> = 크레딧 2.5% + 이자 1% + 원금 10%</div></div></div><div class="prod"><div class="prod__name">이벤트</div><div class="opt"><div class="opt__way">이자만 포인트로 상환</div><div class="opt__col"><b>활용 4.5%</b> = 크레딧 3.5% + 이자 1%</div></div></div></div>
+        <div class="amt"><div class="amt__h">30만 원</div><div class="prod"><div class="prod__name">웨이팅</div><div class="opt"><div class="opt__way">원금 중 일부와 이자 전부를 포인트로 상환</div><div class="opt__col"><b>활용 13%</b> = 크레딧 2% + 이자 1% + 원금 10%</div></div></div><div class="prod"><div class="prod__name">롸잇나우</div><div class="opt"><div class="opt__way">원금 중 일부와 이자 전부를 포인트로 상환</div><div class="opt__col"><b>활용 13%</b> = 크레딧 2% + 이자 1% + 원금 10%</div></div></div><div class="prod"><div class="prod__name">블랙찬스</div><div class="opt"><div class="opt__way">현금 상환</div><div class="opt__col"><b>활용 2%</b> = 크레딧 2%</div></div><div class="opt"><div class="opt__way">이자만 포인트로 상환</div><div class="opt__col"><b>활용 3%</b> = 크레딧 2% + 이자 1%</div></div><div class="opt"><div class="opt__way">원금 중 일부와 이자 전부를 포인트로 상환</div><div class="opt__col"><b>활용 13%</b> = 크레딧 2% + 이자 1% + 원금 10%</div></div></div><div class="prod"><div class="prod__name">이벤트</div><div class="opt"><div class="opt__way">이자만 포인트로 상환</div><div class="opt__col"><b>활용 4%</b> = 크레딧 3% + 이자 1%</div></div></div></div>
+        <div class="amt"><div class="amt__h">50만 원</div><div class="prod"><div class="prod__name">웨이팅</div><div class="opt"><div class="opt__way">원금 중 일부와 이자 전부를 포인트로 상환</div><div class="opt__col"><b>활용 13%</b> = 크레딧 2% + 이자 1% + 원금 10%</div></div></div><div class="prod"><div class="prod__name">롸잇나우</div><div class="opt"><div class="opt__way">원금 중 일부와 이자 전부를 포인트로 상환</div><div class="opt__col"><b>활용 13%</b> = 크레딧 2% + 이자 1% + 원금 10%</div></div></div><div class="prod"><div class="prod__name">블랙찬스</div><div class="opt"><div class="opt__way">현금 상환</div><div class="opt__col"><b>활용 2%</b> = 크레딧 2%</div></div><div class="opt"><div class="opt__way">이자만 포인트로 상환</div><div class="opt__col"><b>활용 3%</b> = 크레딧 2% + 이자 1%</div></div><div class="opt"><div class="opt__way">원금 중 일부와 이자 전부를 포인트로 상환</div><div class="opt__col"><b>활용 13%</b> = 크레딧 2% + 이자 1% + 원금 10%</div></div></div><div class="prod"><div class="prod__name">이벤트</div><div class="opt"><div class="opt__none">대출 상품 없음</div></div></div></div>
+        <div class="amt-note"><div class="li2">웨이팅 대출 — 신청 시기에 따라 활용 포인트 하향 변동이 있습니다.</div><div class="subli">추가적으로 크레딧 미션 할인 및 원금 미션 인하해 드립니다.</div><div class="li2">블랙찬스 대출은 재대출 고객님 전용 대출 상품입니다.</div><div class="li2">한도 상향 신청은 활용 포인트 최소 13% 이상입니다.</div></div>
+      </section>
+      <section class="block">
+        <span class="eyebrow">💳 크레딧 미션</span>
+        <div class="li"><span>크레딧 미션 포인트는 <b>신용조회비용</b>으로 사용됩니다.</span></div>
+        <div class="cred-note">대부업법에 따라 신용조회비용은 <b>이자에 포함되지 않는 부대비용</b>임을 명확히 고지합니다.</div>
+        <div class="li"><span>활용 포인트 중 일정 포인트가 해당 비용으로 사용됩니다.</span></div>
+        <div class="li"><span>마이 포인트에 고스란히 보관되어 있다가 <b>승인 후 차감</b>됩니다.</span></div>
+        <div class="li"><span>한도가 발생하지 않으면(불승인) <b>전액 환전</b> 처리됩니다.</span></div>
+        <div class="li"><span>신용조회비용의 시가는 <b>10,000원</b>이지만, 고객님의 주머니 사정을 감안하여 당사가 일정 부분 부담해 할인해 드립니다.</span></div>
+        <div class="ctbl"><div class="ctr"><div class="ctd">10만 원</div><div class="ctd">활용 4 ~ 5%</div></div><div class="ctr"><div class="ctd">20만 원</div><div class="ctd">활용 2.5 ~ 3%</div></div><div class="ctr"><div class="ctd">30만 원</div><div class="ctd">활용 2 ~ 3%</div></div><div class="ctr"><div class="ctd">50만 원</div><div class="ctd">활용 2 ~ 3%</div></div></div>
+        <div class="li" style="margin-top:11px"><span>신청 금액에 따라 상이하며, <b>웨이팅 대출</b>은 신청 시기에 따라 추가 할인 혜택이 있습니다.</span></div>
+      </section>
+      <section class="block">
+        <span class="eyebrow">📊 한눈에 보는 예시</span>
+        <div class="flow">
+          <div class="step step--c"><span class="step__tag">활용</span><span class="step__big">39,000P<small>선적립(예치)하면</small></span></div>
+          <div class="arrow">↓</div>
+          <div class="step step--l"><span class="step__tag">대출</span><span class="step__big">300,000원<small>받고</small></span></div>
+          <div class="arrow">↓</div>
+          <div class="step step--r"><span class="step__tag">상환</span><span class="step__big">270,000원<small>만 갚으면 끝</small></span></div>
+        </div>
+        <div class="breakdown"><div class="breakdown__cap">활용 39,000P는 이렇게 쓰여요</div><div class="chips"><div class="chip"><b>30,000P</b><span>원금</span></div><div class="chip"><b>3,000P</b><span>이자</span></div><div class="chip"><b>6,000P</b><span>신용조회</span></div></div></div>
+        <p class="inote">심사 결과에 따라 한도가 발생하지 않으면(불승인) 활용 포인트는 전액 환전해 드립니다.</p>
+        <div class="agree"><label><input type="checkbox" class="cb"><span class="bx">✓</span><span class="tx">상품별 활용 설정과 상환 예시를 확인했습니다</span></label></div>
+      </section>
+      <section class="block">
+        <span class="eyebrow">🤝 소통거리 미션</span>
+        <p class="p2">심사에 사용되는 자료입니다. 신용 점수보다 <b>비정형·비금융·정성 데이터</b>를 중심으로 보며, 가족·지인에게 대출 사실을 알리지 않는 법령을 준수하면서 가족·지인과의 사회성을 최우선으로 판단합니다.</p>
+      </section>
+      <section class="block">
+        <span class="eyebrow">✅ 승인 가능성</span>
+        <div class="approve"><div class="approve__ic">🎉</div><div class="approve__t"><b>모든 미션을 완료하면 승인 가능성이 매우 높습니다.</b> 신용 점수가 결정적이지는 않지만, 최종적으로 현재 연체 여부는 확인하고 상황에 맞는 대안을 제시해 드립니다.</div></div>
+      </section>
+      <section class="block">
+        <span class="eyebrow">⚠️ 대표 거절 사유</span>
+        <div class="reject"><div class="reject__ic">1</div><div class="reject__t"><b>통신비 2개월 이상 미납·연체</b><em>1개월 미납이라도 금액이 과다하면 불승인될 수 있습니다.</em></div></div>
+        <div class="reject"><div class="reject__ic">2</div><div class="reject__t"><b>신용정보상 단순 CB 연체</b> 또는 채무불이행으로 등록된 경우</div></div>
+        <div class="reject"><div class="reject__ic">3</div><div class="reject__t"><b>채무조정 중 미납 3회 초과</b><em>신용회복·개인회생 등 진행 중이며 미납 회차가 3회를 넘은 경우</em></div></div>
+        <div class="agree"><label><input type="checkbox" class="cb"><span class="bx">✓</span><span class="tx">이용 방법과 심사 기준을 확인했습니다</span></label></div>
+      </section>
+    </div>
+    <footer class="pop-foot">
+      <div class="foot-status" id="status"><span class="dot"></span><span id="statusTxt">끝까지 읽고 모두 확인하면 닫을 수 있어요</span></div>
+      <button class="cta" id="cta" disabled>확인하고 시작하기</button>
+    </footer>
+  </div>
+</div>
+<script>
+  var overlay=document.getElementById('overlay'),body=document.getElementById('body'),bar=document.getElementById('bar'),
+      cta=document.getElementById('cta'),status=document.getElementById('status'),statusTxt=document.getElementById('statusTxt'),
+      cbs=[...document.querySelectorAll('.cb')];
+  var scrolledBottom=false;
+  function refreshPopup(){
+    var max=body.scrollHeight-body.clientHeight;
+    bar.style.width=(max<=0?1:Math.min(1,body.scrollTop/max))*100+'%';
+    if(max<=0||body.scrollTop+body.clientHeight>=body.scrollHeight-8)scrolledBottom=true;
+    var checked=cbs.filter(function(c){return c.checked;}).length,ready=scrolledBottom&&checked===cbs.length;
+    cta.classList.toggle('on',ready);cta.disabled=!ready;
+    if(ready){status.classList.add('ready');statusTxt.textContent='확인 완료 — 닫을 수 있어요';}
+    else{status.classList.remove('ready');statusTxt.textContent=!scrolledBottom?'끝까지 스크롤해서 읽어주세요':'확인 항목 '+checked+'/'+cbs.length+' — 남은 항목을 체크해주세요';}
+  }
+  function closePopup(){if(cta.disabled)return;overlay.hidden=true;}
+  body.addEventListener('scroll',refreshPopup,{passive:true});
+  cbs.forEach(function(c){c.addEventListener('change',refreshPopup);});
+  cta.addEventListener('click',closePopup);
+  refreshPopup();
+</script>
   <script src="/js/legal-shared.js"></script>
 </body>
 </html>
