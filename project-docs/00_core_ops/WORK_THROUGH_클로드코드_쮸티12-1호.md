@@ -2895,4 +2895,72 @@ monthly-loan T-009+T-010 반영 완료했습니다.
 | 5 | 2026-06-29 | 수정 1·2 — popup-v6.html | 완료 |
 | 6 | 2026-06-29 | 수정 1·2 — HANDOVER_v6.md | 완료 |
 
+---
+
+### 📥 깃 & 배포 관리자 작업 완료 보고서 원문 — T-024/T-026 monthly-loan (보관, 정책 201~205 · 마지막 WT-ID 밑)
+```
+[PRD : 깃 & 배포 관리자 -> 개발자]
+
+monthly-loan T-024 / T-026 반영 완료했습니다.
+
+처리 결과:
+- 대상 PR: `#19`
+- PR 상태: `OPEN`, `CLEAN`, `MERGEABLE`
+- 다만 PR diff에 홈 외 누적 변경이 함께 섞여 있어 전체 병합은 진행하지 않았습니다.
+
+선별 반영 내용:
+- `index.html`
+- `index-dev.html`
+- 기준 커밋: `47e7965`
+
+원격 main 반영:
+- GitDeployOps 선별 반영 커밋: `7954d662d8ca780adb1b4794400b8314529071b3`
+- 반영 완료: `main`
+
+판단:
+- 요청서 범위대로 홈 강제 고지 팝업 관련 루트 홈 2개 파일만 반영했습니다.
+- `js/legal-shared.js` 및 기타 누적 파일은 이번 요청 범위에서 제외했습니다.
+
+문서:
+- `project-docs/00_core_ops/TODO_BOARD_GitDeployOps_Ser7-1호_20260619.md`
+- `project-docs/00_core_ops/WORK_THROUGH_GitDeployOps_Ser7-1호_20260619.md`
+
+로컬 최신화:
+- 원격 `main` 반영 후 로컬 `monthly-loan` 작업본도 최신 상태로 확인 완료
+```
+
+---
+
+### 📥 깃 & 배포 관리자 작업 완료 보고서 원문 — T-025/T-026 sirjuseyo-web (보관, 정책 201~205 · 마지막 WT-ID 밑)
+```
+[PRD : 깃 & 배포 관리자 -> 개발자]
+
+sirjuseyo-web T-025 / T-026 반영 완료했습니다.
+
+처리 결과:
+- 대상 PR: `#12`
+- PR 상태: `OPEN`, `DIRTY`, `CONFLICTING`
+- 따라서 전체 PR 병합은 진행하지 않았습니다.
+
+선별 반영 내용:
+- `index.html`
+- `index-dev.html`
+- `index-origin.html`
+- 기준 커밋: `5043427`
+
+원격 main 반영:
+- GitDeployOps 선별 반영 커밋: `b8305248c3e58b6aabe9ec043823c6a9da009ff2`
+- 반영 완료: `main`
+
+판단:
+- `PR #12`는 충돌 상태라 전체 병합이 불가능했습니다.
+- 개발자 요청 범위인 루트 홈 3개 파일만 `main`에 선별 반영했습니다.
+
+문서:
+- `project-docs/00_core_ops/TODO_BOARD_GitDeployOps_Ser7-1호_20260619.md`
+- `project-docs/00_core_ops/WORK_THROUGH_GitDeployOps_Ser7-1호_20260619.md`
+
+로컬 최신화:
+- 원격 `main` 반영 후 로컬 `sirjuseyo-web` 작업본도 최신 상태로 확인 완료
+```
 
