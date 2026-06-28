@@ -348,9 +348,9 @@ git checkout -b feature/T-001-jun-loan-landing
 | T-021 | [monthly-loan] 하단 법적고지 연체금리 수정 | ✅ `d586839` | ✅ | 검증완료 | ✅ 선별반영 `16835ad` | ✅ Pages 배포 | 쮸티12-1호 | 2026-06-27 | PR #18 선별반영, HTTP/2 200 확인, run `28295021232` |
 | T-022 | [sirjuseyoWeb] 하단 법적고지 연체금리 수정 | ✅ `a1660d1` | ✅ | 검증완료 | ✅ 선별반영 `ee5b8e3` | ✅ Pages 배포 | 쮸티12-1호 | 2026-06-27 | PR #10 선별반영, HTTP/2 200 확인, run `28295021225` |
 | T-023 | [monthly-loan] footer.js→legal-shared.js 교체 | ✅ `05a34aa` | ✅ | 검증완료 | ✅ 선별반영 `16835ad` | ✅ Pages 배포 | 쮸티12-1호 | 2026-06-27 | PR #18 선별반영, HTTP/2 200 확인, run `28295021232` |
-| T-024 | [monthly-loan] 홈 강제 고지 팝업 추가 | - | - | - | - | - | 쮸티12-1호 | 2026-06-29 | 코딩완료, 로컬커밋 대기 |
-| T-025 | [sirjuseyoWeb] 홈 강제 고지 팝업 추가 + index-dev.html 신규생성 | - | - | - | - | - | 쮸티12-1호 | 2026-06-29 | 코딩완료, 로컬커밋 대기 |
-| T-026 | [팝업 전체] 예시 플로우 문구 2건 수정 | - | - | - | - | - | 쮸티12-1호 | 2026-06-29 | 코딩완료, 로컬커밋 대기 |
+| T-024 | [monthly-loan] 홈 강제 고지 팝업 추가 | ✅ `47e7965` | ✅ | 검증완료 | - | - | 쮸티12-1호 | 2026-06-29 | PR #19 오픈, 깃 관리자 병합 대기 |
+| T-025 | [sirjuseyoWeb] 홈 강제 고지 팝업 추가 + index-dev.html 신규생성 | ✅ `5043427` | ✅ | 검증완료 | - | - | 쮸티12-1호 | 2026-06-29 | PR #12 오픈, 깃 관리자 병합 대기 |
+| T-026 | [팝업 전체] 예시 플로우 문구 2건 수정 | ✅ `47e7965`/`5043427` | ✅ | 검증완료 | - | - | 쮸티12-1호 | 2026-06-29 | T-024/T-025 커밋에 포함 |
 
 
 ---
@@ -391,9 +391,9 @@ git checkout -b feature/T-001-jun-loan-landing
 | **T-021** | WT-021 | W-021 | `d586839` | **검증완료** | **[monthly-loan] 하단 법적고지 연체금리 문구 수정** | 쮸티12-1호 | 2026-06-27 | 【파일】`js/legal-shared.js` / `+6%P 이내, 연 18%이내` → `+3%P 이내, 연 15%이내` |
 | **T-022** | WT-022 | W-022 | `a1660d1` | **검증완료** | **[sirjuseyoWeb] 하단 법적고지 연체금리 문구 수정** | 쮸티12-1호 | 2026-06-27 | 【파일】`sirjuseyoWeb/js/legal-shared.js` / `+6%P 이내, 연 18%이내` → `+3%P 이내, 연 15%이내` |
 | **T-023** | WT-023 | W-023 | `05a34aa` | **검증완료** | **[monthly-loan] footer.js → legal-shared.js 교체 + deprecated 처리** | 쮸티12-1호 | 2026-06-27 | 【파일】`apply/apply.html`, `apply/apply-dev.html`, `loan-checker/index.html`, `2026-06/worldcup-challenge/apply/index.html`, `2026-06/worldcup-challenge/apply/index-dev.html`, `footer.js` |
-| **T-024** | - | W-024 | - | **진행중(In-Progress)** | **[monthly-loan] 홈 강제 고지 팝업 추가** | 쮸티12-1호 | 2026-06-29 | 【파일】`index.html`, `index-dev.html` / 팝업 CSS+HTML+Script 주입, PRD: localStorage 재노출 방지(하루 1회), DEV: 비활성화 |
-| **T-025** | - | W-025 | - | **진행중(In-Progress)** | **[sirjuseyoWeb] 홈 강제 고지 팝업 추가 + index-dev.html 신규생성** | 쮸티12-1호 | 2026-06-29 | 【파일】`index.html`(팝업주입), `index-dev.html`(신규생성+팝업) / W-024와 동일 팝업, DEV 배너 추가 |
-| **T-026** | WT-026 | W-026 | - | **진행중(In-Progress)** | **[팝업 전체] 예시 플로우 문구 2건 수정** | 쮸티12-1호 | 2026-06-29 | 【파일】`index.html`×2, `index-dev.html`×2, `popup-v6.html`, `HANDOVER_v6.md` / ①`선적립하면`→`선적립(예치)하면` ②`한도가 발생하지 않을 수 있으며, 불승인 시`→`한도가 발생하지 않으면(불승인)` |
+| **T-024** | WT-024 | W-024 | `47e7965` | **테스트 완료(DONE)** | **[monthly-loan] 홈 강제 고지 팝업 추가** | 쮸티12-1호 | 2026-06-29 | 【파일】`index.html`, `index-dev.html` / 팝업 CSS+HTML+Script 주입, PRD: localStorage 재노출 방지(하루 1회), DEV: 비활성화 / PR #19 오픈 |
+| **T-025** | WT-025 | W-025 | `5043427` | **테스트 완료(DONE)** | **[sirjuseyoWeb] 홈 강제 고지 팝업 추가 + index-dev.html 신규생성** | 쮸티12-1호 | 2026-06-29 | 【파일】`index.html`(팝업주입), `index-dev.html`(신규생성+팝업) / W-024와 동일 팝업, DEV 배너 추가 / PR #12 오픈 |
+| **T-026** | WT-026 | W-026 | `47e7965`/`5043427` | **테스트 완료(DONE)** | **[팝업 전체] 예시 플로우 문구 2건 수정** | 쮸티12-1호 | 2026-06-29 | 【파일】`index.html`×2, `index-dev.html`×2, `popup-v6.html`, `HANDOVER_v6.md` / ①`선적립(예치)하면` ②불승인 inote 간결화 / T-024/T-025 커밋에 포함 |
 
 
 ---
