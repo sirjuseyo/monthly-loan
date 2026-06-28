@@ -2806,4 +2806,93 @@ monthly-loan T-009+T-010 반영 완료했습니다.
 - 로컬 `monthly-loan main` HEAD와 원격 `origin/main`이 동일한 `21f6ed0`로 확인되어 최신화 완료했습니다.
 ```
 
+---
+
+## WT-024 · T-024 [monthly-loan] 홈 강제 고지 팝업 추가
+
+| 항목 | 내용 |
+|---|---|
+| 작성일시 | 2026-06-29 | 작성자 | 쮸티12-1호 |
+| 상태 | 🔄 진행중 — 코딩 완료, 로컬커밋 대기 |
+
+[배경] W-024: 월별대출 홈(`index.html`, `index-dev.html`)에 강제 고지형 팝업 추가. 탈리 신청 폼 내재화 직전 단계로 법적 고지 의무 이행 목적. 팝업 소스: `project-docs/130_handover/sirjuseyo-web-popup-v6_20260628.html`.
+
+[대상] `monthly-loan-repo/index.html`(PRD), `monthly-loan-repo/index-dev.html`(DEV)
+
+[처방]
+① `index.html`(PRD): `</style></head>` 직전에 팝업 전용 CSS `<style>` 블록 주입 (`@import pretendard`, 전역 리셋, `body` 스타일, `.mock.*`, `.reopen`, `.sub` 제거)
+② `index.html`(PRD): `<script src="/js/legal-shared.js"></script>` 앞에 팝업 HTML + PRD Script 주입 (localStorage 재노출 방지 — key `sjy_popup_hidden`, 값 `YYYY-MM-DD`, 하루 1회)
+③ `index-dev.html`(DEV): CSS 주입 동일
+④ `index-dev.html`(DEV): 팝업 HTML + DEV Script 주입 (재노출 방지 비활성화 — 매 진입마다 팝업 표시)
+
+[충돌 방지]
+- `.overlay{z-index:9999}` — legal-shared.js 상단 고지 위에 표시
+- `.wrap{overflow:hidden}` 영향 없음 — `position:fixed`는 transform/filter 없는 경우 viewport 기준
+- CSS 변수 충돌 없음 — 팝업 `--brand` vs 사이트 `--purple/--orange` 별도
+
+[회차]
+
+| 회차 | 날짜 | 내용 | 상태 |
+|---|---|---|---|
+| 1 | 2026-06-29 | CSS 주입 (index.html PRD) | 완료 |
+| 2 | 2026-06-29 | 팝업 HTML+Script 주입 (index.html PRD) | 완료 |
+| 3 | 2026-06-29 | CSS 주입 (index-dev.html DEV) | 완료 |
+| 4 | 2026-06-29 | 팝업 HTML+Script 주입 (index-dev.html DEV) | 완료 |
+
+---
+
+## WT-025 · T-025 [sirjuseyoWeb] 홈 강제 고지 팝업 추가 + index-dev.html 신규생성
+
+| 항목 | 내용 |
+|---|---|
+| 작성일시 | 2026-06-29 | 작성자 | 쮸티12-1호 |
+| 상태 | 🔄 진행중 — 코딩 완료, 로컬커밋 대기 |
+
+[배경] W-025: sirjuseyoWeb 홈(`index.html`, `index-dev.html`)에 강제 고지형 팝업 추가. W-024(monthly-loan)와 동일 팝업. `index-dev.html` 미존재로 신규 생성 포함.
+
+[대상] `sirjuseyoWeb/index.html`(PRD, 팝업 주입), `sirjuseyoWeb/index-dev.html`(DEV, 신규생성)
+
+[처방]
+① `index.html`(PRD): CSS 주입 + 팝업 HTML + PRD Script 주입 (localStorage 재노출 방지)
+② `index-dev.html`(DEV): `index.html` 기반 전체 복사 → `<body>` 직후 orange DEV 배너 추가 (`🚧 DEV 테스트 환경 — 실사용자 접근 금지`, `background:#FF5400`, `position:sticky;top:0;z-index:10000`) → DEV Script (재노출 방지 비활성화) 사용
+③ `index-origin.html` 파일명 변경 완료 (`index101.html` → `index-origin.html`) — 상하단 법적고지 붙이기 전 오리지널 파일, 수정 금지
+
+[회차]
+
+| 회차 | 날짜 | 내용 | 상태 |
+|---|---|---|---|
+| 1 | 2026-06-29 | CSS 주입 (index.html PRD) | 완료 |
+| 2 | 2026-06-29 | 팝업 HTML+Script 주입 (index.html PRD) | 완료 |
+| 3 | 2026-06-29 | index-dev.html 신규생성 (DEV 배너+팝업+DEV Script) | 완료 |
+
+---
+
+## WT-026 · T-026 [팝업 전체] 예시 플로우 문구 2건 수정
+
+| 항목 | 내용 |
+|---|---|
+| 작성일시 | 2026-06-29 | 작성자 | 쮸티12-1호 |
+| 상태 | 🔄 진행중 — 코딩 완료, 로컬커밋 대기 |
+
+[배경] W-026: 팝업 내 예시 플로우 섹션 문구 2곳 사장님 지시 수정. 전체 팝업 파일(4개 HTML + 원본 문서 2개) 동일 반영.
+
+[대상] `monthly-loan/index.html`, `monthly-loan/index-dev.html`, `sirjuseyoWeb/index.html`, `sirjuseyoWeb/index-dev.html`, `popup-v6_20260628.html`, `HANDOVER_써주세요_웹팝업_v6_20260628.md`
+
+[처방]
+① `선적립하면` → `선적립(예치)하면` — 6개 파일 전체 (v6 html에는 있으나 v5는 해당 문구 없어 HANDOVER md + v6 html + 4개 HTML 적용)
+② `한도가 발생하지 않을 수 있으며, 불승인 시 활용 포인트는 전액 환전해 드립니다.` → `한도가 발생하지 않으면(불승인) 활용 포인트는 전액 환전해 드립니다.` — 6개 파일 전체
+
+[검증] grep 검색 결과 0건 — 구버전 문구 6개 파일 전체 소거 확인
+
+[회차]
+
+| 회차 | 날짜 | 내용 | 상태 |
+|---|---|---|---|
+| 1 | 2026-06-29 | 수정 1·2 — monthly-loan/index.html | 완료 |
+| 2 | 2026-06-29 | 수정 1·2 — monthly-loan/index-dev.html | 완료 |
+| 3 | 2026-06-29 | 수정 1·2 — sirjuseyoWeb/index.html | 완료 |
+| 4 | 2026-06-29 | 수정 1·2 — sirjuseyoWeb/index-dev.html | 완료 |
+| 5 | 2026-06-29 | 수정 1·2 — popup-v6.html | 완료 |
+| 6 | 2026-06-29 | 수정 1·2 — HANDOVER_v6.md | 완료 |
+
 
