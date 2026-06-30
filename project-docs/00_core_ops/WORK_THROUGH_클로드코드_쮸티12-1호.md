@@ -3129,3 +3129,39 @@ sirjuseyoWeb T-028 작업 완료했습니다.
 한 줄 버전:
 - `sirjuseyoWeb T-028 완료, feature/T-028-popup-html-content-update 푸시 및 PR #13 생성 완료, 팝업 활용% 전면 개편 + 20만 원금 7.25% + 한도 11.9% 사장님 테스트 완료했습니다. 깃 & 배포 관리자님 feature -> dev 검토 부탁드립니다.`
 
+---
+
+## 📩 깃 & 배포 관리자 완료 보고서 — monthly-loan T-027/T-028
+
+[운영 : 깃 & 배포 관리자 -> 개발자]
+
+monthly-loan T-027 / T-028 반영 완료했습니다.
+
+처리 결과:
+- 대상 PR: `#21`
+- PR 상태는 `DIRTY / CONFLICTING`이어서 전체 병합은 진행하지 않았습니다.
+- 대신 코드 전용 브랜치 `feature/T-028-popup-code-only`의 최종 commit `0f7fb1c` 기준으로
+  `index.html`, `index-dev.html` 2개 파일만 `main`에 선별 반영했습니다.
+
+원격 main 반영:
+- reflect commit: `cdb522c`
+- push 결과: `7954d66..cdb522c  main -> main`
+
+선별 반영 내용:
+- 팝업 활용% 수치 전면 개편
+- 최소 활용 기준 `0.9%` 반영
+- DEV 바 `z-index:10000` 적용
+- 20만 블랙찬스 원금 `6.25% -> 7.25%`
+- 한도 상향 기준 `13% -> 11.9%`
+
+비고:
+- 이번 건은 `monthly-loan`이 `main` 운영 반영 레포이므로 `feature -> dev`가 아니라 `main` 선별 반영으로 처리했습니다.
+- 운영 도메인 응답에서 새 문자열 즉시 확인은 아직 안 되어 GitHub Pages 반영 지연 또는 캐시 구간으로 판단합니다.
+
+문서:
+- `project-docs/00_core_ops/TODO_BOARD_GitDeployOps_Ser7-1호_20260619.md`
+- `project-docs/00_core_ops/WORK_THROUGH_GitDeployOps_Ser7-1호_20260619.md`
+
+로컬 최신화:
+- 제 워크스페이스 기준 `monthly-loan` 로컬은 `main...origin/main` 일치 상태 확인 완료
+
