@@ -428,6 +428,7 @@ git checkout -b feature/T-001-jun-loan-landing
 | W-024 | P0 | T-024 | **진행중** | **[monthly-loan] 홈 팝업 추가 (강제 고지형)** | `index.html`, `index-dev.html` | v6 팝업 소스 기반 주입 — `.mock`·`.reopen` 제거, 전역 리셋 CSS 제거, body 스타일 제거, localStorage 재노출 방지 로직 추가(PRD: 하루 1회 / DEV: 비활성화) | 2026-06-28 | 쮸티12-1호 |
 | W-026 | P0 | T-026 | **진행중** | **[팝업 전체] 예시 플로우 문구 2건 수정** | `index.html`×2, `index-dev.html`×2, `popup-v5.html`, `popup-v6.html` | ①`선적립하면`→`선적립(예치)하면` ②`한도가 발생하지 않을 수 있으며, 불승인 시`→`한도가 발생하지 않으면(불승인)` | 2026-06-29 | 쮸티12-1호 |
 | W-025 | P0 | T-025 | **진행중** | **[sirjuseyoWeb] 홈 팝업 추가 (강제 고지형)** | `index.html`, `index-dev.html`(신규 생성) | W-024와 동일 팝업 주입 — sirjuseyoWeb `index-dev.html` 없으므로 `index.html` 기반 DEV 파일 신규 생성 포함, DEV 배너 추가 | 2026-06-28 | 쮸티12-1호 |
+| W-027 | P0 | - | **대기** | **[팝업] 활용% 개편 + 예시 수치 변경** | `popup-v6_20260628.html`, `HANDOVER_웹팝업_v6_20260628.md`, `monthly-loan/index.html`, `monthly-loan/index-dev.html`, `sirjuseyoWeb/index.html`, `sirjuseyoWeb/index-dev.html` | ①최소 3.5% → 0.9% ②상품별 활용% 수치 전면 개편(10/20/30/50만원 각 상품) ③이벤트 구조 변경 ④신용조회비용 10,000원 → 4,500원 ⑤예시 39,000P/300,000원/270,000원 → 15,000P/100,000원/90,000원 ⑥크레딧 테이블 활용% 수치 변경 | 2026-06-30 | 쮸티12-1호 |
 
 
 
