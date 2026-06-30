@@ -351,9 +351,9 @@ git checkout -b feature/T-001-jun-loan-landing
 | T-024 | [monthly-loan] 홈 강제 고지 팝업 추가 | ✅ `47e7965` | ✅ | 검증완료 | ✅ 선별반영 `7954d66` | - | 쮸티12-1호 | 2026-06-29 | PR #19 선별반영, Pages 배포 run 미제공 |
 | T-025 | [sirjuseyoWeb] 홈 강제 고지 팝업 추가 + index-dev.html 신규생성 | ✅ `5043427` | ✅ | 검증완료 | ✅ 선별반영 `b830524` | - | 쮸티12-1호 | 2026-06-29 | PR #12 선별반영(DIRTY/충돌로 전체병합 불가), Pages 배포 run 미제공 |
 | T-026 | [팝업 전체] 예시 플로우 문구 2건 수정 | ✅ `47e7965`/`5043427` | ✅ | 검증완료 | ✅ 선별반영 `7954d66` (monthly-loan) / `b830524` (sirjuseyoWeb) | - | 쮸티12-1호 | 2026-06-29 | T-024 PR #19 + T-025 PR #12 선별반영 완료 |
-| T-027 | [monthly-loan] 팝업 가이드라인 활용% 개편 + 예시 수치 변경 | ✅ `bb3ae48` | ✅ | 검증완료 | - | - | 쮸티12-1호 | 2026-06-30 | feature/T-028-popup-html-content-update 포함 / PR 생성 예정 |
-| T-028 (monthly-loan) | [monthly-loan] 팝업 HTML 활용% 개편 + 예시 수치 변경 반영 | ✅ `98774e5` | ✅ | 검증완료 | - | - | 쮸티12-1호 | 2026-06-30 | feature/T-028-popup-html-content-update / PR 생성 예정 |
-| T-028 (sirjuseyoWeb) | [sirjuseyoWeb] 팝업 HTML 활용% 개편 + 예시 수치 변경 반영 | ✅ `3e0cb64` | ✅ | 검증완료 | - | - | 쮸티12-1호 | 2026-06-30 | feature/T-028-popup-html-content-update / PR 생성 예정 |
+| T-027 | [monthly-loan] 팝업 가이드라인 활용% 개편 + 예시 수치 변경 | ✅ `bb3ae48` | ✅ PR#20 | 검증완료 | - | - | 쮸티12-1호 | 2026-06-30 | feature/T-028-popup-html-content-update / PR #20 포함 / 선별반영 요청 |
+| T-028 (monthly-loan) | [monthly-loan] 팝업 HTML 활용% 개편 + 예시 수치 변경 반영 | ✅ `98774e5` | ✅ PR#20 | 검증완료 | - | - | 쮸티12-1호 | 2026-06-30 | feature/T-028-popup-html-content-update / PR #20 / 선별반영 요청 |
+| T-028 (sirjuseyoWeb) | [sirjuseyoWeb] 팝업 HTML 활용% 개편 + 예시 수치 변경 반영 | ✅ `3e0cb64` | ✅ PR#13 | 검증완료 | - | - | 쮸티12-1호 | 2026-06-30 | feature/T-028-popup-html-content-update / PR #13 / 선별반영 요청 |
 
 
 ---
