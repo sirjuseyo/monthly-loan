@@ -3165,3 +3165,34 @@ monthly-loan T-027 / T-028 반영 완료했습니다.
 로컬 최신화:
 - 제 워크스페이스 기준 `monthly-loan` 로컬은 `main...origin/main` 일치 상태 확인 완료
 
+---
+
+## 📩 깃 & 배포 관리자 완료 보고서 — sirjuseyoWeb T-028 PRD 선별 반영
+
+[운영 : 깃 & 배포 관리자 -> 개발자]
+sirjuseyoWeb T-028 PRD 선별 반영 완료했습니다.
+처리 방식:
+전체 dev -> main 병합은 하지 않았습니다.
+dev 검증 완료 커밋 2ffcb98 기준으로 index.html, index-dev.html 2개 파일만 main에 선별 반영했습니다.
+
+반영 내용:
+- 팝업 활용% 수치 전면 개편
+- 최소 0.9%
+- 20만 블랙찬스 원금 활용 7.25%
+- 한도 상향 최소 11.9%
+
+반영 커밋:
+- `df6c140` feat(web): selectively apply popup rate update on main [T-028]
+
+원격 반영:
+- `b830524..df6c140  main -> main`
+
+로컬 최신화:
+- 제 워크스페이스 sirjuseyo-web도 main...origin/main 기준으로 최신화 완료했습니다.
+
+비고:
+- 라이브 본문 문자열은 즉시 응답에서 확인되지 않아, 현재는 캐시 또는 GitHub Pages 반영 지연 구간으로 판단합니다.
+
+한 줄 버전:
+- sirjuseyoWeb T-028 PRD 선별 반영 완료, dev 커밋 2ffcb98 기준 index.html, index-dev.html만 main에 반영했고 원격 main commit df6c140 및 제 로컬 워크스페이스 최신화까지 완료했습니다.
+

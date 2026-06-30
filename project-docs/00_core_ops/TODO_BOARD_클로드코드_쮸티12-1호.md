@@ -353,7 +353,7 @@ git checkout -b feature/T-001-jun-loan-landing
 | T-026 | [팝업 전체] 예시 플로우 문구 2건 수정 | ✅ `47e7965`/`5043427` | ✅ | 검증완료 | ✅ 선별반영 `7954d66` (monthly-loan) / `b830524` (sirjuseyoWeb) | - | 쮸티12-1호 | 2026-06-29 | T-024 PR #19 + T-025 PR #12 선별반영 완료 |
 | T-027 | [monthly-loan] 팝업 가이드라인 활용% 개편 + 예시 수치 변경 | ✅ `bb3ae48` | ✅ PR#20 | 검증완료 | ✅ 선별반영 `cdb522c` | - | 쮸티12-1호 | 2026-06-30 | PR #21 선별반영 (0f7fb1c 기준) / Pages 배포 대기 |
 | T-028 (monthly-loan) | [monthly-loan] 팝업 HTML 활용% 개편 + 예시 수치 변경 반영 | ✅ `98774e5` | ✅ PR#21 | 검증완료 | ✅ 선별반영 `cdb522c` | - | 쮸티12-1호 | 2026-06-30 | PR #21 선별반영 (0f7fb1c 기준) / Pages 배포 대기 |
-| T-028 (sirjuseyoWeb) | [sirjuseyoWeb] 팝업 HTML 활용% 개편 + 예시 수치 변경 반영 | ✅ `3e0cb64` | ✅ PR#13 | 검증완료 | - | - | 쮸티12-1호 | 2026-06-30 | feature/T-028-popup-html-content-update / PR #13 / 선별반영 요청 중 |
+| T-028 (sirjuseyoWeb) | [sirjuseyoWeb] 팝업 HTML 활용% 개편 + 예시 수치 변경 반영 | ✅ `3e0cb64` | ✅ PR#13 | 검증완료 | ✅ 선별반영 `df6c140` | - | 쮸티12-1호 | 2026-06-30 | dev 2ffcb98 → main df6c140 선별반영 완료 / b830524..df6c140 main->main |
 
 
 ---
