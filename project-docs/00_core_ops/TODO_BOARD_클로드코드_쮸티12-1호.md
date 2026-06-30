@@ -394,6 +394,8 @@ git checkout -b feature/T-001-jun-loan-landing
 | **T-024** | WT-024 | W-024 | `47e7965` | **검증완료** | **[monthly-loan] 홈 강제 고지 팝업 추가** | 쮸티12-1호 | 2026-06-29 | 【파일】`index.html`, `index-dev.html` / 팝업 CSS+HTML+Script 주입, PRD: localStorage 재노출 방지(하루 1회), DEV: 비활성화 / PR #19 선별반영 `7954d66` |
 | **T-025** | WT-025 | W-025 | `5043427` | **검증완료** | **[sirjuseyoWeb] 홈 강제 고지 팝업 추가 + index-dev.html 신규생성** | 쮸티12-1호 | 2026-06-29 | 【파일】`index.html`(팝업주입), `index-dev.html`(신규생성+팝업), `index-origin.html` / W-024와 동일 팝업, DEV 배너 추가 / PR #12 선별반영 `b830524` |
 | **T-026** | WT-026 | W-026 | `47e7965`/`5043427` | **검증완료** | **[팝업 전체] 예시 플로우 문구 2건 수정** | 쮸티12-1호 | 2026-06-29 | 【파일】`index.html`×2, `index-dev.html`×2, `popup-v6.html`, `HANDOVER_v6.md` / ①`선적립(예치)하면` ②불승인 inote 간결화 / T-024(`7954d66`) + T-025(`b830524`) 커밋에 포함 |
+| **T-027** | WT-027 | W-027 | `bb3ae48` | **검증완료** | **[팝업 가이드라인] 활용% 개편 + 예시 수치 변경** | 쮸티12-1호 | 2026-06-30 | 【파일】`popup-v6_20260628.html`, `HANDOVER_웹팝업_v6_20260628.md` / ①최소 0.9% ②상품별 활용% 전면 개편(10/20/30/50만원) ③이벤트 구조 변경 ④신용조회비용 4,500원 ⑤예시 15,000P/100,000원/90,000원/15,500P ⑥크레딧 테이블 갱신 |
+| **T-028** | WT-028 | W-028 | - | **진행중(In-Progress)** | **[팝업 HTML 4개] 활용% 개편 + 예시 수치 변경 반영** | 쮸티12-1호 | 2026-06-30 | 【파일】`monthly-loan/index.html`, `monthly-loan/index-dev.html`, `sirjuseyoWeb/index.html`, `sirjuseyoWeb/index-dev.html` / W-027 동일 변경사항 실제 팝업 HTML 4개 적용 |
 
 
 ---
@@ -428,7 +430,8 @@ git checkout -b feature/T-001-jun-loan-landing
 | W-024 | P0 | T-024 | **진행중** | **[monthly-loan] 홈 팝업 추가 (강제 고지형)** | `index.html`, `index-dev.html` | v6 팝업 소스 기반 주입 — `.mock`·`.reopen` 제거, 전역 리셋 CSS 제거, body 스타일 제거, localStorage 재노출 방지 로직 추가(PRD: 하루 1회 / DEV: 비활성화) | 2026-06-28 | 쮸티12-1호 |
 | W-026 | P0 | T-026 | **진행중** | **[팝업 전체] 예시 플로우 문구 2건 수정** | `index.html`×2, `index-dev.html`×2, `popup-v5.html`, `popup-v6.html` | ①`선적립하면`→`선적립(예치)하면` ②`한도가 발생하지 않을 수 있으며, 불승인 시`→`한도가 발생하지 않으면(불승인)` | 2026-06-29 | 쮸티12-1호 |
 | W-025 | P0 | T-025 | **진행중** | **[sirjuseyoWeb] 홈 팝업 추가 (강제 고지형)** | `index.html`, `index-dev.html`(신규 생성) | W-024와 동일 팝업 주입 — sirjuseyoWeb `index-dev.html` 없으므로 `index.html` 기반 DEV 파일 신규 생성 포함, DEV 배너 추가 | 2026-06-28 | 쮸티12-1호 |
-| W-027 | P0 | - | **대기** | **[팝업] 활용% 개편 + 예시 수치 변경** | `popup-v6_20260628.html`, `HANDOVER_웹팝업_v6_20260628.md`, `monthly-loan/index.html`, `monthly-loan/index-dev.html`, `sirjuseyoWeb/index.html`, `sirjuseyoWeb/index-dev.html` | ①최소 3.5% → 0.9% ②상품별 활용% 수치 전면 개편(10/20/30/50만원 각 상품) ③이벤트 구조 변경 ④신용조회비용 10,000원 → 4,500원 ⑤예시 39,000P/300,000원/270,000원 → 15,000P/100,000원/90,000원 ⑥크레딧 테이블 활용% 수치 변경 | 2026-06-30 | 쮸티12-1호 |
+| W-027 | P0 | T-027 | **완료** | **[팝업 가이드라인] 활용% 개편 + 예시 수치 변경** | `popup-v6_20260628.html`, `HANDOVER_웹팝업_v6_20260628.md` | ①최소 3.5% → 0.9% ②상품별 활용% 전면 개편(10/20/30/50만원) ③이벤트 구조 변경 ④신용조회비용 4,500원 ⑤예시 15,000P/100,000원/90,000원/15,500P ⑥크레딧 테이블 갱신 — 실제 HTML 4개 적용은 W-028 | 2026-06-30 | 쮸티12-1호 |
+| W-028 | P0 | T-028 | **진행중** | **[팝업 HTML 4개] 활용% 개편 + 예시 수치 변경 반영** | `monthly-loan/index.html`, `monthly-loan/index-dev.html`, `sirjuseyoWeb/index.html`, `sirjuseyoWeb/index-dev.html` | W-027 가이드라인 변경 동일 내용을 실제 팝업 HTML 4개 파일에 적용 | 2026-06-30 | 쮸티12-1호 |
 
 
 
