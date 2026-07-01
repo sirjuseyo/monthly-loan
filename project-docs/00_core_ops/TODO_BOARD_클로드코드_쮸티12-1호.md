@@ -445,7 +445,7 @@ git checkout -b feature/T-001-jun-loan-landing
 | W-036 | P0 | T-036 | **코딩완료(TEST WAIT)** | **[홈 페이지] index-dev.html 7월 전환** | `index-dev.html`, `PLAN_홈페이지_7월전환_기획서.md` | 본문: ①live-badge 7월 ②gift-box 7월 이미지 ③이달의 대출 7️⃣🈷️ 썸머 🏖️베케이션 ④링크 2026-07 ⑤월드컵 카드 숨김 / 팝업: ⑥이벤트 활용 10만 6.5% / 20만 4.25% / 30만 3.5% / 커밋 `a9668d5` ✅ WT-046 | 2026-07-01 | 쮸티12-1호 |
 | W-037 | P0 | T-037 | **코딩완료(TEST WAIT)** | **[홈 페이지] index-dev.html 대출 가능성 검사기 카드 숨김** | `index-dev.html`, `PLAN_홈페이지_7월전환_기획서.md` | checker-card 블록 `display:none` 숨김 처리 / 커밋 `86307cd` ✅ WT-047 | 2026-07-01 | 쮸티12-1호 |
 | W-038 | P1 | T-038 | **코딩완료(TEST WAIT)** | **[문서 정리] project-docs 폴더 구조 변경 git 반영** | `project-docs/120_plan/` (신규), `project-docs/00_plan/` (삭제), `2026-07/PLAN_7월_썸머베케이션대출_기획서.md` (삭제→120_plan) | 사장님 직접 이동 완료: ①00_plan 전체→120_plan ②2026-07 기획서→120_plan ③루트 PLAN_홈페이지_7월전환 삭제 / git 반영 + 커밋 `3291e62` ✅ WT-048 | 2026-07-01 | 쮸티12-1호 |
-| W-039 | P0 | T-039 | **진행중** | **[홈 페이지] index-dev.html gift-box 서핑 이미지 교체** | `index-dev.html`, `PLAN_2026-07_홈페이지_7월전환_기획서.md` | gift-box 이미지: `summer-jul-001.jpg` → `Palm-Surf_Jul-Loan.png` (269번 줄) / 기획서 v0.4 반영 | 2026-07-01 | 쮸티12-1호 |
+| W-039 | P0 | T-039 | **코딩완료(TEST WAIT)** | **[홈 페이지] index-dev.html gift-box 서핑 이미지 교체** | `index-dev.html`, `PLAN_2026-07_홈페이지_7월전환_기획서.md` | gift-box 이미지: `summer-jul-001.jpg` → `Palm-Surf_Jul-Loan.png` (269번 줄) / 기획서 v0.4 반영 / 커밋 `0ee40b0` ✅ WT-049 | 2026-07-01 | 쮸티12-1호 |
 
 
 
