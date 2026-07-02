@@ -356,6 +356,17 @@ git checkout -b feature/T-001-jun-loan-landing
 | T-028 (sirjuseyoWeb) | [sirjuseyoWeb] 팝업 HTML 활용% 개편 + 예시 수치 변경 반영 | ✅ `3e0cb64` | ✅ PR#13 | 검증완료 | ✅ 선별반영 `df6c140` | - | 쮸티12-1호 | 2026-06-30 | dev 2ffcb98 → main df6c140 선별반영 완료 / b830524..df6c140 main->main |
 | T-040 | [6월 페이지] 마감 처리 — 기존 내용 숨김 + 마감 문구 표시 | ✅ `261a656` | ✅ PR#22 | - | ✅ PR#22 merge `92e118da` | ✅ Pages run `28560557018` | 쮸티12-1호 | 2026-07-02 | PR#22 feature→main merge, HTTP/2 200 확인, live URL `monthly-loan.sirjuseyo.com/2026-06/index-dev.html` |
 | T-041 | [6월 PRD] index.html 마감 처리 — T-040 누락 보완 | ✅ `46e0eab` | ✅ PR#23 | - | ✅ PR#23 merge `7d957808` | ✅ Pages run `28561178724` | 쮸티12-1호 | 2026-07-02 | PR#23 feature→main merge, live URL `monthly-loan.sirjuseyo.com/2026-06/index.html` |
+| T-030 | [7월] 크레딧 미션 4,500포 통일 | ✅ `7389ee8` | ✅ PR#24 | 검증완료 | ✅ 선별반영 `cf89006` | ✅ Pages run `28564430240` | 쮸티12-1호 | 2026-07-01 | PR#24 선별반영, live `monthly-loan.sirjuseyo.com/2026-07/index.html` 200 |
+| T-031 | [7월] 이벤트 섹션 개편 + 신용조회비용 용어 통일 | ✅ `4ec2c42` | ✅ PR#24 | 검증완료 | ✅ 선별반영 `cf89006` | ✅ Pages run `28564430240` | 쮸티12-1호 | 2026-07-01 | PR#24 선별반영 |
+| T-032 | [7월] 워터밤💦대출 원금 미션 안내 추가 | ✅ `44f294a` | ✅ PR#24 | 검증완료 | ✅ 선별반영 `cf89006` | ✅ Pages run `28564430240` | 쮸티12-1호 | 2026-07-01 | PR#24 선별반영 |
+| T-033 | [7월] 이벤트 대출 이포→원리포 전환 | ✅ `29a2722` | ✅ PR#24 | 검증완료 | ✅ 선별반영 `cf89006` | ✅ Pages run `28564430240` | 쮸티12-1호 | 2026-07-01 | PR#24 선별반영 |
+| T-034 | [7월] 비교테이블 이벤트 대출 원금 미션 재계산 | ✅ `6d7015c` | ✅ PR#24 | 검증완료 | ✅ 선별반영 `cf89006` | ✅ Pages run `28564430240` | 쮸티12-1호 | 2026-07-01 | PR#24 선별반영 |
+| T-035 | [7월] 예시❸ 원금 미션(1%) 수정 | ✅ `2b598b7` | ✅ PR#24 | 검증완료 | ✅ 선별반영 `cf89006` | ✅ Pages run `28564430240` | 쮸티12-1호 | 2026-07-01 | PR#24 선별반영 |
+| T-036 | [홈] index-dev.html + index.html 7월 전환 (본문 + 팝업 이벤트 활용%) | ✅ `a9668d5` | ✅ PR#24 | 테스트 대기 | ✅ 선별반영 `cf89006` | ✅ Pages run `28564430240` | 쮸티12-1호 | 2026-07-01 | PR#24 선별반영, 사장님 라이브 테스트 대기 |
+| T-037 | [홈] index-dev.html + index.html 검사기 카드 숨김 | ✅ `86307cd` | ✅ PR#24 | 테스트 대기 | ✅ 선별반영 `cf89006` | ✅ Pages run `28564430240` | 쮸티12-1호 | 2026-07-01 | PR#24 선별반영, 사장님 라이브 테스트 대기 |
+| T-039 | [홈] index-dev.html + index.html gift-box 서핑 이미지 교체 | ✅ `0ee40b0` | ✅ PR#24 | 검증완료 | ✅ 선별반영 `cf89006` | ✅ Pages run `28564430240` | 쮸티12-1호 | 2026-07-01 | PR#24 선별반영 |
+| W-042 | [7월 PRD] 홈 index.html + 2026-07/index.html 신규 생성 | ✅ `815964b` | ✅ PR#24 | - | ✅ 선별반영 `cf89006` | ✅ Pages run `28564430240` | 쮸티12-1호 | 2026-07-02 | PR#24 선별반영, `2026-07/index.html` 200 확인 |
+| W-043 | [T-039 자산] Palm-Surf_Jul-Loan.png 커밋 추가 | ✅ `84b62f4` | ✅ PR#24 | - | ✅ 선별반영 `cf89006` | ✅ Pages run `28564430240` | 쮸티12-1호 | 2026-07-02 | PR#24 선별반영, `2026-07/assets/Palm-Surf_Jul-Loan.png` 200 확인 |
 
 
 ---
@@ -450,8 +461,8 @@ git checkout -b feature/T-001-jun-loan-landing
 | W-041 | P0 | T-041 | **테스트 완료(DONE)** `46e0eab` | **[6월 PRD] index.html 마감 처리 — DEV와 동일 적용** | `2026-06/index.html` | T-040 누락 보완 — DEV(`index-dev.html`)만 수정했으나 PRD(`index.html`) 미반영 / 동일 마감 처리 적용 / 커밋 `46e0eab` ✅ WT-051 | 2026-07-02 | 쮸티12-1호 |
 | W-040 | P0 | T-040 | **테스트 완료(DONE)** `2d5cb5c` | **[6월 페이지] 마감 처리 — 기존 내용 숨김 + 마감 문구 표시** | `2026-06/index-dev.html` | `<body>` 직후 마감 문구 div 삽입 / 기존 전체 내용 `display:none` 감싸기 (HTML 주석 중첩 이슈 대응) / 커밋 `2d5cb5c` ✅ WT-050 | 2026-07-02 | 쮸티12-1호 |
 | W-039 | P0 | T-039 | **테스트 완료(DONE)** `0ee40b0` | **[홈 페이지] index-dev.html gift-box 서핑 이미지 교체** | `index-dev.html`, `PLAN_2026-07_홈페이지_7월전환_기획서.md` | gift-box 이미지: `summer-jul-001.jpg` → `Palm-Surf_Jul-Loan.png` (269번 줄) / 기획서 v0.4 반영 / 커밋 `0ee40b0` ✅ WT-049 | 2026-07-01 | 쮸티12-1호 |
-| W-042 | P0 | T-030~T-039 (PRD) | **코딩완료(TEST WAIT)** `815964b` |
-| W-043 | P0 | T-039 (자산) | **코딩완료(TEST WAIT)** `84b62f4` | **[T-039 자산 보완] Palm-Surf_Jul-Loan.png 이미지 파일 커밋 추가** | `2026-07/assets/Palm-Surf_Jul-Loan.png` | Ser7-1호 보류 보고 수신 — 이미지 파일 미커밋 상태였음, 자산 파일 커밋 추가 ✅ WT-053 | 2026-07-02 | 쮸티12-1호 | **[7월 썸머 베케이션] PRD 파일 생성/업데이트 — T-030~T-039 반영** | `index.html` (루트), `2026-07/index.html` (신규) | ①루트 index.html: T-036(7월 전환 본문+팝업 이벤트 활용%), T-037(checker-card 숨김), T-039(서핑 이미지) 반영 ②2026-07/index.html 신규 생성: index-dev.html 기반 DEV 배너 제거 + href apply.html 변경 | 2026-07-02 | 쮸티12-1호 |
+| W-042 | P0 | T-030~T-039 (PRD) | **검증완료** `815964b` → main `cf89006` |
+| W-043 | P0 | T-039 (자산) | **검증완료** `84b62f4` → main `cf89006` | **[T-039 자산 보완] Palm-Surf_Jul-Loan.png 이미지 파일 커밋 추가** | `2026-07/assets/Palm-Surf_Jul-Loan.png` | Ser7-1호 보류 보고 수신 — 이미지 파일 미커밋 상태였음, 자산 파일 커밋 추가 ✅ WT-053 | 2026-07-02 | 쮸티12-1호 | **[7월 썸머 베케이션] PRD 파일 생성/업데이트 — T-030~T-039 반영** | `index.html` (루트), `2026-07/index.html` (신규) | ①루트 index.html: T-036(7월 전환 본문+팝업 이벤트 활용%), T-037(checker-card 숨김), T-039(서핑 이미지) 반영 ②2026-07/index.html 신규 생성: index-dev.html 기반 DEV 배너 제거 + href apply.html 변경 | 2026-07-02 | 쮸티12-1호 |
 
 
 
