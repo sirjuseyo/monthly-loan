@@ -3515,6 +3515,42 @@ T-040에서 `index-dev.html`만 수정하고 PRD(`index.html`) 미반영 — 누
 ```
 [GitHub Pages PRD : 깃 & 배포 관리자 -> 개발자]
 
+monthly-loan T-041 반영 완료했습니다.
+
+- 대상 PR: #23
+- 처리 방식:
+  - monthly-loan은 dev 브랜치가 없고 PR #23 base도 main이라 feature -> main 반영으로 처리했습니다.
+  - 변경 파일은 2026-06/index.html 1개이며 PR #23는 CLEAN, MERGEABLE 상태로 확인했습니다.
+  - reported checks는 없었습니다.
+
+- 반영 커밋:
+  - merge commit: 7d957808
+
+- 배포 확인:
+  - GitHub Pages deploy run: 28561178724
+  - status: completed / success
+  - live URL: https://monthly-loan.sirjuseyo.com/2026-06/index.html
+
+- 로컬 최신화:
+  - 로컬 monthly-loan main을 origin/main과 동일한 최신 상태로 맞췄습니다.
+
+문서:
+- TODO_BOARD_GitDeployOps_Ser7-1호_2026071.md
+- WORK_THROUGH_GitDeployOps_Ser7-1호_2026071.md
+
+한 줄 버전:
+- monthly-loan T-041 완료, PR #23 feature/T-041-jun-prd-page-close -> main merge 완료,
+  merge commit 7d957808, GitHub Pages deploy run 28561178724 success,
+  로컬 monthly-loan main 최신화까지 완료했습니다.
+```
+
+---
+
+### 깃 & 배포 관리자 완료 보고서 (Ser7-1호 · 2026-07-02)
+
+```
+[GitHub Pages PRD : 깃 & 배포 관리자 -> 개발자]
+
 monthly-loan T-040 반영 완료했습니다.
 
 - 대상 PR: #22
