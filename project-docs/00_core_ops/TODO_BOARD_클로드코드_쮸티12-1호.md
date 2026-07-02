@@ -354,6 +354,7 @@ git checkout -b feature/T-001-jun-loan-landing
 | T-027 | [monthly-loan] 팝업 가이드라인 활용% 개편 + 예시 수치 변경 | ✅ `bb3ae48` | ✅ PR#20 | 검증완료 | ✅ 선별반영 `cdb522c` | - | 쮸티12-1호 | 2026-06-30 | PR #21 선별반영 (0f7fb1c 기준) / Pages 배포 대기 |
 | T-028 (monthly-loan) | [monthly-loan] 팝업 HTML 활용% 개편 + 예시 수치 변경 반영 | ✅ `98774e5` | ✅ PR#21 | 검증완료 | ✅ 선별반영 `cdb522c` | - | 쮸티12-1호 | 2026-06-30 | PR #21 선별반영 (0f7fb1c 기준) / Pages 배포 대기 |
 | T-028 (sirjuseyoWeb) | [sirjuseyoWeb] 팝업 HTML 활용% 개편 + 예시 수치 변경 반영 | ✅ `3e0cb64` | ✅ PR#13 | 검증완료 | ✅ 선별반영 `df6c140` | - | 쮸티12-1호 | 2026-06-30 | dev 2ffcb98 → main df6c140 선별반영 완료 / b830524..df6c140 main->main |
+| T-040 | [6월 페이지] 마감 처리 — 기존 내용 숨김 + 마감 문구 표시 | ✅ `261a656` | ✅ PR#22 | - | ✅ PR#22 merge `92e118da` | ✅ Pages run `28560557018` | 쮸티12-1호 | 2026-07-02 | PR#22 feature→main merge, HTTP/2 200 확인, live URL `monthly-loan.sirjuseyo.com/2026-06/index-dev.html` |
 
 
 ---
