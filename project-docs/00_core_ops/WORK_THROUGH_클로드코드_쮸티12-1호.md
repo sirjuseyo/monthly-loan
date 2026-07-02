@@ -3581,3 +3581,27 @@ monthly-loan T-040 반영 완료했습니다.
   로컬 monthly-loan main 최신화까지 완료했습니다.
 ```
 
+---
+
+## WT-052 · W-042 [7월 썸머 베케이션] PRD 파일 생성/업데이트
+
+**작업일:** 2026-07-02
+**작업자:** 쮸티12-1호
+**상태:** 진행중
+
+### 작업 배경
+
+T-030~T-039 작업이 모두 DEV(`index-dev.html`, `2026-07/index-dev.html`)에만 반영됨.  
+"앞으로는 dev.html, prd.html 모두 같이 처리해야 돼!" 지시에 따라 PRD 파일도 신규 생성/업데이트.
+
+### 수정/생성 내용
+
+| 파일 | 변경 유형 | 내용 |
+|------|---------|------|
+| `index.html` (루트 PRD) | 수정 | T-036: live-badge 7월, gift-box Palm-Surf, ☀️ 태그, 썸머 베케이션 제목, 2026-07 링크, worldcup-card 숨김 |
+| `index.html` (루트 PRD) | 수정 | T-036: 팝업 이벤트 활용% — 10만 6.5% / 20만 4.25% / 30만 3.5% (크레딧+이자+원금 1%) |
+| `index.html` (루트 PRD) | 수정 | T-037: checker-card display:none 숨김 |
+| `index.html` (루트 PRD) | 수정 | T-039: gift-box 서핑 이미지 Palm-Surf_Jul-Loan.png |
+| `2026-07/index.html` | 신규 생성 | T-030~T-035: index-dev.html 기반, DEV 배너 제거, href apply.html 변경 |
+
+---
